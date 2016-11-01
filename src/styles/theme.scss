@@ -1,0 +1,41 @@
+//---------- Theme ----------//
+
+//----- content
+
+.main-wrap { padding: 0 0 0 $sidebar-width !important; background: $bg-color; float: left; width: 100%; box-sizing: border-box; }
+.no-menu .main-wrap { padding-left: 0 !important; }
+.content-wrap { padding: 0 $wrapper-padding $wrapper-padding $wrapper-padding !important; background: $bg-color; float: left; width: 100%; box-sizing: border-box; }
+.content-wrap > div { padding: 0 !important; }
+.panel-bar {
+  height: $panel-bar-height; z-index: 99 !important;
+  & > h1 { line-height: $panel-bar-height !important; font-size: 20px !important; font-weight: 400; }
+  &.secondary { background-color: #e8e8e8 !important; box-shadow: none !important; }
+  &.secondary > h1 { color: #7a7a7a !important; }
+}
+.con-pad { padding: $content-padding; }
+.semicon { padding: $content-padding; }
+
+//----- button
+
+.icon-btn { margin: 10px !important; min-width: 36px !important; }
+.icon-btn.first { margin-left: 0 !important; }
+.icon-btn.left-most { margin-left: -8px !important; }
+//.button.right-margin { margin-right: 12px; }
+//.button-group {
+//  margin-bottom: 24px; position: relative; z-index: 1;
+//  .button { margin-right: 16px; }
+//  .icon-only-btn { min-width: 0 !important; width: 10px; padding: 0 10px; }
+//  &.right {
+//    text-align: right; float: right;
+//    .button { margin-left: 16px; margin-right: 0; }
+//  }
+//}
+
+//----- alignment
+
+#app { height: 100%; }
+// todo: change to center-wrap
+.center { display: table !important; width: 100% !important; height: 100% !important; position: absolute; }
+.center-inner { display: table-cell !important; vertical-align: middle; }
+.center-inner.loading { text-align: center; }
+.center-modal { width: 100%; padding-top: 24px; text-align: center; }

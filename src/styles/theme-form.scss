@@ -1,0 +1,11 @@
+.semiForm {
+  &.compact > div { margin-top: -10px !important; }
+  .form-string { line-height: 14px; padding: 53px 0 0 0; }
+  .btn-wrap {
+    width: 100%;
+    & > div { display: inline; }
+  }
+  .btn-right .btn-wrap { text-align: right; margin-right: 16px; }
+  .btn-right .btn-wrap > div > div { left: 16px !important; }
+}
+.semiForm .btn-icon, .btn-icon { width: 36px !important; }

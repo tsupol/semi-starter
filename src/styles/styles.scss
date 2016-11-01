@@ -1,0 +1,33 @@
+@import 'breakpoints';
+@import 'variables';
+
+html { width: 100%; height: 100%; }
+body { margin: 0; font-family: 'roboto', 'segoe ui', 'droid sans', tahoma, arial, sans-serif; background: $bg-color; height: 100%; }
+
+//----- Login
+
+//----- Dashboard
+
+.scroll-list { max-height: 343px; overflow-y: scroll; }
+
+//-----  Calendar
+
+#calendar-wrapper {
+  .calendar-header h2 { float: left; margin-top: 8px; }
+  .view-buttons {
+    margin: 3px 20px 0 0;
+  }
+}
+.color-filter .semi-list-item { margin: 0 !important; }
+
+//---------- Responsive ----------//
+
+@include responsive(ipad) {
+  .main-wrap { padding-left: 0 !important;}
+}
+@include responsive(mobile) {
+}
+
+@import 'theme';
+@import 'theme-form';
+@import 'theme-widgets';

@@ -1,0 +1,56 @@
+{
+  "name": "react-semi-theme",
+  "version": "1.1.0",
+  "description": "A react components with formsy-react+material-ui",
+  "main": "./src/index.js",
+  "scripts": {
+    "demo": "webpack-dev-server --content-base demo/ --hot --port 3000 --open --inline",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-1",
+      "react"
+    ]
+  },
+  "keywords": [
+    "react",
+    "formsy",
+    "material-ui",
+    "components"
+  ],
+  "author": "dvwzj <iguphai_@msn.com> (http://www.dvwzj.in)",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "material-ui": "^0.16.0",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.1",
+    "jquery": "^3.1.1",
+    "flexboxgrid": "^6.3.1",
+    "formsy-react": "^0.18.1",
+    "react-flexbox-grid": "^0.10.2",
+    "react-tap-event-plugin": "^1.0.0",
+    "es6-promise": "^4.0.5",
+    "isomorphic-fetch": "^2.2.1",
+    "validator": "^6.0.0"
+  },
+  "devDependencies": {
+    "material-ui": "^0.16.0",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.1",
+    "jquery": "^3.1.1",
+    "flexboxgrid": "^6.3.1",
+    "formsy-react": "^0.18.1",
+    "react-flexbox-grid": "^0.10.2",
+    "react-tap-event-plugin": "^1.0.0",
+    "es6-promise": "^3.2.1",
+    "isomorphic-fetch": "^2.2.1",
+    "validator": "^6.0.0",
+
+    "react-responsive": "1.1.5",
+    "react-dropzone": "3.7.0"
+  }
+}

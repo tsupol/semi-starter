@@ -1,0 +1,23 @@
+//---------- Nav ----------//
+
+.menu-wrapper {
+  width: 100px !important;
+  & > div { background: $menu-bg-color !important; }
+  .nav-item { color: $menu-text-color !important; font-size: 14px !important; }
+  .nav-item.has-child + div { padding: 1px 0 !important; background-color: $menu-bg-color2 !important; }
+  .nav-item > div > div { padding-left: 56px !important; }
+  .nav-item-child > div > div { margin-left: 16px !important; }
+  button svg { fill: $menu-text-color !important; }
+}
+.top-nav-wrap { float: left; position: fixed; width: 100%; z-index: 999; }
+.top-nav-bar { background: $fg-color !important; padding-left: $sidebar-width+$wrapper-padding+24px !important; }
+.no-menu .top-nav-bar { padding-left: $wrapper-padding+24px !important; }
+.side-nav-bar { background: $main-color !important; color: $main-text-color; letter-spacing: 1px; }
+
+//---------- page heading ----------//
+
+.page-heading {
+  background: #f1f1f1; float: left; width: 100%; box-sizing: border-box; padding: $nav-height $wrapper-padding 0 $wrapper-padding;
+  & > h1 { font-size: 30px; font-weight: 400; margin: 20px 0 5px 0; }
+  & > p { color: #666; font-size: 13px; font-weight: 300; margin: 0 0 20px 0; }
+}
