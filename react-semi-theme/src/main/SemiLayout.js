@@ -86,7 +86,7 @@ class SemiLayout extends Component {
                     // todo: main menu
                     <Drawer open={showMainMenu} className={`menu-wrapper ${showMainMenu ? '' : 'minimize'}`}>
                         <Toolbar className="side-nav-bar"><ToolbarTitle text="Navigation"/></Toolbar>
-                        <SideMenu location={this.props.location} />
+                        <SideMenu location={this.props.location} menu={this.props.mainMenu} />
                     </Drawer>
                 }
                 <Paper className="top-nav-wrap" zDepth={1}>

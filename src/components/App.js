@@ -5,6 +5,7 @@ import * as userActions from '../actions/userActions';
 import {SemiThemeProvider, SemiLayout} from 'react-semi-theme';
 import {ajax, getAll} from '../api/ApiCall';
 import semiThemeSettings from './../settings/semiThemeSettings';
+import menuSettings from './../settings/menuSettings';
 
 class App extends Component {
 
@@ -29,11 +30,12 @@ class App extends Component {
 		let component = <SemiLayout appBarTitle="Starters"
 									children={this.props.children}
 									location={this.props.location}
+									actions={this.props.actions}
+									{...menuSettings}
 									settings={{
-											toolbarTitle: 'Semi Starter',
-											navTitle: 'Navigations'
-										}}
-									actions={this.props.actions}/>;
+										toolbarTitle: 'Semi Starter',
+										navTitle: 'Navigations'
+									}} />;
 
 		// component = this.props.children;
 

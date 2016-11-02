@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Main;
 
 use App\Http\Requests;
 use App\Models\Calendar\Category;

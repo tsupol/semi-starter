@@ -1,96 +1,5 @@
 import React, {PropTypes, Component} from 'react';
 import {List, ListItem} from 'material-ui/List';
-import {
-    ActionDateRange,
-    ActionHome,
-    ActionEvent,
-    ActionEventSeat,
-    ActionPermContactCalendar,
-    SocialPerson,
-    ActionSettings,
-    ActionDashboard,
-    ActionAccessibility,
-    ActionStore
-} from 'material-ui/svg-icons';
-
-// menu here
-
-const mainMenu = [
-    {
-        text: "Dashboard",
-        icon: <ActionHome />,
-        to: "/"
-    },
-    {
-        text: "Sale's Schedule",
-        icon: <ActionEvent />,
-        to: "/schedules/sale",
-        permissions: ['request-schedules']
-    },
-    {
-        text: "Organizer's Schedule",
-        icon: <ActionEvent />,
-        to: "/schedules/organizer",
-        permissions: ['organize-schedules']
-    },
-    {
-        text: "Schedule Summary",
-        icon: <ActionDateRange />,
-        to: "/schedules/summary",
-        permissions: ['view-schedules']
-    },
-    {
-        text: "Doctor's Slots",
-        icon: <ActionDashboard />,
-        to: "/slots",
-        permissions: ['edit-slot']
-    },
-    {
-        text: "Settings",
-        icon: <ActionSettings />,
-        to: "/settings",
-        nestedItems: [
-            {
-                text: "Doctors",
-                to: "/doctors",
-                permissions: ['schedule-settings']
-            },
-            {
-                text: "Categories",
-                to: "/categories",
-                permissions: ['schedule-settings']
-            }
-        ]
-    },
-    {
-        text: "Customers",
-        icon: <ActionAccessibility />,
-        to: "/customers",
-        permissions: ['edit-customers']
-    },
-    {
-        text: "Users",
-        icon: <SocialPerson />,
-        to: "/users",
-        permissions: ['edit-users']
-    },
-    {
-        text: "Branches",
-        icon: <ActionStore />,
-        to: "/branches",
-        permissions: ['edit-branches']
-    }
-    // {
-    //     text: "FormDemo",
-    //     icon: <ActionPermContactCalendar />,
-    //     to: "/form"
-    // },
-    // {
-    //     text: "DataTableDemo",
-    //     icon: <ActionPermContactCalendar />,
-    //     to: "/datatable"
-    // }
-];
 
 const menuFilter = (required, permissions) => {
     // todo : filter here
@@ -159,7 +68,7 @@ class SideMenu extends Component {
     };
 
     render() {
-        let menuItems = this.getMenuItems(mainMenu);
+        let menuItems = this.getMenuItems(this.props.menu);
         console.log('menuItems', menuItems);
         return (
             <List style={{display: 'table', width: '100%', tableLayout: 'fixed'}}>

@@ -7,6 +7,7 @@ import App from './components/App';
 import DashboardPage from './components/DashboardPage';
 import LoginPage from './components/LoginPage';
 import NotFoundPage from './components/NotFoundPage';
+import DataTableDemo from './components/DataTableDemo';
 import semiThemeSettings from './settings/semiThemeSettings';
 
 let UserIsAuthenticated = null;
@@ -28,6 +29,7 @@ export default (
         <IndexRoute
             component={semiThemeSettings.hasAuthentication ? UserIsAuthenticated(DashboardPage) : DashboardPage}/>
         <Route path="login" component={LoginPage}/>
+        <Route path="data-table-demo" component={DataTableDemo}/>
         <Route path="*" component={NotFoundPage}/>
     </Route>
 );

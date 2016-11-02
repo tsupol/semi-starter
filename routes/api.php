@@ -22,6 +22,8 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'Auth\JWTAuthController@login');
 });
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
+Route::resource('users', 'Main\UserController');
+
+//Route::get('/user', function (Request $request) {
+//    return $request->user();
+//})->middleware('auth:api');

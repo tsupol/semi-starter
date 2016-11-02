@@ -49,9 +49,9 @@ const helper = {
 	 */
 	isArrayEqual: (array1, array2) => {
 		return (array1.length == array2.length) &&
-				array1.every(function (element, index) {
-					return element === array2[index];
-				});
+			array1.every(function (element, index) {
+				return element === array2[index];
+			});
 	},
 	/**
 	 * Nested object getter
@@ -60,7 +60,7 @@ const helper = {
 	 *
 	 */
 	get: (obj, key) => {
-		return key.split(".").reduce(function(o, x) {
+		return key.split(".").reduce(function (o, x) {
 			return (typeof o == "undefined" || o === null) ? o : o[x];
 		}, obj);
 	},
@@ -75,9 +75,9 @@ const helper = {
 		// console.log('value', value);
 		if (value) {
 			// console.log('456', Array.isArray(value), typeof value === 'object', typeof value.getMonth === 'function', Object.keys(value));
-			if(Array.isArray(value)) return value.length === 0; // Array
-			if(typeof value.getMonth === 'function') return false; // Date Object (special)
-			if(typeof value === 'object') return Object.keys(value).length === 0; // Object
+			if (Array.isArray(value)) return value.length === 0; // Array
+			if (typeof value.getMonth === 'function') return false; // Date Object (special)
+			if (typeof value === 'object') return Object.keys(value).length === 0; // Object
 			return false;
 		}
 		return !value;
@@ -86,7 +86,7 @@ const helper = {
 	 * Execute function based on `get` above
 	 * ex.
 	 * helper.execute(this.props, 'settings.actions.create.onClick', param1, param2);
-	 * 
+	 *
 	 * @param obj
 	 * @param key Path to function
 	 * @param params (optional) unlimited length
@@ -103,8 +103,7 @@ const helper = {
 	 */
 	deepCompareAll: (instance, nextProps, nextState) => {
 		return (
-			!deepEqual(instance.props, nextProps) ||
-			!deepEqual(instance.state, nextState)
+			!deepEqual(instance.props, nextProps) || !deepEqual(instance.state, nextState)
 		);
 	},
 	/**
@@ -133,21 +132,48 @@ const helper = {
 	 * Formatting function to pad numbers to two digits…
 	 **/
 	twoDigits: (d) => {
-		if(0 <= d && d < 10) return "0" + d.toString();
-		if(-10 < d && d < 0) return "-0" + (-1*d).toString();
+		if (0 <= d && d < 10) return "0" + d.toString();
+		if (-10 < d && d < 0) return "-0" + (-1 * d).toString();
 		return d.toString();
 	},
 	/**
-	 * Check array for an integer value (auto parse)
+	 * Check array for an integer value (auto parse int)
 	 **/
 	hasInt: (array, value) => {
-		return array.map(v=>parseInt(v,10)).indexOf(parseInt(value,10)) >= 0;
+		return array.map(v=>parseInt(v, 10)).indexOf(parseInt(value, 10)) >= 0;
 	},
 	/**
-	 * Compare 2 integer value (auto parse)
+	 * Check array for an integer value (type safe(string & int only for now))
+	 **/
+	has: (array, value) => {
+		if (isNaN(parseInt(value, 10))) {
+			return array.indexOf(value) >= 0;
+		}
+		return array.map(v=>parseInt(v, 10)).indexOf(parseInt(value, 10)) >= 0;
+	},
+	/**
+	 * Compare 2 integer value (auto parse int)
 	 **/
 	equalInt: (value1, value2) => {
 		return parseInt(value1, 10) === parseInt(value2, 10);
+	},
+	/**
+	 * Compare 2 integer value (type safe(string & int only for now))
+	 **/
+	equals: (value1, value2) => {
+		if (isNaN(parseInt(value1, 10)) || isNaN(parseInt(value2, 10))) {
+			return value1 == value2;
+		}
+		return parseInt(value1, 10) === parseInt(value2, 10);
+	},
+	/**
+	 * Prevent NaN
+	 **/
+	toInt: (value) => {
+		if (isNaN(parseInt(value, 10))) {
+			return value;
+		}
+		return parseInt(value, 10);
 	}
 };
 
