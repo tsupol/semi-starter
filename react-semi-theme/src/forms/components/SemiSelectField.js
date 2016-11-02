@@ -19,6 +19,16 @@ class SemiSelectField extends SemiInputComponent {
 	//     return defaultValue;
 	// };
 
+	constructor(props, context) {
+		super(props, context);
+		this.state = {
+			open: false,
+			anchorEl: null,
+			filter: '',
+			selectWidth: 250
+		};
+	}
+
 	shouldComponentUpdate(nextProps) {
 		// console.log('this.checkUpdateValue', this.checkUpdateValue, nextProps.getValue());
 		// todo: fix equal value when selected and click dropdown
@@ -28,15 +38,6 @@ class SemiSelectField extends SemiInputComponent {
 		// }
 		// return false;
 		return true;
-	}
-
-	constructor(props, context) {
-		super(props, context);
-		this.state = {
-			open: false,
-			anchorEl: null,
-			filter: ''
-		};
 	}
 
 	handleCheck(item, index) {
@@ -57,13 +58,14 @@ class SemiSelectField extends SemiInputComponent {
 			this.props.onChange && this.props.onChange(currentValue, index);
 		}
 		if (typeof currentValue == 'object' && this.props.required && currentValue.length == 0 || currentValue == null) currentValue = '';
-		console.log('456', currentValue);
 		this.props.setValue(currentValue);
 	}
 
 	handleTouchTap = (event) => {
 		// This prevents ghost click.
 		event.preventDefault();
+		console.log('123', 123);
+		this.calculatePopoverWidth(event);
 		this.setState({
 			open: true,
 			anchorEl: event.currentTarget
@@ -81,6 +83,11 @@ class SemiSelectField extends SemiInputComponent {
 		this.setState({
 			filter: value
 		});
+	};
+
+	calculatePopoverWidth = (event) => {
+		let width = window.getComputedStyle(event.currentTarget).width;
+		this.setState({selectWidth: parseInt(width)});
 	};
 
 	render() {
@@ -209,13 +216,14 @@ class SemiSelectField extends SemiInputComponent {
 		return (
 			<div className="ss-wrap">
 				<Popover
+					ref="popOver"
 					className="ss-popover"
 					open={this.state.open}
 					anchorEl={this.state.anchorEl}
-					anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+					anchorOrigin={{horizontal: 'left', vertical: 'center'}}
 					targetOrigin={{horizontal: 'left', vertical: 'top'}}
 					onRequestClose={this.handleRequestCloseMenu}
-					style={{minWidth: 250, overflowY: 'auto'}}
+					style={{width: this.state.selectWidth, minWidth: 250, maxWidth: 400, overflowY: 'auto'}}
 					animation={PopoverAnimationVertical}
 					canAutoPosition={false}
 				>

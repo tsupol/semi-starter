@@ -20,4 +20,26 @@
   background: #f1f1f1; float: left; width: 100%; box-sizing: border-box; padding: $nav-height $wrapper-padding 0 $wrapper-padding;
   & > h1 { font-size: 30px; font-weight: 400; margin: 20px 0 5px 0; }
   & > p { color: #666; font-size: 13px; font-weight: 300; margin: 0 0 20px 0; }
+  &.page-heading-collapsed {
+    h1, p { display: none}
+  }
+}
+
+//---------- DataTable ----------//
+
+.dt-wrap {
+  .dt-header-divider { margin-top:16px !important; }
+  .dt-header-wrap {
+    float: left; width: 100%; display: inline-block;
+    hr { float: left; width: 100%; }
+    .dt-button-wrap { float: left; display: inline-block; margin-bottom: 8px; }
+    .dt-filter-wrap { float: right; }
+    .dt-right-btn-label { font-weight: bold; float: right; line-height: 56px; margin-left: 16px; font-size: 18px; }
+  }
+  .dt-table-wrap {
+    float: left;  display: inline-block; position: relative;
+    .header-border-fix { position: absolute; top: 58px; width: 100%; border-bottom: 1px solid #CCC; }
+    thead { z-index: 999; border-collapse: inherit !important; }
+  }
+  .dt-pagination { display: inline-block; padding: 8px 0; border-top: 1px solid rgba(0, 0, 0, 0.2) }
 }

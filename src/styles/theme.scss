@@ -20,16 +20,16 @@
 .icon-btn { margin: 10px !important; min-width: 36px !important; }
 .icon-btn.first { margin-left: 0 !important; }
 .icon-btn.left-most { margin-left: -8px !important; }
-//.button.right-margin { margin-right: 12px; }
-//.button-group {
-//  margin-bottom: 24px; position: relative; z-index: 1;
-//  .button { margin-right: 16px; }
-//  .icon-only-btn { min-width: 0 !important; width: 10px; padding: 0 10px; }
-//  &.right {
-//    text-align: right; float: right;
-//    .button { margin-left: 16px; margin-right: 0; }
-//  }
-//}
+.button.right-margin { margin-right: 12px; }
+.button-group {
+  margin-bottom: 24px; position: relative; z-index: 1;
+  .button { margin-right: 16px; }
+  .icon-only-btn { min-width: 0 !important; width: 10px; padding: 0 10px; }
+  &.right {
+    text-align: right; float: right;
+    .button { margin-left: 16px; margin-right: 0; }
+  }
+}
 
 //----- alignment
 
