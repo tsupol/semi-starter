@@ -4,11 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as userActions from '../actions/userActions';
 import {SemiThemeProvider, SemiLayout} from 'react-semi-theme';
 import {ajax, getAll} from '../api/ApiCall';
-
-const semiThemeSettings = {
-	// todo: set to `false` to disable login
-	hasAuthentication: true
-};
+import semiThemeSettings from './../settings/semiThemeSettings';
 
 class App extends Component {
 

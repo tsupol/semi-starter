@@ -34,7 +34,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import SortIcon from 'material-ui/svg-icons/content/sort';
 import Divider from 'material-ui/Divider';
 import UltimatePaginationMaterialUi from 'react-ultimate-pagination-material-ui';
-import helper from '../../libs/helper'
+import helper from '../libs/helper'
 
 const styles = {
     propContainer: {

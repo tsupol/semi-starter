@@ -8,7 +8,6 @@ import ActionVisibility from 'material-ui/svg-icons/action/visibility';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import { red500 } from 'material-ui/styles/colors';
-import request from 'superagent';
 
 class UploadBox extends Component {
     constructor(props, context) {

@@ -8,7 +8,7 @@ import {List, ListItem} from 'material-ui/List';
 import ErrorMessage from '../../forms/ErrorMessage';
 import IconButton from 'material-ui/IconButton/IconButton';
 import {ContentClear, ActionSearch} from 'material-ui/svg-icons';
-import helper from '../../../libs/helper';
+import helper from '../../libs/helper';
 import {Popover, PopoverAnimationVertical} from 'material-ui/Popover';
 
 class SemiSelectField extends SemiInputComponent {
