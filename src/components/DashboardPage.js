@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
+import {SemiForm} from 'react-semi-theme/forms/SemiForm';
 
 class HomePage extends Component {
 	constructor(props, context) {
@@ -20,7 +21,20 @@ class HomePage extends Component {
 		// return taskReady && eventsStatusReady;
 	};
 
+	submit = (data)=> {
+		console.log(data);
+	};
+
 	render() {
+		let formTemplate = {
+			components: [
+				[
+					{
+						type: 'uploadbox', name: 'test', action: 'test'
+					}
+				]
+			]
+		};
 		return (
 			<div>
 				<PageHeading title="Home" description="description" />
@@ -29,7 +43,8 @@ class HomePage extends Component {
 						<Col md={9}>
 							<Panel title="Home">
 								<div className="con-pad">
-									This is panel widget. Title is optional. Test pull request. 1234
+									<p>This is panel widget. Title is optional. Test pull request. 1234</p>
+									<SemiForm formTemplate={formTemplate} onSubmit={this.submit} />
 								</div>
 							</Panel>
 						</Col>
@@ -48,4 +63,7 @@ class HomePage extends Component {
 //   }
 // });
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+HomePage.contextTypes = {
+	ajax: PropTypes.object
+};
 export default HomePage;

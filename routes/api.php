@@ -22,6 +22,9 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'Auth\JWTAuthController@login');
 });
 
+Route::post('/abc', function (Request $request) {
+    return $request->file('test');
+});
 Route::resource('users', 'Main\UserController');
 
 //Route::get('/user', function (Request $request) {

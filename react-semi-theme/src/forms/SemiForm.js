@@ -13,6 +13,7 @@ import SemiToggleInput from './components/SemiToggleInput';
 import SemiCheckInput from './components/SemiCheckInput';
 import SemiAutoComplete from './components/SemiAutoComplete';
 import SemiSelectTextField from './components/SemiSelectTextField';
+import UploadBox from './components/UploadBox';
 // import {Grid, Row, Col} from 'react-flexbox-grid';
 
 class SemiForm extends Component {
@@ -338,6 +339,13 @@ class SemiForm extends Component {
 									typeahead={true}
 									{...rest}
 								/>
+							);
+							break;
+						case 'uploadbox':
+							component = (
+								<UploadBox
+									{...rest}
+									/>
 							);
 							break;
 					}

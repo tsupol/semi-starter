@@ -15,8 +15,8 @@ class App extends Component {
 	getChildContext() {
 		return {
 			ajax: {
-				call: (method, url, data) => {
-					return ajax(method, url, data);
+				call: (method, url, data, files) => {
+					return ajax(method, url, data, files);
 				},
 				getAll: (urls) => {
 					return getAll(urls);

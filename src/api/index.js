@@ -9,7 +9,7 @@ function baseUrl(endpoint) {
 	/*
 	 * Usually when developing localhost, server path will be in sub-directory unlike production version
 	 */
-	let devProjectName = 'semi-starter';
+	let devProjectName = 'onlineconsult';
 
 	// development
 	if (process.env.NODE_ENV == 'development') {

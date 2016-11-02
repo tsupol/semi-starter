@@ -1,7 +1,7 @@
 import {PropTypes, Component} from 'react';
 import { connect } from 'react-redux';
 import api from './index';
-import $ from 'jquery';
+import request from 'superagent';
 
 /**
  * set multi-dimensional array by string
@@ -28,7 +28,7 @@ const setter = (obj, propString, value) => {
 /**
  * AJAX with access_token
  */
-export function ajax (method, url, data, access_token) {
+export function ajax (method, url, data, files, access_token) {
     url = api.baseUrl(url);
     if(!data) data = {};
     if (typeof method === "undefined") {
@@ -44,7 +44,7 @@ export function ajax (method, url, data, access_token) {
         method = 'post';
         data._method = 'DELETE';
     }
-    if(data) data = JSON.stringify(data);
+    //if(data) data = JSON.stringify(data);
 
     return new Promise((resolve, reject) => {
         // $.ajax({method, url, data, dataType: 'json',
@@ -77,6 +77,7 @@ export function ajax (method, url, data, access_token) {
         //     // }
         //     reject(jqXHR);
         // });
+        /*
         $.ajax({method, url, data, dataType: 'json',
             headers: {
                 'Access-Token': access_token,
@@ -104,6 +105,36 @@ export function ajax (method, url, data, access_token) {
                 }
             }
         });
+        */
+        let req;
+        if(files){
+            req = request
+                .post(url);
+            for(let field in data){
+                if(files.indexOf(field)!==-1){
+                    if(typeof data[field] == "object"){
+                        data[field].forEach((file)=>{
+                            req.attach(`${field}[]`, file);
+                        });
+                    }else{
+                        req.attach(field, data[field]);
+                    }
+                }
+            }
+        }else{
+            req = request[method](url)
+                .type('application/json')
+                .send(data);
+        }
+        req
+            .set('Access-Token', access_token)
+            .end((err, res)=> {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(res.body);
+                }
+            });
     });
 }
 
