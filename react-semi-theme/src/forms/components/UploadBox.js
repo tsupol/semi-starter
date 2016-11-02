@@ -29,6 +29,15 @@ class UploadBox extends Component {
 
     onDropAjax = (action, files, name)=> {
         this.clearFilesAjax(action, this.state.files, true, this.state.openModal).then(()=>{
+            let data = {};
+            data[name] = files;
+            this.context.ajax.call("post", action, data, [name]).then((res)=>{
+                files = res.files.map((file)=>{
+                    let pair = files.filter((f)=>f.name==file.name)[0];
+                    return Object.assign(pair, {path: file.path});
+                });
+                this.setState({files});
+            });
             // todo: change to context.ajax
             // let req = request.post(api.baseUrl(action));
             // files.forEach((file)=>{
@@ -75,6 +84,24 @@ class UploadBox extends Component {
 
     clearFilesAjax = (action, files, index, openModal)=> {
         return new Promise((resolve, reject)=>{
+            let paths = [];
+            let newFiles = files.slice(0);
+            if(index === true){
+                paths = files.map((file)=>file.path);
+                newFiles = [];
+            }else{
+                paths.push(files[index]);
+                newFiles.splice(index, 1);
+                if(!newFiles.length){
+                    openModal = false;
+                }
+            }
+            this.context.ajax.call("delete", action, {files: paths}).then(()=>{
+                resolve();
+                this.setState({files: newFiles, openModal});
+            }, (err)=>{
+                reject(err);
+            });
             // if(index === true){
             //     let paths = files.map((file)=>file.path);
             //     // todo: change to context.ajax
@@ -111,7 +138,19 @@ class UploadBox extends Component {
 
     render() {
         let {files} = this.state;
-        let {style, example, fullWidth, thumbnail, ...rest} = this.props;
+        let {
+            style,
+            example,
+            fullWidth,
+            thumbnail,
+            calculatedWidth,
+            floatingLabelText,
+            hintText,
+            validations,
+            validationErrors,
+            showClearButton,
+            ...rest
+        } = this.props;
         let dropZoneStyle = Object.assign({
             width: fullWidth ? '100%' : '200px',
             height: '200px',
@@ -205,4 +244,7 @@ class UploadBox extends Component {
 }
 
 UploadBox.propTypes = {};
+UploadBox.contextTypes = {
+    ajax: PropTypes.object
+};
 export default UploadBox;

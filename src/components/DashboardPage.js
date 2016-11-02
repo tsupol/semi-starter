@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
-import {SemiForm} from 'react-semi-theme/forms/SemiForm';
+import {SemiForm} from 'react-semi-theme/forms';
 
 class HomePage extends Component {
 	constructor(props, context) {
@@ -30,7 +30,7 @@ class HomePage extends Component {
 			components: [
 				[
 					{
-						type: 'uploadbox', name: 'test', action: 'test'
+						type: 'uploadbox', name: 'files', action: 'upload', multiple: true
 					}
 				]
 			]

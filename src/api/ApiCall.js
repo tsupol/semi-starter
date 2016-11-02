@@ -113,8 +113,12 @@ export function ajax (method, url, data, files, access_token) {
             for(let field in data){
                 if(files.indexOf(field)!==-1){
                     if(typeof data[field] == "object"){
+                        let name = field;
+                        if(field.indexOf('[]')==-1){
+                            name = `${field}[]`;
+                        }
                         data[field].forEach((file)=>{
-                            req.attach(`${field}[]`, file);
+                            req.attach(name, file);
                         });
                     }else{
                         req.attach(field, data[field]);
