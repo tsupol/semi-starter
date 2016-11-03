@@ -14,6 +14,7 @@ import SemiCheckInput from './components/SemiCheckInput';
 import SemiAutoComplete from './components/SemiAutoComplete';
 import SemiSelectTextField from './components/SemiSelectTextField';
 import UploadBox from './components/UploadBox';
+import helper from './../libs/helper';
 // import {Grid, Row, Col} from 'react-flexbox-grid';
 
 const breakpoints = {
@@ -117,7 +118,13 @@ class SemiForm extends Component {
 		}
 		// Auto
 		for (let itemId in row) {
-			row[itemId].calculatedWidth = Math.floor(100 / (row.length - hiddenCount)) + '%'; // equally width for now
+			let item =row[itemId];
+			let md = helper.get(item, 'grid.md');
+			if(md) {
+				item.calculatedWidth = md;
+			} else {
+				item.calculatedWidth = Math.floor(100 / (row.length - hiddenCount)) + '%';
+			}
 		}
 	};
 

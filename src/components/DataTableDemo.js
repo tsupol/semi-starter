@@ -151,15 +151,15 @@ class DataTableDemo extends Component {
 				 * Can specify in: px, %, em, rem, etc... according to css
 				 */
 				[
-					{type: 'text', name: 'text1', label: 'Text1*', maxWidth: '30px', grid: {
-						sm: '200px', lg: '30%'
+					{type: 'text', name: 'text1', label: 'Text1*', grid: {
+						md: '30%'
 					}},
 					{type: 'text', name: 'text2', label: 'Text2*', grid: {
-						sm: '100%', lg: '70%'
+						md: '70%'
 					}}
 				],
 				[
-					{type: 'select', name: 'reasons', label: 'Reason*', required: true}
+					{type: 'select', name: 'reasons', label: 'Reason*', maxWidth: '250px', required: true}
 				],
 				{
 					settings: {hide: !this.state.formShowText},
