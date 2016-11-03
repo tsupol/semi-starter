@@ -141,15 +141,23 @@ class DataTableDemo extends Component {
 			data: {reasons: [
 				{id:1, name: 'a'},
 				{id:2, name: 'b'},
-				{id:3, name: 'Show'},
-				{id:4, name: 'Show'},
-				{id:5, name: 'Show'},
-				{id:6, name: 'Show'},
-				{id:7, name: 'Show'},
-				{id:8, name: 'Show'},
+				{id:3, name: 'Show'}
 
 			]},
 			components: [
+				/**
+				 * Note: Responsive
+				 * Has: xs, sm, md, lg, xl
+				 * Can specify in: px, %, em, rem, etc... according to css
+				 */
+				[
+					{type: 'text', name: 'text1', label: 'Text1*', maxWidth: '30px', grid: {
+						sm: '200px', lg: '30%'
+					}},
+					{type: 'text', name: 'text2', label: 'Text2*', grid: {
+						sm: '100%', lg: '70%'
+					}}
+				],
 				[
 					{type: 'select', name: 'reasons', label: 'Reason*', required: true}
 				],
