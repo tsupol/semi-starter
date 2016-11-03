@@ -33,7 +33,7 @@ class App extends Component {
 									actions={this.props.actions}
 									{...menuSettings}
 									settings={{
-										toolbarTitle: 'Semi Starter',
+										toolbarTitle: 'Online Consult',
 										navTitle: 'Navigations'
 									}} />;
 

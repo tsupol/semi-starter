@@ -15,7 +15,7 @@ import {
 export default {
     mainMenu: [
         {
-            text: "Dashboard",
+            text: "Home",
             icon: <ActionHome />,
             to: "/"
         },
