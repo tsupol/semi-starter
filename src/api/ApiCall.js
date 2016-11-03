@@ -1,7 +1,7 @@
 import {PropTypes, Component} from 'react';
 import { connect } from 'react-redux';
 import api from './index';
-import request from 'superagent';
+import $ from 'jquery';
 
 /**
  * set multi-dimensional array by string

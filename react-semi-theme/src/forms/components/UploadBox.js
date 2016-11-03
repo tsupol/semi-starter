@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import {HOC} from 'formsy-react';
 import Dropzone from 'react-dropzone';
 import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
@@ -13,43 +14,37 @@ class UploadBox extends Component {
     constructor(props, context) {
         super(props, context);
     }
+    componentDidMount(){
+        this.props.setValue(this.props.multiple ? [] : '');
+    }
     state = {
         openModal: false,
         files: []
     };
 
     onDrop = (files)=> {
-        let {action, name} = this.props;
+        let {action, name, multiple} = this.props;
         if(action){
-            this.onDropAjax(action, files, name);
+            this.onDropAjax(action, files, name, multiple);
         }else{
+            this.props.setValue(multiple ? files : files[0] || '');
             this.setState({files});
         }
     };
 
-    onDropAjax = (action, files, name)=> {
+    onDropAjax = (action, files, name, multiple)=> {
         this.clearFilesAjax(action, this.state.files, true, this.state.openModal).then(()=>{
             let data = {};
             data[name] = files;
             this.context.ajax.call("post", action, data, [name]).then((res)=>{
                 files = res.files.map((file)=>{
                     let pair = files.filter((f)=>f.name==file.name)[0];
-                    return Object.assign(pair, {path: file.path});
+                    return Object.assign(pair, {serial: file.serial, url: file.url});
                 });
+                let nextFiles = files.map((f)=>f.url);
+                this.props.setValue(multiple ? nextFiles : nextFiles[0] || '');
                 this.setState({files});
             });
-            // todo: change to context.ajax
-            // let req = request.post(api.baseUrl(action));
-            // files.forEach((file)=>{
-            //     req.attach(name || 'files', file);
-            // });
-            // req.end((err, res)=>{
-            //     files = res.body.files.map((file)=>{
-            //         let pair = files.filter((f)=>f.name==file.name)[0];
-            //         return Object.assign(pair, {path: file.path});
-            //     });
-            //     this.setState({files});
-            // });
         });
     };
 
@@ -63,11 +58,11 @@ class UploadBox extends Component {
 
     clearFiles = (index, e)=> {
         let {files, openModal} = this.state;
-        let {action} = this.props;
+        let {action, multiple} = this.props;
         e.preventDefault();
         e.stopPropagation();
         if(action){
-            this.clearFilesAjax(action, files, index, openModal);
+            this.clearFilesAjax(action, files, index, openModal, multiple);
         }else{
             if(index === true){
                 files = [];
@@ -77,62 +72,39 @@ class UploadBox extends Component {
             if(!files.length){
                 openModal = false;
             }
+            this.props.setValue(multiple ? files : files[0] || '');
             this.setState({files, openModal});
         }
         return false;
     };
 
-    clearFilesAjax = (action, files, index, openModal)=> {
+    clearFilesAjax = (action, files, index, openModal, multiple)=> {
         return new Promise((resolve, reject)=>{
             let paths = [];
-            let newFiles = files.slice(0);
+            let nextFiles = files.slice(0);
             if(index === true){
-                paths = files.map((file)=>file.path);
-                newFiles = [];
+                paths = files.map((file)=>file.serial);
+                nextFiles = [];
             }else{
-                paths.push(files[index]);
-                newFiles.splice(index, 1);
-                if(!newFiles.length){
+                paths.push(files[index].serial);
+                nextFiles.splice(index, 1);
+                if(!nextFiles.length){
                     openModal = false;
                 }
             }
-            this.context.ajax.call("delete", action, {files: paths}).then(()=>{
+            if(paths.length){
+                this.context.ajax.call("delete", action, {files: paths}).then(()=>{
+                    resolve();
+                    this.props.setValue(multiple ? nextFiles : nextFiles[0] || '');
+                    this.setState({files: nextFiles, openModal});
+                },(err)=>{
+                    reject(err);
+                });
+            }else{
                 resolve();
-                this.setState({files: newFiles, openModal});
-            }, (err)=>{
-                reject(err);
-            });
-            // if(index === true){
-            //     let paths = files.map((file)=>file.path);
-            //     // todo: change to context.ajax
-            //     let req = request.post(api.baseUrl(action));
-            //     req.send({_method: 'delete', files: paths});
-            //     req.end((err, res)=>{
-            //         if(err){
-            //             reject(err);
-            //         }else{
-            //             resolve();
-            //             this.setState({files: []});
-            //         }
-            //     });
-            // }else{
-            //     let file = files[index];
-            //     // todo: change to context.ajax
-            //     let req = request.post(api.baseUrl(action));
-            //     req.send({_method: 'delete', files: [file.path]});
-            //     req.end((err, res)=>{
-            //         if(err){
-            //             reject(err);
-            //         }else{
-            //             files.splice(index, 1);
-            //             if(!files.length){
-            //                 openModal = false;
-            //             }
-            //             resolve();
-            //             this.setState({files, openModal});
-            //         }
-            //     });
-            // }
+                this.props.setValue(multiple ? nextFiles : nextFiles[0] || '');
+                this.setState({files: nextFiles, openModal});
+            }
         });
     };
 
@@ -143,12 +115,29 @@ class UploadBox extends Component {
             example,
             fullWidth,
             thumbnail,
+            count,
             calculatedWidth,
             floatingLabelText,
             hintText,
             validations,
             validationErrors,
             showClearButton,
+            setValidations,
+            setValue,
+            resetValue,
+            getValue,
+            hasValue,
+            getErrorMessage,
+            getErrorMessages,
+            isFormDisabled,
+            isValid,
+            isPristine,
+            isFormSubmitted,
+            isRequired,
+            showRequired,
+            showError,
+            isValidValue,
+            validationError,
             ...rest
         } = this.props;
         let dropZoneStyle = Object.assign({
@@ -247,4 +236,4 @@ UploadBox.propTypes = {};
 UploadBox.contextTypes = {
     ajax: PropTypes.object
 };
-export default UploadBox;
+export default HOC(UploadBox);

@@ -14,16 +14,7 @@ import SemiCheckInput from './components/SemiCheckInput';
 import SemiAutoComplete from './components/SemiAutoComplete';
 import SemiSelectTextField from './components/SemiSelectTextField';
 import UploadBox from './components/UploadBox';
-import helper from './../libs/helper';
 // import {Grid, Row, Col} from 'react-flexbox-grid';
-
-const breakpoints = {
-	xs: '(min-width: 0)',
-	sm: '(min-width: 576px)',
-	md: '(min-width: 768px)',
-	lg: '(min-width: 992px)',
-	xl: '(min-width: 1200px)'
-};
 
 class SemiForm extends Component {
 	constructor(props, context) {
@@ -75,6 +66,7 @@ class SemiForm extends Component {
 	 * Private: Handle submit
 	 */
 	onFormSubmit = (data, error, event) => {
+		console.log('1111111', 1111111);
 		if (this.props.onSubmit) {
 			console.log('this.context.ajax', this.context.ajax);
 			let promise = this.props.onSubmit(data, this.context.ajax);
@@ -109,39 +101,6 @@ class SemiForm extends Component {
 	handleFormChange = (currentValues, isChanged) => {
 		if(this.props.onChange) this.props.onChange(currentValues, isChanged);
 	};
-
-	// todo: add manual width
-	calculateColumnWidth = (row) => {
-		let hiddenCount = 0;
-		for (let itemId in row) {
-			if (row[itemId].type == 'hidden') hiddenCount++;
-		}
-		// Auto
-		for (let itemId in row) {
-			let item =row[itemId];
-			let md = helper.get(item, 'grid.md');
-			if(md) {
-				item.calculatedWidth = md;
-			} else {
-				item.calculatedWidth = Math.floor(100 / (row.length - hiddenCount)) + '%';
-			}
-		}
-	};
-
-	// registerWindowResize = () => {
-	// 	var timeout = false, // holder for timeout id
-	// 		delay = 250; // delay after event is "complete" to run callback
-	// 	// window.resize event listener
-	//	
-	// 	window.addEventListener('resize', () => {
-	// 		// clear the timeout
-	// 		clearTimeout(timeout);
-	// 		// start timing for event "completion"
-	// 		timeout = setTimeout(()=> {
-	// 			this.calculateColumnWidth();
-	// 		}, delay);
-	// 	});
-	// };
 
 	render() {
 		// console.log('render: form', this.state.ready);
@@ -197,19 +156,18 @@ class SemiForm extends Component {
 				// process row settings here...
 				if (templateSettings && templateSettings.hide) continue;
 
-				// todo: calculate column width here...
+				// calculate column width
 				let cols = [];
-				// let hiddenCount = 0;
-				// for (let itemId in row) {
-				// 	let item = row[itemId];
-				// 	if (row[itemId].type == 'hidden') hiddenCount++;
-				// }
-				// // let md = Math.floor(12 / (row.length - hiddenCount)); // equally width for now
-				//
-				// for (let itemId in row) {
-				// 	row[itemId].calculatedWidth = Math.floor(100 / (row.length - hiddenCount)) + '%'; // equally width for now
-				// }
-				this.calculateColumnWidth(row);
+				let hiddenCount = 0;
+				for (let itemId in row) {
+					let item = row[itemId];
+					if (row[itemId].type == 'hidden') hiddenCount++;
+				}
+				let md = Math.floor(12 / (row.length - hiddenCount)); // equally width for now
+
+				for (let itemId in row) {
+					row[itemId].calculatedWidth = Math.floor(100 / (row.length - hiddenCount)) + '%'; // equally width for now
+				}
 
 				// loop create items
 				for (let itemId in row) {
