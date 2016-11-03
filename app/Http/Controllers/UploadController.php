@@ -39,13 +39,15 @@ class UploadController extends Controller
     {
         $files = $request->file('files');
         $paths = [];
+        $dir = 'upload';
         foreach($files as $file){
-            $name = sprintf("%s.%s", microtime(true)*10000, $file->extension());
-            $file->move(storage_path('upload'), $name);
-            $path = storage_path('upload/'.$name);
+            $name = sprintf("%s.%s", hash('sha1', microtime(true)*10000), $file->extension());
+            $file->move(public_path($dir), $name);
+            $path = public_path($dir.'/'.$name);
             $paths[] = [
-                'name'=>$file->getClientOriginalName(),
-                'path'=> $path
+                'name' => $file->getClientOriginalName(),
+                'url' => url($dir.'/'.$name),
+                'serial' => bin2hex($path)
             ];
         }
         return response()->json(['files'=>$paths]);
@@ -100,7 +102,7 @@ class UploadController extends Controller
         $files = $request->get('files');
         $paths = [];
         foreach($files as $file){
-            $paths[] = File::delete($file);
+            $paths[] = File::delete(hex2bin($file));
         }
         return response()->json(['files'=>$paths]);
     }

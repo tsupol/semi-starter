@@ -14,7 +14,16 @@ import SemiCheckInput from './components/SemiCheckInput';
 import SemiAutoComplete from './components/SemiAutoComplete';
 import SemiSelectTextField from './components/SemiSelectTextField';
 import UploadBox from './components/UploadBox';
+import helper from './../libs/helper';
 // import {Grid, Row, Col} from 'react-flexbox-grid';
+
+const breakpoints = {
+	xs: '(min-width: 0)',
+	sm: '(min-width: 576px)',
+	md: '(min-width: 768px)',
+	lg: '(min-width: 992px)',
+	xl: '(min-width: 1200px)'
+};
 
 class SemiForm extends Component {
 	constructor(props, context) {
@@ -66,7 +75,6 @@ class SemiForm extends Component {
 	 * Private: Handle submit
 	 */
 	onFormSubmit = (data, error, event) => {
-		console.log('1111111', 1111111);
 		if (this.props.onSubmit) {
 			console.log('this.context.ajax', this.context.ajax);
 			let promise = this.props.onSubmit(data, this.context.ajax);
@@ -102,10 +110,43 @@ class SemiForm extends Component {
 		if(this.props.onChange) this.props.onChange(currentValues, isChanged);
 	};
 
+	// todo: add manual width
+	calculateColumnWidth = (row) => {
+		let hiddenCount = 0;
+		for (let itemId in row) {
+			if (row[itemId].type == 'hidden') hiddenCount++;
+		}
+		// Auto
+		for (let itemId in row) {
+			let item =row[itemId];
+			let md = helper.get(item, 'grid.md');
+			if(md) {
+				item.calculatedWidth = md;
+			} else {
+				item.calculatedWidth = Math.floor(100 / (row.length - hiddenCount)) + '%';
+			}
+		}
+	};
+
+	// registerWindowResize = () => {
+	// 	var timeout = false, // holder for timeout id
+	// 		delay = 250; // delay after event is "complete" to run callback
+	// 	// window.resize event listener
+	//	
+	// 	window.addEventListener('resize', () => {
+	// 		// clear the timeout
+	// 		clearTimeout(timeout);
+	// 		// start timing for event "completion"
+	// 		timeout = setTimeout(()=> {
+	// 			this.calculateColumnWidth();
+	// 		}, delay);
+	// 	});
+	// };
+
 	render() {
 		// console.log('render: form', this.state.ready);
 		let props = this.props;
-		let {children, formTemplate, extraButtons, ...rest} = props;
+		let {children, formTemplate, extraButtons, submitLabel, isFilterForm, ...rest} = props;
 
 		let settings = Object.assign({}, {
 			// Default
@@ -156,18 +197,19 @@ class SemiForm extends Component {
 				// process row settings here...
 				if (templateSettings && templateSettings.hide) continue;
 
-				// calculate column width
+				// todo: calculate column width here...
 				let cols = [];
-				let hiddenCount = 0;
-				for (let itemId in row) {
-					let item = row[itemId];
-					if (row[itemId].type == 'hidden') hiddenCount++;
-				}
-				let md = Math.floor(12 / (row.length - hiddenCount)); // equally width for now
-
-				for (let itemId in row) {
-					row[itemId].calculatedWidth = Math.floor(100 / (row.length - hiddenCount)) + '%'; // equally width for now
-				}
+				// let hiddenCount = 0;
+				// for (let itemId in row) {
+				// 	let item = row[itemId];
+				// 	if (row[itemId].type == 'hidden') hiddenCount++;
+				// }
+				// // let md = Math.floor(12 / (row.length - hiddenCount)); // equally width for now
+				//
+				// for (let itemId in row) {
+				// 	row[itemId].calculatedWidth = Math.floor(100 / (row.length - hiddenCount)) + '%'; // equally width for now
+				// }
+				this.calculateColumnWidth(row);
 
 				// loop create items
 				for (let itemId in row) {
@@ -225,21 +267,21 @@ class SemiForm extends Component {
 							component = (
 								<SemiTextField
 									{...rest}
-								/>
+									/>
 							);
 							break;
 						case 'select+text':
 							component = (
 								<SemiSelectTextField
 									{...rest}
-								/>
+									/>
 							);
 							break;
 						case 'password':
 							component = (
 								<SemiTextField
 									{...rest} type="password"
-								/>
+									/>
 							);
 							break;
 						case 'string':
@@ -251,7 +293,7 @@ class SemiForm extends Component {
 							component = (
 								<SemiTextField
 									{...rest} type="numeric"
-								/>
+									/>
 							);
 							break;
 						case 'hidden':
@@ -259,7 +301,7 @@ class SemiForm extends Component {
 								<div style={{display: 'none'}}>
 									<SemiTextField
 										{...rest} type="hidden"
-									/>
+										/>
 								</div>
 							);
 							break;
@@ -268,7 +310,7 @@ class SemiForm extends Component {
 								<SemiSelectField
 									options={data[name]}
 									{...rest}
-								/>
+									/>
 							);
 							break;
 						case 'multiselect':
@@ -277,7 +319,7 @@ class SemiForm extends Component {
 									options={data[name]}
 									multiple={true}
 									{...rest}
-								/>
+									/>
 							);
 							break;
 						case 'empty':
@@ -287,14 +329,14 @@ class SemiForm extends Component {
 							component = (
 								<SemiColorPicker
 									{...rest}
-								/>
+									/>
 							);
 							break;
 						case 'date':
 							component = (
 								<SemiDatePicker
 									{...rest}
-								/>
+									/>
 							);
 							break;
 						case 'checkbox':
@@ -302,35 +344,35 @@ class SemiForm extends Component {
 								<SemiCheckInput
 									multiple={true}
 									{...rest}
-								/>
+									/>
 							);
 							break;
 						case 'radio':
 							component = (
 								<SemiCheckInput
 									{...rest}
-								/>
+									/>
 							);
 							break;
 						case 'slider':
 							component = (
 								<SemiSliderInput
 									{...rest}
-								/>
+									/>
 							);
 							break;
 						case 'toggle':
 							component = (
 								<SemiToggleInput
 									{...rest}
-								/>
+									/>
 							);
 							break;
 						case 'autocomplete':
 							component = (
 								<SemiAutoComplete
 									{...rest}
-								/>
+									/>
 							);
 							break;
 						case 'typeahead':
@@ -338,7 +380,7 @@ class SemiForm extends Component {
 								<SemiAutoComplete
 									typeahead={true}
 									{...rest}
-								/>
+									/>
 							);
 							break;
 						case 'uploadbox':
@@ -369,7 +411,7 @@ class SemiForm extends Component {
 				label="Reset"
 				style={{marginTop: 24, marginLeft: 24}}
 				onClick={this.resetForm}
-			/>
+				/>
 		) : null;
 
 		let submitBtn = settings.noSubmitButton || settings.noButton ? null : (
@@ -381,7 +423,7 @@ class SemiForm extends Component {
 				type="submit"
 				label={settings.submitLabel}
 				disabled={!this.state.canSubmit}
-			/>);
+				/>);
 
 		// Why cloneElement?
 		extraButtons = extraButtons && extraButtons.length && extraButtons.map((btn, key)=>React.cloneElement(btn, {key}));
@@ -408,7 +450,7 @@ class SemiForm extends Component {
 				onChange={this.handleFormChange}
 				ref="form"
 				{...rest}
-			>
+				>
 				{formItems}
 				{buttons}
 				<button style={{display:'none'}} ref="submitBtn" type="submit">Submit</button>

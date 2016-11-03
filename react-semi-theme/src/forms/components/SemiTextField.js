@@ -47,6 +47,12 @@ class SemiTextField extends SemiInputComponent{
             validationErrors,
             prependIcon,
             appendButton,
+            setValidations,
+            maxWidth,
+            calculatedWidth,
+            showClearButton,
+            validationError,
+            grid,
             ...rest
         } = this.props;
 

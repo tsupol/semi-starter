@@ -11,11 +11,6 @@ class HomePage extends Component {
 	}
 
 	componentWillMount() {
-		this.context.ajax.call("post", "/abc", {test: 1234}).then((res)=>{
-			console.log('res', res);
-		}, (err)=>{
-			console.log('err', err);
-		});
 		this.initialized();
 	}
 
@@ -35,7 +30,22 @@ class HomePage extends Component {
 			components: [
 				[
 					{
-						type: 'uploadbox', name: 'files', action: 'upload', multiple: true
+						type: 'uploadbox', name: 'face[0]'
+					},
+					{
+						type: 'uploadbox', name: 'face[1]'
+					},
+					{
+						type: 'uploadbox', name: 'face[2]'
+					},
+					{
+						type: 'uploadbox', name: 'face[3]'
+					},
+					{
+						type: 'uploadbox', name: 'face[4]'
+					},
+					{
+						type: 'uploadbox', name: 'face[5]'
 					}
 				]
 			]
