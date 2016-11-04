@@ -120,7 +120,7 @@ class SemiForm extends Component {
 		for (let itemId in row) {
 			let item =row[itemId];
 			let md = helper.get(item, 'grid.md');
-			if(md) {
+			if(md) { // have manual width
 				item.calculatedWidth = md;
 			} else {
 				item.calculatedWidth = Math.floor(100 / (row.length - hiddenCount)) + '%';
@@ -144,22 +144,21 @@ class SemiForm extends Component {
 	// };
 
 	render() {
-		console.log('render: form', this.state.ready);
+		// console.log('render: form', this.state.ready);
 		let props = this.props;
-		let {children, formTemplate, extraButtons, submitLabel, isFilterForm, noButton, noSubmitButton, ...rest} = props;
+		let {children, formTemplate, extraButtons, isFilterForm, ...rest} = props;
 
 		let settings = Object.assign({}, {
 			// Default
-			buttonRight: true,
+			// todo: remove this
+			// buttonRight: true,
+			buttonAlign: 'right',
 			noButton: false,
+			noSubmitButton: false,
 			hasReset: false,
 			compact: false,
 			isFilterForm: false,
-			noSubmitButton: false,
 			submitLabel: 'Submit'
-		}, {
-			noButton,
-			noSubmitButton
 		}, rest, {
 			// Override
 			eventRender: this.eventRender,
@@ -430,18 +429,22 @@ class SemiForm extends Component {
 
 		// Why cloneElement?
 		extraButtons = extraButtons && extraButtons.length && extraButtons.map((btn, key)=>React.cloneElement(btn, {key}));
-		let buttons = settings.buttonRight ?
-			<div className="btn-wrap">{resetBtn} {submitBtn} {extraButtons}</div> :
-			<div className="btn-wrap">{submitBtn} {resetBtn} {extraButtons}</div>;
+		let buttonsAlign = settings.buttonAlign;
+		let buttons = <div className="btn-wrap" style={{textAlign: buttonsAlign}}>{submitBtn} {resetBtn} {extraButtons}</div>;
+		// let buttons = settings.buttonRight ?
+		// 	<div className="btn-wrap" style={{textAlign: buttonsAlign}}>{resetBtn} {submitBtn} {extraButtons}</div> :
+		// 	<div className="btn-wrap" style={{textAlign: buttonsAlign}}>{submitBtn} {resetBtn} {extraButtons}</div>;
 
 		// SemiForm classes for controlling with CSS (Inline style is a pain!)
 		let formClass = 'sf-wrap';
-		if (settings.buttonRight) formClass += ' btn-right';
+		// if (settings.buttonRight) formClass += ' btn-right';
 		if (settings.compact) formClass += ' compact';
 		if (settings.isFilterForm) formClass += ' filter-form';
 
 		let formItems = (this.state.ready) ?
 			(formTemplate) ? components : children : <Loading inline/>;
+
+		let {buttonAlign, ...formParams} = rest;
 
 		return (
 			<Form
@@ -452,7 +455,7 @@ class SemiForm extends Component {
 				onInvalidSubmit={this.notifyFormError}
 				onChange={this.handleFormChange}
 				ref="form"
-				{...rest}
+				{...formParams}
 				>
 				{formItems}
 				{buttons}
