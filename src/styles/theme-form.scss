@@ -1,7 +1,7 @@
 .sf-wrap {
   position: relative; display: inline-block; width: 100%;
   &.compact > div { margin-top: -10px !important; }
-  .form-string { line-height: 14px; padding: 53px 0 0 0; }
+  .form-string { line-height: 14px; padding: 42px 0 0 0; font-weight: bold; text-align: right; }
   .btn-wrap {
     width: 100%;
     & > div { display: inline; }

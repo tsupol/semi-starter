@@ -28,6 +28,14 @@ const helper = {
 		return window.getComputedStyle(el).height;
 	},
 	/**
+	 * Get width by query string
+	 *
+	 */
+	getWidth: (selector) => {
+		let el = document.querySelector(selector);
+		return window.getComputedStyle(el).width;
+	},
+	/**
 	 * Get offsetTop by query string
 	 * Useful for resizing operations
 	 *

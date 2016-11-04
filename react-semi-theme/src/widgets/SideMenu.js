@@ -47,7 +47,7 @@ class SideMenu extends Component {
                 className += " nav-item-child";
             }
             let isActive = this.isActiveMenu(menuItem.to, menuItem.parentPath);
-            if (isActive) console.log('isActive', menuItem.text);
+            // if (isActive) console.log('isActive', menuItem.text);
             menuItems.push((
                 <ListItem
                     className={className}
@@ -69,7 +69,7 @@ class SideMenu extends Component {
 
     render() {
         let menuItems = this.getMenuItems(this.props.menu);
-        console.log('menuItems', menuItems);
+        // console.log('menuItems', menuItems);
         return (
             <List style={{display: 'table', width: '100%', tableLayout: 'fixed'}}>
                 {menuItems}

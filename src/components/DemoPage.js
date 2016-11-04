@@ -21,9 +21,6 @@ class DemoPage extends Component {
 
 	initialized = () => {
 		return true;
-		// let taskReady = this.props.actions.getScheduleTasks(true);
-		// let eventsStatusReady = this.props.actions.getScheduleEventsStatus(true);
-		// return taskReady && eventsStatusReady;
 	};
 
 	handleFormChange = (data)=> {
@@ -35,88 +32,78 @@ class DemoPage extends Component {
 	};
 
 	render() {
-		let thumbnail = require('../assets/img/upload-thumbnail.png');
-		let example = require('../assets/img/upload-example.png');
-		let images = {
-			face: [
-				require('../assets/img/face1.jpg'),
-				require('../assets/img/face2.jpg'),
-				require('../assets/img/face3.jpg'),
-				require('../assets/img/face4.jpg'),
-				require('../assets/img/face5.jpg'),
-				require('../assets/img/face6.jpg')
-			]
-		};
+		let options = [
+			{id:'1', name:'Align Center with Minus Offset'}
+		];
+
 		let formTemplate = {
-			values: {
-				first_name: '',
-				last_name: '',
-				nick_name: '',
-				facebook: '',
-				instagram: '',
-				email: '',
-				youtube: '',
-				website: '',
-				lineID: '',
-				whatappID: '',
-				phone: '',
-				mobile: '',
-				job: '',
-				interested_in: [],
-				interested_in_liposuction_check: [],
-				interested_in_other_check: [],
-				interested_in_liposuction: '',
-				interested_in_other: '',
-				medical_histories: [],
-				congenital_disease: '',
-				current_drug: '',
-				drug_symptom: '',
-				files: []
+			data: {
+				test: [
+					{id: 'other', name: 'Align Center with Minus Margin'}
+				]
 			},
+			values: {},
 			components: [
 				[
-					{type: 'custom', element: <h3>Personal Information</h3>}
+					{type: 'custom', element: <h3>Auto Width</h3>}
 				],
 				[
-					{
-						type: 'text', name: 'first_name', label: 'First Name'
-					},
-					{
-						type: 'text', name: 'last_name', label: 'Last Name'
-					},
-					{
-						type: 'text', name: 'nick_name', label: 'Nick Name'
-					}
+					{type: 'text', name: 'first_name', label: 'First Name'},
+					{type: 'text', name: 'last_name', label: 'Last Name'},
+					{type: 'text', name: 'nick_name', label: 'Nick Name'}
 				],
 				[
-					{
-						type: 'text', name: 'job', label: 'Job', grid: {
-							md: '50%'
-						}
-					}
+					{type: 'custom', element: <h3>Using Grid</h3>}
 				],
-				{
-					settings: {
-						hide: false
-					},
-					items: [
-						{
-							type: 'checkbox', name: 'interested_in_other_check', multiple: true, showClearButton: false, options: [
-								{id: 'other', name: 'Align Center'}
-							],
-							grid: {md: '20%'},
-							align: 'center'
-						}
-					]
-				}
+				[
+					{type: 'text', name: 'job', label: 'Right then Middle then Full', grid: {
+						xs: '100%', md: '50%', mdOffset: '25%', xl: '40%', xlOffset: '60%'
+					}}
+				],
+				[
+					{type: 'text', name: 'job', label: '50px', grid: {
+						xs: '50px'
+					}},
+					{type: 'text', name: 'job', label: 'Calc 50%', grid: {
+						xs: 'calc(50% - 25px)'
+					}},
+					{type: 'text', name: 'job', label: 'Calc 50%', grid: {
+						xs: 'calc(50% - 25px)'
+					}}
+				],
+				[
+					{type: 'label', label: 'Fixed Label:', grid: {
+						xs: '200px'
+					}},
+					{type: 'text', name: 'job', label: 'Calc 50%', grid: {
+						xs: 'calc(50% - 100px)'
+					}},
+					{type: 'text', name: 'job', label: 'Calc 50%', grid: {
+						xs: 'calc(50% - 100px)'
+					}}
+				],
+				[
+					{type: 'label'} // empty row
+				],
+				[
+					{type: 'label', grid: {
+						xs: '0%', md: '50%'
+					}},
+					{type: 'checkbox', name: 'test', multiple: true, showClearButton: false, options,  grid: {
+						xs: '100%', md: '294px', mdOffset: '-147px'
+					}}
+				]
 			]
 		};
 		return (
 			<div>
-				<PageHeading title="Demo Page" description="Note: I will make changes here...." />
+				<PageHeading
+					title="Demo Page (Try resizing your browser)"
+					description="xl, lg, md, sm, xs (same as BootStrap)"
+				/>
 				<Grid fluid className="content-wrap">
 					<Row>
-						<Col md={9}>
+						<Col xs md={9}>
 							<Panel>
 								<div className="con-pad">
 									<SemiForm

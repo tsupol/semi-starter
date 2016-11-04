@@ -18,12 +18,14 @@ import helper from './../libs/helper';
 // import {Grid, Row, Col} from 'react-flexbox-grid';
 
 const breakpoints = {
-	xs: '(min-width: 0)',
-	sm: '(min-width: 576px)',
-	md: '(min-width: 768px)',
-	lg: '(min-width: 992px)',
-	xl: '(min-width: 1200px)'
+	xs: 0,
+	sm: 576,
+	md: 768,
+	lg: 992,
+	xl: 1200
 };
+
+const sizeList = ['xl', 'lg', 'md', 'sm', 'xs'];
 
 class SemiForm extends Component {
 	constructor(props, context) {
@@ -31,10 +33,15 @@ class SemiForm extends Component {
 		this.state = {
 			canSubmit: false,
 			ready: props.onLoad ? false : true, // for loading spinner
-			// for formTemplate
+			// For formTemplate
 			values: props.formTemplate.values ? props.formTemplate.values : {},
-			data: props.formTemplate.data ? props.formTemplate.data : {}
+			data: props.formTemplate.data ? props.formTemplate.data : {},
+			// Responsive
+			isResized: false
 		};
+		// For debouncing on window resized
+		this.timeout = false;
+		this.delay = 250;
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -53,6 +60,11 @@ class SemiForm extends Component {
 				this.setState({ready: true})
 			});
 		}
+		window.addEventListener('resize', this.onWindowResize);
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener("resize", this.onWindowResize);
 	}
 
 	// Formsy's
@@ -110,7 +122,11 @@ class SemiForm extends Component {
 		if(this.props.onChange) this.props.onChange(currentValues, isChanged);
 	};
 
-	// todo: add manual width
+	/**
+	 * Private: Calculates width and offset responsively
+	 * can specify arbitrary value (px, %, calc, etc...)
+	 * (not supports 12 grid system)
+	 */
 	calculateColumnWidth = (row) => {
 		let hiddenCount = 0;
 		for (let itemId in row) {
@@ -119,29 +135,61 @@ class SemiForm extends Component {
 		// Auto
 		for (let itemId in row) {
 			let item =row[itemId];
-			let md = helper.get(item, 'grid.md');
-			if(md) { // have manual width
-				item.calculatedWidth = md;
-			} else {
-				item.calculatedWidth = Math.floor(100 / (row.length - hiddenCount)) + '%';
+
+			// 1. Get current size
+			let currentSize = 'xs';
+			let docWidth = document.body.clientWidth;
+			if (docWidth > breakpoints.xl) currentSize = 'xl';
+			else if (docWidth > breakpoints.lg) currentSize = 'lg';
+			else if (docWidth > breakpoints.md) currentSize = 'md';
+			else if (docWidth > breakpoints.sm) currentSize = 'sm';
+			else if (docWidth > breakpoints.xs) currentSize = 'xs';
+
+			// 2. Find appropriate grid size (e.g. if no `md` will use `xs`)
+			let sizeIdx = -1;
+			for(let i = 0; i < sizeList.length; i++) {
+				if(sizeList[i] == currentSize) {
+					sizeIdx = i;
+					break;
+				}
+			}
+			if(sizeIdx >= 0) {
+				// console.log('sizeIdx', sizeIdx);
+				item.calculatedWidth = -1;
+				item.marginLeft = 0;
+				// Width
+				for(let i = sizeIdx; i < sizeList.length; i++) {
+					let width = helper.get(item, 'grid.' + sizeList[i]);
+					if (width) {
+						item.calculatedWidth = width;
+						break;
+					}
+				}
+				// 3. If nothing specified use auto width
+				if(item.calculatedWidth === -1) {
+					item.calculatedWidth = Math.floor(100 / (row.length - hiddenCount)) + '%';
+				}
+				// Offset
+				for(let i = sizeIdx; i < sizeList.length; i++) {
+					let offset = helper.get(item, 'grid.' + sizeList[i] + 'Offset');
+					if (offset) {
+						item.marginLeft = offset;
+						break;
+					}
+				}
 			}
 		}
 	};
 
-	// registerWindowResize = () => {
-	// 	var timeout = false, // holder for timeout id
-	// 		delay = 250; // delay after event is "complete" to run callback
-	// 	// window.resize event listener
-	//	
-	// 	window.addEventListener('resize', () => {
-	// 		// clear the timeout
-	// 		clearTimeout(timeout);
-	// 		// start timing for event "completion"
-	// 		timeout = setTimeout(()=> {
-	// 			this.calculateColumnWidth();
-	// 		}, delay);
-	// 	});
-	// };
+	onWindowResize = () => {
+		// clear the timeout
+		clearTimeout(this.timeout);
+		// start timing for event "completion"
+		this.timeout = setTimeout(()=> {
+			this.setState({isResized: true});
+			// this.calculateColumnWidth();
+		}, this.delay);
+	};
 
 	render() {
 		// console.log('render: form', this.state.ready);
@@ -261,6 +309,9 @@ class SemiForm extends Component {
 					if (rest.showClearButton !== undefined) showClearButton = rest.showClearButton; // override all
 					rest.showClearButton = showClearButton;
 
+					// todo: fix Unknown prop here...
+					let {marginLeft, ...inputParams} = rest;
+
 					switch (type) {
 						case 'custom':
 							component = element;
@@ -268,33 +319,33 @@ class SemiForm extends Component {
 						case 'text':
 							component = (
 								<SemiTextField
-									{...rest}
+									{...inputParams}
 									/>
 							);
 							break;
 						case 'select+text':
 							component = (
 								<SemiSelectTextField
-									{...rest}
+									{...inputParams}
 									/>
 							);
 							break;
 						case 'password':
 							component = (
 								<SemiTextField
-									{...rest} type="password"
+									{...inputParams} type="password"
 									/>
 							);
 							break;
-						case 'string':
+						case 'label':
 							component = (
-								<div className="form-string" {...rest}>{value}</div>
+								<div className="form-string" style={item.style}>{item.label ? item.label : ''}</div>
 							);
 							break;
 						case 'numeric':
 							component = (
 								<SemiTextField
-									{...rest} type="numeric"
+									{...inputParams} type="numeric"
 									/>
 							);
 							break;
@@ -302,7 +353,7 @@ class SemiForm extends Component {
 							component = (
 								<div style={{display: 'none'}}>
 									<SemiTextField
-										{...rest} type="hidden"
+										{...inputParams} type="hidden"
 										/>
 								</div>
 							);
@@ -311,7 +362,7 @@ class SemiForm extends Component {
 							component = (
 								<SemiSelectField
 									options={data[name]}
-									{...rest}
+									{...inputParams}
 									/>
 							);
 							break;
@@ -320,7 +371,7 @@ class SemiForm extends Component {
 								<SemiSelectField
 									options={data[name]}
 									multiple={true}
-									{...rest}
+									{...inputParams}
 									/>
 							);
 							break;
@@ -330,14 +381,14 @@ class SemiForm extends Component {
 						case 'color':
 							component = (
 								<SemiColorPicker
-									{...rest}
+									{...inputParams}
 									/>
 							);
 							break;
 						case 'date':
 							component = (
 								<SemiDatePicker
-									{...rest}
+									{...inputParams}
 									/>
 							);
 							break;
@@ -345,35 +396,35 @@ class SemiForm extends Component {
 							component = (
 								<SemiCheckInput
 									multiple={true}
-									{...rest}
+									{...inputParams}
 									/>
 							);
 							break;
 						case 'radio':
 							component = (
 								<SemiCheckInput
-									{...rest}
+									{...inputParams}
 									/>
 							);
 							break;
 						case 'slider':
 							component = (
 								<SemiSliderInput
-									{...rest}
+									{...inputParams}
 									/>
 							);
 							break;
 						case 'toggle':
 							component = (
 								<SemiToggleInput
-									{...rest}
+									{...inputParams}
 									/>
 							);
 							break;
 						case 'autocomplete':
 							component = (
 								<SemiAutoComplete
-									{...rest}
+									{...inputParams}
 									/>
 							);
 							break;
@@ -381,21 +432,21 @@ class SemiForm extends Component {
 							component = (
 								<SemiAutoComplete
 									typeahead={true}
-									{...rest}
+									{...inputParams}
 									/>
 							);
 							break;
 						case 'uploadbox':
 							component = (
 								<UploadBox
-									{...rest}
+									{...inputParams}
 									/>
 							);
 							break;
 					}
 					// cols.push(<Col key={itemId} xs md={md}>{component}</Col>);
 					// console.log('item', item);
-					cols.push(<div key={itemId} style={{width: item.calculatedWidth, maxWidth: item.maxWidth}} className="sf-col">{component}</div>);
+					cols.push(<div key={itemId} style={{width: item.calculatedWidth, marginLeft: item.marginLeft, maxWidth: item.maxWidth}} className="sf-col">{component}</div>);
 				} // item
 				let rowComponent = (<div key={rowId} className="sf-row">{cols}</div>);
 				components.push(rowComponent);

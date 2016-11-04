@@ -64,7 +64,7 @@ class SemiLayout extends Component {
 
         let toolsMenu = null;
         // todo: dynamically add tools menu item and replicate MUI approach
-        console.log('settings', settings);
+        // console.log('settings', settings);
         // if(settings.hasAuthentication) { // wronng
         //     toolsMenu =
         //         <IconMenu
