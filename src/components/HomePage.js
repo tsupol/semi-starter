@@ -5,13 +5,15 @@ import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
 import {SemiForm} from 'react-semi-theme/forms';
 import Divider from 'material-ui/Divider';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class HomePage extends Component {
 	constructor(props, context) {
 		super(props, context);
 		this.state = {
 			interested_in_liposuction: false,
-			interested_in_other: false
+			interested_in_other: false,
+			agreement: false
 		};
 	}
 
@@ -303,7 +305,46 @@ class HomePage extends Component {
 							<li>ความเห็นของแพทย์เป็นเพียงการวินิจฉัยเบื้องต้นตามภาพถ่ายที่ท่านส่งมาให้ ซึ่งอาจมีการเปลี่ยนแปลงได้เมื่อท่านเข้ามาพบแพทย์</li>
 						</ol>
 					}
-				]
+				],
+				[
+					{
+						type: 'custom', element: <div style={{height: 36}}></div>
+					}
+				],
+				[
+					{
+						type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '40%'}
+					},
+					{
+						type: 'checkbox', name: 'agreement', options: [{id: 'accepted', name: 'Accepted'}], required: true, showClearButton: false, onCheck: (v)=>{this.setState({agreement: v.length>0})}
+					}
+				],
+				{
+					settings: {
+						hide: this.state.agreement
+					},
+					items: [
+						{
+							type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '40%'}
+						},
+						{
+							type: "custom", element: <RaisedButton disabled type="button" label="Submit"/>
+						}
+					]
+				},
+				{
+					settings: {
+						hide: !this.state.agreement
+					},
+					items: [
+						{
+							type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '40%'}
+						},
+						{
+							type: "custom", element: <RaisedButton secondary={true} type="button" label="Submit" onClick={()=>this.form.submit()}/>
+						}
+					]
+				}
 			]
 		};
 		return (
@@ -314,7 +355,7 @@ class HomePage extends Component {
 						<Col md={9}>
 							<Panel title="Home">
 								<div className="con-pad">
-									<SemiForm formTemplate={formTemplate} onChange={this.handleFormChange} onSubmit={this.submit} />
+									<SemiForm ref={(node)=>this.form = node} formTemplate={formTemplate} noSubmitButton onChange={this.handleFormChange} onSubmit={this.submit} />
 								</div>
 							</Panel>
 						</Col>

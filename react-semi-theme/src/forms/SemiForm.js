@@ -146,7 +146,7 @@ class SemiForm extends Component {
 	render() {
 		console.log('render: form', this.state.ready);
 		let props = this.props;
-		let {children, formTemplate, extraButtons, submitLabel, isFilterForm, ...rest} = props;
+		let {children, formTemplate, extraButtons, submitLabel, isFilterForm, noButton, noSubmitButton, ...rest} = props;
 
 		let settings = Object.assign({}, {
 			// Default
@@ -157,6 +157,9 @@ class SemiForm extends Component {
 			isFilterForm: false,
 			noSubmitButton: false,
 			submitLabel: 'Submit'
+		}, {
+			noButton,
+			noSubmitButton
 		}, rest, {
 			// Override
 			eventRender: this.eventRender,
