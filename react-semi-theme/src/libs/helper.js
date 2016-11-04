@@ -174,6 +174,45 @@ const helper = {
 			return value;
 		}
 		return parseInt(value, 10);
+	},
+	notation: {
+		root: {
+			b: (bracket_str)=> {
+				let index = bracket_str.indexOf('[');
+				return bracket_str.substr(0, index!=-1 ? index : bracket_str.length);
+			},
+			d: (dot_str)=> {
+				return dot_str.split('.')[0];
+			}
+		},
+		d2b: (dot_str) => {
+			let names = dot_str.split('.');
+			return names.length>1 ? `${names[0]}[${names.slice(1, names.length).join('][')}]` : names[0];
+		},
+		b2d: (bracket_str) => {
+			return bracket_str.replace(/\[/g, '.').replace(/\]/g, '');
+		}
+	},
+	object: {
+		className: (obj)=> {
+			if(typeof obj == "object"){
+				return obj.constructor.name;
+			}
+			return;
+		}
+	},
+	form: {
+		setArrayValue: (field, values)=> {
+			let keys = [];
+			for(let key in values){
+				if(typeof values[key] == "string"){
+					keys.push([field, key].join('.'));
+				}else{
+					keys.push(helper.form.setArrayValue(key, values[key]).map((k)=>[field, k].join('.')));
+				}
+			}
+			return keys;
+		}
 	}
 };
 

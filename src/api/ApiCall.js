@@ -2,6 +2,7 @@ import {PropTypes, Component} from 'react';
 import { connect } from 'react-redux';
 import api from './index';
 import request from 'superagent';
+import helper from '../../react-semi-theme/src/libs/helper';
 
 /**
  * set multi-dimensional array by string
@@ -28,7 +29,9 @@ const setter = (obj, propString, value) => {
 /**
  * AJAX with access_token
  */
-export function ajax (method, url, data, files, access_token) {
+export function ajax (method, url, data, options, access_token) {
+    let {files, remove_fields} = options;
+    remove_fields = remove_fields || [];
     url = api.baseUrl(url);
     if(!data) data = {};
     if (typeof method === "undefined") {
@@ -110,18 +113,47 @@ export function ajax (method, url, data, files, access_token) {
         if(files){
             req = request
                 .post(url);
-            for(let field in data){
-                if(files.indexOf(field)!==-1){
-                    if(typeof data[field] == "object"){
-                        let name = field;
-                        if(field.indexOf('[]')==-1){
-                            name = `${field}[]`;
-                        }
-                        data[field].forEach((file)=>{
-                            req.attach(name, file);
+            for(let key in files){
+                let $files = helper.get(data, files[key]);
+                if($files != undefined){
+                    let name = helper.notation.d2b(files[key]);
+                    let root = helper.notation.root.d(files[key]);
+                    remove_fields.push(root);
+                    if(helper.object.className($files) == "File"){
+                        req.attach(name, $files);
+                    }else if(helper.object.className($files) == "Array"){
+                        $files.forEach((file)=>{
+                            if(helper.object.className(file) == "File"){
+                                req.attach(`${name}[]`, file);
+                            }
                         });
-                    }else{
-                        req.attach(field, data[field]);
+                    }
+                }
+            }
+            for(let field in data){
+                if(remove_fields.indexOf(field)==-1){
+                    if(typeof data[field] == "string"){
+                        req.field(field, data[field]);
+                    }else if(helper.object.className(data[field]) == "Array"){
+                        let nested_object = data[field].filter((v)=>typeof v == "object");
+                        if(nested_object.length){
+                            let nested_values = helper.form.setArrayValue(field, data[field]);
+                            for(let i in nested_values){
+                                if(typeof nested_values[i] == "string"){
+                                    let field_name = helper.notation.d2b(nested_values[i]);
+                                    let field_value = helper.get(data, nested_values[i]);
+                                    req.field(field_name, field_value);
+                                }else{
+                                    for(let j in nested_values[i]){
+                                        let field_name = helper.notation.d2b(nested_values[i][j]);
+                                        let field_value = helper.get(data, nested_values[i][j]);
+                                        req.field(field_name, field_value);
+                                    }
+                                }
+                            }
+                        }else{
+                            req.field(field, data[field]);
+                        }
                     }
                 }
             }

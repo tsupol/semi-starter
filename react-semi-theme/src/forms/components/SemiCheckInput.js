@@ -14,7 +14,8 @@ class SemiCheckInput extends SemiInputComponent {
     shouldComponentUpdate(nextProps) {
         let isEqual = false;
         if(this.checkUpdateValue !== undefined) {
-            isEqual = helper.isArrayEqual(this.checkUpdateValue, nextProps.getValue());
+            //isEqual = helper.isArrayEqual(this.checkUpdateValue, nextProps.getValue());
+            isEqual = this.checkUpdateValue == nextProps.getValue();
         }
         if(!isEqual) {
             // Note: must clone array!
@@ -34,19 +35,19 @@ class SemiCheckInput extends SemiInputComponent {
 
     handleCheck(item, index) {
         let currentValue = this.props.getValue();
-        let id = parseInt(item.id, 10);
+        //let id = parseInt(item.id, 10);
         if (!currentValue) currentValue = this.props.multiple ? [] : null;
         if (this.props.multiple) {
-            const index = currentValue.map(v=>parseInt(v, 10)).indexOf(id);
+            const index = currentValue.indexOf(item.id);
             if (index < 0) {
-                currentValue.push(id);
+                currentValue.push(item.id);
                 this.props.onCheck && this.props.onCheck(currentValue, index);
             } else {
                 currentValue.splice(index, 1);
                 this.props.onCheck && this.props.onCheck(currentValue, index);
             }
         } else {
-            currentValue = parseInt(id);
+            currentValue = item.id;
             this.props.onCheck && this.props.onCheck(currentValue);
         }
         if (typeof currentValue == 'object' && this.props.required && currentValue.length == 0 || currentValue == null) currentValue = '';
@@ -83,6 +84,8 @@ class SemiCheckInput extends SemiInputComponent {
             ...rest
         } = this.props;
 
+
+
         let currentValue = this.props.getValue();
 
         // --- Icon Buttons
@@ -107,9 +110,9 @@ class SemiCheckInput extends SemiInputComponent {
         if (typeof options === 'object') { // object or array only
             for (let i in options) {
                 let option = options[i];
-                let id = option.id ? parseInt(option.id) : parseInt(i);
+                let id = option.id || i.toString();
                 let color = option.color || null;
-                let checked = (valueIsObject ? currentValue.map(v=>parseInt(v, 10)).indexOf(id) !== -1 : parseInt(currentValue, 10) == id);
+                let checked = (valueIsObject ? currentValue.indexOf(id) !== -1 : currentValue == id);
                 let iconStyle = color ? {fill: color} : {};
                 let labelStyle = color ? {color: color} : {};
                 items.push(

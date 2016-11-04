@@ -18,11 +18,6 @@ export default {
             text: "Home",
             icon: <ActionHome />,
             to: "/"
-        },
-        {
-            text: "DataTable Demo",
-            icon: <ActionSettings />,
-            to: "/data-table-demo"
         }
     ]
 };

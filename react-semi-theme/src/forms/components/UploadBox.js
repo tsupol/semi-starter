@@ -36,7 +36,7 @@ class UploadBox extends Component {
         this.clearFilesAjax(action, this.state.files, true, this.state.openModal).then(()=>{
             let data = {};
             data[name] = files;
-            this.context.ajax.call("post", action, data, [name]).then((res)=>{
+            this.context.ajax.call("post", action, data, {files: [name]}).then((res)=>{
                 files = res.files.map((file)=>{
                     let pair = files.filter((f)=>f.name==file.name)[0];
                     return Object.assign(pair, {serial: file.serial, url: file.url});
@@ -149,6 +149,7 @@ class UploadBox extends Component {
             borderRadius: '5px',
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat',
             cursor: 'pointer'
         }, style);
         let exampleStyle = Object.assign({}, dropZoneStyle, {
@@ -171,13 +172,13 @@ class UploadBox extends Component {
             name: 'files'
         }, rest);
         return (
-            <div>
+            <div style={{marginBottom: 72}}>
                 { typeof example == "string" ? (
                     <div style={exampleStyle}></div>
                 ) : null }
                 <Dropzone onDrop={this.onDrop} {...dropZoneProps} style={dropZoneStyle}></Dropzone>
                 { files.length ? (
-                    <div>
+                    <div style={{position: 'absolute'}}>
                         <IconButton onClick={this.clearFiles.bind(null, true)}>
                             <ActionDelete />
                         </IconButton>
