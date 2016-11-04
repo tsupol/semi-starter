@@ -444,7 +444,8 @@ class SemiForm extends Component {
 		let formItems = (this.state.ready) ?
 			(formTemplate) ? components : children : <Loading inline/>;
 
-		let {buttonAlign, ...formParams} = rest;
+		// todo: fix unknown props here...
+		let {buttonAlign, noSubmitButton, submitLabel, ...formParams} = rest;
 
 		return (
 			<Form
