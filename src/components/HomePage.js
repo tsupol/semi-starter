@@ -12,8 +12,7 @@ class HomePage extends Component {
 		super(props, context);
 		this.state = {
 			interested_in_liposuction: false,
-			interested_in_other: false,
-			agreement: false
+			interested_in_other: false
 		};
 	}
 
@@ -316,7 +315,7 @@ class HomePage extends Component {
 						type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '43.5%'}
 					},
 					{
-						type: 'checkbox', name: 'agreement', options: [{id: 'accepted', name: 'Accepted'}], required: true, showClearButton: false, onCheck: (v)=>{this.setState({agreement: v.length>0})}
+						type: 'checkbox', name: 'agreement', options: [{id: 'accepted', name: 'Accepted'}], required: true, showClearButton: false
 					}
 				]
 			]
