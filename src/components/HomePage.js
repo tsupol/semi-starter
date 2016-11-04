@@ -313,38 +313,12 @@ class HomePage extends Component {
 				],
 				[
 					{
-						type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '40%'}
+						type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '43.5%'}
 					},
 					{
 						type: 'checkbox', name: 'agreement', options: [{id: 'accepted', name: 'Accepted'}], required: true, showClearButton: false, onCheck: (v)=>{this.setState({agreement: v.length>0})}
 					}
-				],
-				{
-					settings: {
-						hide: this.state.agreement
-					},
-					items: [
-						{
-							type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '40%'}
-						},
-						{
-							type: "custom", element: <RaisedButton disabled type="button" label="Submit"/>
-						}
-					]
-				},
-				{
-					settings: {
-						hide: !this.state.agreement
-					},
-					items: [
-						{
-							type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '40%'}
-						},
-						{
-							type: "custom", element: <RaisedButton secondary={true} type="button" label="Submit" onClick={()=>this.form.submit()}/>
-						}
-					]
-				}
+				]
 			]
 		};
 		return (
@@ -355,7 +329,7 @@ class HomePage extends Component {
 						<Col md={9}>
 							<Panel title="Home">
 								<div className="con-pad">
-									<SemiForm ref={(node)=>this.form = node} formTemplate={formTemplate} noSubmitButton onChange={this.handleFormChange} onSubmit={this.submit} />
+									<SemiForm formTemplate={formTemplate} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit} />
 								</div>
 							</Panel>
 						</Col>
