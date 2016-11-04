@@ -300,7 +300,6 @@ class HomePage extends Component {
 				]
 			]
 		};
-		console.log(formTemplate);
 		return (
 			<div>
 				<PageHeading title="Home" description="description" />
