@@ -135,8 +135,8 @@ export function ajax (method, url, data, options, access_token) {
                     if(typeof data[field] == "string"){
                         req.field(field, data[field]);
                     }else if(helper.object.className(data[field]) == "Array"){
-                        let nested_object = data[field].filter((v)=>typeof v == "object");
-                        if(nested_object.length){
+                        //let nested_object = data[field].filter((v)=>typeof v == "object");
+                        //if(nested_object.length){
                             let nested_values = helper.form.setArrayValue(field, data[field]);
                             for(let i in nested_values){
                                 if(typeof nested_values[i] == "string"){
@@ -151,9 +151,9 @@ export function ajax (method, url, data, options, access_token) {
                                     }
                                 }
                             }
-                        }else{
-                            req.field(field, data[field]);
-                        }
+                        //}else{
+                        //    req.field(field, data[field]);
+                        //}
                     }
                 }
             }
