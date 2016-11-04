@@ -253,10 +253,9 @@ class HomePage extends Component {
 				],
 				[
 					{
-						type: 'text', multiLine: true, label: 'Need', name: 'need'
-					},
-					{
-						type: 'custom', element: <div style={{height: 72}}></div>
+						type: 'text', multiLine: true, label: 'Need', name: 'need', grid: {
+							md: '50%'
+						}
 					}
 				],
 				[

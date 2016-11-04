@@ -9,7 +9,7 @@
   &.btn-right .btn-wrap { text-align: right; margin-right: 16px; }
   &.btn-right .btn-wrap > div > div { left: 16px !important; }
 
-  .sf-row { width: 100%; }
+  .sf-row { width: 100%; float: left; }
   &:not(.filter-form) {
     .sf-col {
       padding-left: 16px; box-sizing: border-box; float: left;

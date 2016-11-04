@@ -144,7 +144,7 @@ class SemiForm extends Component {
 	// };
 
 	render() {
-		// console.log('render: form', this.state.ready);
+		console.log('render: form', this.state.ready);
 		let props = this.props;
 		let {children, formTemplate, extraButtons, submitLabel, isFilterForm, ...rest} = props;
 

@@ -143,13 +143,19 @@ const helper = {
 		return array.map(v=>parseInt(v, 10)).indexOf(parseInt(value, 10)) >= 0;
 	},
 	/**
-	 * Check array for an integer value (type safe(string & int only for now))
+	 * Check array for an integer value, type insensitive (1 = '1')
 	 **/
 	has: (array, value) => {
-		if (isNaN(parseInt(value, 10))) {
-			return array.indexOf(value) >= 0;
-		}
-		return array.map(v=>parseInt(v, 10)).indexOf(parseInt(value, 10)) >= 0;
+		if(value === null || value === undefined) return false;
+		return array.map(v=>{
+			if(v === null || v === undefined) return false;
+			return v.toString();
+		}).indexOf(value.toString()) >= 0;
+		// Int based version (Wrong Concept)
+		// if (isNaN(parseInt(value, 10))) {
+		// 	return array.indexOf(value) >= 0;
+		// }
+		// return array.map(v=>parseInt(v, 10)).indexOf(parseInt(value, 10)) >= 0;
 	},
 	/**
 	 * Compare 2 integer value (auto parse int)
@@ -158,13 +164,19 @@ const helper = {
 		return parseInt(value1, 10) === parseInt(value2, 10);
 	},
 	/**
-	 * Compare 2 integer value (type safe(string & int only for now))
+	 * Type insensitive comparison (1 = '1')
 	 **/
 	equals: (value1, value2) => {
-		if (isNaN(parseInt(value1, 10)) || isNaN(parseInt(value2, 10))) {
-			return value1 == value2;
-		}
-		return parseInt(value1, 10) === parseInt(value2, 10);
+		if (
+			value1 === null || value1 === undefined ||
+			value2 === null || value2 === undefined
+		) return false;
+		return value1.toString() == value2.toString();
+		// Int based version (Wrong Concept)
+		// if (isNaN(parseInt(value1, 10)) || isNaN(parseInt(value2, 10))) {
+		// 	return value1 == value2;
+		// }
+		// return parseInt(value1, 10) === parseInt(value2, 10);
 	},
 	/**
 	 * Prevent NaN

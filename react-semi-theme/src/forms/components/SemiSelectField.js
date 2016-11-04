@@ -45,15 +45,15 @@ class SemiSelectField extends SemiInputComponent {
 		if (!currentValue) currentValue = this.props.multiple ? [] : null;
 		if (this.props.multiple) {
 			const index = helper.has(currentValue, item.props.value);
-			if (index < 0) {
-				currentValue.push(helper.toInt(item.props.value, 10));
+			if (index) {
+				currentValue.splice(index, 1);
 				this.props.onChange && this.props.onChange(currentValue, index);
 			} else {
-				currentValue.splice(index, 1);
+				currentValue.push(item.props.value.toString());
 				this.props.onChange && this.props.onChange(currentValue, index);
 			}
 		} else {
-			currentValue = helper.toInt(item.props.value, 10);
+			currentValue = item.props.value.toString();
 			this.handleRequestCloseMenu();
 			this.props.onChange && this.props.onChange(currentValue, index);
 		}
@@ -167,7 +167,7 @@ class SemiSelectField extends SemiInputComponent {
 		let items = options ? [] : null;
 		if (typeof options === 'object') { // object or array only
 			for (let i in options) {
-				let id = options[i].id ? helper.toInt(options[i].id) : helper.toInt(i);
+				let id = options[i].id ? options[i].id.toString() : i.toString();
 				items.push(<ListItem className="ss-option" value={id} key={id} primaryText={options[i].name}/>);
 			}
 		}
