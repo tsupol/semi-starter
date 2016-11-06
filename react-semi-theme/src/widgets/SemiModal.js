@@ -97,7 +97,7 @@ class SemiModal extends Component {
 	 * see `onSubmit` function of `SemiForm` for more details
 	 *
 	 * @param {object} data
-	 * @param {SemiForm} ajax
+	 * @param {Row} ajax
 	 */
 	onModalSubmit = (data, ajax) => {
 		console.log('modal: ajax', ajax);

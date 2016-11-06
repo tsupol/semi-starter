@@ -166,6 +166,21 @@ const helper = {
 		// return array.map(v=>parseInt(v, 10)).indexOf(parseInt(value, 10)) >= 0;
 	},
 	/**
+	 * Check array for an integer value, type insensitive (1 = '1')
+	 **/
+	indexOf: (array, value) => {
+		if(value === null || value === undefined) return -1;
+		return array.map(v=>{
+			if(v === null || v === undefined) return -1;
+			return v.toString();
+		}).indexOf(value.toString());
+		// Int based version (Wrong Concept)
+		// if (isNaN(parseInt(value, 10))) {
+		// 	return array.indexOf(value) >= 0;
+		// }
+		// return array.map(v=>parseInt(v, 10)).indexOf(parseInt(value, 10)) >= 0;
+	},
+	/**
 	 * Compare 2 integer value (auto parse int)
 	 **/
 	equalInt: (value1, value2) => {

@@ -27,25 +27,28 @@ class SemiSelectField extends SemiInputComponent {
 			filter: '',
 			selectWidth: 250
 		};
+		// For `shouldComponentUpdate`
+		this.afterClick = false;
 	}
 
 	shouldComponentUpdate(nextProps) {
 		// console.log('this.checkUpdateValue', this.checkUpdateValue, nextProps.getValue());
 		// todo: fix equal value when selected and click dropdown
-		// if(this.checkUpdateValue != nextProps.getValue() || (helper.isEmpty(this.checkUpdateValue) && helper.isEmpty(nextProps.getValue()))) {
-		// 	this.checkUpdateValue = nextProps.getValue();
-		// 	return true;
-		// }
-		// return false;
-		return true;
+		if(this.checkUpdateValue != nextProps.getValue() || this.afterClick) {
+			this.checkUpdateValue = nextProps.getValue();
+			this.afterClick = false;
+			return true;
+		}
+		return false;
+		// return true;
 	}
 
 	handleCheck(item, index) {
 		let currentValue = this.props.getValue();
 		if (!currentValue) currentValue = this.props.multiple ? [] : null;
 		if (this.props.multiple) {
-			const index = helper.has(currentValue, item.props.value);
-			if (index) {
+			const index = helper.indexOf(currentValue, item.props.value);
+			if (index >= 0) {
 				currentValue.splice(index, 1);
 				this.props.onChange && this.props.onChange(currentValue, index);
 			} else {
@@ -58,13 +61,14 @@ class SemiSelectField extends SemiInputComponent {
 			this.props.onChange && this.props.onChange(currentValue, index);
 		}
 		if (typeof currentValue == 'object' && this.props.required && currentValue.length == 0 || currentValue == null) currentValue = '';
+		this.afterClick = true;
 		this.props.setValue(currentValue);
 	}
 
 	handleTouchTap = (event) => {
 		// This prevents ghost click.
 		event.preventDefault();
-		console.log('123', 123);
+		this.afterClick = true;
 		this.calculatePopoverWidth(event);
 		this.setState({
 			open: true,
@@ -73,6 +77,7 @@ class SemiSelectField extends SemiInputComponent {
 	};
 
 	handleRequestCloseMenu = () => {
+		this.afterClick = true;
 		this.setState({
 			open: false
 		});
@@ -80,6 +85,7 @@ class SemiSelectField extends SemiInputComponent {
 
 	handleFilterChange = (event) => {
 		let value = event.target.value;
+		this.afterClick = true;
 		this.setState({
 			filter: value
 		});
@@ -91,7 +97,7 @@ class SemiSelectField extends SemiInputComponent {
 	};
 
 	render() {
-		//console.log('render: SemiTextField', this.props.validations);
+		// console.log('render: SemiTextField', this.props.validations);
 		let {
 			// !!! Do not delete: preserver for references
 			// getErrorMessage,
@@ -158,11 +164,9 @@ class SemiSelectField extends SemiInputComponent {
 		let minusWidth = 0;
 		if (currentValue && currentValue.length !== 0 && !this.props.disabled) {
 			clearIcon = (
-				<IconButton className="btn-icon" onTouchTap={this.handleClear.bind(this)}>
-					<ContentClear />
-				</IconButton>
+				<ContentClear className="btn-clear" onTouchTap={this.handleClear.bind(this)} />
 			);
-			minusWidth += 36;
+			minusWidth += 20;
 		}
 		let items = options ? [] : null;
 		if (typeof options === 'object') { // object or array only

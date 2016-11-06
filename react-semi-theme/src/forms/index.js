@@ -1,4 +1,5 @@
 export SemiForm from './SemiForm';
+export FormGenerator from './FormGenerator';
 export ErrorMessage from './ErrorMessage';
 export SemiAutoComplete from './components/SemiAutoComplete';
 export SemiCheckInput from './components/SemiCheckInput';

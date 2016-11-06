@@ -1,30 +1,28 @@
 .sf-wrap {
   position: relative; display: inline-block; width: 100%;
   &.compact > div { margin-top: -10px !important; }
-  .form-string { line-height: 14px; padding: 42px 0 0 0; font-weight: bold; text-align: right; }
+  .form-string { line-height: 14px; padding: 42px 0 0 0; font-weight: bold; }
   .btn-wrap {
-    width: 100%;
+    width: 100%; float: left;
     & > div { display: inline; }
   }
-  &.btn-right .btn-wrap { text-align: right; margin-right: 16px; }
-  &.btn-right .btn-wrap > div > div { left: 16px !important; }
 
-  .sf-row { width: 100%; float: left; }
-  &:not(.filter-form) {
-    .sf-col {
-      padding-left: 16px; box-sizing: border-box; float: left;
-      &:first-child { padding-left: 0; }
-    }
+  .semi-grid {
+    .sg-col { padding-top: 0; padding-bottom: 0; }
   }
 
   // for DataTable
   &.filter-form {
     float: left; width: 100%; margin-top: -16px;
-    .sf-row { float: left; width: calc(100% - 88px); }
-    .sf-col { padding: 0 16px 0 0; float: right; box-sizing: border-box; }
-    &>.btn-wrap { width: auto; float: left; margin-right: 0; }
+    .semi-grid {
+      width: calc(100% - 104px);
+    }
+    &>.btn-wrap { width: auto; float: right; margin-right: 0; }
   }
 }
+// Clickable Icon
+.semi-input-wrap { position: relative; }
+.btn-clear { position: absolute; right: 0; bottom: 12px; cursor: pointer; margin: 16px -12px 0 0; width: 36px !important; float: right; }
 .semiForm .btn-icon, .btn-icon { width: 36px !important; }
 
 //----- SemiSelect

@@ -21,9 +21,23 @@ export default {
             to: "/"
         },
         {
-            text: "Demo",
+            text: "Examples",
             icon: <ActionStars />,
-            to: "/demo"
+            to: "/examples",
+            nestedItems : [
+                {
+                    text: "Grid",
+                    to: "/grid"
+                },
+                {
+                    text: "Form",
+                    to: "/form"
+                },
+                {
+                    text: "DataTable",
+                    to: "/datatable"
+                }
+            ]
         }
     ]
 };
