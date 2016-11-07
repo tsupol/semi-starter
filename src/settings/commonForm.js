@@ -1,5 +1,6 @@
 import React from 'react';
-export default function($this, images, components, values){
+export default function($this, images, formTemplate){
+    let {components, values} = formTemplate;
     images = images || [];
     components = components || [];
     values = values || {};

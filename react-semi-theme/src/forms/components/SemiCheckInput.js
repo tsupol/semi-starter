@@ -19,7 +19,7 @@ class SemiCheckInput extends SemiInputComponent {
         }
         if(!isEqual) {
             // Note: must clone array!
-            this.checkUpdateValue = this.props.multiple ? nextProps.getValue().slice(0) : nextProps.getValue();
+            this.checkUpdateValue = (this.props.multiple || nextProps.multiple) ? nextProps.getValue().slice(0) : nextProps.getValue();
             return true;
         }
         return false;

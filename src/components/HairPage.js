@@ -223,14 +223,14 @@ class HairPage extends Component {
 				]}
 			],
 		];
-		let formTemplate = commonForm(this, images, components);
+		let formTemplate = commonForm(this, images, {components});
 		return (
 			<div>
-				<PageHeading title="Home" description="description" />
+				<PageHeading title="Hair" description="description" />
 				<Grid fluid className="content-wrap">
 					<Row>
 						<Col md={9}>
-							<Panel title="Home">
+							<Panel title="Hair">
 								<div className="con-pad">
 									<SemiForm formTemplate={formTemplate} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit} />
 								</div>
