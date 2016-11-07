@@ -31,6 +31,16 @@ export default {
             to: "/forehead"
         },
         {
+            text: "Nose",
+            icon: <ActionHome />,
+            to: "/nose"
+        },
+        {
+            text: "Nose(Recon)",
+            icon: <ActionHome />,
+            to: "/nose-recon"
+        },
+        {
             text: "Examples",
             icon: <ActionStars />,
             to: "/examples",

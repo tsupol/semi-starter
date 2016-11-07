@@ -8,6 +8,8 @@ import App from './components/App';
 import HomePage from './components/HomePage';
 import HairPage from './components/HairPage';
 import ForeheadPage from './components/ForeheadPage';
+import NosePage from './components/NosePage';
+import NoseReconPage from './components/NoseReconPage';
 
 import LoginPage from './components/LoginPage';
 import NotFoundPage from './components/NotFoundPage';
@@ -37,6 +39,8 @@ export default (
 
         <Route path="hair" component={HairPage}/>
         <Route path="forehead" component={ForeheadPage}/>
+        <Route path="nose" component={NosePage}/>
+        <Route path="nose-recon" component={NoseReconPage}/>
 
         <Route path="examples/grid" component={SemiGridDemo}/>
         <Route path="examples/form" component={SemiFormDemo}/>
