@@ -19,7 +19,7 @@ class SemiCheckInput extends SemiInputComponent {
         }
         if(!isEqual) {
             // Note: must clone array!
-            this.checkUpdateValue = nextProps.getValue().slice(0);
+            this.checkUpdateValue = this.props.multiple ? nextProps.getValue().slice(0) : nextProps.getValue();
             return true;
         }
         return false;
@@ -29,7 +29,7 @@ class SemiCheckInput extends SemiInputComponent {
         let value = (props.value || props.defaultValue);
         let valueIsObject = typeof value == 'object';
         // todo: Please do not use shorthand if for " COMPLEX " conditional statement. Always make code simple.
-        let defaultValue = props.multiple ? (valueIsObject ? value.map((i)=>parseInt(i, 10)) : (value ? [parseInt(value, 10)] : props.required ? '' : [])) : (valueIsObject ? parseInt(value[0], 10) : (value ? parseInt(value, 10) : props.required ? '' : null));
+        let defaultValue = props.multiple ? (valueIsObject ? value : (value ? [value] : props.required ? '' : [])) : (valueIsObject ? value[0] : (value ? value : props.required ? '' : null));
         return defaultValue;
     };
 

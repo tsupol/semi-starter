@@ -21,6 +21,16 @@ export default {
             to: "/"
         },
         {
+            text: "Hair",
+            icon: <ActionHome />,
+            to: "/hair"
+        },
+        {
+            text: "Forehead",
+            icon: <ActionHome />,
+            to: "/forehead"
+        },
+        {
             text: "Examples",
             icon: <ActionStars />,
             to: "/examples",

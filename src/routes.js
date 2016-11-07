@@ -4,7 +4,11 @@ import {routerActions} from 'react-router-redux';
 import {UserAuthWrapper} from 'redux-auth-wrapper';
 
 import App from './components/App';
+
 import HomePage from './components/HomePage';
+import HairPage from './components/HairPage';
+import ForeheadPage from './components/ForeheadPage';
+
 import LoginPage from './components/LoginPage';
 import NotFoundPage from './components/NotFoundPage';
 import DataTableDemo from './components/examples/DataTableDemo';
@@ -30,6 +34,9 @@ export default (
     <Route path="/" component={App}>
         <IndexRoute
             component={semiThemeSettings.hasAuthentication ? UserIsAuthenticated(HomePage) : HomePage}/>
+
+        <Route path="hair" component={HairPage}/>
+        <Route path="forehead" component={ForeheadPage}/>
 
         <Route path="examples/grid" component={SemiGridDemo}/>
         <Route path="examples/form" component={SemiFormDemo}/>
