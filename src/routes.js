@@ -12,6 +12,8 @@ import NosePage from './components/NosePage';
 import NoseReconPage from './components/NoseReconPage';
 import EyelidsPage from './components/EyelidsPage';
 import AroundEyesPage from './components/AroundEyesPage';
+import EyebrowPage from './components/EyebrowPage';
+import LipsPage from './components/LipsPage';
 
 import LoginPage from './components/LoginPage';
 import NotFoundPage from './components/NotFoundPage';
@@ -45,6 +47,8 @@ export default (
         <Route path="nose-recon" component={NoseReconPage}/>
         <Route path="eyelids" component={EyelidsPage}/>
         <Route path="around-eyes" component={AroundEyesPage}/>
+        <Route path="eyebrow" component={EyebrowPage}/>
+        <Route path="lips" component={LipsPage}/>
 
         <Route path="examples/grid" component={SemiGridDemo}/>
         <Route path="examples/form" component={SemiFormDemo}/>

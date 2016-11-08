@@ -46,9 +46,44 @@ export default {
             to: "/eyelids"
         },
         {
-            text: "Around eyes",
+            text: "Around Eyes",
             icon: <ActionHome />,
             to: "/around-eyes"
+        },
+        {
+            text: "Eyebrow",
+            icon: <ActionHome />,
+            to: "/eyebrow"
+        },
+        {
+            text: "Lips",
+            icon: <ActionHome />,
+            to: "/lips"
+        },
+        {
+            text: "Breast",
+            icon: <ActionHome />,
+            to: "/breast"
+        },
+        {
+            text: "Chin",
+            icon: <ActionHome />,
+            to: "/chin"
+        },
+        {
+            text: "Cheek Bulge",
+            icon: <ActionHome />,
+            to: "/cheek-bulge"
+        },
+        {
+            text: "Liposuction",
+            icon: <ActionHome />,
+            to: "/liposuction"
+        },
+        {
+            text: "Implants",
+            icon: <ActionHome />,
+            to: "/implants"
         },
         {
             text: "Examples",
