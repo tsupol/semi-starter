@@ -9,10 +9,11 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import commonForm from '../settings/commonForm';
 
-class NoseReconPage extends Component {
+class ChinPage extends Component {
 	constructor(props, context) {
 		super(props, context);
 		this.state = {
+			ever_did_surgery_before_check: false
 		};
 	}
 
@@ -45,63 +46,54 @@ class NoseReconPage extends Component {
 			],
 			[
 				{
-					type: 'radio', name: 'nose_surgery_history', options: [
-					{id: 'no', name: 'No, Never have nose surgery.'},
-					{id: 'yes', name: 'Yes, Ever did before.'}
-				]
+					type: 'radio', name: 'nose_surgery_history', showClearButton: false, options: [
+						{id: 'no', name: 'No, Never have chin surgery.'},
+						{id: 'yes', name: 'Yes, Ever did before.'}
+					], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes'})
 				}
 			],
-			[
-				{type: 'custom', element: <h3>Medical histories</h3>}
-			],
-			[
-				{
-					type: 'checkbox', name: 'medical_histories', options: [
-					{id: 'allergy', name: 'Allergy'},
-					{id: 'nasal_congestion', name: 'Nasal congestion'},
-					{id: 'sinusitis', name: 'Sinusitis'},
-					{id: 'accident', name: 'Accident'}
-				]
-				}
-			],
-			[
-				{type: 'custom', element: <h3>Nose condition</h3>}
-			],
-			...Array.from(Array(6), (v, k)=>([
-				{
-					type: 'custom', element: <div>Condition {k+1}</div>, grid: {md: '50%'}
+			{
+				settings: {
+					hide: !this.state.ever_did_surgery_before_check
 				},
-				{
-					type: 'radio', name: `nose_conditions[${k}]`, options: [
-					{id: 'low', name: 'Low'},
-					{id: 'medium', name: 'Medium'},
-					{id: 'crisis', name: 'Crisis'},
+				items: [
+					{
+						type: 'numeric', name: 'surgery_count_before', label: 'How many time'
+					}
 				]
-				}
-			])),
-			[
-				{type: 'custom', element: <h3>Personal condition</h3>}
-			],
-			...Array.from(Array(2), (v, k)=>([
-				{
-					type: 'custom', element: <div>Condition {k+1}</div>, grid: {md: '50%'}
+			},
+			{
+				settings: {
+					hide: !this.state.ever_did_surgery_before_check
 				},
-				{
-					type: 'radio', name: `personal_conditions[${k}]`, options: [
-					{id: 'no', name: 'No'},
-					{id: 'yes', name: 'Yes'}
+				items: [
+					{
+						type: 'text', name: 'surgery_type', label: 'Type', multiLine: true
+					}
 				]
-				}
-			]))
+			},
+			{
+				settings: {
+					hide: !this.state.ever_did_surgery_before_check
+				},
+				items: [
+					{
+						type: 'text', name: 'place_or_doctor', label: 'Place / Doctor'
+					},
+					{
+						type: 'text', name: 'duration', label: 'Duration'
+					}
+				]
+			}
 		];
 		let formTemplate = commonForm(this, images, {components});
 		return (
 			<div>
-				<PageHeading title="Nose (Recon)" description="description" />
+				<PageHeading title="Breast" description="description" />
 				<Grid fluid className="content-wrap">
 					<Row>
 						<Col md={9}>
-							<Panel title="Nose (Recon)">
+							<Panel title="Breast">
 								<div className="con-pad">
 									<SemiForm formTemplate={formTemplate} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit} />
 								</div>
@@ -122,7 +114,8 @@ class NoseReconPage extends Component {
 //   }
 // });
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
-NoseReconPage.contextTypes = {
+ChinPage.contextTypes = {
 	ajax: PropTypes.object
 };
-export default NoseReconPage;
+export default ChinPage;
+

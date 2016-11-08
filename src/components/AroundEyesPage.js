@@ -114,11 +114,11 @@ class AroundEyesPage extends Component {
 		let formTemplate = commonForm(this, images, {components});
 		return (
 			<div>
-				<PageHeading title="Nose (Recon)" description="description" />
+				<PageHeading title="Around Eyes" description="description" />
 				<Grid fluid className="content-wrap">
 					<Row>
 						<Col md={9}>
-							<Panel title="Nose (Recon)">
+							<Panel title="Around Eyes">
 								<div className="con-pad">
 									<SemiForm formTemplate={formTemplate} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit} />
 								</div>

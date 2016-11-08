@@ -14,6 +14,8 @@ import EyelidsPage from './components/EyelidsPage';
 import AroundEyesPage from './components/AroundEyesPage';
 import EyebrowPage from './components/EyebrowPage';
 import LipsPage from './components/LipsPage';
+import BreastPage from './components/BreastPage';
+import ChinPage from './components/ChinPage';
 
 import LoginPage from './components/LoginPage';
 import NotFoundPage from './components/NotFoundPage';
@@ -49,6 +51,8 @@ export default (
         <Route path="around-eyes" component={AroundEyesPage}/>
         <Route path="eyebrow" component={EyebrowPage}/>
         <Route path="lips" component={LipsPage}/>
+        <Route path="breast" component={BreastPage}/>
+        <Route path="chin" component={ChinPage}/>
 
         <Route path="examples/grid" component={SemiGridDemo}/>
         <Route path="examples/form" component={SemiFormDemo}/>

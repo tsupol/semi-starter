@@ -139,11 +139,11 @@ class Eyebrow extends Component {
 		let formTemplate = commonForm(this, images, {components});
 		return (
 			<div>
-				<PageHeading title="Nose (Recon)" description="description" />
+				<PageHeading title="Eyebrow" description="description" />
 				<Grid fluid className="content-wrap">
 					<Row>
 						<Col md={9}>
-							<Panel title="Nose (Recon)">
+							<Panel title="Eyebrow">
 								<div className="con-pad">
 									<SemiForm formTemplate={formTemplate} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit} />
 								</div>

@@ -187,22 +187,6 @@ class LipsPage extends Component {
 					{type: 'custom', element: <div style={{height: '36px'}}></div>}
 				]
 			},
-			{
-				settings: {
-					hide: !this.state.ever_did_surgery_before_check
-				},
-				items: [
-					{
-						type: 'custom', element: <div  style={{height: '72px'}}><label>Know the detail</label></div>, grid: {md: '30%'}
-					},
-					{
-						type: 'radio', name: 'filler_before_know_details', showClearButton: false, options: [
-						{id: 'yes', name: 'Yes'},
-						{id: 'no', name: 'No'}
-					], onCheck: (v)=> this.setState({filler_before_know_details: v})
-					}
-				]
-			},
 			[
 				{type: 'custom', element: <h3>ข้อควรทราบก่อนการผ่าตัด</h3>}
 			],
@@ -219,11 +203,11 @@ class LipsPage extends Component {
 		let formTemplate = commonForm(this, images, {components});
 		return (
 			<div>
-				<PageHeading title="Nose (Recon)" description="description" />
+				<PageHeading title="Lips" description="description" />
 				<Grid fluid className="content-wrap">
 					<Row>
 						<Col md={9}>
-							<Panel title="Nose (Recon)">
+							<Panel title="Lips">
 								<div className="con-pad">
 									<SemiForm formTemplate={formTemplate} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit} />
 								</div>
