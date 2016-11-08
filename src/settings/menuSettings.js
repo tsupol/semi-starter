@@ -36,9 +36,19 @@ export default {
             to: "/nose"
         },
         {
-            text: "Nose(Recon)",
+            text: "Nose (Recon)",
             icon: <ActionHome />,
             to: "/nose-recon"
+        },
+        {
+            text: "Eyelids",
+            icon: <ActionHome />,
+            to: "/eyelids"
+        },
+        {
+            text: "Around eyes",
+            icon: <ActionHome />,
+            to: "/around-eyes"
         },
         {
             text: "Examples",

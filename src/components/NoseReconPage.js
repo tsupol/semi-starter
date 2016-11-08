@@ -46,9 +46,9 @@ class NoseReconPage extends Component {
 			[
 				{
 					type: 'radio', name: 'nose_surgery_history', options: [
-						{id: 'no', name: 'No, Never have nose surgery.'},
-						{id: 'yes', name: 'Yes, Ever did before.'}
-					]
+					{id: 'no', name: 'No, Never have nose surgery.'},
+					{id: 'yes', name: 'Yes, Ever did before.'}
+				]
 				}
 			],
 			[
@@ -57,11 +57,11 @@ class NoseReconPage extends Component {
 			[
 				{
 					type: 'checkbox', name: 'medical_histories', options: [
-						{id: 'allergy', name: 'Allergy'},
-						{id: 'nasal_congestion', name: 'Nasal congestion'},
-						{id: 'sinusitis', name: 'Sinusitis'},
-						{id: 'accident', name: 'Accident'}
-					]
+					{id: 'allergy', name: 'Allergy'},
+					{id: 'nasal_congestion', name: 'Nasal congestion'},
+					{id: 'sinusitis', name: 'Sinusitis'},
+					{id: 'accident', name: 'Accident'}
+				]
 				}
 			],
 			[
@@ -73,10 +73,10 @@ class NoseReconPage extends Component {
 				},
 				{
 					type: 'radio', name: `nose_conditions[${k}]`, options: [
-						{id: 'low', name: 'Low'},
-						{id: 'medium', name: 'Medium'},
-						{id: 'crisis', name: 'Crisis'},
-					]
+					{id: 'low', name: 'Low'},
+					{id: 'medium', name: 'Medium'},
+					{id: 'crisis', name: 'Crisis'},
+				]
 				}
 			])),
 			[
@@ -88,11 +88,11 @@ class NoseReconPage extends Component {
 				},
 				{
 					type: 'radio', name: `personal_conditions[${k}]`, options: [
-						{id: 'no', name: 'No'},
-						{id: 'yes', name: 'Yes'}
-					]
+					{id: 'no', name: 'No'},
+					{id: 'yes', name: 'Yes'}
+				]
 				}
-			])),
+			]))
 		];
 		let formTemplate = commonForm(this, images, {components});
 		return (
