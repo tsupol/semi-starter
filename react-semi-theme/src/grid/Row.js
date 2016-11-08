@@ -70,6 +70,12 @@ class Row extends Component {
         let currentSize = this.state.currentSize;
         if(!currentSize) return <div className="sg-row">{this.props.children}</div>;
 
+        let {...settings} = Object.assign({
+            // Default
+        }, this.props, {
+            // Override
+        });
+
         const children = React.Children.map(this.props.children, elem => {
             let props = elem.props;
             if(elem.type == Col) {
@@ -122,7 +128,10 @@ class Row extends Component {
                 return elem;
             }
         });
-        return <div className="sg-row">{children}</div>;
+
+        let className = "sg-row";
+        if (settings.className) className += ` ${settings.className}`;
+        return <div className={className} style={settings.style}>{children}</div>;
     }
 }
 

@@ -27,28 +27,34 @@ class SemiGridDemo extends Component {
 				<SemiGrid className="pad-normal" style={{background: '#DDDDDD'}}>
 					<Row>
 						<Col xs md="40%">
-							<div className="test-grid">1</div>
+							<div className="test-grid">40%</div>
 						</Col>
 						<Col xs md="60%">
-							<div className="test-grid">1</div>
+							<div className="test-grid">60%</div>
 						</Col>
 					</Row>
-					<Row>
-						<SemiGrid style={{background: '#CCCCCC'}}>
-							<Row>
+					<Row style={{background: '#CCC'}}>
+						<Col xs="20%" md="40%">
+							<div className="test-grid"></div>
+						</Col>
+						<Col noPadding xs="80%" md="60%" style={{background: '#BBB'}}>
+							<Row style={{background: '#EE5'}}>
 								<Col xs md="40%">
-									<div className="test-grid">1</div>
+									<div className="test-grid">Nested Row 1</div>
 								</Col>
 								<Col xs md="60%">
-									<div className="test-grid">1</div>
+									<div className="test-grid"></div>
 								</Col>
 							</Row>
-							<Row>
-								<Col xs md="50%" mdOffset="50%">
-									<div className="test-grid">2</div>
+							<Row style={{background: '#E77'}}>
+								<Col xs md="40%">
+									<div className="test-grid">Nested Row 2</div>
+								</Col>
+								<Col xs md="60%">
+									<div className="test-grid"></div>
 								</Col>
 							</Row>
-						</SemiGrid>
+						</Col>
 					</Row>
 				</SemiGrid>
 			</div>

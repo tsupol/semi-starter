@@ -47,7 +47,7 @@
 .center-modal { width: 100%; padding-top: 24px; text-align: center; }
 
 //----- Testing
-.test-grid { width: 100%; height: 32px; background: #0000AA; color: #fff; }
+.test-grid { width: 100%; height: 32px; background: #0000AA; color: #fff; box-sizing: border-box; padding: 0 16px; line-height: 32px; }
 
 //---------- Grid ----------//
 .semi-grid {

@@ -104,7 +104,7 @@ class SemiFormDemo extends Component {
 						xs: '0%', md: '50%'
 					}},
 					{type: 'checkbox', name: 'test', multiple: true, showClearButton: false, options,  grid: {
-						xs: '100%', md: '294px', mdOffset: '-147px'
+						xs: '100%', md: '294px', mdOffset: '-147px' // For align center, offset = -width/2
 					}}
 				]
 			]
