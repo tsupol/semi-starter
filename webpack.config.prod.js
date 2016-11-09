@@ -14,7 +14,13 @@ const GLOBALS = {
 
 export default {
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    alias: {
+      react: path.resolve('./node_modules/react'),
+      'react-dom': path.resolve('./node_modules/react-dom'),
+      //'react-semi-theme': "C:/xampp/htdocs/react-semi-theme/src/index.js"
+      'react-semi-theme':  path.resolve('./react-semi-theme/src')
+    }
   },
   debug: true,
   devtool: 'source-map', // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool

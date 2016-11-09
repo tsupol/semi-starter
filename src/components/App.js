@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as userActions from '../actions/userActions';
 import {SemiThemeProvider, SemiLayout} from 'react-semi-theme';
+import {Loading} from 'react-semi-theme/widgets';
 import {ajax, getAll} from '../api/ApiCall';
 import semiThemeSettings from './../settings/semiThemeSettings';
 import menuSettings from './../settings/menuSettings';
