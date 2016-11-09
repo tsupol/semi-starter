@@ -3,13 +3,9 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
-import {SemiForm} from 'react-semi-theme/forms';
-import Divider from 'material-ui/Divider';
-import RaisedButton from 'material-ui/RaisedButton';
-
-import commonForm from '../settings/commonForm';
-
-class Eyebrow extends Component {
+import {FormGenerator} from 'react-semi-theme/forms';
+import MainForm from '../main/MainForm';
+class EyebrowPage extends Component {
 	constructor(props, context) {
 		super(props, context);
 		this.state = {
@@ -31,17 +27,15 @@ class Eyebrow extends Component {
 	};
 
 	handleFormChange = (data)=> {
-
 	};
 
-	submit = (data)=> {
-		this.context.ajax.call("post", "submit", data, {files: ['files']});
-	};
 
 	render() {
-		let thumbnail = require('../assets/img/upload-thumbnail.png');
-		let example = require('../assets/img/upload-example.png');
+		let thumbnail = require('../../assets/img/upload-thumbnail.png');
+		let example = require('../../assets/img/upload-example.png');
 		let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		let values = {};
+		let data = {};
 		let components = [
 			[
 				{type: 'custom', element: <h3>ปัญหาที่พบ (ช่วงคิ้ว)</h3>}
@@ -52,13 +46,13 @@ class Eyebrow extends Component {
 				},
 				{
 					type: 'checkbox', name: 'eyebrow_issue', showClearButton: false, options: [
-						{id: 'ช่วงคิ้วกับดวงตาแคบ', name: <div><label>ช่วงคิ้วกับดวงตาแคบ</label><br/><img src={example} style={{width: '200px'}} /></div>},
-						{id: 'คิ้วไม่เท่ากัน', name: <div><label>คิ้วไม่เท่ากัน</label><br/><img src={example} style={{width: '200px'}} /></div>},
-						{id: 'หัวคิ้วตก', name: <div><label>หัวคิ้วตก</label><br/><img src={example} style={{width: '200px'}} /></div>},
-						{id: 'หางคิ้วตก', name: <div><label>หางคิ้วตก</label><br/><img src={example} style={{width: '200px'}} /></div>},
-						{id: 'ไรผมสูง', name: <div><label>ไรผมสูง</label><br/><img src={example} style={{width: '200px'}} /></div>},
-						{id: 'other', name: 'อื่นๆ'}
-					], onCheck: (v)=> this.setState({eyebrow_issue_other: v.indexOf('other')!=-1})
+					{id: 'ช่วงคิ้วกับดวงตาแคบ', name: <div><label>ช่วงคิ้วกับดวงตาแคบ</label><br/><img src={example} style={{width: '200px'}} /></div>},
+					{id: 'คิ้วไม่เท่ากัน', name: <div><label>คิ้วไม่เท่ากัน</label><br/><img src={example} style={{width: '200px'}} /></div>},
+					{id: 'หัวคิ้วตก', name: <div><label>หัวคิ้วตก</label><br/><img src={example} style={{width: '200px'}} /></div>},
+					{id: 'หางคิ้วตก', name: <div><label>หางคิ้วตก</label><br/><img src={example} style={{width: '200px'}} /></div>},
+					{id: 'ไรผมสูง', name: <div><label>ไรผมสูง</label><br/><img src={example} style={{width: '200px'}} /></div>},
+					{id: 'other', name: 'อื่นๆ'}
+				], onCheck: (v)=> this.setState({eyebrow_issue_other: v.indexOf('other')!=-1})
 				}
 			],
 			{
@@ -136,22 +130,11 @@ class Eyebrow extends Component {
 				]
 			}
 		];
-		let formTemplate = commonForm(this, images, {components});
+		let formTemplate = {components};
 		return (
-			<div>
-				<PageHeading title="Eyebrow" description="description" />
-				<Grid fluid className="content-wrap">
-					<Row>
-						<Col md={9}>
-							<Panel title="Eyebrow">
-								<div className="con-pad">
-									<SemiForm formTemplate={formTemplate} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit} />
-								</div>
-							</Panel>
-						</Col>
-					</Row>
-				</Grid>
-			</div>
+			<MainForm header="Eyebrow" images={images} values={values} data={data} onChange={this.handleFormChange}>
+				<FormGenerator formTemplate={formTemplate} />
+			</MainForm>
 		);
 	}
 }
@@ -164,8 +147,7 @@ class Eyebrow extends Component {
 //   }
 // });
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
-Eyebrow.contextTypes = {
+EyebrowPage.contextTypes = {
 	ajax: PropTypes.object
 };
-export default Eyebrow;
-
+export default EyebrowPage;

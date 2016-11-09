@@ -3,12 +3,8 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
-import {SemiForm} from 'react-semi-theme/forms';
-import Divider from 'material-ui/Divider';
-import RaisedButton from 'material-ui/RaisedButton';
-
-import commonForm from '../settings/commonForm';
-
+import {FormGenerator} from 'react-semi-theme/forms';
+import MainForm from '../main/MainForm';
 class LipsPage extends Component {
 	constructor(props, context) {
 		super(props, context);
@@ -31,17 +27,15 @@ class LipsPage extends Component {
 	};
 
 	handleFormChange = (data)=> {
-
 	};
 
-	submit = (data)=> {
-		this.context.ajax.call("post", "submit", data, {files: ['files']});
-	};
 
 	render() {
-		let thumbnail = require('../assets/img/upload-thumbnail.png');
-		let example = require('../assets/img/upload-example.png');
+		let thumbnail = require('../../assets/img/upload-thumbnail.png');
+		let example = require('../../assets/img/upload-example.png');
 		let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		let values = {};
+		let data = {};
 		let components = [
 			[
 				{type: 'custom', element: <h3>Information</h3>}
@@ -109,9 +103,9 @@ class LipsPage extends Component {
 					},
 					{
 						type: 'radio', name: 'filler_before_know_details', showClearButton: false, options: [
-							{id: 'yes', name: 'Yes'},
-							{id: 'no', name: 'No'}
-						], onCheck: (v)=> this.setState({filler_before_know_details: v})
+						{id: 'yes', name: 'Yes'},
+						{id: 'no', name: 'No'}
+					], onCheck: (v)=> this.setState({filler_before_know_details: v})
 					}
 				]
 			},
@@ -188,34 +182,23 @@ class LipsPage extends Component {
 				]
 			},
 			[
-				{type: 'custom', element: <h3>ข้อควรทราบก่อนการผ่าตัด</h3>}
+				{type: 'custom', element: <h3>???????????????????????</h3>}
 			],
 			...Array.from(Array(8), (v, k)=> (
 				[
 					{
 						type: 'checkbox', name: `acknowledges[${k}]`, showClearButton: false, options: [
-							{id: 'accepted', name: `Topic ${k+1}`}
-						]
+						{id: 'accepted', name: `Topic ${k+1}`}
+					]
 					}
 				]
 			))
 		];
-		let formTemplate = commonForm(this, images, {components});
+		let formTemplate = {components};
 		return (
-			<div>
-				<PageHeading title="Lips" description="description" />
-				<Grid fluid className="content-wrap">
-					<Row>
-						<Col md={9}>
-							<Panel title="Lips">
-								<div className="con-pad">
-									<SemiForm formTemplate={formTemplate} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit} />
-								</div>
-							</Panel>
-						</Col>
-					</Row>
-				</Grid>
-			</div>
+			<MainForm header="Lips" images={images} values={values} data={data} onChange={this.handleFormChange}>
+				<FormGenerator formTemplate={formTemplate} />
+			</MainForm>
 		);
 	}
 }
@@ -232,4 +215,3 @@ LipsPage.contextTypes = {
 	ajax: PropTypes.object
 };
 export default LipsPage;
-

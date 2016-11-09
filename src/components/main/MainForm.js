@@ -140,11 +140,11 @@ class MainForm extends Component {
 		};
 		return (
 			<div>
-				<PageHeading title="Hair" description="description" />
+				<PageHeading title={this.props.header || 'Header'} description={this.props.description || 'description'} />
 				<Grid fluid className="content-wrap">
 					<Row>
 						<Col md={9}>
-							<Panel title="Hair">
+							<Panel title={this.props.header || 'Header'}>
 								<div className="con-pad">
 									<SemiForm data={data} values={values} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit}>
 										{showMainForm ? <FormGenerator formTemplate={mainForm} /> : null}

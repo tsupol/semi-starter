@@ -3,17 +3,11 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
-import {SemiForm} from 'react-semi-theme/forms';
-import Divider from 'material-ui/Divider';
-import RaisedButton from 'material-ui/RaisedButton';
-
-import commonForm from '../settings/commonForm';
-
+import {FormGenerator} from 'react-semi-theme/forms';
+import MainForm from '../main/MainForm';
 class NosePage extends Component {
 	constructor(props, context) {
 		super(props, context);
-		this.state = {
-		};
 	}
 
 	componentWillMount() {
@@ -28,27 +22,25 @@ class NosePage extends Component {
 	};
 
 	handleFormChange = (data)=> {
-
 	};
 
-	submit = (data)=> {
-		this.context.ajax.call("post", "submit", data, {files: ['files']});
-	};
 
 	render() {
-		let thumbnail = require('../assets/img/upload-thumbnail.png');
-		let example = require('../assets/img/upload-example.png');
+		let thumbnail = require('../../assets/img/upload-thumbnail.png');
+		let example = require('../../assets/img/upload-example.png');
 		let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		let values = {};
+		let data = {};
 		let components = [
 			[
 				{type: 'custom', element: <h3>Information</h3>}
 			],
 			[
 				{
-					type: 'radio', name: 'nose_surgery_history', options: [
-						{id: 'no', name: 'No, Never have nose surgery.'},
-						{id: 'yes', name: 'Yes, Ever did before.'}
-					]
+					type: 'radio', name: 'Nose_surgery_history', options: [
+					{id: 'no', name: 'No, Never have Nose surgery.'},
+					{id: 'yes', name: 'Yes, Ever did before.'}
+				]
 				}
 			],
 			[
@@ -57,30 +49,19 @@ class NosePage extends Component {
 			[
 				{
 					type: 'checkbox', name: 'medical_histories', options: [
-						{id: 'allergy', name: 'Allergy'},
-						{id: 'nasal_congestion', name: 'Nasal congestion'},
-						{id: 'sinusitis', name: 'Sinusitis'},
-						{id: 'accident', name: 'Accident'}
-					]
+					{id: 'allergy', name: 'Allergy'},
+					{id: 'nasal_congestion', name: 'Nasal congestion'},
+					{id: 'sinusitis', name: 'Sinusitis'},
+					{id: 'accident', name: 'Accident'}
+				]
 				}
 			]
 		];
-		let formTemplate = commonForm(this, images, {components});
+		let formTemplate = {components};
 		return (
-			<div>
-				<PageHeading title="Nose" description="description" />
-				<Grid fluid className="content-wrap">
-					<Row>
-						<Col md={9}>
-							<Panel title="Nose">
-								<div className="con-pad">
-									<SemiForm formTemplate={formTemplate} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit} />
-								</div>
-							</Panel>
-						</Col>
-					</Row>
-				</Grid>
-			</div>
+			<MainForm header="Nose" images={images} values={values} data={data} onChange={this.handleFormChange}>
+				<FormGenerator formTemplate={formTemplate} />
+			</MainForm>
 		);
 	}
 }

@@ -3,17 +3,11 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
-import {SemiForm} from 'react-semi-theme/forms';
-import Divider from 'material-ui/Divider';
-import RaisedButton from 'material-ui/RaisedButton';
-
-import commonForm from '../settings/commonForm';
-
+import {FormGenerator} from 'react-semi-theme/forms';
+import MainForm from '../main/MainForm';
 class LiposuctionPage extends Component {
 	constructor(props, context) {
 		super(props, context);
-		this.state = {
-		};
 	}
 
 	componentWillMount() {
@@ -28,17 +22,15 @@ class LiposuctionPage extends Component {
 	};
 
 	handleFormChange = (data)=> {
-
 	};
 
-	submit = (data)=> {
-		this.context.ajax.call("post", "submit", data, {files: ['files']});
-	};
 
 	render() {
-		let thumbnail = require('../assets/img/upload-thumbnail.png');
-		let example = require('../assets/img/upload-example.png');
+		let thumbnail = require('../../assets/img/upload-thumbnail.png');
+		let example = require('../../assets/img/upload-example.png');
 		let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		let values = {};
+		let data = {};
 		let components = [
 			[
 				{type: 'custom', element: <h3>ตำแหน่งที่ต้องการดูดไขมัน</h3>}
@@ -46,12 +38,12 @@ class LiposuctionPage extends Component {
 			[
 				{
 					type: 'radio', name: 'filler_before_know_details', showClearButton: false, options: [
-						{id: 'หน้า', name: 'หน้า'},
-						{id: 'ขา', name: 'ขา'},
-						{id: 'ท้อง', name: 'ท้อง'},
-						{id: 'แขน', name: 'แขน'},
-						{id: 'หลัง', name: 'หลัง'}
-					]
+					{id: 'หน้า', name: 'หน้า'},
+					{id: 'ขา', name: 'ขา'},
+					{id: 'ท้อง', name: 'ท้อง'},
+					{id: 'แขน', name: 'แขน'},
+					{id: 'หลัง', name: 'หลัง'}
+				]
 				}
 			],
 			[
@@ -62,12 +54,12 @@ class LiposuctionPage extends Component {
 					{type: 'custom', element: <div>Topic {k+1}</div>, grid: {md: '30%'}},
 					{
 						type: 'radio', name: `issues[${k}]`, showClearButton: false, grid: {md: '70%'}, options: [
-							{id: 'น้อยมาก', name: 'น้อยมาก'},
-							{id: 'น้อย', name: 'น้อย'},
-							{id: 'ปานกลาง', name: 'ปานกลาง'},
-							{id: 'รุนแรง', name: 'รุนแรง'},
-							{id: 'รุนแรงมาก', name: 'รุนแรงมาก'}
-						]
+						{id: 'น้อยมาก', name: 'น้อยมาก'},
+						{id: 'น้อย', name: 'น้อย'},
+						{id: 'ปานกลาง', name: 'ปานกลาง'},
+						{id: 'รุนแรง', name: 'รุนแรง'},
+						{id: 'รุนแรงมาก', name: 'รุนแรงมาก'}
+					]
 					}
 				]
 			)),
@@ -90,11 +82,11 @@ class LiposuctionPage extends Component {
 				{
 					type: 'radio', name: `please`, showClearButton: false, grid: {md: '70%'}, options: [
 					{id: 'น้อยมาก', name: 'น้อยมาก'},
-						{id: 'น้อย', name: 'น้อย'},
-						{id: 'ปานกลาง', name: 'ปานกลาง'},
-						{id: 'รุนแรง', name: 'รุนแรง'},
-						{id: 'รุนแรงมาก', name: 'รุนแรงมาก'}
-					]
+					{id: 'น้อย', name: 'น้อย'},
+					{id: 'ปานกลาง', name: 'ปานกลาง'},
+					{id: 'รุนแรง', name: 'รุนแรง'},
+					{id: 'รุนแรงมาก', name: 'รุนแรงมาก'}
+				]
 				}
 			],
 			[
@@ -140,9 +132,9 @@ class LiposuctionPage extends Component {
 					{type: 'custom', element: <div>Topic {k+1}</div>, grid: {md: 'calc(30% - 100px)'}},
 					{
 						type: 'radio', name: `questions[${k}]`, showClearButton: false, grid: {md: 'calc(70% - 100px)'}, options: [
-							{id: 'yes', name: 'Yes'},
-							{id: 'no', name: 'No'}
-						]
+						{id: 'yes', name: 'Yes'},
+						{id: 'no', name: 'No'}
+					]
 					}
 				]
 			)),
@@ -162,22 +154,11 @@ class LiposuctionPage extends Component {
 				}
 			]
 		];
-		let formTemplate = commonForm(this, images, {components});
+		let formTemplate = {components};
 		return (
-			<div>
-				<PageHeading title="Liposuction" description="description" />
-				<Grid fluid className="content-wrap">
-					<Row>
-						<Col md={9}>
-							<Panel title="Liposuction">
-								<div className="con-pad">
-									<SemiForm formTemplate={formTemplate} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit} />
-								</div>
-							</Panel>
-						</Col>
-					</Row>
-				</Grid>
-			</div>
+			<MainForm header="Liposuction" images={images} values={values} data={data} onChange={this.handleFormChange}>
+				<FormGenerator formTemplate={formTemplate} />
+			</MainForm>
 		);
 	}
 }
@@ -194,4 +175,3 @@ LiposuctionPage.contextTypes = {
 	ajax: PropTypes.object
 };
 export default LiposuctionPage;
-

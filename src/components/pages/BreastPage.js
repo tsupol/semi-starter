@@ -3,13 +3,9 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
-import {SemiForm} from 'react-semi-theme/forms';
-import Divider from 'material-ui/Divider';
-import RaisedButton from 'material-ui/RaisedButton';
-
-import commonForm from '../settings/commonForm';
-
-class BreastPage extends Component {
+import {FormGenerator} from 'react-semi-theme/forms';
+import MainForm from '../main/MainForm';
+class BeastPage extends Component {
 	constructor(props, context) {
 		super(props, context);
 		this.state = {
@@ -30,27 +26,25 @@ class BreastPage extends Component {
 	};
 
 	handleFormChange = (data)=> {
-
 	};
 
-	submit = (data)=> {
-		this.context.ajax.call("post", "submit", data, {files: ['files']});
-	};
 
 	render() {
-		let thumbnail = require('../assets/img/upload-thumbnail.png');
-		let example = require('../assets/img/upload-example.png');
+		let thumbnail = require('../../assets/img/upload-thumbnail.png');
+		let example = require('../../assets/img/upload-example.png');
 		let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		let values = {};
+		let data = {};
 		let components = [
 			[
 				{type: 'custom', element: <h3>Information</h3>}
 			],
 			[
 				{
-					type: 'radio', name: 'nose_surgery_history', showClearButton: false, options: [
-						{id: 'no', name: 'No, Never have breast surgery.'},
-						{id: 'yes', name: 'Yes, Ever did before.'}
-					], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes'})
+					type: 'radio', name: 'Beast_surgery_history', showClearButton: false, options: [
+					{id: 'no', name: 'No, Never have breast surgery.'},
+					{id: 'yes', name: 'Yes, Ever did before.'}
+				], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes'})
 				}
 			],
 			{
@@ -113,25 +107,25 @@ class BreastPage extends Component {
 			[
 				{
 					type: 'checkbox', name: 'activities', showClearButton: false, options: [
-						{id: 'fitness_or_yoga', name: 'Fitness / Yoga'},
-						{id: 'swimming', name: 'Swimming'},
-						{id: 'running', name: 'Running'},
-						{id: '...', name: '.......'}
-					]
+					{id: 'fitness_or_yoga', name: 'Fitness / Yoga'},
+					{id: 'swimming', name: 'Swimming'},
+					{id: 'running', name: 'Running'},
+					{id: '...', name: '.......'}
+				]
 				},
 				{
 					type: 'radio', name: 'occupation', showClearButton: false, options: [
-						{id: 'pretty_model', name: 'Pretty / Model'},
-						{id: 'officer', name: 'Officer'},
-						{id: 'student', name: 'Student'},
-						{id: 'business_owner', name: 'Business Owner'}
-					]
+					{id: 'pretty_model', name: 'Pretty / Model'},
+					{id: 'officer', name: 'Officer'},
+					{id: 'student', name: 'Student'},
+					{id: 'business_owner', name: 'Business Owner'}
+				]
 				},
 				{
 					type: 'radio', name: 'type_implant', showClearButton: false, options: [
-						{id: 'round', name: 'Round'},
-						{id: 'teardrop', name: 'Teardrop'}
-					]
+					{id: 'round', name: 'Round'},
+					{id: 'teardrop', name: 'Teardrop'}
+				]
 				}
 			],
 			[
@@ -159,22 +153,11 @@ class BreastPage extends Component {
 				]
 			},
 		];
-		let formTemplate = commonForm(this, images, {components});
+		let formTemplate = {components};
 		return (
-			<div>
-				<PageHeading title="Breast" description="description" />
-				<Grid fluid className="content-wrap">
-					<Row>
-						<Col md={9}>
-							<Panel title="Breast">
-								<div className="con-pad">
-									<SemiForm formTemplate={formTemplate} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit} />
-								</div>
-							</Panel>
-						</Col>
-					</Row>
-				</Grid>
-			</div>
+			<MainForm header="Beast" images={images} values={values} data={data} onChange={this.handleFormChange}>
+				<FormGenerator formTemplate={formTemplate} />
+			</MainForm>
 		);
 	}
 }
@@ -187,8 +170,7 @@ class BreastPage extends Component {
 //   }
 // });
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
-BreastPage.contextTypes = {
+BeastPage.contextTypes = {
 	ajax: PropTypes.object
 };
-export default BreastPage;
-
+export default BeastPage;

@@ -219,7 +219,7 @@ class HairPage extends Component {
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm images={images} values={values} data={data} onChange={this.handleFormChange}>
+			<MainForm header="Hair" images={images} values={values} data={data} onChange={this.handleFormChange}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);

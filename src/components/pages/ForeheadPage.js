@@ -3,17 +3,11 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
-import {SemiForm} from 'react-semi-theme/forms';
-import Divider from 'material-ui/Divider';
-import RaisedButton from 'material-ui/RaisedButton';
-
-import commonForm from '../settings/commonForm';
-
+import {FormGenerator} from 'react-semi-theme/forms';
+import MainForm from '../main/MainForm';
 class ForeheadPage extends Component {
 	constructor(props, context) {
 		super(props, context);
-		this.state = {
-		};
 	}
 
 	componentWillMount() {
@@ -28,17 +22,15 @@ class ForeheadPage extends Component {
 	};
 
 	handleFormChange = (data)=> {
-
 	};
 
-	submit = (data)=> {
-		this.context.ajax.call("post", "submit", data, {files: ['files']});
-	};
 
 	render() {
-		let thumbnail = require('../assets/img/upload-thumbnail.png');
-		let example = require('../assets/img/upload-example.png');
+		let thumbnail = require('../../assets/img/upload-thumbnail.png');
+		let example = require('../../assets/img/upload-example.png');
 		let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		let values = {};
+		let data = {};
 		let components = [
 			[
 				{type: 'custom', element: <h3>Header 1</h3>}
@@ -83,12 +75,12 @@ class ForeheadPage extends Component {
 				},
 				{
 					type: 'radio', name: 'rating', options: [
-						{id: 5, name: 'Best'},
-						{id: 4, name: 'Good'},
-						{id: 3, name: 'General'},
-						{id: 2, name: 'Low'},
-						{id: 1, name: 'Bad'}
-					]
+					{id: 5, name: 'Best'},
+					{id: 4, name: 'Good'},
+					{id: 3, name: 'General'},
+					{id: 2, name: 'Low'},
+					{id: 1, name: 'Bad'}
+				]
 				}
 			],
 			[
@@ -140,28 +132,17 @@ class ForeheadPage extends Component {
 				},
 				{
 					type: 'radio', name: `before_surgeries[${k}]`, showClearButton: false, options: [
-						{id: 'yes', name: 'Yes'},
-						{id: 'no', name: 'No'}
-					]
+					{id: 'yes', name: 'Yes'},
+					{id: 'no', name: 'No'}
+				]
 				}
 			]))
 		];
-		let formTemplate = commonForm(this, images, {components});
+		let formTemplate = {components};
 		return (
-			<div>
-				<PageHeading title="Forehead" description="description" />
-				<Grid fluid className="content-wrap">
-					<Row>
-						<Col md={9}>
-							<Panel title="Forehead">
-								<div className="con-pad">
-									<SemiForm formTemplate={formTemplate} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit} />
-								</div>
-							</Panel>
-						</Col>
-					</Row>
-				</Grid>
-			</div>
+			<MainForm header="Forehead" images={images} values={values} data={data} onChange={this.handleFormChange}>
+				<FormGenerator formTemplate={formTemplate} />
+			</MainForm>
 		);
 	}
 }

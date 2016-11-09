@@ -3,18 +3,11 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
-import {SemiForm} from 'react-semi-theme/forms';
-import Divider from 'material-ui/Divider';
-import RaisedButton from 'material-ui/RaisedButton';
-
-import commonForm from '../settings/commonForm';
-
+import {FormGenerator} from 'react-semi-theme/forms';
+import MainForm from '../main/MainForm';
 class ImplantsPage extends Component {
 	constructor(props, context) {
 		super(props, context);
-		this.state = {
-
-		};
 	}
 
 	componentWillMount() {
@@ -29,30 +22,28 @@ class ImplantsPage extends Component {
 	};
 
 	handleFormChange = (data)=> {
-
 	};
 
-	submit = (data)=> {
-		this.context.ajax.call("post", "submit", data, {files: ['files']});
-	};
 
 	render() {
-		let thumbnail = require('../assets/img/upload-thumbnail.png');
-		let example = require('../assets/img/upload-example.png');
+		let thumbnail = require('../../assets/img/upload-thumbnail.png');
+		let example = require('../../assets/img/upload-example.png');
 		let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		let values = {};
+		let data = {};
 		let components = [
 			[
 				{type: 'custom', element: <div>รูปแบบทรงหน้าผาก</div>, grid: {md: '30%'}},
 				{
 					type: 'radio', name: 'forehead_type', showClearButton: false, grid: {md: '70%'}, options: [
-						{id: 'หน้าผากแคบ', name: <div><label>หน้าผากแคบ</label><br/><img style={{width: '200px'}} src={example} /></div>},
-						{id: 'หน้าผากกว้าง', name: <div><label>หน้าผากกว้าง</label><br/><img style={{width: '200px'}} src={example} /></div>},
-						{id: 'หน้าผากถอย', name: <div><label>หน้าผากถอย</label><br/><img style={{width: '200px'}} src={example} /></div>},
-						{id: 'หน้าโหนกนูน', name: <div><label>หน้าโหนกนูน</label><br/><img style={{width: '200px'}} src={example} /></div>},
-						{id: 'หน้าผากย่น', name: <div><label>หน้าผากย่น</label><br/><img style={{width: '200px'}} src={example} /></div>},
-						{id: 'หน้าผากล้าน', name: <div><label>หน้าผากล้าน</label><br/><img style={{width: '200px'}} src={example} /></div>},
-						{id: 'หน้าผากงามถ่อ', name: <div><label>หน้าผากงามถ่อ</label><br/><img style={{width: '200px'}} src={example} /></div>}
-					]
+					{id: 'หน้าผากแคบ', name: <div><label>หน้าผากแคบ</label><br/><img style={{width: '200px'}} src={example} /></div>},
+					{id: 'หน้าผากกว้าง', name: <div><label>หน้าผากกว้าง</label><br/><img style={{width: '200px'}} src={example} /></div>},
+					{id: 'หน้าผากถอย', name: <div><label>หน้าผากถอย</label><br/><img style={{width: '200px'}} src={example} /></div>},
+					{id: 'หน้าโหนกนูน', name: <div><label>หน้าโหนกนูน</label><br/><img style={{width: '200px'}} src={example} /></div>},
+					{id: 'หน้าผากย่น', name: <div><label>หน้าผากย่น</label><br/><img style={{width: '200px'}} src={example} /></div>},
+					{id: 'หน้าผากล้าน', name: <div><label>หน้าผากล้าน</label><br/><img style={{width: '200px'}} src={example} /></div>},
+					{id: 'หน้าผากงามถ่อ', name: <div><label>หน้าผากงามถ่อ</label><br/><img style={{width: '200px'}} src={example} /></div>}
+				]
 				}
 			],
 			[
@@ -62,12 +53,12 @@ class ImplantsPage extends Component {
 				{type: 'custom', element: <div>รูปแบบทรงสะโพกและก้น</div>, grid: {md: '30%'}},
 				{
 					type: 'radio', name: 'hip_type', showClearButton: false, grid: {md: '70%'}, options: [
-						{id: 'แบนโดยรวม', name: <div><label>แบนโดยรวม</label><br/><img style={{width: '200px'}} src={example} /></div>},
-						{id: 'แบนด้านบน', name: <div><label>แบนด้านบน</label><br/><img style={{width: '200px'}} src={example} /></div>},
-						{id: 'แบนด้านข้าง', name: <div><label>แบนด้านข้าง</label><br/><img style={{width: '200px'}} src={example} /></div>},
-						{id: 'แบนด้านใน', name: <div><label>แบนด้านใน</label><br/><img style={{width: '200px'}} src={example} /></div>},
-						{id: 'แบนด้านล่าง', name: <div><label>แบนด้านล่าง</label><br/><img style={{width: '200px'}} src={example} /></div>}
-					]
+					{id: 'แบนโดยรวม', name: <div><label>แบนโดยรวม</label><br/><img style={{width: '200px'}} src={example} /></div>},
+					{id: 'แบนด้านบน', name: <div><label>แบนด้านบน</label><br/><img style={{width: '200px'}} src={example} /></div>},
+					{id: 'แบนด้านข้าง', name: <div><label>แบนด้านข้าง</label><br/><img style={{width: '200px'}} src={example} /></div>},
+					{id: 'แบนด้านใน', name: <div><label>แบนด้านใน</label><br/><img style={{width: '200px'}} src={example} /></div>},
+					{id: 'แบนด้านล่าง', name: <div><label>แบนด้านล่าง</label><br/><img style={{width: '200px'}} src={example} /></div>}
+				]
 				}
 			],
 			[
@@ -77,12 +68,12 @@ class ImplantsPage extends Component {
 				{type: 'custom', element: <div>ลักษณะรูปร่าง</div>, grid: {md: '30%'}},
 				{
 					type: 'radio', name: 'body_type', showClearButton: false, grid: {md: '70%'}, options: [
-						{id: 'นาฬิกาทราบ', name: <div><label>นาฬิกาทราบ</label><br/><img style={{width: '200px'}} src={example} /></div>},
-						{id: 'สามเหลี่ยม', name: <div><label>สามเหลี่ยม</label><br/><img style={{width: '200px'}} src={example} /></div>},
-						{id: 'ทรงตรง', name: <div><label>ทรงตรง</label><br/><img style={{width: '200px'}} src={example} /></div>},
-						{id: 'ลูกแพร์', name: <div><label>ลูกแพร์</label><br/><img style={{width: '200px'}} src={example} /></div>},
-						{id: 'แอปเปิ้ล', name: <div><label>แอปเปิ้ล</label><br/><img style={{width: '200px'}} src={example} /></div>}
-					]
+					{id: 'นาฬิกาทราบ', name: <div><label>นาฬิกาทราบ</label><br/><img style={{width: '200px'}} src={example} /></div>},
+					{id: 'สามเหลี่ยม', name: <div><label>สามเหลี่ยม</label><br/><img style={{width: '200px'}} src={example} /></div>},
+					{id: 'ทรงตรง', name: <div><label>ทรงตรง</label><br/><img style={{width: '200px'}} src={example} /></div>},
+					{id: 'ลูกแพร์', name: <div><label>ลูกแพร์</label><br/><img style={{width: '200px'}} src={example} /></div>},
+					{id: 'แอปเปิ้ล', name: <div><label>แอปเปิ้ล</label><br/><img style={{width: '200px'}} src={example} /></div>}
+				]
 				}
 			],
 			[
@@ -92,12 +83,12 @@ class ImplantsPage extends Component {
 				{type: 'custom', element: <div>บริเวณที่เอาไขมันออกมา</div>, grid: {md: '30%'}},
 				{
 					type: 'radio', name: 'liposuction_area', showClearButton: false, grid: {md: '70%'}, options: [
-						{id: 'ต้นแขน', name: <div><label>ต้นแขน</label><br/><img style={{width: '200px'}} src={example} /></div>},
-						{id: 'หน้าท้อง', name: <div><label>หน้าท้อง</label><br/><img style={{width: '200px'}} src={example} /></div>},
-						{id: 'ต้นขา', name: <div><label>ต้นขา</label><br/><img style={{width: '200px'}} src={example} /></div>},
-						{id: 'ก้น', name: <div><label>ก้น</label><br/><img style={{width: '200px'}} src={example} /></div>},
-						{id: 'สะโพก', name: <div><label>สะโพก</label><br/><img style={{width: '200px'}} src={example} /></div>}
-					]
+					{id: 'ต้นแขน', name: <div><label>ต้นแขน</label><br/><img style={{width: '200px'}} src={example} /></div>},
+					{id: 'หน้าท้อง', name: <div><label>หน้าท้อง</label><br/><img style={{width: '200px'}} src={example} /></div>},
+					{id: 'ต้นขา', name: <div><label>ต้นขา</label><br/><img style={{width: '200px'}} src={example} /></div>},
+					{id: 'ก้น', name: <div><label>ก้น</label><br/><img style={{width: '200px'}} src={example} /></div>},
+					{id: 'สะโพก', name: <div><label>สะโพก</label><br/><img style={{width: '200px'}} src={example} /></div>}
+				]
 				}
 			],
 			[
@@ -130,12 +121,12 @@ class ImplantsPage extends Component {
 				{type: 'custom', element: <div>ความสวยงามของรูปหน้าขณะนี้<br/>(ตามความพึงพอใจ)</div>, grid: {md: '30%'}},
 				{
 					type: 'radio', name: 'please', showClearButton: false, grid: {md: '70%'}, options: [
-						{id: 'มากที่สุด', name: 'มากที่สุด'},
-						{id: 'มาก', name: 'มาก'},
-						{id: 'ปานกลาง', name: 'ปานกลาง'},
-						{id: 'น้อย', name: 'น้อย'},
-						{id: 'น้อยที่สุด', name: 'น้อยที่สุด'}
-					]
+					{id: 'มากที่สุด', name: 'มากที่สุด'},
+					{id: 'มาก', name: 'มาก'},
+					{id: 'ปานกลาง', name: 'ปานกลาง'},
+					{id: 'น้อย', name: 'น้อย'},
+					{id: 'น้อยที่สุด', name: 'น้อยที่สุด'}
+				]
 				}
 			],
 			[
@@ -203,22 +194,11 @@ class ImplantsPage extends Component {
 				}
 			]
 		];
-		let formTemplate = commonForm(this, images, {components});
+		let formTemplate = {components};
 		return (
-			<div>
-				<PageHeading title="Implants" description="description" />
-				<Grid fluid className="content-wrap">
-					<Row>
-						<Col md={9}>
-							<Panel title="Implants">
-								<div className="con-pad">
-									<SemiForm formTemplate={formTemplate} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit} />
-								</div>
-							</Panel>
-						</Col>
-					</Row>
-				</Grid>
-			</div>
+			<MainForm header="Implants" images={images} values={values} data={data} onChange={this.handleFormChange}>
+				<FormGenerator formTemplate={formTemplate} />
+			</MainForm>
 		);
 	}
 }
@@ -235,4 +215,3 @@ ImplantsPage.contextTypes = {
 	ajax: PropTypes.object
 };
 export default ImplantsPage;
-

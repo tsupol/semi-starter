@@ -3,12 +3,8 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
-import {SemiForm} from 'react-semi-theme/forms';
-import Divider from 'material-ui/Divider';
-import RaisedButton from 'material-ui/RaisedButton';
-
-import commonForm from '../settings/commonForm';
-
+import {FormGenerator} from 'react-semi-theme/forms';
+import MainForm from '../main/MainForm';
 class CheekBulgePage extends Component {
 	constructor(props, context) {
 		super(props, context);
@@ -30,17 +26,15 @@ class CheekBulgePage extends Component {
 	};
 
 	handleFormChange = (data)=> {
-
 	};
 
-	submit = (data)=> {
-		this.context.ajax.call("post", "submit", data, {files: ['files']});
-	};
 
 	render() {
-		let thumbnail = require('../assets/img/upload-thumbnail.png');
-		let example = require('../assets/img/upload-example.png');
+		let thumbnail = require('../../assets/img/upload-thumbnail.png');
+		let example = require('../../assets/img/upload-example.png');
 		let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		let values = {};
+		let data = {};
 		let components = [
 			[
 				{type: 'custom', element: <h3>Information</h3>}
@@ -48,9 +42,9 @@ class CheekBulgePage extends Component {
 			[
 				{
 					type: 'radio', name: 'nose_surgery_history', showClearButton: false, options: [
-						{id: 'no', name: 'No, Never have surgery.'},
-						{id: 'yes', name: 'Yes, Ever did before.'}
-					], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes'})
+					{id: 'no', name: 'No, Never have surgery.'},
+					{id: 'yes', name: 'Yes, Ever did before.'}
+				], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes'})
 				}
 			],
 			{
@@ -134,22 +128,11 @@ class CheekBulgePage extends Component {
 				]
 			}
 		];
-		let formTemplate = commonForm(this, images, {components});
+		let formTemplate = {components};
 		return (
-			<div>
-				<PageHeading title="Cheek Bulge" description="description" />
-				<Grid fluid className="content-wrap">
-					<Row>
-						<Col md={9}>
-							<Panel title="Cheek Bulge">
-								<div className="con-pad">
-									<SemiForm formTemplate={formTemplate} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit} />
-								</div>
-							</Panel>
-						</Col>
-					</Row>
-				</Grid>
-			</div>
+			<MainForm header="CheekBulge" images={images} values={values} data={data} onChange={this.handleFormChange}>
+				<FormGenerator formTemplate={formTemplate} />
+			</MainForm>
 		);
 	}
 }
@@ -166,4 +149,3 @@ CheekBulgePage.contextTypes = {
 	ajax: PropTypes.object
 };
 export default CheekBulgePage;
-
