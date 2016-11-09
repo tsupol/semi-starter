@@ -184,7 +184,7 @@ class UploadBox extends Component {
             name: 'files'
         }, rest);
         return (
-            <div style={{marginBottom: 72}}>
+            <div style={{marginBottom: 32}}>
                 { typeof example == "string" ? (
                     <div style={exampleStyle}></div>
                 ) : null }

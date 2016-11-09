@@ -25,7 +25,6 @@ class SideMenu extends Component {
         let currentPath = this.props.location.pathname;
         if (menuPath == '/') return currentPath == menuPath;
         let path = parentPath || menuPath;
-        console.log('currentPath', currentPath, path, currentPath.indexOf(path));
         let index = currentPath.indexOf(path);
         // Fix `nose` highlighted when currentPath is `nose-...`
         if (index == 0 && currentPath.length > path.length && currentPath[path.length] != '/') {

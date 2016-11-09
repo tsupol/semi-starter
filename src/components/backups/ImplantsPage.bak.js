@@ -33,15 +33,15 @@ class ImplantsPage extends Component {
 		let data = {};
 		
 		let optionGrid = {xs: '100%', sm: '50%', md: '25%'},
-			optionGrid5 = {xs: '100%', md: '20%'},
-			imgStyle = {width: '100%'};
+			imgStyle = {width: '100%'},
+			checkboxFieldStyle = {marginTop: 24}; // Gap between `h3` and `checkboxField`
 		
 		let components = [
 			[
-				{type: 'custom', element: <h3 className="bottom-pad-big">รูปแบบทรงหน้าผาก</h3>}
+				{type: 'custom', element: <h3>รูปแบบทรงหน้าผาก</h3>}
 			],
 			[
-				{type: 'radio', name: 'forehead_type', horizontal: true, showClearButton: false, grid: {xs: '100%'}, options: [
+				{type: 'radio', name: 'forehead_type', style: checkboxFieldStyle, horizontal: true, showClearButton: false, grid: {xs: '100%'}, options: [
 					{id: 'หน้าผากแคบ', grid: optionGrid, name: <div><label>หน้าผากแคบ</label><br/><img style={imgStyle} src={example} /></div>},
 					{id: 'หน้าผากกว้าง', grid: optionGrid, name: <div><label>หน้าผากกว้าง</label><br/><img style={imgStyle} src={example} /></div>},
 					{id: 'หน้าผากถอย', grid: optionGrid, name: <div><label>หน้าผากถอย</label><br/><img style={imgStyle} src={example} /></div>},
@@ -52,10 +52,10 @@ class ImplantsPage extends Component {
 				]}
 			],
 			[
-				{type: 'custom', element: <h3 className="bottom-pad-big">รูปแบบทรงสะโพกและก้น</h3>}
+				{type: 'custom', element: <h3>รูปแบบทรงสะโพกและก้น</h3>}
 			],
 			[
-				{type: 'radio', name: 'hip_type', horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
+				{type: 'radio', name: 'hip_type', style: checkboxFieldStyle, horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
 					{id: 'แบนโดยรวม', grid: optionGrid, name: <div><label>แบนโดยรวม</label><br/><img style={imgStyle} src={example} /></div>},
 					{id: 'แบนด้านบน', grid: optionGrid, name: <div><label>แบนด้านบน</label><br/><img style={imgStyle} src={example} /></div>},
 					{id: 'แบนด้านข้าง', grid: optionGrid, name: <div><label>แบนด้านข้าง</label><br/><img style={imgStyle} src={example} /></div>},
@@ -64,10 +64,10 @@ class ImplantsPage extends Component {
 				]}
 			],
 			[
-				{type: 'custom', element: <h3 className="bottom-pad-big">ลักษณะรูปร่าง</h3>}
+				{type: 'custom', element: <h3>ลักษณะรูปร่าง</h3>}
 			],
 			[
-				{type: 'radio', name: 'body_type', horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
+				{type: 'radio', name: 'body_type', style: checkboxFieldStyle, horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
 					{id: 'นาฬิกาทราบ', grid: optionGrid, name: <div><label>นาฬิกาทราบ</label><br/><img style={imgStyle} src={example} /></div>},
 					{id: 'สามเหลี่ยม', grid: optionGrid, name: <div><label>สามเหลี่ยม</label><br/><img style={imgStyle} src={example} /></div>},
 					{id: 'ทรงตรง', grid: optionGrid, name: <div><label>ทรงตรง</label><br/><img style={imgStyle} src={example} /></div>},
@@ -79,7 +79,7 @@ class ImplantsPage extends Component {
 				{type: 'custom', element: <h3>บริเวณที่เอาไขมันออกมา</h3>}
 			],
 			[
-				{type: 'radio', name: 'liposuction_area', horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
+				{type: 'radio', name: 'liposuction_area', style: checkboxFieldStyle, horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
 					{id: 'ต้นแขน', grid: optionGrid, name: <div><label>ต้นแขน</label><br/><img style={imgStyle} src={example} /></div>},
 					{id: 'หน้าท้อง', grid: optionGrid, name: <div><label>หน้าท้อง</label><br/><img style={imgStyle} src={example} /></div>},
 					{id: 'ต้นขา', grid: optionGrid, name: <div><label>ต้นขา</label><br/><img style={imgStyle} src={example} /></div>},
@@ -108,17 +108,65 @@ class ImplantsPage extends Component {
 				}}
 			])),
 			[
-				{type: 'custom', element: <h5 className="bottom-pad-big">ความสวยงามของรูปหน้าขณะนี้ (ตามความพึงพอใจ)</h5>}
+				{type: 'space'}
 			],
 			[
-				{type: 'radio', horizontal: true, name: 'please', showClearButton: false, options: [
-					{id: 'มากที่สุด', grid: optionGrid5, name: 'มากที่สุด'},
-					{id: 'มาก', grid: optionGrid5, name: 'มาก'},
-					{id: 'ปานกลาง', grid: optionGrid5, name: 'ปานกลาง'},
-					{id: 'น้อย', grid: optionGrid5, name: 'น้อย'},
-					{id: 'น้อยที่สุด', grid: optionGrid5, name: 'น้อยที่สุด'}
-				]}
+				{type: 'custom', element: <strong>ความสวยงามของรูปหน้าขณะนี้<br/>(ตามความพึงพอใจ)</strong>, grid: {
+					xs: '100%', md: '300px'
+				}},
+				{type: 'space', grid: { // for space between them when `xs`
+					xs: '100%', md: 'calc(10% - 300px)'
+				}},
+				{type: 'radio', name: 'please', showClearButton: false, options: [
+					{id: 'มากที่สุด', name: 'มากที่สุด'},
+					{id: 'มาก', name: 'มาก'},
+					{id: 'ปานกลาง', name: 'ปานกลาง'},
+					{id: 'น้อย', name: 'น้อย'},
+					{id: 'น้อยที่สุด', name: 'น้อยที่สุด'}
+				], grid: {
+					xs: '100%', md: 'calc(90% - 600px)'
+				}}
 			],
+			[
+				{type: 'space'}
+			],
+			[
+				{type: 'custom', element: <strong>ความสวยงามของรูปหน้าขณะนี้<br/>(ตามความพึงพอใจ)</strong>, grid: {
+					xs: '100%', md: '300px'
+				}},
+				{type: 'space', grid: { // for space between them when `xs`
+					xs: '100%', md: 'calc(10% - 300px)'
+				}},
+				{type: 'radio', name: 'please', showClearButton: false, options: [
+					{id: 'มากที่สุด', name: 'มากที่สุด'},
+					{id: 'มาก', name: 'มาก'},
+					{id: 'ปานกลาง', name: 'ปานกลาง'},
+					{id: 'น้อย', name: 'น้อย'},
+					{id: 'น้อยที่สุด', name: 'น้อยที่สุด'}
+				], grid: {
+					xs: '100%', md: 'calc(90% - 600px)'
+				}}
+			],
+			// [
+			// 	{type: 'space'}
+			// ],
+			// [
+			// 	{type: 'custom', element: <strong>ความสวยงามของรูปหน้าขณะนี้<br/>(ตามความพึงพอใจ)</strong>, grid: {
+			// 		xs: '100%', md: '300px'
+			// 	}},
+			// 	{type: 'space', grid: { // for space between them when `xs`
+			// 		xs: '100%', md: 'calc(10% - 300px)'
+			// 	}},
+			// 	{type: 'radio', name: 'please', showClearButton: false, options: [
+			// 		{id: 'มากที่สุด', name: 'มากที่สุด'},
+			// 		{id: 'มาก', name: 'มาก'},
+			// 		{id: 'ปานกลาง', name: 'ปานกลาง'},
+			// 		{id: 'น้อย', name: 'น้อย'},
+			// 		{id: 'น้อยที่สุด', name: 'น้อยที่สุด'}
+			// 	], grid: {
+			// 		xs: '100%', md: 'calc(90% - 600px)'
+			// 	}}
+			// ],
 			[
 				{type: 'custom', element: <h5>บริเวณที่ต้องการทำ Fat Transfer และความคาดหวัง</h5>},
 			],
@@ -130,6 +178,21 @@ class ImplantsPage extends Component {
 					xs: '90%', md: `calc(100% - ${64}px)`
 				}},
 			])),
+			// Two column style
+			// ...Array.from(Array(3), (v, k) => ([
+			// 	{type: 'label', label:`${k*2+1}.`, grid: {
+			// 		xs: '10%', xsAlign: 'right', md: '64px'
+			// 	}},
+			// 	{type: 'text', multiLine: true, label: ' ', name: `areas[${k*2}][area]`, grid: {
+			// 		xs: '90%', md: `calc(50% - ${64}px)`
+			// 	}},
+			// 	{type: 'label', label:`${k*2+2}.`, grid: {
+			// 		xs: '10%', xsAlign: 'right', md: '64px'
+			// 	}},
+			// 	{type: 'text', multiLine: true, label: ' ', name: `areas[${k*2+1}][area]`, grid: {
+			// 		xs: '90%', md: `calc(50% - ${64}px)`
+			// 	}}
+			// ])),
 			[
 				{type: 'custom', element: <h5>เหตุผลหลักที่ต้องการทำ Fat Transfer</h5>},
 			],
@@ -141,11 +204,26 @@ class ImplantsPage extends Component {
 					xs: '90%', md: `calc(100% - ${64}px)`
 				}},
 			])),
+			// Two column style
+			// ...Array.from(Array(3), (v, k) => ([
+			// 	{type: 'label', label:`${k*2+1}.`, grid: {
+			// 		xs: '10%', xsAlign: 'right', md: '64px'
+			// 	}},
+			// 	{type: 'text', multiLine: true, label: ' ', name: `reasons[${k*2}][area]`, grid: {
+			// 		xs: '90%', md: `calc(50% - ${64}px)`
+			// 	}},
+			// 	{type: 'label', label:`${k*2+2}.`, grid: {
+			// 		xs: '10%', xsAlign: 'right', md: '64px'
+			// 	}},
+			// 	{type: 'text', multiLine: true, label: ' ', name: `reasons[${k*2+1}][area]`, grid: {
+			// 		xs: '90%', md: `calc(50% - ${64}px)`
+			// 	}}
+			// ])),
 			[
 				{type: 'custom', element: <div style={{height: '36px'}}></div>}
 			],
 			[
-				{type: 'custom', element: <h5>ข้อซักถามก่อนทำ</h5>}
+				{type: 'custom', element: <h5>ข้อซักถามก่อนทำ</h5>},
 			],
 			[
 				{type: 'custom', element: <div style={{height: '18px'}}></div>}

@@ -18,20 +18,8 @@ class HairPage extends Component {
 		};
 	}
 
-	componentWillMount() {
-		this.initialized();
-	}
-
-	initialized = () => {
-		return true;
-		// let taskReady = this.props.actions.getScheduleTasks(true);
-		// let eventsStatusReady = this.props.actions.getScheduleEventsStatus(true);
-		// return taskReady && eventsStatusReady;
-	};
-
 	handleFormChange = (data)=> {
 	};
-
 
 	render() {
 		let thumbnail = require('../../assets/img/upload-thumbnail.png');
@@ -39,17 +27,25 @@ class HairPage extends Component {
 		let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
 		let values = {};
 		let data = {};
+
+		let optionGrid = {xs: '100%', sm: '50%', md: '25%'},
+			grid2 = {xs: '100%', md: '50%'},
+			grid3 = {xs: '100%', md: '33.33%'},
+			grid4 = {xs: '100%', md: '25%'},
+			grid5 = {xs: '100%', md: '20%'},
+			imgStyle = {width: '100%'};
+
 		let components = [
 			[
 				{type: 'custom', element: <h3>Header 1</h3>}
 			],
 			[
-				{type: 'text', label: 'Chief Complaint', name: 'chief_complaint'},
-				{type: 'text', label: 'Past illness/surgery', name: 'past_illness'}
+				{type: 'text', label: 'Chief Complaint', name: 'chief_complaint', grid: grid2},
+				{type: 'text', label: 'Past illness/surgery', name: 'past_illness', grid: grid2}
 			],
 			[
-				{type: 'text', label: 'Present illness', name: 'present_illness'},
-				{type: 'text', label: 'Underlying disease', name: 'underlying_disease'}
+				{type: 'text', label: 'Present illness', name: 'present_illness', grid: grid2},
+				{type: 'text', label: 'Underlying disease', name: 'underlying_disease', grid: grid2}
 			],
 			[
 				{
@@ -152,8 +148,9 @@ class HairPage extends Component {
 					hide: this.state.physical_exam_gender != 'men'
 				},
 				items: [
-					{type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '30%'}},
-					{type: 'radio', name: 'physical_exam', showClearButton: false, options: Array.from(Array(12), (v, k)=>({id: k+1, name: <img style={{width: '200px'}} src={example}/>}))}
+					{type: 'radio', name: 'physical_exam', horizontal: true, showClearButton: false, options: Array.from(Array(12), (v, k)=>({
+						id: k+1, grid: optionGrid, name: <img style={imgStyle} src={example}/>
+					}))}
 				]
 			},
 			{
@@ -161,10 +158,14 @@ class HairPage extends Component {
 					hide: this.state.physical_exam_gender != 'women'
 				},
 				items: [
-					{type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '30%'}},
-					{type: 'radio', name: 'physical_exam', showClearButton: false, options: Array.from(Array(3), (v, k)=>({id: k+1, name: <img style={{width: '200px'}} src={example}/>}))}
+					{type: 'radio', name: 'physical_exam', horizontal: true, showClearButton: false, options: Array.from(Array(3), (v, k)=>({
+						id: k+1, grid: optionGrid, name: <img style={imgStyle} src={example}/>
+					}))}
 				]
 			},
+			[
+				{type: 'space'}
+			],
 			[
 				{type: 'custom', element: <label>Scolp</label>, grid: {md: '30%'}},
 				{type: 'radio', name: 'scolp', showClearButton: false, options: [

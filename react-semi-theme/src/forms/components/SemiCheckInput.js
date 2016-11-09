@@ -7,6 +7,7 @@ import IconButton from 'material-ui/IconButton/IconButton';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
 import RadioButtonChecked from 'material-ui/svg-icons/toggle/radio-button-checked';
 import RadioButtonUnchecked from 'material-ui/svg-icons/toggle/radio-button-unchecked';
+import {Row, Col} from 'react-semi-theme/grid';
 import helper from '../../libs/helper'
 
 class SemiCheckInput extends SemiInputComponent {
@@ -81,6 +82,8 @@ class SemiCheckInput extends SemiInputComponent {
             type,
             validations,
             validationErrors,
+            grid,
+            horizontal,
             ...rest
             } = this.props;
 
@@ -115,7 +118,7 @@ class SemiCheckInput extends SemiInputComponent {
                 let checked = (valueIsObject ? currentValue.indexOf(id) !== -1 : currentValue == id);
                 let iconStyle = color ? {fill: color} : {};
                 let labelStyle = color ? {color: color} : {};
-                items.push(
+                let checkboxElem =
                     <Checkbox
                         key={i}
                         checkedIcon={multiple ? null : <RadioButtonChecked />}
@@ -125,17 +128,29 @@ class SemiCheckInput extends SemiInputComponent {
                         checked={checked}
                         iconStyle={iconStyle}
                         labelStyle={labelStyle}
-                        />);
-
+                    />;
+                if(option.grid) {
+                    items.push(
+                        <Col key={i} {...option.grid}>
+                            {checkboxElem}
+                        </Col>
+                    );
+                } else if(horizontal) {
+                    items.push(
+                        <Col key={i}>
+                            {checkboxElem}
+                        </Col>
+                    );
+                } else {
+                    items.push(checkboxElem);
+                }
             }
         }
-
         let width = (this.props.fullWidth ? `calc(100% - ${minusWidth}px)` : `auto`);
-
         return (
             <div>
                 <div style={{width}}>
-                    {items}
+                    {horizontal ? <Row>{items}</Row> : items}
                 </div>
                 <div style={{display: 'inline-block', verticalAlign: 'bottom', paddingBottom: '8px'}}>
                     {clearIcon}

@@ -2,6 +2,7 @@
   position: relative; display: inline-block; width: 100%;
   &.compact > div { margin-top: -10px !important; }
   .form-string { line-height: 14px; padding: 42px 0 0 0; font-weight: bold; }
+  .form-space { height: 42px; }
   .btn-wrap {
     width: 100%; float: left;
     & > div { display: inline; }
@@ -9,6 +10,9 @@
 
   .semi-grid {
     .sg-col { padding-top: 0; padding-bottom: 0; }
+    .has-separator {
+      border-bottom: 1px solid #EEEEEE;
+    }
   }
 
   // for DataTable

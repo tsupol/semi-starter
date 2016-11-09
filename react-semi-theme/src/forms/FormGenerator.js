@@ -59,20 +59,26 @@ class FormGenerator extends Component {
 			for (let rowId in formTemplate.components) {
 
 				let row = formTemplate.components[rowId];
-				let templateSettings = {};
+				let rowSettings = {};
+				let rowClassName = null;
+				let rowStyle = {};
 				// console.log('row', row);
 
 				// --- Check Validity
 				// Row must be array of objects
 				// Except for row with setting
 				if (!Array.isArray(row)) {
-					templateSettings = row.settings;
+					rowSettings = row.settings;
+					rowStyle = row.style;
 					row = row.items;
 				}
 
 				// --- Process Row Settings
 				// Hide is not even render (more like exclude)
-				if (templateSettings && templateSettings.hide) continue;
+				if (rowSettings && rowSettings.hide) continue;
+				if (rowSettings && rowSettings.separator) {
+					rowClassName = 'has-separator';
+				}
 
 				// loop create items
 				let cols = [];
@@ -159,6 +165,11 @@ class FormGenerator extends Component {
 						case 'label':
 							component = (
 								<div className="form-string" style={item.style}>{item.label ? item.label : ''}</div>
+							);
+							break;
+						case 'space':
+							component = (
+								<div className="form-space" style={{height: item.height}}></div>
 							);
 							break;
 						case 'numeric':
@@ -266,18 +277,18 @@ class FormGenerator extends Component {
 
 					if(leftIcon) {
 						cols.push(
-							<Col key={itemId} {...item.grid}>
+							<Col style={item.style} key={itemId} {...item.grid}>
 								<Row>
 									<Col xs="36px" noPadding>{leftIcon}</Col>
 									<Col xs="calc(100% - 36px)" noPadding>{component}</Col>
 								</Row>
 							</Col>);
 					} else {
-						cols.push(<Col key={itemId} {...item.grid}>{component}</Col>);
+						cols.push(<Col style={item.style} key={itemId} {...item.grid}>{component}</Col>);
 					}
 
 				} // item
-				let rowComponent = (<Row key={rowId}>{cols}</Row>);
+				let rowComponent = (<Row className={rowClassName} style={rowStyle} key={rowId}>{cols}</Row>);
 				components.push(rowComponent);
 			} // row
 		}

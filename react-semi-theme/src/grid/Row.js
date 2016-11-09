@@ -123,7 +123,7 @@ class Row extends Component {
                         }
                     }
                 }
-                return React.cloneElement(elem, {style: {width: calculatedWidth, marginLeft, textAlign}});
+                return React.cloneElement(elem, {gridStyle: {width: calculatedWidth, marginLeft, textAlign}});
             } else {
                 return elem;
             }
