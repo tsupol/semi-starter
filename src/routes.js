@@ -17,6 +17,9 @@ import EyebrowPage from './components/EyebrowPage';
 import LipsPage from './components/LipsPage';
 import BreastPage from './components/BreastPage';
 import ChinPage from './components/ChinPage';
+import CheekBulgePage from './components/CheekBulgePage';
+import LiposuctionPage from './components/LiposuctionPage';
+import ImplantsPage from './components/ImplantsPage';
 
 import LoginPage from './components/LoginPage';
 import NotFoundPage from './components/NotFoundPage';
@@ -54,6 +57,9 @@ export default (
         <Route path="lips" component={LipsPage}/>
         <Route path="breast" component={BreastPage}/>
         <Route path="chin" component={ChinPage}/>
+        <Route path="cheek-bulge" component={CheekBulgePage}/>
+        <Route path="liposuction" component={LiposuctionPage}/>
+        <Route path="implants" component={ImplantsPage}/>
 
         <Route path="examples/grid" component={SemiGridDemo}/>
         <Route path="examples/form" component={SemiFormDemo}/>

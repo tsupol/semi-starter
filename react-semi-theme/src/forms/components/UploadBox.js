@@ -22,6 +22,18 @@ class UploadBox extends Component {
         files: []
     };
 
+    shouldComponentUpdate(nextProps, nextState){
+        let isEqual = false;
+        if(this.fileUpdateValue !== undefined) {
+            isEqual = this.fileUpdateValue == JSON.stringify(nextState.files);
+        }
+        if(!isEqual){
+            this.fileUpdateValue = JSON.stringify(nextState.files);
+            return true;
+        }
+        return false;
+    }
+
     onDrop = (files)=> {
         let {action, name, multiple} = this.props;
         if(action){

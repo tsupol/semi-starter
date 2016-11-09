@@ -9,11 +9,12 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import commonForm from '../settings/commonForm';
 
-class ChinPage extends Component {
+class CheekBulgePage extends Component {
 	constructor(props, context) {
 		super(props, context);
 		this.state = {
-			ever_did_surgery_before_check: false
+			ever_did_surgery_before_check: false,
+			before_know_details: ''
 		};
 	}
 
@@ -47,7 +48,7 @@ class ChinPage extends Component {
 			[
 				{
 					type: 'radio', name: 'nose_surgery_history', showClearButton: false, options: [
-						{id: 'no', name: 'No, Never have chin surgery.'},
+						{id: 'no', name: 'No, Never have surgery.'},
 						{id: 'yes', name: 'Yes, Ever did before.'}
 					], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes'})
 				}
@@ -58,30 +59,77 @@ class ChinPage extends Component {
 				},
 				items: [
 					{
-						type: 'numeric', name: 'surgery_count_before', label: 'How many time'
-					}
-				]
-			},
-			{
-				settings: {
-					hide: !this.state.ever_did_surgery_before_check
-				},
-				items: [
-					{
-						type: 'text', name: 'surgery_type', label: 'Type', multiLine: true
-					}
-				]
-			},
-			{
-				settings: {
-					hide: !this.state.ever_did_surgery_before_check
-				},
-				items: [
-					{
-						type: 'text', name: 'place_or_doctor', label: 'Place / Doctor'
+						type: 'custom', element: <div  style={{height: '72px'}}><label>Know the detail</label></div>, grid: {md: '30%'}
 					},
 					{
-						type: 'text', name: 'duration', label: 'Duration'
+						type: 'radio', name: 'before_know_details', showClearButton: false, options: [
+						{id: 'yes', name: 'Yes'},
+						{id: 'no', name: 'No'}
+					], onCheck: (v)=> this.setState({before_know_details: v})
+					}
+				]
+			},
+			{
+				settings: {
+					hide: this.state.before_know_details != 'yes'
+				},
+				items: [
+					{
+						type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
+					},
+					{
+						type: 'text', name: 'brand', multiLine: true, label: 'Brand', grid: {md: 'calc((100% / 2) - (30% / 2))'}
+					},
+					{
+						type: 'text', name: 'count', multiLine: true, label: 'How many times', grid: {md: 'calc((100% / 2) - (30% / 2))'}
+					}
+				]
+			},
+			{
+				settings: {
+					hide: this.state.before_know_details != 'yes'
+				},
+				items: [
+					{
+						type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
+					},
+					{
+						type: 'text', name: 'last_time', multiLine: true, label: 'Last time', grid: {md: 'calc((100% / 3) - (30% / 3))'}
+					},
+					{
+						type: 'text', name: 'volume', multiLine: true, label: 'Volume', grid: {md: 'calc((100% / 3) - (30% / 3))'}
+					},
+					{
+						type: 'text', name: 'place_or_doctor', multiLine: true, label: 'Place / Doctor', grid: {md: 'calc((100% / 3) - (30% / 3))'}
+					}
+				]
+			},
+			{
+				settings: {
+					hide: this.state.before_know_details != 'no'
+				},
+				items: [
+					{
+						type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
+					},
+					{
+						type: 'text', name: 'count', multiLine: true, label: 'How many times', grid: {md: '70%'}
+					}
+				]
+			},
+			{
+				settings: {
+					hide: this.state.before_know_details != 'no'
+				},
+				items: [
+					{
+						type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
+					},
+					{
+						type: 'text', name: 'last_time', multiLine: true, label: 'Last time', grid: {md: 'calc((100% / 2) - (30% / 2))'}
+					},
+					{
+						type: 'text', name: 'place_or_doctor', multiLine: true, label: 'Place / Doctor', grid: {md: 'calc((100% / 2) - (30% / 2))'}
 					}
 				]
 			}
@@ -89,11 +137,11 @@ class ChinPage extends Component {
 		let formTemplate = commonForm(this, images, {components});
 		return (
 			<div>
-				<PageHeading title="Chin" description="description" />
+				<PageHeading title="Cheek Bulge" description="description" />
 				<Grid fluid className="content-wrap">
 					<Row>
 						<Col md={9}>
-							<Panel title="Chin">
+							<Panel title="Cheek Bulge">
 								<div className="con-pad">
 									<SemiForm formTemplate={formTemplate} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit} />
 								</div>
@@ -114,8 +162,8 @@ class ChinPage extends Component {
 //   }
 // });
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
-ChinPage.contextTypes = {
+CheekBulgePage.contextTypes = {
 	ajax: PropTypes.object
 };
-export default ChinPage;
+export default CheekBulgePage;
 
