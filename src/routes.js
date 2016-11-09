@@ -6,7 +6,8 @@ import {UserAuthWrapper} from 'redux-auth-wrapper';
 import App from './components/App';
 
 import HomePage from './components/HomePage';
-import HairPage from './components/HairPage';
+// import HairPage from './components/HairPage';
+import HairPage from './components/pages/HairPage';
 import ForeheadPage from './components/ForeheadPage';
 import NosePage from './components/NosePage';
 import NoseReconPage from './components/NoseReconPage';
