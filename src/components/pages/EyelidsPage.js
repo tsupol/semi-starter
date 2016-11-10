@@ -30,7 +30,8 @@ class EyelidsPage extends Component {
 		// return taskReady && eventsStatusReady;
 	};
 
-	handleFormChange = (data)=> {
+	submit = (data)=> {
+		this.context.ajax.call("post", "submit/eyelids", data, {files: ['files']});
 	};
 
 
@@ -223,7 +224,7 @@ class EyelidsPage extends Component {
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="Eyelids" images={images} values={values} data={data} onChange={this.handleFormChange}>
+			<MainForm header="Eyelids" images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);

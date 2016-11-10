@@ -21,7 +21,8 @@ class LiposuctionPage extends Component {
 		// return taskReady && eventsStatusReady;
 	};
 
-	handleFormChange = (data)=> {
+	submit = (data)=> {
+		this.context.ajax.call("post", "submit/liposuction", data, {files: ['files']});
 	};
 
 
@@ -156,7 +157,7 @@ class LiposuctionPage extends Component {
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="Liposuction" images={images} values={values} data={data} onChange={this.handleFormChange}>
+			<MainForm header="Liposuction" images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);

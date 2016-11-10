@@ -21,7 +21,8 @@ class ImplantsPage extends Component {
 		// return taskReady && eventsStatusReady;
 	};
 
-	handleFormChange = (data)=> {
+	submit = (data)=> {
+		this.context.ajax.call("post", "submit/implants", data, {files: ['files']});
 	};
 
 
@@ -126,7 +127,7 @@ class ImplantsPage extends Component {
 				{type: 'label', style: {paddingTop: 12}, label:`${k+1}.`, grid: {
 					xs: '10%', xsAlign: 'right', md: '64px'
 				}},
-				{type: 'text', multiLine: true, name: `areas[${k}][area]`, grid: {
+				{type: 'text', multiLine: true, name: `areas[${k}]`, grid: {
 					xs: '90%', md: `calc(100% - ${64}px)`
 				}},
 			])),
@@ -137,7 +138,7 @@ class ImplantsPage extends Component {
 				{type: 'label', style: {paddingTop: 12}, label:`${k+1}.`, grid: {
 					xs: '10%', xsAlign: 'right', md: '64px'
 				}},
-				{type: 'text', multiLine: true, name: `reasons[${k}][area]`, grid: {
+				{type: 'text', multiLine: true, name: `reasons[${k}]`, grid: {
 					xs: '90%', md: `calc(100% - ${64}px)`
 				}},
 			])),
@@ -191,7 +192,7 @@ class ImplantsPage extends Component {
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="Implants" images={images} values={values} data={data} onChange={this.handleFormChange}>
+			<MainForm header="Implants" images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);

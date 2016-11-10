@@ -25,7 +25,7 @@ function baseUrl(endpoint) {
 	}
 
 	// production build
-	return `/public/api${endpointStr}`;
+	return `/${devProjectName}/api${endpointStr}`;
 }
 
 /**

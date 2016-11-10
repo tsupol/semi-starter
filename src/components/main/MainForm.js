@@ -19,9 +19,7 @@ class MainForm extends Component {
 	};
 
 	submit = (data)=> {
-		console.log('data', data);
 		this.props.onSubmit && this.props.onSubmit(data);
-		this.context.ajax.call("post", "submit", data, {files: ['files']});
 	};
 
 	render() {
@@ -136,7 +134,7 @@ class MainForm extends Component {
 					{type: 'label', grid: {
 						xs: '0%', md: '50%'
 					}},
-					{type: 'checkbox', name: 'test', required: true, showClearButton: false, options: [{id: 'accepted', name: 'Accepted'}],  grid: {
+					{type: 'checkbox', name: 'agreement', required: true, showClearButton: false, options: [{id: 'accepted', name: 'Accepted'}],  grid: {
 						xs: '100%', md: '126px', mdOffset: '-63px' // For align center, offset = -width/2
 					}}
 				]

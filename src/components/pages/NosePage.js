@@ -21,7 +21,8 @@ class NosePage extends Component {
 		// return taskReady && eventsStatusReady;
 	};
 
-	handleFormChange = (data)=> {
+	submit = (data)=> {
+		this.context.ajax.call("post", "submit/nose", data, {files: ['files']});
 	};
 
 
@@ -37,7 +38,7 @@ class NosePage extends Component {
 			],
 			[
 				{
-					type: 'radio', name: 'Nose_surgery_history', options: [
+					type: 'radio', name: 'nose_surgery_history', showClearButton: false, options: [
 					{id: 'no', name: 'No, Never have Nose surgery.'},
 					{id: 'yes', name: 'Yes, Ever did before.'}
 				]
@@ -48,7 +49,7 @@ class NosePage extends Component {
 			],
 			[
 				{
-					type: 'checkbox', name: 'medical_histories', options: [
+					type: 'checkbox', name: 'medical_histories', showClearButton: false, options: [
 					{id: 'allergy', name: 'Allergy'},
 					{id: 'nasal_congestion', name: 'Nasal congestion'},
 					{id: 'sinusitis', name: 'Sinusitis'},
@@ -59,7 +60,7 @@ class NosePage extends Component {
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="Nose" images={images} values={values} data={data} onChange={this.handleFormChange}>
+			<MainForm header="Nose" images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);

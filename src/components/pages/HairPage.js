@@ -18,7 +18,8 @@ class HairPage extends Component {
 		};
 	}
 
-	handleFormChange = (data)=> {
+	submit = (data)=> {
+		this.context.ajax.call("post", "submit/hair", data, {files: ['files']});
 	};
 
 	render() {
@@ -177,7 +178,7 @@ class HairPage extends Component {
 			],
 			[
 				{type: 'custom', element: <label>Quality of donor hair</label>, grid: {md: '30%'}},
-				{type: 'radio', name: 'scolp', showClearButton: false, options: [
+				{type: 'radio', name: 'quality_of_donor_hair', showClearButton: false, options: [
 					{id: 'yyy1', name: 'yyy1'},
 					{id: 'yyy2', name: 'yyy2'},
 					{id: 'yyy3', name: 'yyy3'}
@@ -185,7 +186,7 @@ class HairPage extends Component {
 			],
 			[
 				{type: 'custom', element: <label>Elatiscity</label>, grid: {md: '30%'}},
-				{type: 'radio', name: 'scolp', showClearButton: false, options: [
+				{type: 'radio', name: 'elatiscity', showClearButton: false, options: [
 					{id: 'zzz1', name: 'zzz1'},
 					{id: 'zzz2', name: 'zzz2'},
 					{id: 'zzz3', name: 'zzz3'}
@@ -193,7 +194,7 @@ class HairPage extends Component {
 			],
 			[
 				{type: 'custom', element: <label>Texture of the hair</label>, grid: {md: '30%'}},
-				{type: 'radio', name: 'scolp', showClearButton: false, options: [
+				{type: 'radio', name: 'texture_of_the_hair', showClearButton: false, options: [
 					{id: 'straighth', name: 'Straighth'},
 					{id: 'waves', name: 'Waves'},
 					{id: 'curl', name: 'Curl'}
@@ -211,7 +212,7 @@ class HairPage extends Component {
 			],
 			[
 				{type: 'custom', element: <label>Donor</label>, grid: {md: '30%'}},
-				{type: 'radio', name: 'scolp', showClearButton: false, options: [
+				{type: 'radio', name: 'donor', showClearButton: false, options: [
 					{id: 'aaa1', name: 'aaa1'},
 					{id: 'aaa2', name: 'aaa2'},
 					{id: 'aaa3', name: 'aaa3'}
@@ -220,7 +221,7 @@ class HairPage extends Component {
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="Hair" images={images} values={values} data={data} onChange={this.handleFormChange}>
+			<MainForm header="Hair" images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);

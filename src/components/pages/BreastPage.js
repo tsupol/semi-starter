@@ -25,7 +25,8 @@ class BeastPage extends Component {
 		// return taskReady && eventsStatusReady;
 	};
 
-	handleFormChange = (data)=> {
+	submit = (data)=> {
+		this.context.ajax.call("post", "submit/breast", data, {files: ['files']});
 	};
 
 
@@ -41,7 +42,7 @@ class BeastPage extends Component {
 			],
 			[
 				{
-					type: 'radio', name: 'Beast_surgery_history', showClearButton: false, options: [
+					type: 'radio', name: 'beast_surgery_history', showClearButton: false, options: [
 					{id: 'no', name: 'No, Never have breast surgery.'},
 					{id: 'yes', name: 'Yes, Ever did before.'}
 				], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes'})
@@ -155,7 +156,7 @@ class BeastPage extends Component {
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="Beast" images={images} values={values} data={data} onChange={this.handleFormChange}>
+			<MainForm header="Beast" images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);

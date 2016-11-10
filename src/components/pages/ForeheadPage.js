@@ -21,7 +21,8 @@ class ForeheadPage extends Component {
 		// return taskReady && eventsStatusReady;
 	};
 
-	handleFormChange = (data)=> {
+	submit = (data)=> {
+		this.context.ajax.call("post", "submit/forehead", data, {files: ['files']});
 	};
 
 
@@ -140,7 +141,7 @@ class ForeheadPage extends Component {
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="Forehead" images={images} values={values} data={data} onChange={this.handleFormChange}>
+			<MainForm header="Forehead" images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);

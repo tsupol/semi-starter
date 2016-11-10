@@ -132,7 +132,6 @@ export function ajax (method, url, data, options, access_token) {
             }
             for(let field in data){
                 if(remove_fields.indexOf(field)==-1){
-                    console.log('field', field, 'data', data[field]);
                     if(typeof data[field] == "string"){
                         req.field(field, data[field]);
                     }else if(helper.object.className(data[field]) == "Array"){

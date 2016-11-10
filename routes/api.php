@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SubmitForm;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,15 +29,23 @@ Route::resource('users', 'Main\UserController');
 Route::delete('upload', 'UploadController@deletePath');
 Route::resource('upload', 'UploadController');
 
-Route::post('/submit', function (Request $request) {
-    $data = $request->except(['files']);
-    $images = $request->file('files');
+Route::get('/submit', function(){
+    return 'yes';
+});
+Route::post('/submit/{subject?}', function (Request $request, $subject = 'default') {
+    $data = $request->except(['files', 'agreement']);
+    $images = $request->file('files', []);
     $files = [];
     foreach($images as $key => $image){
-        foreach($image as $i => $file){
-            $files[$key][$i] = ['path' => $file->path(), 'name' => sprintf("%s-%d.%s", $key, $i + 1, $file->extension())];
+        if(is_array($image)){
+            foreach($image as $i => $file){
+                $files[$key][$i] = ['path' => $file->path(), 'name' => sprintf("%s-%d.%s", $key, $i + 1, $file->extension())];
+            }
+        }else{
+            $files[$key] = ['path' => $image->path(), 'name' => sprintf("%s.%s", $key, $image->extension())];
         }
     }
+    Mail::to(['tanawoot.ka@semicolon.co.th'])->send(new SubmitForm($subject, $data, $files));
     return response()->json(['data'=>$data, 'files'=>$files]);
 });
 

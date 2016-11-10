@@ -10,7 +10,8 @@
         "firebase/php-jwt": "^3.0",
         "barryvdh/laravel-ide-helper": "^2.2",
         "orangehill/iseed": "dev-master",
-        "zizaco/entrust": "dev-laravel-5"
+        "zizaco/entrust": "dev-laravel-5",
+        "paragonie/random_compat": "~1.4"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

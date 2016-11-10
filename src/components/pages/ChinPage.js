@@ -24,7 +24,8 @@ class ChinPage extends Component {
 		// return taskReady && eventsStatusReady;
 	};
 
-	handleFormChange = (data)=> {
+	submit = (data)=> {
+		this.context.ajax.call("post", "submit/chin", data, {files: ['files']});
 	};
 
 
@@ -40,7 +41,7 @@ class ChinPage extends Component {
 			],
 			[
 				{
-					type: 'radio', name: 'Chin_surgery_history', showClearButton: false, options: [
+					type: 'radio', name: 'chin_surgery_history', showClearButton: false, options: [
 					{id: 'no', name: 'No, Never have chin surgery.'},
 					{id: 'yes', name: 'Yes, Ever did before.'}
 				], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes'})
@@ -82,7 +83,7 @@ class ChinPage extends Component {
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="Chin" images={images} values={values} data={data} onChange={this.handleFormChange}>
+			<MainForm header="Chin" images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);

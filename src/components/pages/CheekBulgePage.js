@@ -25,7 +25,8 @@ class CheekBulgePage extends Component {
 		// return taskReady && eventsStatusReady;
 	};
 
-	handleFormChange = (data)=> {
+	submit = (data)=> {
+		this.context.ajax.call("post", "submit/cheekbulge", data, {files: ['files']});
 	};
 
 
@@ -41,7 +42,7 @@ class CheekBulgePage extends Component {
 			],
 			[
 				{
-					type: 'radio', name: 'nose_surgery_history', showClearButton: false, options: [
+					type: 'radio', name: 'surgery_history', showClearButton: false, options: [
 					{id: 'no', name: 'No, Never have surgery.'},
 					{id: 'yes', name: 'Yes, Ever did before.'}
 				], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes'})
@@ -130,7 +131,7 @@ class CheekBulgePage extends Component {
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="CheekBulge" images={images} values={values} data={data} onChange={this.handleFormChange}>
+			<MainForm header="CheekBulge" images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);

@@ -21,7 +21,8 @@ class NoseReconPage extends Component {
 		// return taskReady && eventsStatusReady;
 	};
 
-	handleFormChange = (data)=> {
+	submit = (data)=> {
+		this.context.ajax.call("post", "submit/nose-recon", data, {files: ['files']});
 	};
 
 
@@ -37,7 +38,7 @@ class NoseReconPage extends Component {
 			],
 			[
 				{
-					type: 'radio', name: 'nose_surgery_history', options: [
+					type: 'radio', name: 'nose_surgery_history', showClearButton: false, options: [
 					{id: 'no', name: 'No, Never have nose surgery.'},
 					{id: 'yes', name: 'Yes, Ever did before.'}
 				]
@@ -48,7 +49,7 @@ class NoseReconPage extends Component {
 			],
 			[
 				{
-					type: 'checkbox', name: 'medical_histories', options: [
+					type: 'checkbox', name: 'medical_histories', showClearButton: false, options: [
 					{id: 'allergy', name: 'Allergy'},
 					{id: 'nasal_congestion', name: 'Nasal congestion'},
 					{id: 'sinusitis', name: 'Sinusitis'},
@@ -64,7 +65,7 @@ class NoseReconPage extends Component {
 					type: 'custom', element: <div>Condition {k+1}</div>, grid: {md: '50%'}
 				},
 				{
-					type: 'radio', name: `nose_conditions[${k}]`, options: [
+					type: 'radio', name: `nose_conditions[${k}]`, showClearButton: false, options: [
 					{id: 'low', name: 'Low'},
 					{id: 'medium', name: 'Medium'},
 					{id: 'crisis', name: 'Crisis'},
@@ -79,7 +80,7 @@ class NoseReconPage extends Component {
 					type: 'custom', element: <div>Condition {k+1}</div>, grid: {md: '50%'}
 				},
 				{
-					type: 'radio', name: `personal_conditions[${k}]`, options: [
+					type: 'radio', name: `personal_conditions[${k}]`, showClearButton: false, options: [
 					{id: 'no', name: 'No'},
 					{id: 'yes', name: 'Yes'}
 				]
@@ -88,7 +89,7 @@ class NoseReconPage extends Component {
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="Nose (Recon)" images={images} values={values} data={data} onChange={this.handleFormChange}>
+			<MainForm header="Nose (Recon)" images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);
