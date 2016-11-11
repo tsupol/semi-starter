@@ -145,7 +145,7 @@ class MainForm extends Component {
 				<PageHeading title={this.props.header || 'Header'} description={this.props.description || 'description'} />
 				<Grid fluid className="content-wrap">
 					<Row>
-						<Col md={9}>
+						<Col xs lg={10} lgOffset={1} >
 							<Panel title={this.props.header || 'Header'}>
 								<div className="pad-normal pr-form">
 									<SemiForm data={data} values={values} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit}>
@@ -163,14 +163,6 @@ class MainForm extends Component {
 	}
 }
 
-// const mapStateToProps = ({user, notification}) => ({user, notification});
-// const mapDispatchToProps = (dispatch) => ({
-//   actions: {
-//     getScheduleTasks: bindActionCreators(notificationActions.getScheduleTasks, dispatch),
-//     getScheduleEventsStatus: bindActionCreators(notificationActions.getScheduleEventsStatus, dispatch)
-//   }
-// });
-// export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 MainForm.contextTypes = {
 	ajax: PropTypes.object
 };

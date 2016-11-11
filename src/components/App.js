@@ -7,6 +7,7 @@ import {Loading} from 'react-semi-theme/widgets';
 import {ajax, getAll} from '../api/ApiCall';
 import semiThemeSettings from './../settings/semiThemeSettings';
 import menuSettings from './../settings/menuSettings';
+import OnlineConsultLayout from './main/OnlineConsultLayout';
 
 class App extends Component {
 
@@ -28,7 +29,7 @@ class App extends Component {
 	
 	render() {
 		// todo: you can replace `SemiLayout` with your own layout or just use `this.props.children`
-		let component = <SemiLayout appBarTitle="Starters"
+		let component = <OnlineConsultLayout appBarTitle="Starters"
 									children={this.props.children}
 									location={this.props.location}
 									actions={this.props.actions}
