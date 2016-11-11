@@ -314,7 +314,7 @@ class HomePage extends Component {
 				<PageHeading title="Home" description="description" />
 				<Grid fluid className="content-wrap">
 					<Row>
-						<Col md={9}>
+						<Col xs lg={10} lgOffset={1}>
 							<Panel title="Home">
 								<div className="con-pad">
 									<SemiForm formTemplate={formTemplate} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit} />
