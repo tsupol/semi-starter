@@ -19,7 +19,9 @@ class HairPage extends Component {
 	}
 
 	submit = (data)=> {
-		this.context.ajax.call("post", "submit/hair", data, {files: ['files']});
+		this.context.ajax.call("post", "submit/hair", data, {files: ['files']}).then((data)=>{
+			this.context.dialog.alert("E-Mail was sent", "Success", "success");
+		});
 	};
 
 	render() {
@@ -237,6 +239,7 @@ class HairPage extends Component {
 // });
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 HairPage.contextTypes = {
-	ajax: PropTypes.object
+	ajax: PropTypes.object,
+	dialog: PropTypes.object
 };
 export default HairPage;

@@ -25,7 +25,9 @@ class ChinPage extends Component {
 	};
 
 	submit = (data)=> {
-		this.context.ajax.call("post", "submit/chin", data, {files: ['files']});
+		this.context.ajax.call("post", "submit/chin", data, {files: ['files']}).then((data)=>{
+			this.context.dialog.alert("E-Mail was sent", "Success", "success");
+		});
 	};
 
 
@@ -99,6 +101,7 @@ class ChinPage extends Component {
 // });
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 ChinPage.contextTypes = {
-	ajax: PropTypes.object
+	ajax: PropTypes.object,
+	dialog: PropTypes.object
 };
 export default ChinPage;

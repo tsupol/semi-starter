@@ -27,7 +27,9 @@ class EyebrowPage extends Component {
 	};
 
 	submit = (data)=> {
-		this.context.ajax.call("post", "submit/eyebrow", data, {files: ['files']});
+		this.context.ajax.call("post", "submit/eyebrow", data, {files: ['files']}).then((data)=>{
+			this.context.dialog.alert("E-Mail was sent", "Success", "success");
+		});
 	};
 
 
@@ -149,6 +151,7 @@ class EyebrowPage extends Component {
 // });
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 EyebrowPage.contextTypes = {
-	ajax: PropTypes.object
+	ajax: PropTypes.object,
+	dialog: PropTypes.object
 };
 export default EyebrowPage;

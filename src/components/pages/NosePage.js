@@ -22,7 +22,9 @@ class NosePage extends Component {
 	};
 
 	submit = (data)=> {
-		this.context.ajax.call("post", "submit/nose", data, {files: ['files']});
+		this.context.ajax.call("post", "submit/nose", data, {files: ['files']}).then((data)=>{
+			this.context.dialog.alert("E-Mail was sent", "Success", "success");
+		});
 	};
 
 
@@ -76,6 +78,7 @@ class NosePage extends Component {
 // });
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 NosePage.contextTypes = {
-	ajax: PropTypes.object
+	ajax: PropTypes.object,
+	dialog: PropTypes.object
 };
 export default NosePage;

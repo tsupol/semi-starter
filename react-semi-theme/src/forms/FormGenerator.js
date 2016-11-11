@@ -137,6 +137,8 @@ class FormGenerator extends Component {
 					// todo: fix Unknown prop here...
 					let {marginLeft, iconColor, icon, ...inputParams} = rest;
 
+					if(item.hide) type = 'empty'; // hidden column
+
 					switch (type) {
 						case 'custom':
 							component = element;

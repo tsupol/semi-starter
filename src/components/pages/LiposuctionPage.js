@@ -22,7 +22,9 @@ class LiposuctionPage extends Component {
 	};
 
 	submit = (data)=> {
-		this.context.ajax.call("post", "submit/liposuction", data, {files: ['files']});
+		this.context.ajax.call("post", "submit/liposuction", data, {files: ['files']}).then((data)=>{
+			this.context.dialog.alert("E-Mail was sent", "Success", "success");
+		});
 	};
 
 
@@ -173,6 +175,7 @@ class LiposuctionPage extends Component {
 // });
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 LiposuctionPage.contextTypes = {
-	ajax: PropTypes.object
+	ajax: PropTypes.object,
+	dialog: PropTypes.object
 };
 export default LiposuctionPage;

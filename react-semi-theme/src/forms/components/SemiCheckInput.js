@@ -39,12 +39,12 @@ class SemiCheckInput extends SemiInputComponent {
         //let id = parseInt(item.id, 10);
         if (!currentValue) currentValue = this.props.multiple ? [] : null;
         if (this.props.multiple) {
-            const index = currentValue.indexOf(item.id);
-            if (index < 0) {
+            const $index = currentValue.indexOf(item.id);
+            if ($index < 0) {
                 currentValue.push(item.id);
                 this.props.onCheck && this.props.onCheck(currentValue, index);
             } else {
-                currentValue.splice(index, 1);
+                currentValue.splice($index, 1);
                 this.props.onCheck && this.props.onCheck(currentValue, index);
             }
         } else {

@@ -22,7 +22,9 @@ class ImplantsPage extends Component {
 	};
 
 	submit = (data)=> {
-		this.context.ajax.call("post", "submit/implants", data, {files: ['files']});
+		this.context.ajax.call("post", "submit/implants", data, {files: ['files']}).then((data)=>{
+			this.context.dialog.alert("E-Mail was sent", "Success", "success");
+		});
 	};
 
 
@@ -208,6 +210,7 @@ class ImplantsPage extends Component {
 // });
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 ImplantsPage.contextTypes = {
-	ajax: PropTypes.object
+	ajax: PropTypes.object,
+	dialog: PropTypes.object
 };
 export default ImplantsPage;

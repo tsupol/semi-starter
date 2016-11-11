@@ -56,8 +56,8 @@ class MainForm extends Component {
 					{type: 'text', name: 'email', label: 'E-Mail', grid: grid3}
 				],
 				[
-					{type: 'text', name: 'phone', label: 'Phone', grid: grid4},
-					{type: 'text', name: 'mobile', label: 'Mobile', grid: grid4},
+					{type: 'numeric', name: 'phone', label: 'Phone', grid: grid4},
+					{type: 'numeric', name: 'mobile', label: 'Mobile', grid: grid4},
 					{type: 'text', name: 'lineID', label: 'Line ID', grid: grid4},
 					{type: 'text', name: 'whatappID', label: 'WhatApp ID', grid: grid4}
 				],
