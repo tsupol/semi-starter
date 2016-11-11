@@ -30,7 +30,6 @@ class HomePage extends Component {
 	};
 
 	handleFormChange = (data)=> {
-		console.log('data', data);
 	};
 
 	submit = (data)=> {
