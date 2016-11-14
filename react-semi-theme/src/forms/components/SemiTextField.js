@@ -2,8 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import {HOC} from 'formsy-react';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton/IconButton';
+import {ToggleCheckBox, ToggleCheckBoxOutlineBlank} from 'material-ui/svg-icons';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
 import VisibleOffIcon from 'material-ui/svg-icons/action/visibility-off';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import validator from 'validator';
 import { debounce } from './utils';
 
@@ -11,6 +13,7 @@ class SemiTextField extends Component{
     constructor(props) {
         super(props);
         this.state = {
+            checked: false,
             value: this.props.value || ''
         }
     }
@@ -28,6 +31,9 @@ class SemiTextField extends Component{
             return true;
         } else if(this.checkUpdateError != nextProps.getErrorMessage()) {
             this.checkUpdateError = nextProps.getErrorMessage();
+            return true;
+        } else if(this.checkedValue != nextState.checked){
+            this.checkedValue = nextState.checked;
             return true;
         }
         return false;
@@ -79,14 +85,17 @@ class SemiTextField extends Component{
             type,
             validations,
             validationErrors,
+            checkbox,
             prependIcon,
             appendButton,
+            disabled,
             setValidations,
             maxWidth,
             calculatedWidth,
             showClearButton,
             validationError,
             grid,
+            hint,
             ...rest
         } = Object.assign({
             // Default
@@ -144,15 +153,41 @@ class SemiTextField extends Component{
             });
             minusWidth += 210;
         }
+        if(checkbox){
+            let checkboxIcon = this.state.checked ? <ToggleCheckBox color={getMuiTheme().checkbox.checkedColor} /> : <ToggleCheckBoxOutlineBlank />;
+            checkbox = <IconButton
+                style={{
+                    display: 'inline-block',
+                    marginTop: (((this.props.label ? 72 : 36) - 24) / 2),
+                    marginRight: 8,
+                    verticalAlign: 'middle'
+                }}
+                onTouchTap={()=>{
+                    if(this.state.checked){
+                        this.handleClear();
+                        disabled = true;
+                    }
+                    this.setState({checked: !this.state.checked});
+                }}>
+                {checkboxIcon}
+            </IconButton>;
+            minusWidth += 56;
+            if(!this.state.checked){
+                disabled = true;
+            }
+        }
         let width = (this.props.fullWidth ? `calc(100% - ${minusWidth}px)` : `auto`);
 
         currentValue = this.state.value;
+
 
         let customTextField = React.cloneElement(
             <TextField
                 {...rest}
                 type={type||'text'}
+                id={rest.name||`input-${new Date().getTime()}`}
                 ref='input'
+                disabled={disabled}
                 inputStyle={{cursor: this.props.disabled ? 'not-allowed' : null}}
                 style={{width: width, verticalAlign: 'middle'}}
                 errorText={this.props.getErrorMessage()}
@@ -169,6 +204,7 @@ class SemiTextField extends Component{
 
         return (
             <div className="semi-input-wrap">
+                {checkbox}
                 {prependIcon}
                 {customTextField}
                 {clearIcon}

@@ -5,23 +5,30 @@ import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
+
 class HairPage extends Component {
 	constructor(props, context) {
 		super(props, context);
 		this.state = {
+			testBox: false,
 			current_medication_others_check: false,
 			allergy_check: false,
 			alcohol_check: false,
 			smoking_check: false,
-			family_history_of_alapecia_check: false,
-			physical_exam_gender: ''
+			family_history_of_alopecia_check: false,
+			scalp: '',
+			physical_exam_gender: '',
+			color_of_the_hair: ''
 		};
 	}
 
 	submit = (data)=> {
+		/*
 		this.context.ajax.call("post", "submit/hair", data, {files: ['files']}).then((data)=>{
 			this.context.dialog.alert("E-Mail was sent", "Success", "success");
 		});
+		*/
+		console.log(data);
 	};
 
 	render() {
@@ -56,23 +63,6 @@ class HairPage extends Component {
 				}
 			],
 			[
-				{type: 'custom', element: <label>Current medication</label>, grid: {md: '30%'}},
-				{type: 'radio', name: 'current_medication', showClearButton: false, options: [
-					{id: 'pinacle', name: 'Pinacle'},
-					{id: 'minocoal', name: 'Minocoal'},
-					{id: 'others', name: 'Others'}
-				], onCheck: (v)=>this.setState({current_medication_others_check: v.indexOf('others')!=-1})}
-			],
-			{
-				settings: {
-					hide: !this.state.current_medication_others_check
-				},
-				items: [
-					{type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '30%'}},
-					{type: 'text', name: 'current_medication_others'}
-				]
-			},
-			[
 				{type: 'custom', element: <label>Allergy</label>, grid: {md: '30%'}},
 				{type: 'radio', name: 'allergy_check', showClearButton: false, options: [
 					{id: 'no', name: 'No'},
@@ -86,6 +76,31 @@ class HairPage extends Component {
 				items: [
 					{type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '30%'}},
 					{type: 'text', name: 'allergy'}
+				]
+			},
+			[
+				{type: 'custom', element: <label>Current medication</label>, grid: {md: '30%'}},
+				{type: 'radio', name: 'current_medication', showClearButton: false, options: [
+					{id: 'finasteride', name: 'Finasteride'},
+					{id: 'minoxidil', name: 'Minoxidil'},
+					{id: 'others', name: 'Others'}
+				], onCheck: (v)=>this.setState({current_medication_others_check: v.indexOf('others')!=-1})}
+			],
+			{
+				settings: {
+					hide: !this.state.current_medication_others_check
+				},
+				items: [
+					{type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '30%'}},
+					{type: 'text', name: 'current_medication_others', hint: 'Please specify'}
+				]
+			},
+			{
+				settings: {
+					hide: !this.state.current_medication_others_check
+				},
+				items: [
+					{type: 'space'}
 				]
 			},
 			[
@@ -121,19 +136,19 @@ class HairPage extends Component {
 				]
 			},
 			[
-				{type: 'custom', element: <label>Family History of alapecia</label>, grid: {md: '30%'}},
-				{type: 'radio', name: 'family_history_of_alapecia_check', showClearButton: false, options: [
+				{type: 'custom', element: <label>Family History of alopecia</label>, grid: {md: '30%'}},
+				{type: 'radio', name: 'family_history_of_alopecia_check', showClearButton: false, options: [
 					{id: 'no', name: 'No'},
 					{id: 'yes', name: 'Yes'}
-				], onCheck: (v)=>this.setState({family_history_of_alapecia_check: v.indexOf('yes')!=-1})}
+				], onCheck: (v)=>this.setState({family_history_of_alopecia_check: v.indexOf('yes')!=-1})}
 			],
 			{
 				settings: {
-					hide: !this.state.family_history_of_alapecia_check
+					hide: !this.state.family_history_of_alopecia_check
 				},
 				items: [
 					{type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '30%'}},
-					{type: 'text', name: 'family_history_of_alapecia'}
+					{type: 'text', name: 'family_history_of_alopecia'}
 				]
 			},
 			[
@@ -170,54 +185,88 @@ class HairPage extends Component {
 				{type: 'space'}
 			],
 			[
-				{type: 'custom', element: <label>Scolp</label>, grid: {md: '30%'}},
-				{type: 'radio', name: 'scolp', showClearButton: false, options: [
-					{id: 'xxx1', name: 'xxx1'},
-					{id: 'xxx2', name: 'xxx2'},
-					{id: 'xxx3', name: 'xxx3'},
-					{id: 'xxx4', name: 'xxx4'}
-				]}
+				{type: 'custom', element: <label>Scalp</label>, grid: {md: '30%'}},
+				{type: 'radio', name: 'scalp', showClearButton: false, options: [
+					{id: 'erythena', name: 'Erythena'},
+					{id: 'scarring', name: 'Scarring'},
+					{id: 'scaling', name: 'Scaling'},
+					{id: 'others', name: 'Others'}
+				], onCheck: (v)=>this.setState({scalp: v})}
 			],
+			{
+				settings: {
+					hide: this.state.scalp != 'others'
+				},
+				items: [
+					{type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '30%'}},
+					{type: 'text', name: 'color_of_the_hair_other', hint: 'Please specify'}
+				]
+			},
+			{
+				settings: {
+					hide: this.state.scalp != 'others'
+				},
+				items: [
+					{type: 'space'}
+				]
+			},
 			[
 				{type: 'custom', element: <label>Quality of donor hair</label>, grid: {md: '30%'}},
 				{type: 'radio', name: 'quality_of_donor_hair', showClearButton: false, options: [
-					{id: 'yyy1', name: 'yyy1'},
-					{id: 'yyy2', name: 'yyy2'},
-					{id: 'yyy3', name: 'yyy3'}
+					{id: 'fine', name: 'Fine'},
+					{id: 'medium', name: 'Medium'},
+					{id: 'coarse', name: 'Coarse'}
 				]}
 			],
 			[
-				{type: 'custom', element: <label>Elatiscity</label>, grid: {md: '30%'}},
-				{type: 'radio', name: 'elatiscity', showClearButton: false, options: [
-					{id: 'zzz1', name: 'zzz1'},
-					{id: 'zzz2', name: 'zzz2'},
-					{id: 'zzz3', name: 'zzz3'}
+				{type: 'custom', element: <label>Elasticity</label>, grid: {md: '30%'}},
+				{type: 'radio', name: 'elasticity', showClearButton: false, options: [
+					{id: 'good', name: 'Good'},
+					{id: 'moderate', name: 'Moderate'},
+					{id: 'poor', name: 'Poor'}
 				]}
 			],
 			[
 				{type: 'custom', element: <label>Texture of the hair</label>, grid: {md: '30%'}},
 				{type: 'radio', name: 'texture_of_the_hair', showClearButton: false, options: [
-					{id: 'straighth', name: 'Straighth'},
+					{id: 'straight', name: 'Straight'},
 					{id: 'waves', name: 'Waves'},
 					{id: 'curl', name: 'Curl'}
 				]}
 			],
 			[
 				{type: 'custom', element: <label>Color of the hair</label>, grid: {md: '30%'}},
-				{type: 'radio', name: 'scolp', showClearButton: false, options: [
+				{type: 'radio', name: 'color_of_the_hair', showClearButton: false, options: [
 					{id: 'black', name: 'Black'},
 					{id: 'brown', name: 'Brown'},
-					{id: 'xxxxx', name: 'xxxxx'},
-					{id: 'yyyyy', name: 'yyyyy'},
-					{id: 'zzzzz', name: 'zzzzz'}
-				]}
+					{id: 'red', name: 'Red'},
+					{id: 'blonde', name: 'Blonde'},
+					{id: 'others', name: 'Others'}
+				], onCheck: (v)=>this.setState({color_of_the_hair: v})}
 			],
+			{
+				settings: {
+					hide: this.state.color_of_the_hair != 'others'
+				},
+				items: [
+					{type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '30%'}},
+					{type: 'text', name: 'color_of_the_hair_other', hint: 'Please specify'}
+				]
+			},
+			{
+				settings: {
+					hide: this.state.color_of_the_hair != 'others'
+				},
+				items: [
+					{type: 'space'}
+				]
+			},
 			[
 				{type: 'custom', element: <label>Donor</label>, grid: {md: '30%'}},
 				{type: 'radio', name: 'donor', showClearButton: false, options: [
-					{id: 'aaa1', name: 'aaa1'},
-					{id: 'aaa2', name: 'aaa2'},
-					{id: 'aaa3', name: 'aaa3'}
+					{id: 'high', name: 'High'},
+					{id: 'normal', name: 'Normal'},
+					{id: 'low', name: 'Low'}
 				]}
 			]
 		];

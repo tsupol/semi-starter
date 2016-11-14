@@ -7,8 +7,6 @@ import {SemiForm} from 'react-semi-theme/forms';
 import Divider from 'material-ui/Divider';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import defaultForm from '../settings/defaultForm';
-
 class HomePage extends Component {
 	constructor(props, context) {
 		super(props, context);
