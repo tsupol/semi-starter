@@ -26,7 +26,8 @@ class Row extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return nextState.currentSize != this.state.currentSize;
+        return true;
+        // return nextState.currentSize != this.state.currentSize;
     }
 
     componentWillReceiveProps(nextProps) {
