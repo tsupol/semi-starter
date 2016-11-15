@@ -71,8 +71,13 @@ class OnlineConsultLayout extends Component {
         let lang = this.state.languages.items[this.state.languages.current];
         */
 
+        let {query} = this.props.location;
+        let showMenu = (query['show-menu']=='true' || query['show-menu'] == '1');
+
         return (
-            <div id="layout" className={`${showMainMenu ? '' : 'no-menu'}`}>
+            <div id="layout" className={`${showMainMenu ? '' : 'no-menu'}`} onKeyPress={(e)=>{
+                if(e.charCode==77) this.context.router.replace(Object.assign(this.props.location, {query: {'show-menu': !showMenu || undefined}}));
+            }} tabIndex="1" >
                 <Confirm ref="confirm" />
                 <Alert ref="alert" />
                 <Drawer open={showMainMenu} className={`menu-wrapper ${showMainMenu ? '' : 'minimize'}`}>
@@ -81,7 +86,7 @@ class OnlineConsultLayout extends Component {
                 </Drawer>
                 <Paper className="top-nav-wrap" zDepth={1}>
                     <Toolbar className="top-nav-bar">
-                        {<ToolbarGroup firstChild={true} style={{visibility: 'hidden'}}>
+                        {<ToolbarGroup firstChild={true} style={{visibility: showMenu ? 'visible' : 'hidden'}}>
                             <FlatButton className="icon-btn left-most" icon={<NavigationMenu />} onTouchTap={this.toggleMainMenu} />
                             <IconButton iconClassName="muidocs-icon-custom-github" />
                         </ToolbarGroup>}

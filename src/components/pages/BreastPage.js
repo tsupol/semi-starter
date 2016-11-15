@@ -10,7 +10,8 @@ class BeastPage extends Component {
 		super(props, context);
 		this.state = {
 			ever_did_surgery_before_check: false,
-			any_children_check: false
+			any_children_check: false,
+			activities: ''
 		};
 	}
 
@@ -110,36 +111,46 @@ class BeastPage extends Component {
 			[
 				{
 					type: 'checkbox', name: 'activities', showClearButton: false, options: [
-					{id: 'fitness_or_yoga', name: 'Fitness / Yoga'},
-					{id: 'swimming', name: 'Swimming'},
-					{id: 'running', name: 'Running'},
-					{id: '...', name: '.......'}
-				]
+						{id: 'fitness_or_yoga', name: 'Fitness / Yoga'},
+						{id: 'swimming', name: 'Swimming'},
+						{id: 'running', name: 'Running'},
+						{id: 'others', name: 'Others'}
+					], onCheck: (activities)=>this.setState({activities})
 				},
 				{
 					type: 'radio', name: 'occupation', showClearButton: false, options: [
-					{id: 'pretty_model', name: 'Pretty / Model'},
-					{id: 'officer', name: 'Officer'},
-					{id: 'student', name: 'Student'},
-					{id: 'business_owner', name: 'Business Owner'}
-				]
+						{id: 'pretty_model', name: 'Pretty / Model'},
+						{id: 'officer', name: 'Officer'},
+						{id: 'student', name: 'Student'},
+						{id: 'business_owner', name: 'Business Owner'}
+					]
 				},
 				{
 					type: 'radio', name: 'type_implant', showClearButton: false, options: [
-					{id: 'round', name: 'Round'},
-					{id: 'teardrop', name: 'Teardrop'}
-				]
+						{id: 'round', name: 'Round'},
+						{id: 'teardrop', name: 'Teardrop'}
+					]
 				}
 			],
+			{
+				settings: {
+					hide: this.state.activities.indexOf('others')==-1
+				},
+				items: [
+					{
+						type: 'text', name: 'other_activity', hint: 'Please specify', grid: {md: '33%'}
+					}
+				]
+			},
 			[
 				{type: 'custom', element: <h3>Do you have any children</h3>}
 			],
 			[
 				{
 					type: 'radio', name: 'any_children', showClearButton: false, options: [
-					{id: 'no', name: 'No, I don\'t.'},
-					{id: 'yes', name: 'Yes, I have.'}
-				], onCheck: (v)=> this.setState({any_children_check: v=='yes'})
+						{id: 'no', name: 'No, I don\'t.'},
+						{id: 'yes', name: 'Yes, I have.'}
+					], onCheck: (v)=> this.setState({any_children_check: v=='yes'})
 				}
 			],
 			{
@@ -154,7 +165,7 @@ class BeastPage extends Component {
 						type: 'numeric', name: 'child_count', label: 'Number of child'
 					}
 				]
-			},
+			}
 		];
 		let formTemplate = {components};
 		return (
