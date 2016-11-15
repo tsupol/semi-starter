@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('app');
 });
+
+Route::get('/primary', function () {
+    return view('app')->with(['project_name'=>'primary']);
+});
+
+Route::get('/secondary', function () {
+    return view('app')->with(['project_name'=>'secondary']);
+});

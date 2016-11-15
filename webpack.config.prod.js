@@ -27,7 +27,9 @@ export default {
   noInfo: true, // set to false to see a list of every file being bundled.
   //entry: path.resolve(__dirname, 'src/index'),
   entry : {
-    'app/main': './src/index.js'
+    'app/main': './src/index.js',
+    'app/primary': './src/entries/primary.js',
+    'app/secondary': './src/entries/secondary.js'
   },
   target: 'web', // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
   output: {
