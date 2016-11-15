@@ -20,8 +20,11 @@ class OnlineConsultLayout extends Component {
         this.linkTo = this.linkTo.bind(this);
         this.openConfirm = this.openConfirm.bind(this);
         this.openAlert = this.openAlert.bind(this);
+
+        let {query} = props.location;
+        let showMenu = (query['show-menu']=='true' || query['show-menu'] == '1');
         this.state = {
-            showMainMenu: false/*,
+            showMainMenu: showMenu/*,
             languages: {
                 items: [
                     {icon: <FontIcon className="flag-icon flag-icon-th" />, name: 'Thai'},
@@ -76,7 +79,10 @@ class OnlineConsultLayout extends Component {
 
         return (
             <div id="layout" className={`${showMainMenu ? '' : 'no-menu'}`} onKeyPress={(e)=>{
-                if(e.charCode==77) this.context.router.replace(Object.assign(this.props.location, {query: {'show-menu': !showMenu || undefined}}));
+                if(e.charCode==77){
+                    this.context.router.replace(Object.assign(this.props.location, {query: {'show-menu': !showMenu || undefined}}));
+                    this.setState({showMainMenu: !showMenu});
+                }
             }} tabIndex="1" >
                 <Confirm ref="confirm" />
                 <Alert ref="alert" />
@@ -86,7 +92,7 @@ class OnlineConsultLayout extends Component {
                 </Drawer>
                 <Paper className="top-nav-wrap" zDepth={1}>
                     <Toolbar className="top-nav-bar">
-                        {<ToolbarGroup firstChild={true} style={{visibility: showMenu ? 'visible' : 'hidden'}}>
+                        {<ToolbarGroup firstChild={true} style={{visibility: 'hidden'}}>
                             <FlatButton className="icon-btn left-most" icon={<NavigationMenu />} onTouchTap={this.toggleMainMenu} />
                             <IconButton iconClassName="muidocs-icon-custom-github" />
                         </ToolbarGroup>}
