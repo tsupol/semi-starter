@@ -1,5 +1,6 @@
 @import 'breakpoints';
 @import 'variables';
+@import 'mixins';
 
 html { width: 100%; height: 100%; }
 body { margin: 0; font-family: 'roboto', 'segoe ui', 'droid sans', tahoma, arial, sans-serif; background: $bg-color; height: 100%; }

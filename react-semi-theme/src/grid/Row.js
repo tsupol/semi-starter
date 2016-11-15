@@ -25,6 +25,10 @@ class Row extends Component {
         this.delay = 250;
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextState.currentSize != this.state.currentSize;
+    }
+
     componentWillReceiveProps(nextProps) {
     }
 
@@ -76,6 +80,18 @@ class Row extends Component {
             // Override
         });
 
+        // Find matching grid size index
+        let sizeIdx = -1;
+        for(let i = 0; i < sizeList.length; i++) {
+            if(sizeList[i] == currentSize) {
+                sizeIdx = i;
+                break;
+            }
+        }
+
+        // Process Col Settings
+        // -------------------------------
+
         const children = React.Children.map(this.props.children, elem => {
             let props = elem.props;
             if(elem.type == Col) {
@@ -84,17 +100,10 @@ class Row extends Component {
                     marginLeft = 0,
                     textAlign = 'inherit';
 
-                // Find appropriate grid size (e.g. if no `md` will use `xs`)
-                let sizeIdx = -1;
-                for(let i = 0; i < sizeList.length; i++) {
-                    if(sizeList[i] == currentSize) {
-                        sizeIdx = i;
-                        break;
-                    }
-                }
-                if(sizeIdx >= 0) {
+                if(sizeIdx >= 0) { // Just preventing undefined index, no significant meaning
                     // console.log('sizeIdx', sizeIdx);
-                    // Width
+                    // --- Width
+                    // Find appropriate grid size (e.g. if no `md` will use `xs`)
                     for(let i = sizeIdx; i < sizeList.length; i++) {
                         let width = helper.get(props, sizeList[i]);
                         if (width) {
@@ -106,7 +115,7 @@ class Row extends Component {
                     if(calculatedWidth === -1) {
                         calculatedWidth = Math.floor(100 / (this.props.children.length)) + '%';
                     }
-                    // Offset
+                    // --- Offset
                     for(let i = sizeIdx; i < sizeList.length; i++) {
                         let offset = helper.get(props, sizeList[i] + 'Offset');
                         if (offset) {
@@ -114,7 +123,7 @@ class Row extends Component {
                             break;
                         }
                     }
-                    // Align
+                    // --- Align
                     for(let i = sizeIdx; i < sizeList.length; i++) {
                         let align = helper.get(props, sizeList[i] + 'Align');
                         if (align) {
@@ -129,13 +138,27 @@ class Row extends Component {
             }
         });
 
+        // Process Row Settings
+        // -------------------------------
+
         let className = "sg-row";
         if (settings.className) className += ` ${settings.className}`;
+
+        if (sizeIdx >= 0) { // Just preventing undefined index, no significant meaning
+            
+            // --- Center
+            let idxCenter = sizeList.indexOf(settings.center);
+            if (idxCenter >= 0 && idxCenter >= sizeIdx) {
+                className += ' justify-center';
+            }
+        }
+        
         return <div className={className} style={settings.style}>{children}</div>;
     }
 }
 
 Row.propTypes = {
+    center: PropTypes.string,
     children: PropTypes.oneOfType([
         PropTypes.object,
         PropTypes.array

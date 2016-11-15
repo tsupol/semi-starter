@@ -154,9 +154,7 @@ class ImplantsPage extends Component {
 				{type: 'custom', element: <div style={{height: '18px'}}></div>}
 			],
 			...Array.from(Array(11), (v, k)=>({
-				settings: {
-					separator: true
-				},
+				separator: true,
 				style: {
 					paddingTop: 16,
 					paddingBottom: 16

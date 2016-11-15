@@ -61,26 +61,38 @@ class FormGenerator extends Component {
 				let row = formTemplate.components[rowId];
 				let rowSettings = {};
 				let rowClassName = null;
+				let rowProps = {};
 				let rowStyle = {};
 				// console.log('row', row);
 
-				// --- Check Validity
-				// Row must be array of objects
-				// Except for row with setting
-				if (!Array.isArray(row)) {
-					rowSettings = row.settings;
-					rowStyle = row.style;
-					row = row.items;
-				}
+				// Process Row Settings
+				// ----------------------------
 
-				// --- Process Row Settings
 				// Hide is not even render (more like exclude)
+				// Note: rowSettings is now `deprecated`!
 				if (rowSettings && rowSettings.hide) continue;
 				if (rowSettings && rowSettings.separator) {
 					rowClassName = 'has-separator';
 				}
 
-				// loop create items
+				if (row.hide) continue;
+				if (row.separator) rowClassName = 'has-separator';
+				if (row.center) {
+					// console.log('row.center', row.center);
+					rowProps.center = row.center;
+				}
+
+				// There are 2 types of row...
+				// 1. Array row (short and no row parameters)
+				// 2. Object row (has Parameters and calculated above)
+				if (!Array.isArray(row)) {
+					rowSettings = row.settings; // Deprecated!
+					rowStyle = row.style;
+					row = row.items;
+				}
+
+				// Create Cols and Items
+				// ----------------------------
 				let cols = [];
 				for (let itemId in row) {
 
@@ -290,7 +302,7 @@ class FormGenerator extends Component {
 					}
 
 				} // item
-				let rowComponent = (<Row className={rowClassName} style={rowStyle} key={rowId}>{cols}</Row>);
+				let rowComponent = (<Row className={rowClassName} style={rowStyle} key={rowId} {...rowProps}>{cols}</Row>);
 				components.push(rowComponent);
 			} // row
 		}

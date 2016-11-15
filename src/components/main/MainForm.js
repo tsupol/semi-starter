@@ -1,9 +1,10 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Grid, Row, Col} from 'react-flexbox-grid';
+// import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
 import {SemiForm, FormGenerator} from 'react-semi-theme/forms';
+import {SemiGrid, Row, Col} from 'react-semi-theme/grid';
 import Divider from 'material-ui/Divider';
 
 class MainForm extends Component {
@@ -130,22 +131,22 @@ class MainForm extends Component {
 				[
 					{type: 'space'}
 				],
-				[
-					{type: 'label', grid: {
-						xs: '0%', md: '50%'
-					}},
-					{type: 'checkbox', name: 'agreement', required: true, showClearButton: false, options: [{id: 'accepted', name: 'Accepted'}],  grid: {
-						xs: '100%', md: '126px', mdOffset: '-63px' // For align center, offset = -width/2
-					}}
-				]
+				{
+					center: 'xs',
+					items: [
+						{type: 'checkbox', name: 'agreement', required: true, showClearButton: false, options: [{id: 'accepted', name: 'Agree with term and conditions.'}],  grid: {
+							xs: '100%', md: '303px'
+						}}
+					]
+				}
 			]
 		};
 		return (
 			<div>
 				<PageHeading title={this.props.header || 'Header'} description={this.props.description || 'description'} />
-				<Grid fluid className="content-wrap">
-					<Row>
-						<Col xs lg={10} lgOffset={1} >
+				<SemiGrid className="content-wrap">
+					<Row center="xs">
+						<Col xs xl="1400px">
 							<Panel title={this.props.header || 'Header'}>
 								<div className="pad-normal pr-form">
 									<SemiForm data={data} values={values} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit}>
@@ -157,7 +158,7 @@ class MainForm extends Component {
 							</Panel>
 						</Col>
 					</Row>
-				</Grid>
+				</SemiGrid>
 			</div>
 		);
 	}
