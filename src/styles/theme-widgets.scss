@@ -1,4 +1,5 @@
-//---------- Nav ----------//
+// Nav
+// ----------------------------------------
 
 .menu-wrapper {
   width: 100px !important;
@@ -14,7 +15,9 @@
 .no-menu .top-nav-bar { padding-left: $wrapper-padding+24px !important; }
 .side-nav-bar { background: $main-color !important; color: $main-text-color; letter-spacing: 1px; }
 
-//---------- page heading ----------//
+
+// page heading
+// ----------------------------------------
 
 .page-heading {
   background: #f1f1f1; float: left; width: 100%; box-sizing: border-box; padding: $nav-height $wrapper-padding 0 $wrapper-padding;
@@ -25,7 +28,9 @@
   }
 }
 
-//---------- DataTable ----------//
+
+// DataTable
+// ----------------------------------------
 
 .dt-wrap {
   .dt-header-divider { margin-top:16px !important; }
@@ -44,8 +49,32 @@
   .dt-pagination { display: inline-block; padding: 8px 0; border-top: 1px solid rgba(0, 0, 0, 0.2) }
 }
 
-//---------- Panel ----------//
+
+// Panel
+// ----------------------------------------
 
 .panel-wrap {
   float: left; width: 100%;
+}
+
+// Header
+// ----------------------------------------
+
+.semi-header {
+  font-family: 'Prompt', Roboto, sans-serif;
+  span { padding-right: 10px; position: relative; z-index: 99; background: #ffffff; }
+  &.line-solid {
+    &:before { content: ""; display: block; border-top: solid 2px #f3f3f3; width: 100%; height: 2px; position: absolute; top: 65%; z-index: 1; }
+    &.header2:before { top: 55%; }
+    &.header3:before { top: 55%; }
+  }
+  &.header2 {
+    color: $primary-color; font-weight: 400; font-size: 28px; margin: 40px 0 0 0; position: relative;
+  }
+  &.header3 {
+    color: $primary-color; font-weight: 400; font-size: 22px; margin: 40px 0 0 0; position: relative;
+  }
+  &.header4 {
+    color: $primary-color; font-weight: 400; font-size: 18px; margin: 40px 0 0 0; position: relative;
+  }
 }

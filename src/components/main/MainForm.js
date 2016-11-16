@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 // import {Grid, Row, Col} from 'react-flexbox-grid';
-import {PageHeading, Panel} from 'react-semi-theme/widgets';
+import {PageHeading, Panel, SemiHeader} from 'react-semi-theme/widgets';
 import {SemiForm, FormGenerator} from 'react-semi-theme/forms';
 import {SemiGrid, Row, Col} from 'react-semi-theme/grid';
 import Divider from 'material-ui/Divider';
@@ -49,8 +49,11 @@ class MainForm extends Component {
 		let mainForm = {
 			components: [
 				[
-					{type: 'custom', element: <h3 style={{marginTop: 16}}>Personal Information</h3>}
+					{type: 'custom', element: <SemiHeader size={2} style={{marginTop: 16}}>Personal Information</SemiHeader>}
 				],
+				// [
+				// 	{type: 'custom', element: <h3 style={{marginTop: 16}}>Personal Information</h3>}
+				// ],
 				[
 					{type: 'text', name: 'first_name', label: 'First Name', grid: grid3},
 					{type: 'text', name: 'last_name', label: 'Last Name', grid: grid3},
@@ -63,7 +66,7 @@ class MainForm extends Component {
 					{type: 'text', name: 'whatappID', label: 'WhatApp ID', grid: grid4}
 				],
 				[
-					{type: 'custom', element: <h3>Medical Histories</h3>}
+					{type: 'custom', element: <SemiHeader>Medical Histories</SemiHeader>}
 				],
 				...Array.from(Array(5), (v, k) => ([
 					{type: 'label', label:`${k+1}.`, grid: {
@@ -83,7 +86,7 @@ class MainForm extends Component {
 					}}
 				])),
 				[
-					{type: 'custom', element: <h3>Medical Information</h3>}
+					{type: 'custom', element: <SemiHeader>Medical Information</SemiHeader>}
 				],
 				[
 					{type: 'text', multiLine: true, label: 'Congenital Disease', name: 'congenital_disease', grid: grid3},
@@ -141,10 +144,12 @@ class MainForm extends Component {
 				}
 			]
 		};
+
+
+		// <PageHeading title={this.props.header || 'Header'} description={this.props.description || 'description'} />
 		return (
 			<div>
-				<PageHeading title={this.props.header || 'Header'} description={this.props.description || 'description'} />
-				<SemiGrid className="content-wrap">
+				<SemiGrid>
 					<Row center="xs">
 						<Col xs xl="1400px">
 							<Panel title={this.props.header || 'Header'}>

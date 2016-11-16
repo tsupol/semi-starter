@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
-import {PageHeading, Panel} from 'react-semi-theme/widgets';
+import {PageHeading, Panel, SemiHeader} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
 class ImplantsPage extends Component {
@@ -41,57 +41,57 @@ class ImplantsPage extends Component {
 		
 		let components = [
 			[
-				{type: 'custom', element: <h3 className="bottom-pad-big">รูปแบบทรงหน้าผาก</h3>}
+				{type: 'custom', element: <SemiHeader line="solid" style={{marginBottom: 24}}>รูปแบบทรงหน้าผาก</SemiHeader>}
 			],
 			[
 				{type: 'radio', name: 'forehead_type', horizontal: true, showClearButton: false, grid: {xs: '100%'}, options: [
-					{id: 'หน้าผากแคบ', grid: optionGrid, name: <div><label>หน้าผากแคบ</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'หน้าผากกว้าง', grid: optionGrid, name: <div><label>หน้าผากกว้าง</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'หน้าผากถอย', grid: optionGrid, name: <div><label>หน้าผากถอย</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'หน้าโหนกนูน', grid: optionGrid, name: <div><label>หน้าโหนกนูน</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'หน้าผากย่น', grid: optionGrid, name: <div><label>หน้าผากย่น</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'หน้าผากล้าน', grid: optionGrid, name: <div><label>หน้าผากล้าน</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'หน้าผากงามถ่อ', grid: optionGrid, name: <div><label>หน้าผากงามถ่อ</label><br/><img style={imgStyle} src={example} /></div>}
+					{id: 'หน้าผากแคบ', grid: optionGrid5, name: <div><label>หน้าผากแคบ</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'หน้าผากกว้าง', grid: optionGrid5, name: <div><label>หน้าผากกว้าง</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'หน้าผากถอย', grid: optionGrid5, name: <div><label>หน้าผากถอย</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'หน้าโหนกนูน', grid: optionGrid5, name: <div><label>หน้าโหนกนูน</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'หน้าผากย่น', grid: optionGrid5, name: <div><label>หน้าผากย่น</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'หน้าผากล้าน', grid: optionGrid5, name: <div><label>หน้าผากล้าน</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'หน้าผากงามถ่อ', grid: optionGrid5, name: <div><label>หน้าผากงามถ่อ</label><br/><img style={imgStyle} src={example} /></div>}
 				]}
 			],
 			[
-				{type: 'custom', element: <h3 className="bottom-pad-big">รูปแบบทรงสะโพกและก้น</h3>}
+				{type: 'custom', element: <SemiHeader line="solid" style={{marginBottom: 24}}>รูปแบบทรงสะโพกและก้น</SemiHeader>}
 			],
 			[
 				{type: 'radio', name: 'hip_type', horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
-					{id: 'แบนโดยรวม', grid: optionGrid, name: <div><label>แบนโดยรวม</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'แบนด้านบน', grid: optionGrid, name: <div><label>แบนด้านบน</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'แบนด้านข้าง', grid: optionGrid, name: <div><label>แบนด้านข้าง</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'แบนด้านใน', grid: optionGrid, name: <div><label>แบนด้านใน</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'แบนด้านล่าง', grid: optionGrid, name: <div><label>แบนด้านล่าง</label><br/><img style={imgStyle} src={example} /></div>}
+					{id: 'แบนโดยรวม', grid: optionGrid5, name: <div><label>แบนโดยรวม</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'แบนด้านบน', grid: optionGrid5, name: <div><label>แบนด้านบน</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'แบนด้านข้าง', grid: optionGrid5, name: <div><label>แบนด้านข้าง</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'แบนด้านใน', grid: optionGrid5, name: <div><label>แบนด้านใน</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'แบนด้านล่าง', grid: optionGrid5, name: <div><label>แบนด้านล่าง</label><br/><img style={imgStyle} src={example} /></div>}
 				]}
 			],
 			[
-				{type: 'custom', element: <h3 className="bottom-pad-big">ลักษณะรูปร่าง</h3>}
+				{type: 'custom', element: <SemiHeader line="solid" style={{marginBottom: 24}}>ลักษณะรูปร่าง</SemiHeader>}
 			],
 			[
 				{type: 'radio', name: 'body_type', horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
-					{id: 'นาฬิกาทราบ', grid: optionGrid, name: <div><label>นาฬิกาทราบ</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'สามเหลี่ยม', grid: optionGrid, name: <div><label>สามเหลี่ยม</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'ทรงตรง', grid: optionGrid, name: <div><label>ทรงตรง</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'ลูกแพร์', grid: optionGrid, name: <div><label>ลูกแพร์</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'แอปเปิ้ล', grid: optionGrid, name: <div><label>แอปเปิ้ล</label><br/><img style={imgStyle} src={example} /></div>}
+					{id: 'นาฬิกาทราบ', grid: optionGrid5, name: <div><label>นาฬิกาทราบ</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'สามเหลี่ยม', grid: optionGrid5, name: <div><label>สามเหลี่ยม</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'ทรงตรง', grid: optionGrid5, name: <div><label>ทรงตรง</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'ลูกแพร์', grid: optionGrid5, name: <div><label>ลูกแพร์</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'แอปเปิ้ล', grid: optionGrid5, name: <div><label>แอปเปิ้ล</label><br/><img style={imgStyle} src={example} /></div>}
 				]}
 			],
 			[
-				{type: 'custom', element: <h3><span>บริเวณที่เอาไขมันออกมา</span></h3>}
+				{type: 'custom', element: <SemiHeader line="solid" style={{marginBottom: 24}}>บริเวณที่เอาไขมันออกมา</SemiHeader>}
 			],
 			[
 				{type: 'radio', name: 'liposuction_area', horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
-					{id: 'ต้นแขน', grid: optionGrid, name: <div><label>ต้นแขน</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'หน้าท้อง', grid: optionGrid, name: <div><label>หน้าท้อง</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'ต้นขา', grid: optionGrid, name: <div><label>ต้นขา</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'ก้น', grid: optionGrid, name: <div><label>ก้น</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'สะโพก', grid: optionGrid, name: <div><label>สะโพก</label><br/><img style={imgStyle} src={example} /></div>}
+					{id: 'ต้นแขน', grid: optionGrid5, name: <div><label>ต้นแขน</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'หน้าท้อง', grid: optionGrid5, name: <div><label>หน้าท้อง</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'ต้นขา', grid: optionGrid5, name: <div><label>ต้นขา</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'ก้น', grid: optionGrid5, name: <div><label>ก้น</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'สะโพก', grid: optionGrid5, name: <div><label>สะโพก</label><br/><img style={imgStyle} src={example} /></div>}
 				]}
 			],
 			[
-				{type: 'custom', element: <h3>ประวัติการทำศัลยกรรม</h3>}
+				{type: 'custom', element: <SemiHeader>ประวัติการทำศัลยกรรม</SemiHeader>}
 			],
 			...Array.from(Array(5), (v, k) => ([
 				{type: 'label', label:`${k+1}.`, grid: {
@@ -111,7 +111,7 @@ class ImplantsPage extends Component {
 				}}
 			])),
 			[
-				{type: 'custom', element: <h5 className="bottom-pad-big">ความสวยงามของรูปหน้าขณะนี้ (ตามความพึงพอใจ)</h5>}
+				{type: 'custom', element: <SemiHeader style={{marginBottom: 24}}>ความสวยงามของรูปหน้าขณะนี้ (ตามความพึงพอใจ)</SemiHeader>}
 			],
 			[
 				{type: 'radio', horizontal: true, name: 'please', showClearButton: false, options: [
@@ -123,7 +123,7 @@ class ImplantsPage extends Component {
 				]}
 			],
 			[
-				{type: 'custom', element: <h5>บริเวณที่ต้องการทำ Fat Transfer และความคาดหวัง</h5>},
+				{type: 'custom', element: <SemiHeader>บริเวณที่ต้องการทำ Fat Transfer และความคาดหวัง</SemiHeader>}
 			],
 			...Array.from(Array(6), (v, k) => ([
 				{type: 'label', style: {paddingTop: 12}, label:`${k+1}.`, grid: {
@@ -134,7 +134,7 @@ class ImplantsPage extends Component {
 				}},
 			])),
 			[
-				{type: 'custom', element: <h5>เหตุผลหลักที่ต้องการทำ Fat Transfer</h5>},
+				{type: 'custom', element: <SemiHeader>เหตุผลหลักที่ต้องการทำ Fat Transfer</SemiHeader>}
 			],
 			...Array.from(Array(6), (v, k) => ([
 				{type: 'label', style: {paddingTop: 12}, label:`${k+1}.`, grid: {
@@ -145,10 +145,7 @@ class ImplantsPage extends Component {
 				}},
 			])),
 			[
-				{type: 'custom', element: <div style={{height: '36px'}}></div>}
-			],
-			[
-				{type: 'custom', element: <h5>ข้อซักถามก่อนทำ</h5>}
+				{type: 'custom', element: <SemiHeader>ข้อซักถามก่อนทำ</SemiHeader>}
 			],
 			[
 				{type: 'custom', element: <div style={{height: '18px'}}></div>}

@@ -8,7 +8,8 @@ body { margin: 0; font-family: 'roboto', 'segoe ui', 'droid sans', tahoma, arial
 //---------- Responsive ----------//
 
 @include responsive(ipad) {
-  .main-wrap { padding-left: 0 !important;}
+  .main-wrap { padding-left: 0 !important; padding-right: 0 !important;}
+  .pad-big { padding: 32px !important; }
 }
 @include responsive(mobile) {
 }

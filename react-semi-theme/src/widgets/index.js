@@ -9,3 +9,4 @@ export SemiButton from './SemiButton';
 export SemiDataTable from './SemiDataTable';
 export SemiModal from './SemiModal';
 export SideMenu from './SideMenu';
+export SemiHeader from './SemiHeader';

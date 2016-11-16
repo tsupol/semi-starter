@@ -4,7 +4,7 @@
 
 .main-wrap { padding: 0 0 0 $sidebar-width !important; background: $bg-color; float: left; width: 100%; box-sizing: border-box; }
 .no-menu .main-wrap { padding-left: 0 !important; }
-.content-wrap { padding: 0 $wrapper-padding $wrapper-padding $wrapper-padding !important; background: $bg-color; float: left; width: 100%; box-sizing: border-box; }
+.content-wrap { padding: 0 $wrapper-padding $wrapper-padding $wrapper-padding !important; float: left; width: 100%; box-sizing: border-box; }
 .content-wrap > div { padding: 0 !important; }
 .panel-bar {
   height: $panel-bar-height; z-index: 99 !important;
