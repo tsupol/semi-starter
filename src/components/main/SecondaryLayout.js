@@ -30,7 +30,7 @@ class SecondaryLayout extends Component {
             languages: {
                 items: [
                     {icon: <FontIcon className="flag-icon flag-icon-th" />, name: 'ไทย', locale: 'th'},
-                    {icon: <FontIcon className="flag-icon flag-icon-gb-eng" />, name: 'English', locale: 'en'}
+                    {icon: <FontIcon className="flag-icon flag-icon-gb" />, name: 'English', locale: 'en'}
                 ],
                 defaultLocale,
                 currentLocale,
