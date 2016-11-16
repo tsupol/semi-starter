@@ -5,15 +5,18 @@ import {render} from 'react-dom';
 import {Provider} from 'react-redux';
 import {Router, browserHistory, useRouterHistory} from 'react-router';
 import {createHashHistory} from 'history';
-import routes from './routes';
+import routes from './routes/secondary';
 import configureStore from './store/configureStore';
 require('./favicon.ico'); // Tell webpack to load favicon.ico
 import './styles/styles.scss'; // Yep, that's right. You can import SASS/CSS files too! Webpack will run the associated loader and plug this into the page.
 //import 'flag-icon-css/css/flag-icon.min.css';
 import {syncHistoryWithStore} from 'react-router-redux';
+import { IntlProvider } from 'react-redux-multilingual';
 import { login } from './actions/userActions';
 
-const store = configureStore();
+import translations from './translations';
+
+const store = configureStore({ Intl: { locale: 'th' } });
 
 // semi: auto login
 let username = sessionStorage.getItem('username');
@@ -29,6 +32,8 @@ const history = syncHistoryWithStore(appHashHistory, store); // Hash History, fi
 
 render(
     <Provider store={store}>
-        <Router history={history} routes={routes}/>
+        <IntlProvider translations={translations}>
+            <Router history={history} routes={routes}/>
+        </IntlProvider>
     </Provider>, document.getElementById('app')
 );

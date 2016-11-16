@@ -3,7 +3,7 @@ import {Route, IndexRoute} from 'react-router';
 import {routerActions} from 'react-router-redux';
 import {UserAuthWrapper} from 'redux-auth-wrapper';
 
-import App from '../components/App';
+import PrimaryApp from '../components/PrimaryApp';
 
 import HomePage from '../components/HomePage';
 import NotFoundPage from '../components/NotFoundPage';
@@ -24,7 +24,7 @@ if (semiThemeSettings.hasAuthentication) {
 }
 
 export default (
-    <Route path="/" component={App}>
+    <Route path="/" component={PrimaryApp}>
         <IndexRoute component={semiThemeSettings.hasAuthentication ? UserIsAuthenticated(HomePage) : HomePage}/>
         <Route path="*" component={NotFoundPage}/>
     </Route>

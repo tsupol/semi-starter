@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
@@ -35,63 +36,63 @@ class HomePage extends Component {
 									<Grid>
 										<Row>
 											<Col xs md={4}>
-												<a href="#/hair"><h3>Hair</h3></a>
+												<a href="#/hair"><h3>{this.context.translate('menu:hair')}</h3></a>
 												<a href="#/hair"><img src={example} width="100%" /></a>
 											</Col>
 											<Col xs md={4}>
-												<a href="#/forehead"><h3>Forehead</h3></a>
+												<a href="#/forehead"><h3>{this.context.translate('menu:forehead')}</h3></a>
 												<a href="#/forehead"><img src={example} width="100%" /></a>
 											</Col>
 											<Col xs md={4}>
-												<a href="#/nose"><h3>Nose</h3></a>
+												<a href="#/nose"><h3>{this.context.translate('menu:nose')}</h3></a>
 												<a href="#/nose"><img src={example} width="100%" /></a>
 											</Col>
 										</Row>
 										<Row>
 											<Col xs md={4}>
-												<a href="#/nose-recon"><h3>Nose (recon)</h3></a>
+												<a href="#/nose-recon"><h3>{this.context.translate('menu:nose-recon')}</h3></a>
 												<a href="#/nose-recon"><img src={example} width="100%" /></a>
 											</Col>
 											<Col xs md={4}>
-												<a href="#/eyelids"><h3>Eyelids</h3></a>
+												<a href="#/eyelids"><h3>{this.context.translate('menu:eyelids')}</h3></a>
 												<a href="#/eyelids"><img src={example} width="100%" /></a>
 											</Col>
 											<Col xs md={4}>
-												<a href="#/around-eyes"><h3>Around Eyes</h3></a>
+												<a href="#/around-eyes"><h3>{this.context.translate('menu:around-eyes')}</h3></a>
 												<a href="#/around-eyes"><img src={example} width="100%" /></a>
 											</Col>
 										</Row>
 										<Row>
 											<Col xs md={4}>
-												<a href="#/eyebrow"><h3>Eyebrow</h3></a>
+												<a href="#/eyebrow"><h3>{this.context.translate('menu:eyebrow')}</h3></a>
 												<a href="#/eyebrow"><img src={example} width="100%" /></a>
 											</Col>
 											<Col xs md={4}>
-												<a href="#/lips"><h3>Lips</h3></a>
+												<a href="#/lips"><h3>{this.context.translate('menu:lips')}</h3></a>
 												<a href="#/lips"><img src={example} width="100%" /></a>
 											</Col>
 											<Col xs md={4}>
-												<a href="#/breast"><h3>Breast</h3></a>
+												<a href="#/breast"><h3>{this.context.translate('menu:breast')}</h3></a>
 												<a href="#/breast"><img src={example} width="100%" /></a>
 											</Col>
 										</Row>
 										<Row>
 											<Col xs md={4}>
-												<a href="#/chin"><h3>Chin</h3></a>
+												<a href="#/chin"><h3>{this.context.translate('menu:chin')}</h3></a>
 												<a href="#/chin"><img src={example} width="100%" /></a>
 											</Col>
 											<Col xs md={4}>
-												<a href="#/cheek-bulge"><h3>Cheek Bulge</h3></a>
+												<a href="#/cheek-bulge"><h3>{this.context.translate('menu:cheek-bulge')}</h3></a>
 												<a href="#/cheek-bulge"><img src={example} width="100%" /></a>
 											</Col>
 											<Col xs md={4}>
-												<a href="#/liposuction"><h3>Liposuction</h3></a>
+												<a href="#/liposuction"><h3>{this.context.translate('menu:liposuction')}</h3></a>
 												<a href="#/liposuction"><img src={example} width="100%" /></a>
 											</Col>
 										</Row>
 										<Row>
 											<Col xs md={4}>
-												<a href="#/implants"><h3>Implants</h3></a>
+												<a href="#/implants"><h3>{this.context.translate('menu:implants')}</h3></a>
 												<a href="#/implants"><img src={example} width="100%" /></a>
 											</Col>
 										</Row>
@@ -116,6 +117,7 @@ class HomePage extends Component {
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 HomePage.contextTypes = {
 	ajax: PropTypes.object,
-	dialog: PropTypes.object
+	dialog: PropTypes.object,
+	translate: PropTypes.func
 };
 export default HomePage;

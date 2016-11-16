@@ -3,7 +3,7 @@ import {Route, IndexRoute} from 'react-router';
 import {routerActions} from 'react-router-redux';
 import {UserAuthWrapper} from 'redux-auth-wrapper';
 
-import App from '../components/App';
+import SecondaryApp from '../components/SecondaryApp';
 
 import SecondaryHomePage from '../components/SecondaryHomePage';
 import HairPage from '../components/pages/HairPage';
@@ -37,7 +37,7 @@ if (semiThemeSettings.hasAuthentication) {
 }
 
 export default (
-    <Route path="/" component={App}>
+    <Route path="/" component={SecondaryApp}>
         <IndexRoute component={semiThemeSettings.hasAuthentication ? UserIsAuthenticated(SecondaryHomePage) : SecondaryHomePage}/>
         <Route path="hair" component={HairPage}/>
         <Route path="forehead" component={ForeheadPage}/>
