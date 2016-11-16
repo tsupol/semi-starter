@@ -248,6 +248,18 @@ const helper = {
 			}
 			return keys;
 		}
+	},
+	location: {
+		hash: {
+			params: ()=> {
+				let {hash} = window.location;
+				return (hash.split('?')[1] || "").split('&').map((p)=>p.split('=').reduce((a, b)=>Object.assign({}, {[a]: b}))).reduce((a, b)=>Object.assign({}, a, b), {})
+			},
+			get: (key, defaultValue)=> {
+				let value = helper.location.hash.params()[key];
+				return value || defaultValue;
+			}
+		}
 	}
 };
 

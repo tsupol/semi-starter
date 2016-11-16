@@ -14,9 +14,12 @@ import {syncHistoryWithStore} from 'react-router-redux';
 import { IntlProvider } from 'react-redux-multilingual';
 import { login } from './actions/userActions';
 
+import helper from 'react-semi-theme/libs/helper';
 import translations from './translations';
 
-const store = configureStore({ Intl: { locale: 'th' } });
+let currentLocale = helper.location.hash.get('locale', 'th');
+
+const store = configureStore({ Intl: { locale: currentLocale } });
 
 // semi: auto login
 let username = sessionStorage.getItem('username');
