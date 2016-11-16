@@ -4,7 +4,7 @@ const ModificatorType = PropTypes.oneOfType([PropTypes.number, PropTypes.string,
 
 const Col = (props) => {
     let className = 'sg-col';
-    if(props.noPadding) className += ' sg-no-pad';
+    if(props['no-padding'] || props.noPadding) className += ' sg-no-pad';
 
     // `gridStyle` is calculated style from `Row` and should override custom style
     let style = Object.assign({}, props.style, props.gridStyle);

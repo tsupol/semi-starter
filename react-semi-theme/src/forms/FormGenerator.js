@@ -151,6 +151,10 @@ class FormGenerator extends Component {
 
 					if(item.hide) type = 'empty'; // hidden column
 
+					// --- Col Params
+					let colParams = {};
+					if(rest.noPadding) colParams.noPadding = true;
+
 					switch (type) {
 						case 'custom':
 							component = element;
@@ -291,14 +295,14 @@ class FormGenerator extends Component {
 
 					if(leftIcon) {
 						cols.push(
-							<Col style={item.style} key={itemId} {...item.grid}>
+							<Col style={item.style} key={itemId} {...item.grid} {...colParams}>
 								<Row>
 									<Col xs="36px" noPadding>{leftIcon}</Col>
 									<Col xs="calc(100% - 36px)" noPadding>{component}</Col>
 								</Row>
 							</Col>);
 					} else {
-						cols.push(<Col style={item.style} key={itemId} {...item.grid}>{component}</Col>);
+						cols.push(<Col style={item.style} key={itemId} {...item.grid} {...colParams}>{component}</Col>);
 					}
 
 				} // item

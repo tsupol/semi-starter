@@ -180,10 +180,10 @@ class SemiTextField extends Component{
 
         currentValue = this.state.value;
 
-
+        let {hidden, ...textFieldParams} = rest;
         let customTextField = React.cloneElement(
             <TextField
-                {...rest}
+                {...textFieldParams}
                 type={type||'text'}
                 id={rest.name||`input-${new Date().getTime()}`}
                 ref='input'

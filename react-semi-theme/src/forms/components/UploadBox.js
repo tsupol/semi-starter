@@ -162,7 +162,8 @@ class UploadBox extends Component {
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
             backgroundRepeat: 'no-repeat',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            boxSizing: 'border-box'
         }, style);
         let exampleStyle = Object.assign({}, dropZoneStyle, {
             borderColor: 'rgba(102, 102, 102, 0.1)',
@@ -179,10 +180,11 @@ class UploadBox extends Component {
         if(files.length){
             dropZoneStyle['backgroundImage'] = `url(${files[0].preview})`;
         }
-        let dropZoneProps = Object.assign({
+        let {grid, ...dropZoneProps} = rest;
+        dropZoneProps = Object.assign({},{
             multiple: false,
             name: 'files'
-        }, rest);
+        }, dropZoneProps);
         return (
             <div style={{marginBottom: 32}}>
                 { typeof example == "string" ? (

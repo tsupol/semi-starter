@@ -44,6 +44,7 @@ class MainForm extends Component {
 			grid3 = {xs: '100%', md: '33.33%'},
 			grid4 = {xs: '100%', md: '25%'},
 			grid5 = {xs: '100%', md: '20%'},
+			uploadGrid = {xs: '100%', sm: '33.33%', md: '16.66%'},
 			imgStyle = {width: '100%'};
 
 		let mainForm = {
@@ -105,7 +106,7 @@ class MainForm extends Component {
 				[
 					...images.map((image, k)=> (
 					{
-						type: 'uploadbox', name: `files[${k}]`, thumbnail: image.thumbnail, example: image.example
+						type: 'uploadbox', name: `files[${k}]`, thumbnail: image.thumbnail, example: image.example, grid: uploadGrid
 					}
 					))
 				]
@@ -150,10 +151,11 @@ class MainForm extends Component {
 		return (
 			<div>
 				<SemiGrid>
-					<Row center="xs">
-						<Col xs xl="1400px">
+					<Row center="xs" style={{overflow: 'hidden'}}>
+						<Col xs="96%" xl="90%" style={{maxWidth: 1400}}>
+							<div className="mtpc-logo"></div>
 							<Panel title={this.props.header || 'Header'}>
-								<div className="pad-big pr-form">
+								<div className="pad-normal pr-form">
 									<SemiForm data={data} values={values} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit}>
 										{showMainForm ? <FormGenerator formTemplate={mainForm} /> : null}
 										{this.props.children}

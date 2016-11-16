@@ -59,6 +59,7 @@ class Row extends Component {
         }
     };
 
+
     /**
      * Private: debouncing function
      */

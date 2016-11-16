@@ -4,17 +4,60 @@ $ipad-pro-landscape-breakpoint: "(min-device-width : 1024px) and (max-device-wid
 $ipad-breakpoint: "(min-device-width : 768px) and (max-device-width : 1024px)";
 $mobile-breakpoint: "(max-device-width : 599px)";
 
-// Responsive Mixins
+// new
+// --------------------
+$xl-breakpoint: "(min-width : 1200px)";
+$lg-breakpoint: "(min-width : 992px) and (max-width : 1199px)";
+$md-breakpoint: "(min-width : 768px) and (max-width : 991px)";
+$sm-breakpoint: "(min-width : 576px) and (max-width : 767px)";
+$xs-breakpoint: "(min-width : 1px) and (max-width : 575px)";
+
+$xl-down-breakpoint: "(max-width : 1199px)";
+$lg-down-breakpoint: "(max-width : 991px)";
+$md-down-breakpoint: "(max-width : 767px)";
+$sm-down-breakpoint: "(max-width : 575px)";
+
+$xl-up-breakpoint: "(min-width : 1200px)";
+$lg-up-breakpoint: "(min-width : 992px)";
+$md-up-breakpoint: "(min-width : 768px)";
+$sm-up-breakpoint: "(min-width : 576px)";
+$xs-up-breakpoint: "(min-width : 1px)";
+
 @mixin responsive($media) {
-    @if $media == desktop {
-        @media only screen /*and (min-width: $medium-tablet-device-width + 1) and #{$desktop-only-breakpoint*}*/ { @content; }
-    } @else if $media == ipad {
-        @media only screen and #{$ipad-breakpoint} { @content; }
-    } @else if $media == ipad-pro-portrait {
-        @media only screen and #{$ipad-pro-portrait-breakpoint} { @content; }
-    } @else if $media == ipad-pro-landscape {
-        @media only screen and #{$ipad-pro-landscape-breakpoint} { @content; }
-    } @else if $media == mobile {
-        @media only screen and #{$mobile-breakpoint} { @content; }
+    @if $media == xl {
+        @media only screen and #{$xl-breakpoint} { @content; }
+    } @else if $media == lg {
+        @media only screen and #{$lg-breakpoint} { @content; }
+    } @else if $media == md {
+        @media only screen and #{$md-breakpoint} { @content; }
+    } @else if $media == sm {
+        @media only screen and #{$sm-breakpoint} { @content; }
+    } @else if $media == xs {
+        @media only screen and #{$xs-breakpoint} { @content; }
+    }
+}
+
+@mixin responsive-up($media) {
+    @if $media == xl {
+        @media only screen and #{$xl-up-breakpoint} { @content; }
+    } @else if $media == lg {
+        @media only screen and #{$lg-up-breakpoint} { @content; }
+    } @else if $media == md {
+        @media only screen and #{$md-up-breakpoint} { @content; }
+    } @else if $media == sm {
+        @media only screen and #{$sm-up-breakpoint} { @content; }
+    } @else if $media == xs {
+        @media only screen and #{$xs-up-breakpoint} { @content; }
+    } 
+}
+@mixin responsive-below($media) {
+    @if $media == xl {
+        @media only screen and #{$xl-down-breakpoint} { @content; }
+    } @else if $media == lg {
+        @media only screen and #{$lg-down-breakpoint} { @content; }
+    } @else if $media == md {
+        @media only screen and #{$md-down-breakpoint} { @content; }
+    } @else if $media == sm {
+        @media only screen and #{$sm-down-breakpoint} { @content; }
     }
 }

@@ -36,7 +36,7 @@ class ImplantsPage extends Component {
 		let data = {};
 		
 		let optionGrid = {xs: '100%', sm: '50%', md: '25%'},
-			optionGrid5 = {xs: '100%', md: '20%'},
+			optionGrid5 = {xs: '100%', sm: '50%', md: '20%'},
 			imgStyle = {width: '100%'};
 		
 		let components = [

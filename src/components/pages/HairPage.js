@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
-import {PageHeading, Panel} from 'react-semi-theme/widgets';
+import {PageHeading, Panel, SemiHeader} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
 
@@ -16,6 +16,7 @@ class HairPage extends Component {
 			alcohol_check: false,
 			smoking_check: false,
 			family_history_of_alopecia_check: false,
+			// bottom section
 			scalp: '',
 			physical_exam_gender: '',
 			color_of_the_hair: ''
@@ -32,22 +33,59 @@ class HairPage extends Component {
 	};
 
 	render() {
+		console.log('this.state', this.state);
 		let thumbnail = require('../../assets/img/upload-thumbnail.png');
 		let example = require('../../assets/img/upload-example.png');
 		let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
 		let values = {};
 		let data = {};
 
-		let optionGrid = {xs: '100%', sm: '50%', md: '25%'},
+		const
+			// Common grid rules
+			optionGrid = {xs: '100%', sm: '50%', md: '25%'}, // for horizontal radio button image
 			grid2 = {xs: '100%', md: '50%'},
 			grid3 = {xs: '100%', md: '33.33%'},
 			grid4 = {xs: '100%', md: '25%'},
 			grid5 = {xs: '100%', md: '20%'},
-			imgStyle = {width: '100%'};
+
+			// todo: read here!
+			// Note: all constants below are used in every horizontal checkboxes row
+
+			// 30:70 proportion of label and checkboxes
+			labelGrid = {xs: '100%', md: '30%'},
+			cbGrid = {xs: '100%', md: '70%'},
+
+			// adjust hidden text field +1% for better alignment
+			hiddenTextGrid = {xs: '100%', md: '69%', mdOffset: '31%'},
+			
+			labelStyle = {paddingTop: 3, fontWeight: 'normal'},
+
+			// Because this form has no more than 5 radio buttons
+			optionGrid5 = {xs: '100%', sm: '50%', md: '20%'},
+
+			// For space between topic and checkboxes when `md`
+			cbSpace = {type: 'space', height: '16px', noPadding: true, grid: {
+				xs: '100%', md: '0%'
+			}},
+
+			// todo: change image dimension according to real image here...
+			imgStyle = {width: '100%'},
+
+			// For some headers (often one with checkboxes row below)
+			marginBottomStyle = {marginBottom: 24},
+
+			// Row properties, horizontal
+			cbRowParam = {
+				separator: true,
+				style: {
+					paddingTop: 16,
+					paddingBottom: 16
+				}
+			};
 
 		let components = [
 			[
-				{type: 'custom', element: <h3>Header 1</h3>}
+				{type: 'custom', element: <SemiHeader>Header 1</SemiHeader>}
 			],
 			[
 				{type: 'text', label: 'Chief Complaint', name: 'chief_complaint', grid: grid2},
@@ -58,113 +96,115 @@ class HairPage extends Component {
 				{type: 'text', label: 'Underlying disease', name: 'underlying_disease', grid: grid2}
 			],
 			[
-				{
-					type: 'custom', element: <div style={{height: 36}}></div>
-				}
+				{type: 'custom', element: <div style={{height: 36}}></div>}
 			],
-			[
-				{type: 'custom', element: <label>Allergy</label>, grid: {md: '30%'}},
-				{type: 'radio', name: 'allergy_check', showClearButton: false, options: [
-					{id: 'no', name: 'No'},
-					{id: 'yes', name: 'Yes'}
-				], onCheck: (v)=>this.setState({allergy_check: v.indexOf('yes')!=-1})}
-			],
+
+
+			// Medical Radio Selects
+			// ----------------------------------------
+
+			// todo: read here!
+			/**
+			 * Note: how to make good looking and responsive checkboxes row
+			 * 1. use constants I wrote above
+			 * 2. add `horizontal: true` to item type radio
+			 * 3. you can now move hidden text field to the same row (as you can see)
+			 */
+
 			{
-				settings: {
-					hide: !this.state.allergy_check
-				},
+				// todo: read here!
+				...cbRowParam, // frequently used parameters
 				items: [
-					{type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '30%'}},
-					{type: 'text', name: 'allergy'}
+
+					// I recommend using type `label` instead of `custom`
+					{type: 'label', style: labelStyle, label:`Allergy`, grid: labelGrid},
+
+					// For space between topic and checkboxes when `md`
+					{...cbSpace},
+
+					{
+						type: 'radio',
+						name: 'allergy_check',
+						showClearButton: false,
+						horizontal: true, // must be true
+						grid: cbGrid, options: [
+							{id: 'no', name: 'No', grid: optionGrid5}, // Give responsiveness for each radio button
+							{id: 'yes', name: 'Yes', grid: optionGrid5}
+						],
+						onCheck: (v)=>this.setState({allergy_check: v.indexOf('yes')!=-1})},
+
+					// hidden field can now be in the same row
+					{type: 'text', name: 'allergy', hint: 'Please specify', hide: !this.state.allergy_check, grid: hiddenTextGrid}
 				]
 			},
-			[
-				{type: 'custom', element: <label>Current medication</label>, grid: {md: '30%'}},
-				{type: 'radio', name: 'current_medication', showClearButton: false, options: [
-					{id: 'finasteride', name: 'Finasteride'},
-					{id: 'minoxidil', name: 'Minoxidil'},
-					{id: 'others', name: 'Others'}
-				], onCheck: (v)=>this.setState({current_medication_others_check: v.indexOf('others')!=-1})}
-			],
 			{
-				settings: {
-					hide: !this.state.current_medication_others_check
-				},
+				...cbRowParam,
 				items: [
-					{type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '30%'}},
-					{type: 'text', name: 'current_medication_others', hint: 'Please specify'}
+					{type: 'custom', element: <label>Current medication</label>, grid: labelGrid},
+					{...cbSpace},
+					{type: 'radio', name: 'current_medication', showClearButton: false, horizontal: true, grid: cbGrid, options: [
+						{id: 'finasteride', name: 'Finasteride', grid: optionGrid5},
+						{id: 'minoxidil', name: 'Minoxidil', grid: optionGrid5},
+						{id: 'others', name: 'Others'}
+					], onCheck: (v)=>this.setState({current_medication_others_check: v.indexOf('others')!=-1})},
+					{type: 'text', name: 'current_medication_others', hint: 'Please specify', hide: !this.state.current_medication_others_check, grid: hiddenTextGrid}
 				]
 			},
 			{
-				settings: {
-					hide: !this.state.current_medication_others_check
-				},
+				...cbRowParam,
 				items: [
-					{type: 'space'}
+					{type: 'label', style: labelStyle, label:`Alcohol`, grid: labelGrid},
+					{...cbSpace},
+					{type: 'radio', name: 'alcohol_check', showClearButton: false, horizontal: true, grid: cbGrid, options: [
+						{id: 'no', name: 'No', grid: optionGrid5},
+						{id: 'yes', name: 'Yes', grid: optionGrid5}
+					], onCheck: (v)=>this.setState({alcohol_check: v.indexOf('yes')!=-1})},
+					{type: 'text', name: 'alcohol', hint: 'Please specify', hide: !this.state.alcohol_check, grid: hiddenTextGrid}
 				]
 			},
-			[
-				{type: 'custom', element: <label>Alcohol</label>, grid: {md: '30%'}},
-				{type: 'radio', name: 'alcohol_check', showClearButton: false, options: [
-					{id: 'no', name: 'No'},
-					{id: 'yes', name: 'Yes'}
-				], onCheck: (v)=>this.setState({alcohol_check: v.indexOf('yes')!=-1})}
-			],
 			{
-				settings: {
-					hide: !this.state.alcohol_check
-				},
+				...cbRowParam,
 				items: [
-					{type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '30%'}},
-					{type: 'text', name: 'alcohol'}
+					{type: 'label', style: labelStyle, label:`Smoking`, grid: labelGrid},
+					{...cbSpace},
+					{type: 'radio', name: 'smoking_check', showClearButton: false, horizontal: true, grid: cbGrid, options: [
+						{id: 'no', name: 'No', grid: optionGrid5},
+						{id: 'yes', name: 'Yes', grid: optionGrid5}
+					], onCheck: (v)=>this.setState({smoking_check: v.indexOf('yes')!=-1})},
+					{type: 'text', name: 'smoking', hint: 'Please specify', hide: !this.state.smoking_check, grid: hiddenTextGrid}
 				]
 			},
-			[
-				{type: 'custom', element: <label>Smoking</label>, grid: {md: '30%'}},
-				{type: 'radio', name: 'smoking_check', showClearButton: false, options: [
-					{id: 'no', name: 'No'},
-					{id: 'yes', name: 'Yes'}
-				], onCheck: (v)=>this.setState({smoking_check: v.indexOf('yes')!=-1})}
-			],
 			{
-				settings: {
-					hide: !this.state.smoking_check
-				},
+				...cbRowParam,
 				items: [
-					{type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '30%'}},
-					{type: 'text', name: 'smoking'}
+					{type: 'label', style: labelStyle, label:`Family History of alopecia`, grid: labelGrid},
+					{...cbSpace},
+					{type: 'radio', name: 'family_history_of_alopecia_check', showClearButton: false, horizontal: true, grid: cbGrid, options: [
+						{id: 'no', name: 'No', grid: optionGrid5},
+						{id: 'yes', name: 'Yes', grid: optionGrid5}
+					], onCheck: (v)=>this.setState({family_history_of_alopecia_check: v.indexOf('yes')!=-1})},
+					{type: 'text', name: 'family_history_of_alopecia', hint: 'Please specify', hide: !this.state.family_history_of_alopecia_check, grid: hiddenTextGrid}
 				]
 			},
+
+
+			// Physical Exam
+			// ----------------------------------------
+
 			[
-				{type: 'custom', element: <label>Family History of alopecia</label>, grid: {md: '30%'}},
-				{type: 'radio', name: 'family_history_of_alopecia_check', showClearButton: false, options: [
-					{id: 'no', name: 'No'},
-					{id: 'yes', name: 'Yes'}
-				], onCheck: (v)=>this.setState({family_history_of_alopecia_check: v.indexOf('yes')!=-1})}
+				{type: 'custom', element: <SemiHeader line="solid" style={marginBottomStyle}>Physical Exam</SemiHeader>}
 			],
 			{
-				settings: {
-					hide: !this.state.family_history_of_alopecia_check
-				},
 				items: [
-					{type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '30%'}},
-					{type: 'text', name: 'family_history_of_alopecia'}
+					{type: 'radio', name: 'physical_exam_gender', showClearButton: false, options: [
+						{id: 'men', name: 'Men', grid: grid4},
+						{id: 'women', name: 'Women', grid: grid4}
+					], onCheck: (v)=>this.setState({physical_exam_gender: v})}
 				]
 			},
-			[
-				{type: 'custom', element: <h3>Physical Exam</h3>}
-			],
-			[
-				{type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '30%'}},
-				{type: 'radio', name: 'physical_exam_gender', showClearButton: false, options: [
-					{id: 'men', name: 'Men'},
-					{id: 'women', name: 'Women'}
-				], onCheck: (v)=>this.setState({physical_exam_gender: v})}
-			],
 			{
-				settings: {
-					hide: this.state.physical_exam_gender != 'men'
-				},
+				style: {marginTop: 32},
+				hide: this.state.physical_exam_gender != 'men',
 				items: [
 					{type: 'radio', name: 'physical_exam', horizontal: true, showClearButton: false, options: Array.from(Array(12), (v, k)=>({
 						id: k+1, grid: optionGrid, name: <img style={imgStyle} src={example}/>
@@ -172,9 +212,8 @@ class HairPage extends Component {
 				]
 			},
 			{
-				settings: {
-					hide: this.state.physical_exam_gender != 'women'
-				},
+				style: {marginTop: 32},
+				hide: this.state.physical_exam_gender != 'women',
 				items: [
 					{type: 'radio', name: 'physical_exam', horizontal: true, showClearButton: false, options: Array.from(Array(3), (v, k)=>({
 						id: k+1, grid: optionGrid, name: <img style={imgStyle} src={example}/>
@@ -184,91 +223,88 @@ class HairPage extends Component {
 			[
 				{type: 'space'}
 			],
-			[
-				{type: 'custom', element: <label>Scalp</label>, grid: {md: '30%'}},
-				{type: 'radio', name: 'scalp', showClearButton: false, options: [
-					{id: 'erythena', name: 'Erythena'},
-					{id: 'scarring', name: 'Scarring'},
-					{id: 'scaling', name: 'Scaling'},
-					{id: 'others', name: 'Others'}
-				], onCheck: (v)=>this.setState({scalp: v})}
-			],
+
+
+			// Hair Radio Selects
+			// ----------------------------------------
+
 			{
-				settings: {
-					hide: this.state.scalp != 'others'
-				},
+				...cbRowParam,
 				items: [
-					{type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '30%'}},
-					{type: 'text', name: 'color_of_the_hair_other', hint: 'Please specify'}
+					{type: 'label', style: labelStyle, label:`Scalp`, grid: labelGrid},
+					{...cbSpace},
+					{type: 'radio', name: 'scalp', showClearButton: false, horizontal: true, grid: cbGrid, options: [
+						{id: 'erythena', name: 'Erythena', grid: optionGrid5},
+						{id: 'scarring', name: 'Scarring', grid: optionGrid5},
+						{id: 'scaling', name: 'Scaling', grid: optionGrid5},
+						{id: 'others', name: 'Others', grid: optionGrid5}
+					], onCheck: (v)=>this.setState({scalp: v})},
+					{type: 'text', name: 'scalp_other', hint: 'Please specify', hide: this.state.scalp != 'others', grid: hiddenTextGrid}
 				]
 			},
 			{
-				settings: {
-					hide: this.state.scalp != 'others'
-				},
+				...cbRowParam,
 				items: [
-					{type: 'space'}
-				]
-			},
-			[
-				{type: 'custom', element: <label>Quality of donor hair</label>, grid: {md: '30%'}},
-				{type: 'radio', name: 'quality_of_donor_hair', showClearButton: false, options: [
-					{id: 'fine', name: 'Fine'},
-					{id: 'medium', name: 'Medium'},
-					{id: 'coarse', name: 'Coarse'}
-				]}
-			],
-			[
-				{type: 'custom', element: <label>Elasticity</label>, grid: {md: '30%'}},
-				{type: 'radio', name: 'elasticity', showClearButton: false, options: [
-					{id: 'good', name: 'Good'},
-					{id: 'moderate', name: 'Moderate'},
-					{id: 'poor', name: 'Poor'}
-				]}
-			],
-			[
-				{type: 'custom', element: <label>Texture of the hair</label>, grid: {md: '30%'}},
-				{type: 'radio', name: 'texture_of_the_hair', showClearButton: false, options: [
-					{id: 'straight', name: 'Straight'},
-					{id: 'waves', name: 'Waves'},
-					{id: 'curl', name: 'Curl'}
-				]}
-			],
-			[
-				{type: 'custom', element: <label>Color of the hair</label>, grid: {md: '30%'}},
-				{type: 'radio', name: 'color_of_the_hair', showClearButton: false, options: [
-					{id: 'black', name: 'Black'},
-					{id: 'brown', name: 'Brown'},
-					{id: 'red', name: 'Red'},
-					{id: 'blonde', name: 'Blonde'},
-					{id: 'others', name: 'Others'}
-				], onCheck: (v)=>this.setState({color_of_the_hair: v})}
-			],
-			{
-				settings: {
-					hide: this.state.color_of_the_hair != 'others'
-				},
-				items: [
-					{type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '30%'}},
-					{type: 'text', name: 'color_of_the_hair_other', hint: 'Please specify'}
+					{type: 'label', style: labelStyle, label:`Quality of donor hair`, grid: labelGrid},
+					{...cbSpace},
+					{type: 'radio', name: 'quality_of_donor_hair', showClearButton: false, horizontal: true, grid: cbGrid, options: [
+						{id: 'fine', name: 'Fine', grid: optionGrid5},
+						{id: 'medium', name: 'Medium', grid: optionGrid5},
+						{id: 'coarse', name: 'Coarse', grid: optionGrid5}
+					]}
 				]
 			},
 			{
-				settings: {
-					hide: this.state.color_of_the_hair != 'others'
-				},
+				...cbRowParam,
 				items: [
-					{type: 'space'}
+					{type: 'label', style: labelStyle, label:`Elasticity`, grid: labelGrid},
+					{...cbSpace},
+					{type: 'radio', name: 'elasticity', showClearButton: false, horizontal: true, grid: cbGrid, options: [
+						{id: 'good', name: 'Good', grid: optionGrid5},
+						{id: 'moderate', name: 'Moderate', grid: optionGrid5},
+						{id: 'poor', name: 'Poor', grid: optionGrid5}
+					]}
 				]
 			},
-			[
-				{type: 'custom', element: <label>Donor</label>, grid: {md: '30%'}},
-				{type: 'radio', name: 'donor', showClearButton: false, options: [
-					{id: 'high', name: 'High'},
-					{id: 'normal', name: 'Normal'},
-					{id: 'low', name: 'Low'}
-				]}
-			]
+			{
+				...cbRowParam,
+				items: [
+					{type: 'label', style: labelStyle, label:`Texture of the hair`, grid: labelGrid},
+					{...cbSpace},
+					{type: 'radio', name: 'texture_of_the_hair', showClearButton: false, horizontal: true, grid: cbGrid, options: [
+						{id: 'straight', name: 'Straight', grid: optionGrid5},
+						{id: 'waves', name: 'Waves', grid: optionGrid5},
+						{id: 'curl', name: 'Curl', grid: optionGrid5}
+					]}
+				]
+			},
+			{
+				...cbRowParam,
+				items: [
+					{type: 'label', style: labelStyle, label:`Color of the hair`, grid: labelGrid},
+					{...cbSpace},
+					{type: 'radio', name: 'color_of_the_hair', showClearButton: false, horizontal: true, grid: cbGrid, options: [
+						{id: 'black', name: 'Black', grid: optionGrid5},
+						{id: 'brown', name: 'Brown', grid: optionGrid5},
+						{id: 'red', name: 'Red', grid: optionGrid5},
+						{id: 'blonde', name: 'Blonde', grid: optionGrid5},
+						{id: 'others', name: 'Others', grid: optionGrid5}
+					], onCheck: (v)=>this.setState({color_of_the_hair: v})},
+					{type: 'text', name: 'color_of_the_hair_other', hint: 'Please specify', hide: this.state.color_of_the_hair != 'others', grid: hiddenTextGrid}
+				]
+			},
+			{
+				...cbRowParam,
+				items: [
+					{type: 'label', style: labelStyle, label:`Donor`, grid: labelGrid},
+					{...cbSpace},
+					{type: 'radio', name: 'donor', showClearButton: false, horizontal: true, grid: cbGrid, options: [
+						{id: 'high', name: 'High', grid: optionGrid5},
+						{id: 'normal', name: 'Normal', grid: optionGrid5},
+						{id: 'low', name: 'Low', grid: optionGrid5}
+					]}
+				]
+			}
 		];
 		let formTemplate = {components};
 		return (
