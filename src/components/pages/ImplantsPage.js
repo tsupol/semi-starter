@@ -7,9 +7,13 @@ import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
 
 const
-	optionGrid5 = {xs: '100%', sm: '50%', md: '20%'},
+	optionGrid5 = {xs: '100%', sm: '50%', md: '20%'}, // for horizontal with 5 radio buttons
 	imgOptionGrid = {xs: '100%', sm: '50%', md: '20%'},
+
+	// todo: change image dimension according to real image here...
 	imgStyle = {width: '100%'},
+
+	// For space between topic and checkboxes when `md`
 	rowSpace = {type: 'space', height: '16px', noPadding: true, grid: {
 		xs: '100%', md: '0%'
 	}};
