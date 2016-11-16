@@ -2,9 +2,26 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
-import {PageHeading, Panel} from 'react-semi-theme/widgets';
+import {PageHeading, Panel, SemiHeader} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
+
+const
+	marginBottomStyle = {marginBottom: 24},
+	imgOptionGrid = {xs: '100%', sm: '50%', md: '20%'},
+	imgStyle = {width: '100%'},
+	optionGrid4 = {xs: '100%', sm: '50%', md: '25%'},
+	rowSpace = {type: 'space', height: '16px', noPadding: true, grid: {
+		xs: '100%', md: '0%'
+	}},
+	cbRowParam = {
+		separator: true,
+		style: {
+			paddingTop: 16,
+			paddingBottom: 16
+		}
+	};
+
 class NosePage extends Component {
 	constructor(props, context) {
 		super(props, context);
@@ -36,28 +53,31 @@ class NosePage extends Component {
 		let data = {};
 		let components = [
 			[
-				{type: 'custom', element: <h3>Information</h3>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Information</SemiHeader>}
 			],
 			[
 				{
-					type: 'radio', name: 'nose_surgery_history', showClearButton: false, options: [
-					{id: 'no', name: 'No, Never have Nose surgery.'},
-					{id: 'yes', name: 'Yes, Ever did before.'}
-				]
+					type: 'radio', name: 'nose_surgery_history', horizontal: true, showClearButton: false, options: [
+						{id: 'no', name: 'No, Never have Nose surgery.', grid: optionGrid4},
+						{id: 'yes', name: 'Yes, Ever did before.', grid: optionGrid4}
+					]
 				}
 			],
 			[
-				{type: 'custom', element: <h3>Medical histories</h3>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Medical histories</SemiHeader>}
 			],
 			[
 				{
-					type: 'checkbox', name: 'medical_histories', showClearButton: false, options: [
-					{id: 'allergy', name: 'Allergy'},
-					{id: 'nasal_congestion', name: 'Nasal congestion'},
-					{id: 'sinusitis', name: 'Sinusitis'},
-					{id: 'accident', name: 'Accident'}
-				]
+					type: 'checkbox', name: 'medical_histories', horizontal: true, showClearButton: false, options: [
+						{id: 'allergy', name: 'Allergy', grid: optionGrid4},
+						{id: 'nasal_congestion', name: 'Nasal congestion', grid: optionGrid4},
+						{id: 'sinusitis', name: 'Sinusitis', grid: optionGrid4},
+						{id: 'accident', name: 'Accident', grid: optionGrid4}
+					]
 				}
+			],
+			[
+				{type: 'space'}
 			]
 		];
 		let formTemplate = {components};

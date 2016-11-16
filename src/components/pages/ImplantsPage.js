@@ -5,6 +5,15 @@ import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel, SemiHeader} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
+
+const
+	optionGrid5 = {xs: '100%', sm: '50%', md: '20%'},
+	imgOptionGrid = {xs: '100%', sm: '50%', md: '20%'},
+	imgStyle = {width: '100%'},
+	rowSpace = {type: 'space', height: '16px', noPadding: true, grid: {
+		xs: '100%', md: '0%'
+	}};
+
 class ImplantsPage extends Component {
 	constructor(props, context) {
 		super(props, context);
@@ -35,23 +44,19 @@ class ImplantsPage extends Component {
 		let values = {};
 		let data = {};
 		
-		let optionGrid = {xs: '100%', sm: '50%', md: '25%'},
-			optionGrid5 = {xs: '100%', sm: '50%', md: '20%'},
-			imgStyle = {width: '100%'};
-		
 		let components = [
 			[
 				{type: 'custom', element: <SemiHeader line="solid" style={{marginBottom: 24}}>รูปแบบทรงหน้าผาก</SemiHeader>}
 			],
 			[
 				{type: 'radio', name: 'forehead_type', horizontal: true, showClearButton: false, grid: {xs: '100%'}, options: [
-					{id: 'หน้าผากแคบ', grid: optionGrid5, name: <div><label>หน้าผากแคบ</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'หน้าผากกว้าง', grid: optionGrid5, name: <div><label>หน้าผากกว้าง</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'หน้าผากถอย', grid: optionGrid5, name: <div><label>หน้าผากถอย</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'หน้าโหนกนูน', grid: optionGrid5, name: <div><label>หน้าโหนกนูน</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'หน้าผากย่น', grid: optionGrid5, name: <div><label>หน้าผากย่น</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'หน้าผากล้าน', grid: optionGrid5, name: <div><label>หน้าผากล้าน</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'หน้าผากงามถ่อ', grid: optionGrid5, name: <div><label>หน้าผากงามถ่อ</label><br/><img style={imgStyle} src={example} /></div>}
+					{id: 'หน้าผากแคบ', grid: imgOptionGrid, name: <div><label>หน้าผากแคบ</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'หน้าผากกว้าง', grid: imgOptionGrid, name: <div><label>หน้าผากกว้าง</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'หน้าผากถอย', grid: imgOptionGrid, name: <div><label>หน้าผากถอย</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'หน้าโหนกนูน', grid: imgOptionGrid, name: <div><label>หน้าโหนกนูน</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'หน้าผากย่น', grid: imgOptionGrid, name: <div><label>หน้าผากย่น</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'หน้าผากล้าน', grid: imgOptionGrid, name: <div><label>หน้าผากล้าน</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'หน้าผากงามถ่อ', grid: imgOptionGrid, name: <div><label>หน้าผากงามถ่อ</label><br/><img style={imgStyle} src={example} /></div>}
 				]}
 			],
 			[
@@ -59,11 +64,11 @@ class ImplantsPage extends Component {
 			],
 			[
 				{type: 'radio', name: 'hip_type', horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
-					{id: 'แบนโดยรวม', grid: optionGrid5, name: <div><label>แบนโดยรวม</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'แบนด้านบน', grid: optionGrid5, name: <div><label>แบนด้านบน</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'แบนด้านข้าง', grid: optionGrid5, name: <div><label>แบนด้านข้าง</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'แบนด้านใน', grid: optionGrid5, name: <div><label>แบนด้านใน</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'แบนด้านล่าง', grid: optionGrid5, name: <div><label>แบนด้านล่าง</label><br/><img style={imgStyle} src={example} /></div>}
+					{id: 'แบนโดยรวม', grid: imgOptionGrid, name: <div><label>แบนโดยรวม</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'แบนด้านบน', grid: imgOptionGrid, name: <div><label>แบนด้านบน</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'แบนด้านข้าง', grid: imgOptionGrid, name: <div><label>แบนด้านข้าง</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'แบนด้านใน', grid: imgOptionGrid, name: <div><label>แบนด้านใน</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'แบนด้านล่าง', grid: imgOptionGrid, name: <div><label>แบนด้านล่าง</label><br/><img style={imgStyle} src={example} /></div>}
 				]}
 			],
 			[
@@ -71,11 +76,11 @@ class ImplantsPage extends Component {
 			],
 			[
 				{type: 'radio', name: 'body_type', horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
-					{id: 'นาฬิกาทราบ', grid: optionGrid5, name: <div><label>นาฬิกาทราบ</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'สามเหลี่ยม', grid: optionGrid5, name: <div><label>สามเหลี่ยม</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'ทรงตรง', grid: optionGrid5, name: <div><label>ทรงตรง</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'ลูกแพร์', grid: optionGrid5, name: <div><label>ลูกแพร์</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'แอปเปิ้ล', grid: optionGrid5, name: <div><label>แอปเปิ้ล</label><br/><img style={imgStyle} src={example} /></div>}
+					{id: 'นาฬิกาทราบ', grid: imgOptionGrid, name: <div><label>นาฬิกาทราบ</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'สามเหลี่ยม', grid: imgOptionGrid, name: <div><label>สามเหลี่ยม</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'ทรงตรง', grid: imgOptionGrid, name: <div><label>ทรงตรง</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'ลูกแพร์', grid: imgOptionGrid, name: <div><label>ลูกแพร์</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'แอปเปิ้ล', grid: imgOptionGrid, name: <div><label>แอปเปิ้ล</label><br/><img style={imgStyle} src={example} /></div>}
 				]}
 			],
 			[
@@ -83,11 +88,11 @@ class ImplantsPage extends Component {
 			],
 			[
 				{type: 'radio', name: 'liposuction_area', horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
-					{id: 'ต้นแขน', grid: optionGrid5, name: <div><label>ต้นแขน</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'หน้าท้อง', grid: optionGrid5, name: <div><label>หน้าท้อง</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'ต้นขา', grid: optionGrid5, name: <div><label>ต้นขา</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'ก้น', grid: optionGrid5, name: <div><label>ก้น</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'สะโพก', grid: optionGrid5, name: <div><label>สะโพก</label><br/><img style={imgStyle} src={example} /></div>}
+					{id: 'ต้นแขน', grid: imgOptionGrid, name: <div><label>ต้นแขน</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'หน้าท้อง', grid: imgOptionGrid, name: <div><label>หน้าท้อง</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'ต้นขา', grid: imgOptionGrid, name: <div><label>ต้นขา</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'ก้น', grid: imgOptionGrid, name: <div><label>ก้น</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'สะโพก', grid: imgOptionGrid, name: <div><label>สะโพก</label><br/><img style={imgStyle} src={example} /></div>}
 				]}
 			],
 			[
@@ -160,9 +165,7 @@ class ImplantsPage extends Component {
 					{type: 'label', style: {paddingTop: 3, fontWeight: 'normal'}, label:`${k+1}. Topic ${k+1}`, grid: {
 						xs: '100%', md: '50%'
 					}},
-					{type: 'space', height: '16px', grid: { // for space between them when `xs`
-						xs: '100%', md: '0%'
-					}},
+					{...rowSpace},
 					{type: 'radio', name: `questions[${k}]`, horizontal: true, showClearButton: false, grid: {
 						xs: '100%', md: '200px'
 					}, options: [

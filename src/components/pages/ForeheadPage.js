@@ -2,9 +2,26 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
-import {PageHeading, Panel} from 'react-semi-theme/widgets';
+import {PageHeading, Panel, SemiHeader} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
+
+const
+	marginBottomStyle = {marginBottom: 24},
+	imgOptionGrid = {xs: '100%', sm: '50%', md: '20%'},
+	imgStyle = {width: '100%'},
+	optionGrid5 = {xs: '100%', sm: '50%', md: '20%'},
+	rowSpace = {type: 'space', height: '16px', noPadding: true, grid: {
+		xs: '100%', md: '0%'
+	}},
+	cbRowParam = {
+		separator: true,
+		style: {
+			paddingTop: 16,
+			paddingBottom: 16
+		}
+	};
+
 class ForeheadPage extends Component {
 	constructor(props, context) {
 		super(props, context);
@@ -27,7 +44,6 @@ class ForeheadPage extends Component {
 		});
 	};
 
-
 	render() {
 		let thumbnail = require('../../assets/img/upload-thumbnail.png');
 		let example = require('../../assets/img/upload-example.png');
@@ -36,110 +52,89 @@ class ForeheadPage extends Component {
 		let data = {};
 		let components = [
 			[
-				{type: 'custom', element: <h3>Header 1</h3>}
+				{type: 'custom', element: <SemiHeader line="solid" style={marginBottomStyle}>Header 1</SemiHeader>}
 			],
 			[
-				{type: 'custom', element: <label>Type</label>, grid: {md: '30%'}},
-				{type: 'radio', name: 'forehead_type', showClearButton: false, options: Array.from(Array(7), (v, k)=>({id: k+1, name: <img style={{width: '200px'}} src={example}/>}))}
-			],
-			[
-				{type: 'custom', element: <h3>Header 2</h3>}
-			],
-			[
-				{type: 'custom', element: <div>&nbsp;</div>},
-				{type: 'custom', element: <label>Area</label>},
-				{type: 'custom', element: <label>Detail</label>},
-				{type: 'custom', element: <label>Date</label>},
-				{type: 'custom', element: <label>Rating</label>}
-			],
-			...Array.from(Array(4), (v, k)=>([
-				{
-					type: 'custom', element: <div  style={{height: '36px', textAlign: 'right'}}><label style={{position: 'relative', top: '50%'}}>{k+1}</label></div>
-				},
-				{
-					type: 'text', name: `histories[${k}][area]`
-				},
-				{
-					type: 'text', name: `histories[${k}][detail]`
-				},
-				{
-					type: 'text', name: `histories[${k}][date]`
-				},
-				{
-					type: 'text', name: `histories[${k}][rating]`
+				{type: 'radio', name: 'forehead_type', showClearButton: false, horizontal: true,
+					options: Array.from(Array(7), (v, k)=>({id: k+1, grid: imgOptionGrid, name: <img style={imgStyle} src={example}/>}))
 				}
+			],
+			[
+				{type: 'custom', element: <SemiHeader>Header 2</SemiHeader>}
+			],
+			...Array.from(Array(5), (v, k) => ([
+				{type: 'label', label:`${k+1}.`, grid: {
+					xs: '100%', mdAlign: 'right', md: '64px'
+				}},
+				{type: 'text', multiLine: true, label: 'Area', name: `histories[${k}][area]`, grid: {
+					xs: '100%', md: `calc(20% - ${64/4}px)`
+				}},
+				{type: 'text', multiLine: true, label: 'Detail', name: `histories[${k}][detail]`, grid: {
+					xs: '100%', md: `calc(30% - ${64/4}px)`
+				}},
+				{type: 'text', multiLine: true, label: 'Date', name: `histories[${k}][date]`, grid: {
+					xs: '100%', md: `calc(20% - ${64/4}px)`
+				}},
+				{type: 'text', multiLine: true, label: 'Rating', name: `histories[${k}][rating]`, grid: {
+					xs: '100%', md: `calc(30% - ${64/4}px)`
+				}}
 			])),
 			[
-				{type: 'custom', element: <div  style={{height: '72px'}}></div>}
+				{type: 'custom', element: <SemiHeader style={{marginBottom: 24}}>Rating of current area</SemiHeader>}
 			],
 			[
-				{
-					type: 'custom', element: <label>Rating of current area</label>, grid: {md: '30%'}
-				},
-				{
-					type: 'radio', name: 'rating', options: [
-					{id: 5, name: 'Best'},
-					{id: 4, name: 'Good'},
-					{id: 3, name: 'General'},
-					{id: 2, name: 'Low'},
-					{id: 1, name: 'Bad'}
-				]
-				}
+				{type: 'radio', horizontal: true, name: 'rating', showClearButton: false, options: [
+					{id: 5, name: 'Best', grid: optionGrid5},
+					{id: 4, name: 'Good', grid: optionGrid5},
+					{id: 3, name: 'General', grid: optionGrid5},
+					{id: 2, name: 'Low', grid: optionGrid5},
+					{id: 1, name: 'Bad', grid: optionGrid5}
+				]}
 			],
 			[
-				{type: 'custom', element: <div  style={{height: '36px'}}></div>}
+				{type: 'custom', element: <SemiHeader>Requesting area &amp; Expectation</SemiHeader>}
 			],
-			[
-				{
-					type: 'custom', element: <label>Requesting area &amp; Expectation</label>
-				}
-			],
-			...Array.from(Array(5), (v, k)=>([
-				{
-					type: 'custom', element: <div  style={{height: '36px', textAlign: 'right'}}><label style={{position: 'relative', top: '50%'}}>{k+1}</label></div>, grid: {md: '30%'}
-				},
-				{
-					type: 'text', name: `area_and_expect[${k}]`, multiLine: true, grid: {md: '70%'}
-				}
+			...Array.from(Array(5), (v, k) => ([
+				{type: 'label', style: {paddingTop: 12}, label:`${k+1}.`, grid: {
+					xs: '10%', xsAlign: 'right', md: '64px'
+				}},
+				{type: 'text', multiLine: true, name: `area_and_expect[${k}]`, grid: {
+					xs: '90%', md: `calc(100% - ${64}px)`
+				}},
 			])),
 			[
-				{type: 'custom', element: <div  style={{height: '36px'}}></div>}
+				{type: 'custom', element: <SemiHeader>Requesting reason</SemiHeader>}
 			],
-			[
-				{
-					type: 'custom', element: <label>Requesting reason</label>
-				}
-			],
-			...Array.from(Array(5), (v, k)=>([
-				{
-					type: 'custom', element: <div  style={{height: '36px', textAlign: 'right'}}><label style={{position: 'relative', top: '50%'}}>{k+1}</label></div>, grid: {md: '30%'}
-				},
-				{
-					type: 'text', name: `requesting_reasons[${k}]`, multiLine: true, grid: {md: '70%'}
-				}
+			...Array.from(Array(5), (v, k) => ([
+				{type: 'label', style: {paddingTop: 12}, label:`${k+1}.`, grid: {
+					xs: '10%', xsAlign: 'right', md: '64px'
+				}},
+				{type: 'text', multiLine: true, name: `requesting_reasons[${k}]`, grid: {
+					xs: '90%', md: `calc(100% - ${64}px)`
+				}},
 			])),
 			[
-				{type: 'custom', element: <div  style={{height: '36px'}}></div>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Before surgery</SemiHeader>}
 			],
-			[
-				{
-					type: 'custom', element: <b>Before surgery</b>
-				}
-			],
-			[
-				{type: 'custom', element: <div  style={{height: '18px'}}></div>}
-			],
-			...Array.from(Array(12), (v, k)=>([
-				{
-					type: 'custom', element: <label>{k+1}: Question</label>
+			...Array.from(Array(12), (v, k)=>({
+				separator: true,
+				style: {
+					paddingTop: 16,
+					paddingBottom: 16
 				},
-				{
-					type: 'radio', name: `before_surgeries[${k}]`, showClearButton: false, options: [
-					{id: 'yes', name: 'Yes'},
-					{id: 'no', name: 'No'}
-				]
-				}
-			]))
+				items: [
+					{type: 'label', style: {paddingTop: 3, fontWeight: 'normal'}, label:`${k+1}. Topic ${k+1}`, grid: {
+						xs: '100%', md: '50%'
+					}},
+					{...rowSpace},
+					{type: 'radio', name: `before_surgeries[${k}]`, horizontal: true, showClearButton: false, grid: {
+						xs: '100%', md: '200px'
+					}, options: [
+						{id: 'yes', name: 'Yes'},
+						{id: 'no', name: 'No'}
+					]}
+				]}
+			))
 		];
 		let formTemplate = {components};
 		return (

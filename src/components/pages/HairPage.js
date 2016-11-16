@@ -6,6 +6,49 @@ import {PageHeading, Panel, SemiHeader} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
 
+const
+	// Common grid rules
+	optionGrid = {xs: '100%', sm: '50%', md: '25%'}, // for horizontal radio button image
+	grid2 = {xs: '100%', md: '50%'},
+	grid3 = {xs: '100%', md: '33.33%'},
+	grid4 = {xs: '100%', md: '25%'},
+	grid5 = {xs: '100%', md: '20%'},
+
+	// todo: read here!
+	// Note: all constants below are used in every horizontal checkboxes row
+
+	// 30:70 proportion of label and checkboxes
+	labelGrid = {xs: '100%', md: '30%'},
+	cbGrid = {xs: '100%', md: '70%'},
+
+	// adjust hidden text field +1% for better alignment
+	hiddenTextGrid = {xs: '100%', md: '69%', mdOffset: '31%'},
+
+	labelStyle = {paddingTop: 3, fontWeight: 'normal'},
+
+	// Because this form has no more than 5 radio buttons
+	optionGrid5 = {xs: '100%', sm: '50%', md: '20%'},
+
+	// For space between topic and checkboxes when `md`
+	rowSpace = {type: 'space', height: '16px', noPadding: true, grid: {
+		xs: '100%', md: '0%'
+	}},
+
+	// todo: change image dimension according to real image here...
+	imgStyle = {width: '100%'},
+
+	// For some headers (often one with checkboxes row below)
+	marginBottomStyle = {marginBottom: 24},
+
+	// Row properties, horizontal
+	cbRowParam = {
+		separator: true,
+		style: {
+			paddingTop: 16,
+			paddingBottom: 16
+		}
+	};
+
 class HairPage extends Component {
 	constructor(props, context) {
 		super(props, context);
@@ -40,49 +83,6 @@ class HairPage extends Component {
 		let values = {};
 		let data = {};
 
-		const
-			// Common grid rules
-			optionGrid = {xs: '100%', sm: '50%', md: '25%'}, // for horizontal radio button image
-			grid2 = {xs: '100%', md: '50%'},
-			grid3 = {xs: '100%', md: '33.33%'},
-			grid4 = {xs: '100%', md: '25%'},
-			grid5 = {xs: '100%', md: '20%'},
-
-			// todo: read here!
-			// Note: all constants below are used in every horizontal checkboxes row
-
-			// 30:70 proportion of label and checkboxes
-			labelGrid = {xs: '100%', md: '30%'},
-			cbGrid = {xs: '100%', md: '70%'},
-
-			// adjust hidden text field +1% for better alignment
-			hiddenTextGrid = {xs: '100%', md: '69%', mdOffset: '31%'},
-			
-			labelStyle = {paddingTop: 3, fontWeight: 'normal'},
-
-			// Because this form has no more than 5 radio buttons
-			optionGrid5 = {xs: '100%', sm: '50%', md: '20%'},
-
-			// For space between topic and checkboxes when `md`
-			cbSpace = {type: 'space', height: '16px', noPadding: true, grid: {
-				xs: '100%', md: '0%'
-			}},
-
-			// todo: change image dimension according to real image here...
-			imgStyle = {width: '100%'},
-
-			// For some headers (often one with checkboxes row below)
-			marginBottomStyle = {marginBottom: 24},
-
-			// Row properties, horizontal
-			cbRowParam = {
-				separator: true,
-				style: {
-					paddingTop: 16,
-					paddingBottom: 16
-				}
-			};
-
 		let components = [
 			[
 				{type: 'custom', element: <SemiHeader>Header 1</SemiHeader>}
@@ -106,7 +106,7 @@ class HairPage extends Component {
 			// todo: read here!
 			/**
 			 * Note: how to make good looking and responsive checkboxes row
-			 * 1. use constants I wrote above
+			 * 1. use constants I wrote above the class
 			 * 2. add `horizontal: true` to item type radio
 			 * 3. you can now move hidden text field to the same row (as you can see)
 			 */
@@ -120,7 +120,7 @@ class HairPage extends Component {
 					{type: 'label', style: labelStyle, label:`Allergy`, grid: labelGrid},
 
 					// For space between topic and checkboxes when `md`
-					{...cbSpace},
+					{...rowSpace},
 
 					{
 						type: 'radio',
@@ -141,7 +141,7 @@ class HairPage extends Component {
 				...cbRowParam,
 				items: [
 					{type: 'custom', element: <label>Current medication</label>, grid: labelGrid},
-					{...cbSpace},
+					{...rowSpace},
 					{type: 'radio', name: 'current_medication', showClearButton: false, horizontal: true, grid: cbGrid, options: [
 						{id: 'finasteride', name: 'Finasteride', grid: optionGrid5},
 						{id: 'minoxidil', name: 'Minoxidil', grid: optionGrid5},
@@ -154,7 +154,7 @@ class HairPage extends Component {
 				...cbRowParam,
 				items: [
 					{type: 'label', style: labelStyle, label:`Alcohol`, grid: labelGrid},
-					{...cbSpace},
+					{...rowSpace},
 					{type: 'radio', name: 'alcohol_check', showClearButton: false, horizontal: true, grid: cbGrid, options: [
 						{id: 'no', name: 'No', grid: optionGrid5},
 						{id: 'yes', name: 'Yes', grid: optionGrid5}
@@ -166,7 +166,7 @@ class HairPage extends Component {
 				...cbRowParam,
 				items: [
 					{type: 'label', style: labelStyle, label:`Smoking`, grid: labelGrid},
-					{...cbSpace},
+					{...rowSpace},
 					{type: 'radio', name: 'smoking_check', showClearButton: false, horizontal: true, grid: cbGrid, options: [
 						{id: 'no', name: 'No', grid: optionGrid5},
 						{id: 'yes', name: 'Yes', grid: optionGrid5}
@@ -178,7 +178,7 @@ class HairPage extends Component {
 				...cbRowParam,
 				items: [
 					{type: 'label', style: labelStyle, label:`Family History of alopecia`, grid: labelGrid},
-					{...cbSpace},
+					{...rowSpace},
 					{type: 'radio', name: 'family_history_of_alopecia_check', showClearButton: false, horizontal: true, grid: cbGrid, options: [
 						{id: 'no', name: 'No', grid: optionGrid5},
 						{id: 'yes', name: 'Yes', grid: optionGrid5}
@@ -232,7 +232,7 @@ class HairPage extends Component {
 				...cbRowParam,
 				items: [
 					{type: 'label', style: labelStyle, label:`Scalp`, grid: labelGrid},
-					{...cbSpace},
+					{...rowSpace},
 					{type: 'radio', name: 'scalp', showClearButton: false, horizontal: true, grid: cbGrid, options: [
 						{id: 'erythena', name: 'Erythena', grid: optionGrid5},
 						{id: 'scarring', name: 'Scarring', grid: optionGrid5},
@@ -246,7 +246,7 @@ class HairPage extends Component {
 				...cbRowParam,
 				items: [
 					{type: 'label', style: labelStyle, label:`Quality of donor hair`, grid: labelGrid},
-					{...cbSpace},
+					{...rowSpace},
 					{type: 'radio', name: 'quality_of_donor_hair', showClearButton: false, horizontal: true, grid: cbGrid, options: [
 						{id: 'fine', name: 'Fine', grid: optionGrid5},
 						{id: 'medium', name: 'Medium', grid: optionGrid5},
@@ -258,7 +258,7 @@ class HairPage extends Component {
 				...cbRowParam,
 				items: [
 					{type: 'label', style: labelStyle, label:`Elasticity`, grid: labelGrid},
-					{...cbSpace},
+					{...rowSpace},
 					{type: 'radio', name: 'elasticity', showClearButton: false, horizontal: true, grid: cbGrid, options: [
 						{id: 'good', name: 'Good', grid: optionGrid5},
 						{id: 'moderate', name: 'Moderate', grid: optionGrid5},
@@ -270,7 +270,7 @@ class HairPage extends Component {
 				...cbRowParam,
 				items: [
 					{type: 'label', style: labelStyle, label:`Texture of the hair`, grid: labelGrid},
-					{...cbSpace},
+					{...rowSpace},
 					{type: 'radio', name: 'texture_of_the_hair', showClearButton: false, horizontal: true, grid: cbGrid, options: [
 						{id: 'straight', name: 'Straight', grid: optionGrid5},
 						{id: 'waves', name: 'Waves', grid: optionGrid5},
@@ -282,7 +282,7 @@ class HairPage extends Component {
 				...cbRowParam,
 				items: [
 					{type: 'label', style: labelStyle, label:`Color of the hair`, grid: labelGrid},
-					{...cbSpace},
+					{...rowSpace},
 					{type: 'radio', name: 'color_of_the_hair', showClearButton: false, horizontal: true, grid: cbGrid, options: [
 						{id: 'black', name: 'Black', grid: optionGrid5},
 						{id: 'brown', name: 'Brown', grid: optionGrid5},
@@ -297,7 +297,7 @@ class HairPage extends Component {
 				...cbRowParam,
 				items: [
 					{type: 'label', style: labelStyle, label:`Donor`, grid: labelGrid},
-					{...cbSpace},
+					{...rowSpace},
 					{type: 'radio', name: 'donor', showClearButton: false, horizontal: true, grid: cbGrid, options: [
 						{id: 'high', name: 'High', grid: optionGrid5},
 						{id: 'normal', name: 'Normal', grid: optionGrid5},
