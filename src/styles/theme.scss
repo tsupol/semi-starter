@@ -20,6 +20,7 @@
 .pad-normal, .pad-small { box-sizing: border-box; float: left; width: 100%; }
 .pad-small { padding: 16px; }
 .pad-normal { padding: 32px; }
+.pad-big { padding: $content-padding-big; }
 
 //----- button
 

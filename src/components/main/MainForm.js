@@ -148,7 +148,7 @@ class MainForm extends Component {
 					<Row center="xs">
 						<Col xs xl="1400px">
 							<Panel title={this.props.header || 'Header'}>
-								<div className="pad-normal pr-form">
+								<div className="pad-big pr-form">
 									<SemiForm data={data} values={values} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit}>
 										{showMainForm ? <FormGenerator formTemplate={mainForm} /> : null}
 										{this.props.children}

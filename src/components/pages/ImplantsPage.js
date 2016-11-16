@@ -79,7 +79,7 @@ class ImplantsPage extends Component {
 				]}
 			],
 			[
-				{type: 'custom', element: <h3>บริเวณที่เอาไขมันออกมา</h3>}
+				{type: 'custom', element: <h3><span>บริเวณที่เอาไขมันออกมา</span></h3>}
 			],
 			[
 				{type: 'radio', name: 'liposuction_area', horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
