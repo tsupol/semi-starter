@@ -206,6 +206,7 @@ class ImplantsPage extends Component {
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 ImplantsPage.contextTypes = {
 	ajax: PropTypes.object,
-	dialog: PropTypes.object
+	dialog: PropTypes.object,
+	translate: PropTypes.func
 };
 export default ImplantsPage;

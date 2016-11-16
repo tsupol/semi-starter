@@ -49,44 +49,44 @@ class MainForm extends Component {
 		let mainForm = {
 			components: [
 				[
-					{type: 'custom', element: <SemiHeader size={2} style={{marginTop: 16}}>Personal Information</SemiHeader>}
+					{type: 'custom', element: <SemiHeader size={2} style={{marginTop: 16}}>{this.context.translate('personal_information')}</SemiHeader>}
 				],
 				// [
 				// 	{type: 'custom', element: <h3 style={{marginTop: 16}}>Personal Information</h3>}
 				// ],
 				[
-					{type: 'text', name: 'first_name', label: 'First Name', grid: grid3},
-					{type: 'text', name: 'last_name', label: 'Last Name', grid: grid3},
+					{type: 'text', name: 'first_name', label: this.context.translate('first_name'), grid: grid3},
+					{type: 'text', name: 'last_name', label: this.context.translate('last_name'), grid: grid3},
 					{type: 'text', name: 'email', label: 'E-Mail', grid: grid3}
 				],
 				[
-					{type: 'numeric', name: 'phone', label: 'Phone', grid: grid4},
-					{type: 'numeric', name: 'mobile', label: 'Mobile', grid: grid4},
+					{type: 'numeric', name: 'phone', label: this.context.translate('phone'), grid: grid4},
+					{type: 'numeric', name: 'mobile', label: this.context.translate('mobile'), grid: grid4},
 					{type: 'text', name: 'lineID', label: 'Line ID', grid: grid4},
 					{type: 'text', name: 'whatappID', label: 'WhatApp ID', grid: grid4}
 				],
 				[
-					{type: 'custom', element: <SemiHeader>Medical Histories</SemiHeader>}
+					{type: 'custom', element: <SemiHeader>{this.context.translate('medical_histories')}</SemiHeader>}
 				],
 				...Array.from(Array(5), (v, k) => ([
 					{type: 'label', label:`${k+1}.`, grid: {
 						xs: '100%', smAlign: 'right', sm: '64px'
 					}},
-					{type: 'text', multiLine: true, label: 'What', name: `medical_histories[${k}][what]`, grid: {
+					{type: 'text', multiLine: true, label: this.context.translate('medical_histories:what'), name: `medical_histories[${k}][what]`, grid: {
 						xs: '100%', sm: `calc(${100/4}% - ${64/4}px)`
 					}},
-					{type: 'text', multiLine: true, label: 'Where', name: `medical_histories[${k}][where]`, grid: {
+					{type: 'text', multiLine: true, label: this.context.translate('medical_histories:where'), name: `medical_histories[${k}][where]`, grid: {
 						xs: '100%', sm: `calc(${100/4}% - ${64/4}px)`
 					}},
-					{type: 'text', multiLine: true, label: 'Doctor', name: `medical_histories[${k}][doctor]`, grid: {
+					{type: 'text', multiLine: true, label: this.context.translate('medical_histories:doctor'), name: `medical_histories[${k}][doctor]`, grid: {
 						xs: '100%', sm: `calc(${100/4}% - ${64/4}px)`
 					}},
-					{type: 'text', multiLine: true, label: 'Duration', name: `medical_histories[${k}][duration]`, grid: {
+					{type: 'text', multiLine: true, label: this.context.translate('medical_histories:duration'), name: `medical_histories[${k}][duration]`, grid: {
 						xs: '100%', sm: `calc(${100/4}% - ${64/4}px)`
 					}}
 				])),
 				[
-					{type: 'custom', element: <SemiHeader>Medical Information</SemiHeader>}
+					{type: 'custom', element: <SemiHeader>{this.context.translate('medical_information')}</SemiHeader>}
 				],
 				[
 					{type: 'text', multiLine: true, label: 'Congenital Disease', name: 'congenital_disease', grid: grid3},
@@ -170,6 +170,7 @@ class MainForm extends Component {
 }
 
 MainForm.contextTypes = {
-	ajax: PropTypes.object
+	ajax: PropTypes.object,
+	translate: PropTypes.func
 };
 export default MainForm;

@@ -14,7 +14,18 @@ export default {
             'menu:chin': 'Chin Surgery',
             'menu:cheek-bulge': 'Cheek Bulge Surgery',
             'menu:liposuction': 'Liposuction Surgery',
-            'menu:implants': 'Implants Surgery'
+            'menu:implants': 'Implants Surgery',
+            'personal_information': 'Personal Information',
+            'first_name': 'First Name',
+            'last_name': 'Last Name',
+            'phone': 'Phone',
+            'mobile': 'Mobile',
+            'medical_histories': 'Medical Histories',
+            'medical_histories:what': 'What surgery you did',
+            'medical_histories:where': 'Where you did',
+            'medical_histories:doctor': 'Doctor',
+            'medical_histories:duration': 'Duration',
+            'medical_information': 'Medical Information'
         }
     },
     th: {
@@ -32,7 +43,18 @@ export default {
             'menu:chin': 'เสริมคาง',
             'menu:cheek-bulge': 'ไขมันกระพุ้งแก้ม',
             'menu:liposuction': 'ดูดไขมัน',
-            'menu:implants': 'ปลูกถ่าย'
+            'menu:implants': 'ปลูกถ่าย',
+            'personal_information': 'ข้อมูลส่วนตัว',
+            'first_name': 'ชื่อจริง',
+            'last_name': 'นามสกุล',
+            'phone': 'เบอร์บ้าน',
+            'mobile': 'เบอร์มือถือ',
+            'medical_histories': 'ประวัติการรักษาทางการแพทย์',
+            'medical_histories:what': 'เคยทำอะไร',
+            'medical_histories:where': 'ที่ไหน',
+            'medical_histories:doctor': 'แพทย์',
+            'medical_histories:duration': 'ระยะเวลา',
+            'medical_information': 'ข้อมูลทางการแพทย์'
         }
     }
 }
