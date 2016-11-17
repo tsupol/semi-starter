@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
-import {PageHeading, Panel} from 'react-semi-theme/widgets';
+import {PageHeading, Panel, SemiHeader} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
 
@@ -58,7 +58,7 @@ class LipsPage extends Component {
 		let data = {};
 		let components = [
 			[
-				{type: 'custom', element: <h3>Information</h3>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Information</SemiHeader>}
 			],
 			[
 				{
@@ -85,7 +85,7 @@ class LipsPage extends Component {
 				hide: !this.state.ever_did_surgery_before_check,
 				items: [
 					{
-						type: 'custom', element: <div  style={{height: '72px', textAlign: 'right'}}><label style={{lineHeight: '72px'}}>{k+1}</label></div>, grid: {md: '30px'}
+						type: 'label', label: `${k+1}`, grid: {md: '30px'}
 					},
 					{
 						type: 'text', name: `surgeries_before[${k}][how]`, multiLine: true, label: 'How', grid: {md: 'calc((100% / 3) - (30px / 3))'}
@@ -101,6 +101,10 @@ class LipsPage extends Component {
 			)),
 			{
 				hide: !this.state.ever_did_surgery_before_check,
+				style: {
+					paddingTop: 16,
+					paddingBottom: 16
+				},
 				items: [
 					{type: 'label', style: {paddingTop: 3, fontWeight: 'normal'}, label: 'Know the detail', grid: {
 						xs: '100%', md: '50%'
@@ -164,7 +168,7 @@ class LipsPage extends Component {
 				]
 			},
 			[
-				{type: 'custom', element: <h3>ข้อควรทราบก่อนการผ่าตัด</h3>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>ข้อควรทราบก่อนการผ่าตัด</SemiHeader>}
 			],
 			...Array.from(Array(8), (v, k)=> (
 				[

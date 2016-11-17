@@ -2,11 +2,12 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
-import {PageHeading, Panel} from 'react-semi-theme/widgets';
+import {PageHeading, Panel, SemiHeader} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
 
 const
+	marginBottomStyle = {marginBottom: 24},
 	optionGrid5 = {xs: '100%', sm: '50%', md: '20%'}, // for horizontal with 5 radio buttons
 	optionGridOther = {xs: '100%'},
 	imgOptionGrid = {xs: '100%', sm: '50%', md: '20%'},
@@ -55,7 +56,7 @@ class EyebrowPage extends Component {
 		let data = {};
 		let components = [
 			[
-				{type: 'custom', element: <h3>ปัญหาที่พบ (ช่วงคิ้ว)</h3>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>ปัญหาที่พบ (ช่วงคิ้ว)</SemiHeader>}
 			],
 			[
 				{
@@ -82,7 +83,7 @@ class EyebrowPage extends Component {
 				]
 			},
 			[
-				{type: 'custom', element: <h3>ปัญหาที่พบ (ช่วงดวงตา)</h3>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>ปัญหาที่พบ (ช่วงดวงตา)</SemiHeader>}
 			],
 			[
 				{
@@ -108,20 +109,26 @@ class EyebrowPage extends Component {
 				]
 			},
 			[
-				{type: 'custom', element: <h3>ปัญหาที่พบ (ริ้วรอย)</h3>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>ปัญหาที่พบ (ริ้วรอย)</SemiHeader>}
 			],
-			[
-				{
-					type: 'checkbox', name: 'wrinkle_issue', horizontal: true, showClearButton: false, options: [
-						{id: 'ริ้วรอยบริเวณหางตา', name: 'ริ้วรอยบริเวณหางตา', grid: optionGrid5},
-						{id: 'ริ้วรอยบริเวณเปลือกตา', name: 'ริ้วรอยบริเวณเปลือกตา', grid: optionGrid5},
-						{id: 'ริ้วรอยใต้ตา', name: 'ริ้วรอยใต้ตา', grid: optionGrid5},
-						{id: 'ริ้วรอยหน้าผาก', name: 'ริ้วรอยหน้าผาก', grid: optionGrid5},
-						{id: 'ริ้วรอยขมวดคิ้ว', name: 'ริ้วรอยขมวดคิ้ว', grid: optionGrid5},
-						{id: 'other', name: 'อื่นๆ', grid: optionGridOther, style:{marginTop: 16}}
-					], onCheck: (v)=> this.setState({wrinkle_issue_other: v.indexOf('other')!=-1})
-				}
-			],
+			{
+				style: {
+					paddingTop: 16,
+					paddingBottom: 16
+				},
+				items: [
+					{
+						type: 'checkbox', name: 'wrinkle_issue', horizontal: true, showClearButton: false, options: [
+							{id: 'ริ้วรอยบริเวณหางตา', name: 'ริ้วรอยบริเวณหางตา', grid: optionGrid5},
+							{id: 'ริ้วรอยบริเวณเปลือกตา', name: 'ริ้วรอยบริเวณเปลือกตา', grid: optionGrid5},
+							{id: 'ริ้วรอยใต้ตา', name: 'ริ้วรอยใต้ตา', grid: optionGrid5},
+							{id: 'ริ้วรอยหน้าผาก', name: 'ริ้วรอยหน้าผาก', grid: optionGrid5},
+							{id: 'ริ้วรอยขมวดคิ้ว', name: 'ริ้วรอยขมวดคิ้ว', grid: optionGrid5},
+							{id: 'other', name: 'อื่นๆ', grid: optionGridOther, style: {marginTop: 16}}
+						], onCheck: (v)=> this.setState({wrinkle_issue_other: v.indexOf('other') != -1})
+					}
+				]
+			},
 			{
 				hide: !this.state.wrinkle_issue_other,
 				style: {

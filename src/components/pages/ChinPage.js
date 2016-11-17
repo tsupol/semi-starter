@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
-import {PageHeading, Panel} from 'react-semi-theme/widgets';
+import {PageHeading, Panel, SemiHeader} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
 
@@ -56,7 +56,7 @@ class ChinPage extends Component {
 		let data = {};
 		let components = [
 			[
-				{type: 'custom', element: <h3>Information</h3>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Information</SemiHeader>}
 			],
 			{
 				style: {

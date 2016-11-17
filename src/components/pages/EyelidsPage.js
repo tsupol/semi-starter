@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
-import {PageHeading, Panel} from 'react-semi-theme/widgets';
+import {PageHeading, Panel, SemiHeader} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
 
@@ -66,7 +66,7 @@ class EyelidsPage extends Component {
 		let data = {};
 		let components = [
 			[
-				{type: 'custom', element: <h3>Information</h3>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Information</SemiHeader>}
 			],
 			[
 				{
@@ -107,7 +107,7 @@ class EyelidsPage extends Component {
 			}
 			)),
 			[
-				{type: 'custom', element: <h3>Eye tattoo</h3>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Eye tattoo</SemiHeader>}
 			],
 			[
 				{
@@ -134,7 +134,7 @@ class EyelidsPage extends Component {
 				]
 			},
 			[
-				{type: 'custom', element: <h3>Vision issue</h3>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Vision issue</SemiHeader>}
 			],
 			[
 				{
@@ -161,7 +161,7 @@ class EyelidsPage extends Component {
 				}
 			],
 			[
-				{type: 'custom', element: <h3>Style expectation</h3>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Style expectation</SemiHeader>}
 			],
 
 				{

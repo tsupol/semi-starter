@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
-import {PageHeading, Panel} from 'react-semi-theme/widgets';
+import {PageHeading, Panel, SemiHeader} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
 
@@ -54,7 +54,7 @@ class NoseReconPage extends Component {
 		let data = {};
 		let components = [
 			[
-				{type: 'custom', element: <h3>Information</h3>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Information</SemiHeader>}
 			],
 			[
 				{
@@ -65,7 +65,7 @@ class NoseReconPage extends Component {
 				}
 			],
 			[
-				{type: 'custom', element: <h3>Medical histories</h3>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Medical histories</SemiHeader>}
 			],
 			[
 				{
@@ -78,11 +78,11 @@ class NoseReconPage extends Component {
 				}
 			],
 			[
-				{type: 'custom', element: <h3>Nose condition</h3>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Nose condition</SemiHeader>}
 			],
 			...Array.from(Array(6), (v, k)=>([
 				{
-					type: 'custom', element: <div>Condition {k+1}</div>, grid: {md: '50%'}
+					type: 'label', label: `Condition ${k+1}`, style: {position: 'relative', top: '-50%'}, grid: {md: '50%'}
 				},
 				{
 					type: 'radio', name: `nose_conditions[${k}]`, horizontal: true, showClearButton: false, options: [
@@ -93,19 +93,14 @@ class NoseReconPage extends Component {
 				}
 			])),
 			[
-				{type: 'custom', element: <h3>Personal condition</h3>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Personal condition</SemiHeader>}
 			],
 			...Array.from(Array(2), (v, k)=>(
 
 				{
-					separator: true,
-					style: {
-						paddingTop: 16,
-						paddingBottom: 16
-					},
 					items: [
 						{
-							type: 'custom', element: <div>Condition {k+1}</div>, grid: {md: '50%'}
+							type: 'label', label: `Condition ${k+1}`, style: {position: 'relative', top: '-50%'}, grid: {md: '50%'}
 						},
 						{
 							type: 'radio',

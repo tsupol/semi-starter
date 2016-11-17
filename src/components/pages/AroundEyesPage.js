@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
-import {PageHeading, Panel} from 'react-semi-theme/widgets';
+import {PageHeading, Panel, SemiHeader} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
 
@@ -63,7 +63,7 @@ class AroundEyesPage extends Component {
 		let data = {};
 		let components = [
 			[
-				{type: 'custom', element: <h3>Information</h3>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Information</SemiHeader>}
 			],
 			[
 				{
@@ -87,7 +87,7 @@ class AroundEyesPage extends Component {
 				items:
 					[
 						{
-							type: 'custom', element: <div  style={{height: '72px', textAlign: 'right'}}><label style={{lineHeight: '72px'}}>{k+1}</label></div>, grid: {md: '30px'}
+							type: 'label', label: `${k+1}`, grid: {md: '30px'}
 						},
 						{
 							type: 'text', name: `surgeries_before[${k}][how]`, multiLine: true, label: 'How', grid: {md: 'calc((100% / 3) - (30px / 3))'}
@@ -102,7 +102,7 @@ class AroundEyesPage extends Component {
 			}
 			)),
 			[
-				{type: 'custom', element: <h3>Eye surgery</h3>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Eye surgery</SemiHeader>}
 			],
 			{
 				style: {

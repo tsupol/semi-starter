@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col} from 'react-flexbox-grid';
-import {PageHeading, Panel} from 'react-semi-theme/widgets';
+import {PageHeading, Panel, SemiHeader} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
 
@@ -58,7 +58,7 @@ class BeastPage extends Component {
 		let data = {};
 		let components = [
 			[
-				{type: 'custom', element: <h3>Information</h3>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Information</SemiHeader>}
 			],
 			[
 				{
@@ -107,16 +107,19 @@ class BeastPage extends Component {
 				]
 			},
 			[
-				{type: 'custom', element: <h3>Information</h3>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Information</SemiHeader>}
 			],
-			[
-				{type: 'custom', element: <b>Activities</b>},
-				{type: 'custom', element: <b>Occupation</b>},
-				{type: 'custom', element: <b>Type Implant</b>}
-			],
-			[
-				{type: 'custom', element: <div style={{height: '16px'}}></div>}
-			],
+			{
+				style: {
+					paddingTop: 16,
+					paddingBottom: 16
+				},
+				items: [
+					{type: 'custom', element: <b>Activities</b>},
+					{type: 'custom', element: <b>Occupation</b>},
+					{type: 'custom', element: <b>Type Implant</b>}
+				]
+			},
 			[
 				{
 					type: 'checkbox', name: 'activities', showClearButton: false, options: [
@@ -150,7 +153,7 @@ class BeastPage extends Component {
 				]
 			},
 			[
-				{type: 'custom', element: <h3>Do you have any children</h3>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Do you have any children</SemiHeader>}
 			],
 			{
 				style: {
