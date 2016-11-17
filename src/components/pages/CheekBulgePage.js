@@ -5,6 +5,23 @@ import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
+
+const
+	marginBottomStyle = {marginBottom: 24},
+	imgOptionGrid = {xs: '100%', sm: '50%', md: '20%'},
+	imgStyle = {width: '100%'},
+	optionGrid4 = {xs: '100%', sm: '50%', md: '25%'},
+	rowSpace = {type: 'space', height: '16px', noPadding: true, grid: {
+		xs: '100%', md: '0%'
+	}},
+	cbRowParam = {
+		separator: true,
+		style: {
+			paddingTop: 16,
+			paddingBottom: 16
+		}
+	};
+
 class CheekBulgePage extends Component {
 	constructor(props, context) {
 		super(props, context);
@@ -42,91 +59,79 @@ class CheekBulgePage extends Component {
 			[
 				{type: 'custom', element: <h3>Information</h3>}
 			],
-			[
-				{
-					type: 'radio', name: 'surgery_history', showClearButton: false, options: [
-					{id: 'no', name: 'No, Never have surgery.'},
-					{id: 'yes', name: 'Yes, Ever did before.'}
-				], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes'})
-				}
-			],
 			{
-				settings: {
-					hide: !this.state.ever_did_surgery_before_check
+				style: {
+					paddingTop: 16,
+					paddingBottom: 16
 				},
 				items: [
 					{
-						type: 'custom', element: <div  style={{height: '72px'}}><label>Know the detail</label></div>, grid: {md: '30%'}
-					},
-					{
-						type: 'radio', name: 'before_know_details', showClearButton: false, options: [
-						{id: 'yes', name: 'Yes'},
-						{id: 'no', name: 'No'}
-					], onCheck: (v)=> this.setState({before_know_details: v})
+						type: 'radio', name: 'surgery_history', horizontal: true, showClearButton: false, options: [
+							{id: 'no', name: 'No, Never have surgery.', grid: optionGrid4},
+							{id: 'yes', name: 'Yes, Ever did before.', grid: optionGrid4}
+						], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes', before_know_details: ''})
 					}
 				]
 			},
 			{
-				settings: {
-					hide: this.state.before_know_details != 'yes'
+				hide: !this.state.ever_did_surgery_before_check,
+				style: {
+					paddingTop: 16,
+					paddingBottom: 16
 				},
 				items: [
+					{type: 'label', style: {paddingTop: 3, fontWeight: 'normal'}, label: 'Know the detail', grid: {
+						xs: '100%', md: '50%'
+					}},
 					{
-						type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
-					},
-					{
-						type: 'text', name: 'brand', multiLine: true, label: 'Brand', grid: {md: 'calc((100% / 2) - (30% / 2))'}
-					},
-					{
-						type: 'text', name: 'count', multiLine: true, label: 'How many times', grid: {md: 'calc((100% / 2) - (30% / 2))'}
+						type: 'radio', name: 'before_know_details', horizontal: true, showClearButton: false, options: [
+							{id: 'yes', name: 'Yes', grid: optionGrid4},
+							{id: 'no', name: 'No', grid: optionGrid4}
+						], onCheck: (v)=> this.setState({before_know_details: v})
 					}
 				]
 			},
 			{
-				settings: {
-					hide: this.state.before_know_details != 'yes'
-				},
+				hide: this.state.before_know_details != 'yes',
 				items: [
 					{
-						type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
+						type: 'text', name: 'brand', multiLine: true, label: 'Brand'
 					},
 					{
-						type: 'text', name: 'last_time', multiLine: true, label: 'Last time', grid: {md: 'calc((100% / 3) - (30% / 3))'}
-					},
-					{
-						type: 'text', name: 'volume', multiLine: true, label: 'Volume', grid: {md: 'calc((100% / 3) - (30% / 3))'}
-					},
-					{
-						type: 'text', name: 'place_or_doctor', multiLine: true, label: 'Place / Doctor', grid: {md: 'calc((100% / 3) - (30% / 3))'}
+						type: 'text', name: 'count', multiLine: true, label: 'How many times'
 					}
 				]
 			},
 			{
-				settings: {
-					hide: this.state.before_know_details != 'no'
-				},
+				hide: this.state.before_know_details != 'yes',
 				items: [
 					{
-						type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
+						type: 'text', name: 'last_time', multiLine: true, label: 'Last time'
 					},
 					{
-						type: 'text', name: 'count', multiLine: true, label: 'How many times', grid: {md: '70%'}
+						type: 'text', name: 'volume', multiLine: true, label: 'Volume'
+					},
+					{
+						type: 'text', name: 'place_or_doctor', multiLine: true, label: 'Place / Doctor'
 					}
 				]
 			},
 			{
-				settings: {
-					hide: this.state.before_know_details != 'no'
-				},
+				hide: this.state.before_know_details != 'no',
 				items: [
 					{
-						type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
+						type: 'text', name: 'count', multiLine: true, label: 'How many times'
+					}
+				]
+			},
+			{
+				hide: this.state.before_know_details != 'no',
+				items: [
+					{
+						type: 'text', name: 'last_time', multiLine: true, label: 'Last time'
 					},
 					{
-						type: 'text', name: 'last_time', multiLine: true, label: 'Last time', grid: {md: 'calc((100% / 2) - (30% / 2))'}
-					},
-					{
-						type: 'text', name: 'place_or_doctor', multiLine: true, label: 'Place / Doctor', grid: {md: 'calc((100% / 2) - (30% / 2))'}
+						type: 'text', name: 'place_or_doctor', multiLine: true, label: 'Place / Doctor'
 					}
 				]
 			}
