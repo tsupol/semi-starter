@@ -5,6 +5,24 @@ import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
+
+const
+	marginBottomStyle = {marginBottom: 24},
+	imgOptionGrid = {xs: '100%', sm: '50%', md: '20%'},
+	imgStyle = {width: '100%'},
+	optionGrid4 = {xs: '100%', sm: '50%', md: '25%'},
+	optionGrid6 = {xs: '100%', sm: '50%', md: '33%'},
+	rowSpace = {type: 'space', height: '16px', noPadding: true, grid: {
+		xs: '100%', md: '0%'
+	}},
+	cbRowParam = {
+		separator: true,
+		style: {
+			paddingTop: 16,
+			paddingBottom: 16
+		}
+	};
+
 class NoseReconPage extends Component {
 	constructor(props, context) {
 		super(props, context);
@@ -40,10 +58,10 @@ class NoseReconPage extends Component {
 			],
 			[
 				{
-					type: 'radio', name: 'nose_surgery_history', showClearButton: false, options: [
-					{id: 'no', name: 'No, Never have nose surgery.'},
-					{id: 'yes', name: 'Yes, Ever did before.'}
-				]
+					type: 'radio', name: 'nose_surgery_history', horizontal: true, showClearButton: false, options: [
+						{id: 'no', name: 'No, Never have nose surgery.', grid: optionGrid4},
+						{id: 'yes', name: 'Yes, Ever did before.', grid: optionGrid4}
+					]
 				}
 			],
 			[
@@ -51,12 +69,12 @@ class NoseReconPage extends Component {
 			],
 			[
 				{
-					type: 'checkbox', name: 'medical_histories', showClearButton: false, options: [
-					{id: 'allergy', name: 'Allergy'},
-					{id: 'nasal_congestion', name: 'Nasal congestion'},
-					{id: 'sinusitis', name: 'Sinusitis'},
-					{id: 'accident', name: 'Accident'}
-				]
+					type: 'checkbox', name: 'medical_histories', horizontal: true, showClearButton: false, options: [
+						{id: 'allergy', name: 'Allergy', grid: optionGrid4},
+						{id: 'nasal_congestion', name: 'Nasal congestion', grid: optionGrid4},
+						{id: 'sinusitis', name: 'Sinusitis', grid: optionGrid4},
+						{id: 'accident', name: 'Accident', grid: optionGrid4}
+					]
 				}
 			],
 			[
@@ -67,27 +85,42 @@ class NoseReconPage extends Component {
 					type: 'custom', element: <div>Condition {k+1}</div>, grid: {md: '50%'}
 				},
 				{
-					type: 'radio', name: `nose_conditions[${k}]`, showClearButton: false, options: [
-					{id: 'low', name: 'Low'},
-					{id: 'medium', name: 'Medium'},
-					{id: 'crisis', name: 'Crisis'},
-				]
+					type: 'radio', name: `nose_conditions[${k}]`, horizontal: true, showClearButton: false, options: [
+						{id: 'low', name: 'Low', grid: optionGrid6},
+						{id: 'medium', name: 'Medium', grid: optionGrid6},
+						{id: 'crisis', name: 'Crisis', grid: optionGrid6}
+					]
 				}
 			])),
 			[
 				{type: 'custom', element: <h3>Personal condition</h3>}
 			],
-			...Array.from(Array(2), (v, k)=>([
+			...Array.from(Array(2), (v, k)=>(
+
 				{
-					type: 'custom', element: <div>Condition {k+1}</div>, grid: {md: '50%'}
-				},
-				{
-					type: 'radio', name: `personal_conditions[${k}]`, showClearButton: false, options: [
-					{id: 'no', name: 'No'},
-					{id: 'yes', name: 'Yes'}
-				]
+					separator: true,
+					style: {
+						paddingTop: 16,
+						paddingBottom: 16
+					},
+					items: [
+						{
+							type: 'custom', element: <div>Condition {k+1}</div>, grid: {md: '50%'}
+						},
+						{
+							type: 'radio',
+							name: `personal_conditions[${k}]`,
+							horizontal: true,
+							showClearButton: false,
+							grid: {md: '50%'},
+							options: [
+								{id: 'no', name: 'No', grid: optionGrid6},
+								{id: 'yes', name: 'Yes', grid: optionGrid6}
+							]
+						}
+					]
 				}
-			]))
+			))
 		];
 		let formTemplate = {components};
 		return (
