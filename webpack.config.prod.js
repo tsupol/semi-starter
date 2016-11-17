@@ -85,12 +85,12 @@ export default {
   module: {
     loaders: [
       {test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel'},
-      {test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: 'url?name=[name].[ext]'},
-      {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url?limit=10000&mimetype=application/font-woff&name=[name].[ext]"},
-      {test: /\.ttf(\?v=\d+.\d+.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream&name=[name].[ext]'},
-      {test: /\.svg(\?v=\d+.\d+.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml&name=[name].[ext]'},
+      {test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: 'url?name=app/fonts/[name].[ext]'},
+      {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url?limit=10000&mimetype=application/font-woff&name=app/fonts/[name].[ext]"},
+      {test: /\.ttf(\?v=\d+.\d+.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream&name=app/fonts/[name].[ext]'},
+      {test: /\.svg(\?v=\d+.\d+.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml&name=app/img/[name].[ext]'},
       {test: /\.(jpe?g|png|gif)$/i, loader: 'file?name=app/img/[name].[ext]?[hash]'},
-      {test: /\.ico$/, loader: 'file?name=[name].[ext]'},
+      {test: /\.ico$/, loader: 'file?name=app/img/[name].[ext]'},
       {test: /(\.css|\.scss)$/, loader: ExtractTextPlugin.extract('css?sourceMap!postcss!sass?sourceMap'), exclude: /flexboxgrid/},
       {test: /\.css$/,loader: 'style!css?modules',include: /flexboxgrid/}
     ]

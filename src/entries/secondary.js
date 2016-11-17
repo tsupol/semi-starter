@@ -12,7 +12,13 @@ import '../styles/styles.scss'; // Yep, that's right. You can import SASS/CSS fi
 import {syncHistoryWithStore} from 'react-router-redux';
 import { login } from '../actions/userActions';
 
-const store = configureStore();
+import { IntlProvider } from 'react-redux-multilingual';
+import helper from 'react-semi-theme/libs/helper';
+import translations from '../translations';
+
+let currentLocale = helper.location.hash.get('locale', 'th');
+
+const store = configureStore({ Intl: { locale: currentLocale } });
 
 // semi: auto login
 let username = sessionStorage.getItem('username');
@@ -28,6 +34,8 @@ const history = syncHistoryWithStore(appHashHistory, store); // Hash History, fi
 
 render(
     <Provider store={store}>
-        <Router history={history} routes={routes}/>
+        <IntlProvider translations={translations}>
+            <Router history={history} routes={routes}/>
+        </IntlProvider>
     </Provider>, document.getElementById('app')
 );
