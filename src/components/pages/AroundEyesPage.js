@@ -5,6 +5,24 @@ import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
+
+const
+	marginBottomStyle = {marginBottom: 24},
+	imgOptionGrid = {xs: '100%', sm: '50%', md: '20%'},
+	imgStyle = {width: '100%'},
+	optionGrid4 = {xs: '100%', sm: '50%', md: '25%'},
+	optionGrid6 = {xs: '100%', sm: '50%', md: '33%'},
+	rowSpace = {type: 'space', height: '16px', noPadding: true, grid: {
+		xs: '100%', md: '0%'
+	}},
+	cbRowParam = {
+		separator: true,
+		style: {
+			paddingTop: 16,
+			paddingBottom: 16
+		}
+	};
+
 class AroundEyesPage extends Component {
 	constructor(props, context) {
 		super(props, context);
@@ -49,30 +67,23 @@ class AroundEyesPage extends Component {
 			],
 			[
 				{
-					type: 'radio', name: 'ever_did_surgery_before_check', showClearButton: false, options: [
-					{id: 'no', name: 'No, Never have eyelids surgery.'},
-					{id: 'yes', name: 'Yes, Ever did before.'}
-				], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes', surgery_count_before: 0})
+					type: 'radio', name: 'ever_did_surgery_before_check', horizontal: true, showClearButton: false, options: [
+						{id: 'no', name: 'No, Never have eyelids surgery.', grid: optionGrid4},
+						{id: 'yes', name: 'Yes, Ever did before.', grid: optionGrid4}
+					], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes', surgery_count_before: 0})
 				}
 			],
 			{
-				settings: {
-					hide: !this.state.ever_did_surgery_before_check
-				},
+				hide: !this.state.ever_did_surgery_before_check,
 				items: [
 					{
-						type: 'custom', element: <label>How many time</label>, grid: {md: '30%'}
-					},
-					{
-						type: 'numeric', name: 'surgery_count_before', grid: {md: '70%'}, onChange: (v)=> this.setState({surgery_count_before: v!='' ? parseInt(v) : 0})
+						type: 'numeric', name: 'surgery_count_before', label: 'How many time', onChange: (v)=> this.setState({surgery_count_before: v!='' ? parseInt(v) : 0})
 					}
 				]
 			},
 			...Array.from(Array(this.state.surgery_count_before), (v, k)=>(
 			{
-				settings: {
-					hide: !this.state.ever_did_surgery_before_check
-				},
+				hide: !this.state.ever_did_surgery_before_check,
 				items:
 					[
 						{
@@ -93,20 +104,23 @@ class AroundEyesPage extends Component {
 			[
 				{type: 'custom', element: <h3>Eye surgery</h3>}
 			],
-			[
-				{
-					type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
+			{
+				style: {
+					paddingTop: 16,
+					paddingBottom: 16
 				},
-				{
-					type: 'radio', name: 'eye_surgery', showClearButton: false, options: [
-					{id: 'กรีดตัดหนังตาบน', name: 'กรีดตัดหนังตาบน'},
-					{id: 'กรีดตัดหนังตาล่าง', name: 'กรีดตัดหนังตาล่าง'},
-					{id: 'กล้ามเนื้อตาอ่อนแรง', name: 'กล้ามเนื้อตาอ่อนแรง'},
-					{id: 'ถุงใต้ตาแผลด้านใน', name: 'ถุงใต้ตาแผลด้านใน'},
-					{id: 'ตาสองชั้น(แผลเล็ก)', name: 'ตาสองชั้น(แผลเล็ก)'}
+				items: [
+					{
+						type: 'radio', name: 'eye_surgery', horizontal: true, showClearButton: false, options: [
+							{id: 'กรีดตัดหนังตาบน', name: 'กรีดตัดหนังตาบน'},
+							{id: 'กรีดตัดหนังตาล่าง', name: 'กรีดตัดหนังตาล่าง'},
+							{id: 'กล้ามเนื้อตาอ่อนแรง', name: 'กล้ามเนื้อตาอ่อนแรง'},
+							{id: 'ถุงใต้ตาแผลด้านใน', name: 'ถุงใต้ตาแผลด้านใน'},
+							{id: 'ตาสองชั้น(แผลเล็ก)', name: 'ตาสองชั้น(แผลเล็ก)'}
+						]
+					}
 				]
-				}
-			]
+			}
 		];
 		let formTemplate = {components};
 		return (
