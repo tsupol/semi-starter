@@ -180,7 +180,7 @@ class SemiTextField extends Component{
 
         currentValue = this.state.value;
 
-        let {hidden, ...textFieldParams} = rest;
+        let {hide, ...textFieldParams} = rest;
         let customTextField = React.cloneElement(
             <TextField
                 {...textFieldParams}

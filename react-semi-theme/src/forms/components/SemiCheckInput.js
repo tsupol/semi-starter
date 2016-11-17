@@ -118,6 +118,7 @@ class SemiCheckInput extends SemiInputComponent {
                 let checked = (valueIsObject ? currentValue.indexOf(id) !== -1 : currentValue == id);
                 let iconStyle = color ? {fill: color} : {};
                 let labelStyle = color ? {color: color} : {};
+                let customStyle = option.style;
                 let checkboxElem =
                     <Checkbox
                         key={i}
@@ -128,6 +129,7 @@ class SemiCheckInput extends SemiInputComponent {
                         checked={checked}
                         iconStyle={iconStyle}
                         labelStyle={labelStyle}
+                        style={customStyle}
                     />;
                 if(option.grid) {
                     items.push(

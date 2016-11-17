@@ -5,6 +5,27 @@ import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
+
+const
+	marginBottomStyle = {marginBottom: 24},
+	imgOptionGrid = {xs: '100%', sm: '50%', md: '20%'},
+	imgStyle = {width: '100%'},
+	optionGrid3 = {xs: '100%', sm: '50%', md: '33.3333333333%'},
+	optionGrid4 = {xs: '100%', sm: '50%', md: '25%'},
+	optionGrid5 = {xs: '100%', sm: '50%', md: '20%'},
+	optionGrid6 = {xs: '100%', sm: '50%', md: '16.6666666667%'},
+	optionGridOther = {xs: '100%'},
+	rowSpace = {type: 'space', height: '16px', noPadding: true, grid: {
+		xs: '100%', md: '0%'
+	}},
+	cbRowParam = {
+		separator: true,
+		style: {
+			paddingTop: 16,
+			paddingBottom: 16
+		}
+	};
+
 class EyelidsPage extends Component {
 	constructor(props, context) {
 		super(props, context);
@@ -49,22 +70,17 @@ class EyelidsPage extends Component {
 			],
 			[
 				{
-					type: 'radio', name: 'ever_did_surgery_before_check', showClearButton: false, options: [
-					{id: 'no', name: 'No, Never have eyelids surgery.'},
-					{id: 'yes', name: 'Yes, Ever did before.'}
-				], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes', surgery_count_before: 0})
+					type: 'radio', name: 'ever_did_surgery_before_check', horizontal: true, showClearButton: false, options: [
+						{id: 'no', name: 'No, Never have eyelids surgery.', grid: optionGrid4},
+						{id: 'yes', name: 'Yes, Ever did before.', grid: optionGrid4}
+					], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes', surgery_count_before: 0})
 				}
 			],
 			{
-				settings: {
-					hide: !this.state.ever_did_surgery_before_check
-				},
+				hide: !this.state.ever_did_surgery_before_check,
 				items: [
 					{
-						type: 'custom', element: <label>How many time</label>, grid: {md: '30%'}
-					},
-					{
-						type: 'numeric', name: 'surgery_count_before', grid: {md: '70%'}, onChange: (v)=> this.setState({surgery_count_before: v!='' ? parseInt(v) : 0})
+						type: 'numeric', name: 'surgery_count_before', label: 'How many time', onChange: (v)=> this.setState({surgery_count_before: v!='' ? parseInt(v) : 0})
 					}
 				]
 			},
@@ -95,29 +111,25 @@ class EyelidsPage extends Component {
 			],
 			[
 				{
-					type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
-				},
-				{
-					type: 'radio', name: 'eye_tattoo', showClearButton: false, options: [
-					{id: 'no', name: 'No tattoo'},
-					{id: 'bottom', name: 'Bottom eyelids'},
-					{id: 'top', name: 'Top eyelids'},
-					{id: '3d', name: '3d eyelids'},
-					{id: 'eyelash', name: 'Extend eyelash'},
-					{id: 'other', name: 'Other'}
-				], onCheck: (v)=> this.setState({eye_tattoo_other: v=='other'})
+					type: 'radio', name: 'eye_tattoo', showClearButton: false, horizontal: true, options: [
+						{id: 'no', name: 'No tattoo', grid: optionGrid5},
+						{id: 'bottom', name: 'Bottom eyelids', grid: optionGrid5},
+						{id: 'top', name: 'Top eyelids', grid: optionGrid5},
+						{id: '3d', name: '3d eyelids', grid: optionGrid5},
+						{id: 'eyelash', name: 'Extend eyelash', grid: optionGrid5},
+						{id: 'other', name: 'Other', grid: optionGridOther, style: {marginTop: 16}}
+					], onCheck: (v)=> this.setState({eye_tattoo_other: v=='other'})
 				}
 			],
 			{
-				settings: {
-					hide: !this.state.eye_tattoo_other
+				hide: !this.state.eye_tattoo_other,
+				style: {
+					paddingTop: 16,
+					paddingBottom: 16
 				},
 				items: [
 					{
-						type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
-					},
-					{
-						type: 'text', name: 'eye_tattoo_other', multiLine: true
+						type: 'text', name: 'eye_tattoo_other', multiLine: true, hint: 'Please specify'
 					}
 				]
 			},
@@ -126,100 +138,59 @@ class EyelidsPage extends Component {
 			],
 			[
 				{
-					type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
-				},
-				{
-					type: 'checkbox', name: 'vision_issue_short_check', showClearButton: false, options: [
-					{id: 'short', name: 'Short'}
-				], onCheck: (v)=> this.setState({vision_issue_short_check: v.length>0})
+					type: 'checkbox', name: 'vision_issue_short_check', horizontal: true, showClearButton: false, options: [
+						{id: 'short', name: 'Short', grid: optionGrid3},
+						{id: 'long', name: 'Long', grid: optionGrid3},
+						{id: 'astigmatism', name: 'Astigmatism', grid: optionGrid3}
+					], onCheck: (v)=> this.setState({
+						vision_issue_short_check: v.indexOf('short')!=-1,
+						vision_issue_long_check: v.indexOf('long')!=-1,
+						vision_issue_astigmatism_check: v.indexOf('astigmatism')!=-1
+					})
 				}
 			],
-			{
-				settings: {
-					hide: !this.state.vision_issue_short_check
-				},
-				items: [
-					{
-						type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
-					},
-					{
-						type: 'text', name: 'vision_issue_short', multiLine: true
-					}
-				]
-			},
 			[
 				{
-					type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
+					type: 'text', name: 'vision_issue_short', multiLine: true, hint: 'Please specify', grid: optionGrid3, hide: !this.state.vision_issue_short_check,
 				},
 				{
-					type: 'checkbox', name: 'vision_issue_long_check', showClearButton: false, options: [
-					{id: 'long', name: 'Long'},
-				], onCheck: (v)=> this.setState({vision_issue_long_check: v.length>0})
+					type: 'text', name: 'vision_issue_long', multiLine: true, hint: 'Please specify', grid: optionGrid3, hide: !this.state.vision_issue_long_check,
+				},
+				{
+					type: 'text', name: 'vision_issue_astigmatism', multiLine: true, hint: 'Please specify', grid: optionGrid3, hide: !this.state.vision_issue_astigmatism_check,
 				}
 			],
-			{
-				settings: {
-					hide: !this.state.vision_issue_long_check
-				},
-				items: [
-					{
-						type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
-					},
-					{
-						type: 'text', name: 'vision_issue_long', multiLine: true
-					}
-				]
-			},
-			[
-				{
-					type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
-				},
-				{
-					type: 'checkbox', name: 'vision_issue_astigmatism_check', showClearButton: false, options: [
-					{id: 'astigmatism', name: 'Astigmatism'}
-				], onCheck: (v)=> this.setState({vision_issue_astigmatism_check: v.length>0})
-				}
-			],
-			{
-				settings: {
-					hide: !this.state.vision_issue_astigmatism_check
-				},
-				items: [
-					{
-						type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
-					},
-					{
-						type: 'text', name: 'vision_issue_astigmatism', multiLine: true
-					}
-				]
-			},
 			[
 				{type: 'custom', element: <h3>Style expectation</h3>}
 			],
-			[
+
 				{
-					type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
-				},
-				{
-					type: 'radio', name: 'style_expectation', showClearButton: false, options: [
-					{id: 'high', name: 'High'},
-					{id: 'normal', name: 'normal'},
-					{id: 'mini', name: 'Mini'},
-					{id: 'follow_suggestions', name: 'Follow suggestions'},
-					{id: 'other', name: 'Other'}
-				], onCheck: (v)=> this.setState({style_expectation_other: v=='other'})
+					style: {
+						paddingTop: 16,
+						paddingBottom: 16
+					},
+					items: [
+						{
+							type: 'radio', name: 'style_expectation', horizontal: true, showClearButton: false, options: [
+								{id: 'high', name: 'High', grid: optionGrid5},
+								{id: 'normal', name: 'normal', grid: optionGrid5},
+								{id: 'mini', name: 'Mini', grid: optionGrid5},
+								{id: 'follow_suggestions', name: 'Follow suggestions', grid: optionGrid5},
+								{id: 'other', name: 'Other', grid: optionGridOther, style: {marginTop: 16}}
+							], onCheck: (v)=> this.setState({style_expectation_other: v=='other'})
+						}
+					]
 				}
-			],
+			,
 			{
-				settings: {
-					hide: !this.state.style_expectation_other
+				hide: !this.state.style_expectation_other,
+				style: {
+					paddingTop: 16,
+					paddingBottom: 16
 				},
 				items: [
 					{
-						type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
-					},
-					{
-						type: 'text', name: 'style_expectation_other', multiLine: true
+						type: 'text', name: 'style_expectation_other', multiLine: true, hint: 'Please specify'
 					}
 				]
 			}
