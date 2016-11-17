@@ -5,6 +5,23 @@ import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
+
+const
+	marginBottomStyle = {marginBottom: 24},
+	imgOptionGrid = {xs: '100%', sm: '50%', md: '20%'},
+	imgStyle = {width: '100%'},
+	optionGrid4 = {xs: '100%', sm: '50%', md: '25%'},
+	rowSpace = {type: 'space', height: '16px', noPadding: true, grid: {
+		xs: '100%', md: '0%'
+	}},
+	cbRowParam = {
+		separator: true,
+		style: {
+			paddingTop: 16,
+			paddingBottom: 16
+		}
+	};
+
 class ChinPage extends Component {
 	constructor(props, context) {
 		super(props, context);
@@ -41,18 +58,22 @@ class ChinPage extends Component {
 			[
 				{type: 'custom', element: <h3>Information</h3>}
 			],
-			[
-				{
-					type: 'radio', name: 'chin_surgery_history', showClearButton: false, options: [
-					{id: 'no', name: 'No, Never have chin surgery.'},
-					{id: 'yes', name: 'Yes, Ever did before.'}
-				], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes'})
-				}
-			],
 			{
-				settings: {
-					hide: !this.state.ever_did_surgery_before_check
+				style: {
+					paddingTop: 16,
+					paddingBottom: 16
 				},
+				items: [
+					{
+						type: 'radio', name: 'chin_surgery_history', horizontal: true, showClearButton: false, options: [
+							{id: 'no', name: 'No, Never have chin surgery.', grid: optionGrid4},
+							{id: 'yes', name: 'Yes, Ever did before.', grid: optionGrid4}
+						], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v == 'yes'})
+					}
+				]
+			},
+			{
+				hide: !this.state.ever_did_surgery_before_check,
 				items: [
 					{
 						type: 'numeric', name: 'surgery_count_before', label: 'How many time'
@@ -60,9 +81,7 @@ class ChinPage extends Component {
 				]
 			},
 			{
-				settings: {
-					hide: !this.state.ever_did_surgery_before_check
-				},
+				hide: !this.state.ever_did_surgery_before_check,
 				items: [
 					{
 						type: 'text', name: 'surgery_type', label: 'Type', multiLine: true
@@ -70,9 +89,7 @@ class ChinPage extends Component {
 				]
 			},
 			{
-				settings: {
-					hide: !this.state.ever_did_surgery_before_check
-				},
+				hide: !this.state.ever_did_surgery_before_check,
 				items: [
 					{
 						type: 'text', name: 'place_or_doctor', label: 'Place / Doctor'
