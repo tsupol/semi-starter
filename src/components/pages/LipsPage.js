@@ -5,6 +5,23 @@ import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
+
+const
+	marginBottomStyle = {marginBottom: 24},
+	imgOptionGrid = {xs: '100%', sm: '50%', md: '20%'},
+	imgStyle = {width: '100%'},
+	optionGrid4 = {xs: '100%', sm: '50%', md: '25%'},
+	rowSpace = {type: 'space', height: '16px', noPadding: true, grid: {
+		xs: '100%', md: '0%'
+	}},
+	cbRowParam = {
+		separator: true,
+		style: {
+			paddingTop: 16,
+			paddingBottom: 16
+		}
+	};
+
 class LipsPage extends Component {
 	constructor(props, context) {
 		super(props, context);
@@ -45,33 +62,27 @@ class LipsPage extends Component {
 			],
 			[
 				{
-					type: 'radio', name: 'ever_did_surgery_before_check', showClearButton: false, options: [
-					{id: 'no', name: 'No, Never have eyelids surgery.'},
-					{id: 'yes', name: 'Yes, Ever did before.'}
-				], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes', surgery_count_before: 0, filler_before_know_details: ''})
+					type: 'radio', name: 'ever_did_surgery_before_check', horizontal: true, showClearButton: false, options: [
+						{id: 'no', name: 'No, Never have lips surgery.', grid: optionGrid4},
+						{id: 'yes', name: 'Yes, Ever did before.', grid: optionGrid4}
+					], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes', surgery_count_before: 0, filler_before_know_details: ''})
 				}
 			],
-			[
-				{type: 'custom', element: <div  style={{height: '36px'}}></div>}
-			],
 			{
-				settings: {
-					hide: !this.state.ever_did_surgery_before_check
+				hide: !this.state.ever_did_surgery_before_check,
+				style: {
+					paddingTop: 16,
+					paddingBottom: 16
 				},
 				items: [
 					{
-						type: 'custom', element: <label>How many time</label>, grid: {md: '30%'}
-					},
-					{
-						type: 'numeric', name: 'surgery_count_before', grid: {md: '70%'}, onChange: (v)=> this.setState({surgery_count_before: v!='' ? parseInt(v) : 0})
+						type: 'numeric', name: 'surgery_count_before', label: 'How many time', onChange: (v)=> this.setState({surgery_count_before: v!='' ? parseInt(v) : 0})
 					}
 				]
 			},
 			...Array.from(Array(this.state.surgery_count_before), (v, k)=>(
 			{
-				settings: {
-					hide: !this.state.ever_did_surgery_before_check
-				},
+				hide: !this.state.ever_did_surgery_before_check,
 				items: [
 					{
 						type: 'custom', element: <div  style={{height: '72px', textAlign: 'right'}}><label style={{lineHeight: '72px'}}>{k+1}</label></div>, grid: {md: '30px'}
@@ -89,97 +100,65 @@ class LipsPage extends Component {
 			}
 			)),
 			{
-				settings: {
-					hide: !this.state.ever_did_surgery_before_check
-				},
+				hide: !this.state.ever_did_surgery_before_check,
 				items: [
-					{type: 'custom', element: <div style={{height: '36px'}}></div>}
-				]
-			},
-			{
-				settings: {
-					hide: !this.state.ever_did_surgery_before_check
-				},
-				items: [
+					{type: 'label', style: {paddingTop: 3, fontWeight: 'normal'}, label: 'Know the detail', grid: {
+						xs: '100%', md: '50%'
+					}},
 					{
-						type: 'custom', element: <div  style={{height: '72px'}}><label>Know the detail</label></div>, grid: {md: '30%'}
-					},
-					{
-						type: 'radio', name: 'filler_before_know_details', showClearButton: false, options: [
-						{id: 'yes', name: 'Yes'},
-						{id: 'no', name: 'No'}
-					], onCheck: (v)=> this.setState({filler_before_know_details: v})
+						type: 'radio', name: 'filler_before_know_details', horizontal: true, showClearButton: false, options: [
+							{id: 'yes', name: 'Yes', grid: optionGrid4},
+							{id: 'no', name: 'No', grid: optionGrid4}
+						], onCheck: (v)=> this.setState({filler_before_know_details: v})
 					}
 				]
 			},
 			{
-				settings: {
-					hide: this.state.filler_before_know_details != 'yes'
-				},
+				hide: this.state.filler_before_know_details != 'yes',
 				items: [
 					{
-						type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
+						type: 'text', name: 'filler_brand', multiLine: true, label: 'Filler (brand)'
 					},
 					{
-						type: 'text', name: 'filler_brand', multiLine: true, label: 'Filler (brand)', grid: {md: 'calc((100% / 2) - (30% / 2))'}
-					},
-					{
-						type: 'text', name: 'filler_count', multiLine: true, label: 'How many times', grid: {md: 'calc((100% / 2) - (30% / 2))'}
+						type: 'text', name: 'filler_count', multiLine: true, label: 'How many times'
 					}
 				]
 			},
 			{
-				settings: {
-					hide: this.state.filler_before_know_details != 'yes'
-				},
+				hide: this.state.filler_before_know_details != 'yes',
 				items: [
 					{
-						type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
+						type: 'text', name: 'filler_last_time', multiLine: true, label: 'Last time'
 					},
 					{
-						type: 'text', name: 'filler_last_time', multiLine: true, label: 'Last time', grid: {md: 'calc((100% / 3) - (30% / 3))'}
+						type: 'text', name: 'filler_volume', multiLine: true, label: 'Filler volume'
 					},
 					{
-						type: 'text', name: 'filler_volume', multiLine: true, label: 'Filler volume', grid: {md: 'calc((100% / 3) - (30% / 3))'}
-					},
-					{
-						type: 'text', name: 'filler_place_or_doctor', multiLine: true, label: 'Place / Doctor', grid: {md: 'calc((100% / 3) - (30% / 3))'}
+						type: 'text', name: 'filler_place_or_doctor', multiLine: true, label: 'Place / Doctor'
 					}
 				]
 			},
 			{
-				settings: {
-					hide: this.state.filler_before_know_details != 'no'
-				},
+				hide: this.state.filler_before_know_details != 'no',
 				items: [
 					{
-						type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
-					},
-					{
-						type: 'text', name: 'filler_count', multiLine: true, label: 'How many times', grid: {md: '70%'}
+						type: 'text', name: 'filler_count', multiLine: true, label: 'How many times'
 					}
 				]
 			},
 			{
-				settings: {
-					hide: this.state.filler_before_know_details != 'no'
-				},
+				hide: this.state.filler_before_know_details != 'no',
 				items: [
 					{
-						type: 'custom', element: <div>&nbsp;</div>, grid: {md: '30%'}
+						type: 'text', name: 'filler_last_time', multiLine: true, label: 'Last time'
 					},
 					{
-						type: 'text', name: 'filler_last_time', multiLine: true, label: 'Last time', grid: {md: 'calc((100% / 2) - (30% / 2))'}
-					},
-					{
-						type: 'text', name: 'filler_place_or_doctor', multiLine: true, label: 'Place / Doctor', grid: {md: 'calc((100% / 2) - (30% / 2))'}
+						type: 'text', name: 'filler_place_or_doctor', multiLine: true, label: 'Place / Doctor'
 					}
 				]
 			},
 			{
-				settings: {
-					hide: !this.state.ever_did_surgery_before_check
-				},
+				hide: !this.state.ever_did_surgery_before_check,
 				items: [
 					{type: 'custom', element: <div style={{height: '36px'}}></div>}
 				]
@@ -191,8 +170,8 @@ class LipsPage extends Component {
 				[
 					{
 						type: 'checkbox', name: `acknowledges[${k}]`, showClearButton: false, options: [
-						{id: 'accepted', name: `Topic ${k+1}`}
-					]
+							{id: 'accepted', name: `Topic ${k+1}`}
+						]
 					}
 				]
 			))
