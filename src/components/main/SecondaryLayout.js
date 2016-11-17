@@ -7,7 +7,7 @@ import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
-import {NavigationMenu, ActionAccountBox, ActionPowerSettingsNew, NavigationMoreVert} from 'material-ui/svg-icons';
+import {ActionHome, NavigationMenu, ActionAccountBox, ActionPowerSettingsNew, NavigationMoreVert} from 'material-ui/svg-icons';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import Drawer from 'material-ui/Drawer';
 import {Confirm, Alert, SideMenu} from 'react-semi-theme/widgets';
@@ -100,10 +100,11 @@ class SecondaryLayout extends Component {
                 </Drawer>
                 <Paper className="top-nav-wrap" zDepth={1}>
                     <Toolbar className="top-nav-bar">
-                        {<ToolbarGroup firstChild={true} style={{visibility: 'hidden'}}>
-                            <FlatButton className="icon-btn left-most" icon={<NavigationMenu />} onTouchTap={this.toggleMainMenu} />
-                            <IconButton iconClassName="muidocs-icon-custom-github" />
-                        </ToolbarGroup>}
+                        <ToolbarGroup firstChild={true}>
+                            {/*FlatButton className="icon-btn left-most" icon={<NavigationMenu />} onTouchTap={this.toggleMainMenu} />
+                            <IconButton iconClassName="muidocs-icon-custom-github"/>*/}
+                            <FlatButton className="icon-btn left-most" icon={<ActionHome />} onTouchTap={()=>this.context.router.push('/')} />
+                        </ToolbarGroup>
                         <ToolbarGroup>
                             <FlatButton className="icon-btn left-most" icon={lang.icon} onTouchTap={(event)=>this.setState({languages: Object.assign(this.state.languages, {openMenu: !this.state.languages.openMenu, anchorEl: event.currentTarget})})}/>
                             <Popover
