@@ -5,6 +5,23 @@ import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
+
+const
+	marginBottomStyle = {marginBottom: 24},
+	imgOptionGrid = {xs: '100%', sm: '50%', md: '20%'},
+	imgStyle = {width: '100%'},
+	optionGrid4 = {xs: '100%', sm: '50%', md: '25%'},
+	rowSpace = {type: 'space', height: '16px', noPadding: true, grid: {
+		xs: '100%', md: '0%'
+	}},
+	cbRowParam = {
+		separator: true,
+		style: {
+			paddingTop: 16,
+			paddingBottom: 16
+		}
+	};
+
 class BeastPage extends Component {
 	constructor(props, context) {
 		super(props, context);
@@ -45,16 +62,14 @@ class BeastPage extends Component {
 			],
 			[
 				{
-					type: 'radio', name: 'beast_surgery_history', showClearButton: false, options: [
-					{id: 'no', name: 'No, Never have breast surgery.'},
-					{id: 'yes', name: 'Yes, Ever did before.'}
+					type: 'radio', name: 'beast_surgery_history', horizontal: true, showClearButton: false, options: [
+					{id: 'no', name: 'No, Never have breast surgery.', grid: optionGrid4},
+					{id: 'yes', name: 'Yes, Ever did before.', grid: optionGrid4}
 				], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes'})
 				}
 			],
 			{
-				settings: {
-					hide: !this.state.ever_did_surgery_before_check
-				},
+				hide: !this.state.ever_did_surgery_before_check,
 				items: [
 					{
 						type: 'numeric', name: 'surgery_count_before', label: 'How many time'
@@ -62,9 +77,7 @@ class BeastPage extends Component {
 				]
 			},
 			{
-				settings: {
-					hide: !this.state.ever_did_surgery_before_check
-				},
+				hide: !this.state.ever_did_surgery_before_check,
 				items: [
 					{
 						type: 'text', name: 'surgery_type', label: 'Type', multiLine: true
@@ -72,9 +85,7 @@ class BeastPage extends Component {
 				]
 			},
 			{
-				settings: {
-					hide: !this.state.ever_did_surgery_before_check
-				},
+				hide: !this.state.ever_did_surgery_before_check,
 				items: [
 					{
 						type: 'text', name: 'size', label: 'Size'
@@ -85,9 +96,7 @@ class BeastPage extends Component {
 				]
 			},
 			{
-				settings: {
-					hide: !this.state.ever_did_surgery_before_check
-				},
+				hide: !this.state.ever_did_surgery_before_check,
 				items: [
 					{
 						type: 'text', name: 'place_or_doctor', label: 'Place / Doctor'
@@ -133,9 +142,7 @@ class BeastPage extends Component {
 				}
 			],
 			{
-				settings: {
-					hide: this.state.activities.indexOf('others')==-1
-				},
+				hide: this.state.activities.indexOf('others')==-1,
 				items: [
 					{
 						type: 'text', name: 'other_activity', hint: 'Please specify', grid: {md: '33%'}
@@ -145,18 +152,22 @@ class BeastPage extends Component {
 			[
 				{type: 'custom', element: <h3>Do you have any children</h3>}
 			],
-			[
-				{
-					type: 'radio', name: 'any_children', showClearButton: false, options: [
-						{id: 'no', name: 'No, I don\'t.'},
-						{id: 'yes', name: 'Yes, I have.'}
-					], onCheck: (v)=> this.setState({any_children_check: v=='yes'})
-				}
-			],
 			{
-				settings: {
-					hide: !this.state.any_children_check
+				style: {
+					paddingTop: 16,
+					paddingBottom: 16
 				},
+				items: [
+					{
+						type: 'radio', name: 'any_children', horizontal: true, showClearButton: false, options: [
+							{id: 'no', name: 'No, I don\'t.', grid: optionGrid4},
+							{id: 'yes', name: 'Yes, I have.', grid: optionGrid4}
+						], onCheck: (v)=> this.setState({any_children_check: v == 'yes'})
+					}
+				]
+			},
+			{
+				hide: !this.state.any_children_check,
 				items: [
 					{
 						type: 'numeric', name: 'child_age', label: 'Age of last child'
