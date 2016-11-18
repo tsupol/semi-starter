@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 //import {Grid, Row, Col} from 'react-flexbox-grid';
-import {PageHeading, Panel} from 'react-semi-theme/widgets';
+import {PageHeading, Panel, SemiHeader} from 'react-semi-theme/widgets';
 import {SemiGrid, Row, Col} from 'react-semi-theme/grid';
 import {SemiForm} from 'react-semi-theme/forms';
 import Divider from 'material-ui/Divider';
@@ -47,7 +47,7 @@ class HomePage extends Component {
 		let formTemplate = {
 			components: [
 				[
-					{type: 'custom', element: <h3>Personal Information</h3>}
+					{type: 'custom', element: <SemiHeader>Personal Information</SemiHeader>}
 				],
 				[
 					{
@@ -175,7 +175,7 @@ class HomePage extends Component {
 					}
 				],
 				[
-					{type: 'custom', element: <div><h3>Medical Information</h3><h4>Medical histories</h4></div>}
+					{type: 'custom', element: <div><SemiHeader>Medical Information</SemiHeader><SemiHeader style={{fontSize: 18}}>Medical histories</SemiHeader></div>}
 				],
 				...Array.from(Array(5), (v, k) => ([
 					{
