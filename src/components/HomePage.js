@@ -44,154 +44,142 @@ class HomePage extends Component {
 			face: Array.from(Array(6), (v, k)=>require(`../assets/img/face${k+1}.jpg`))
 		};
 
+		let optionGrid = {xs: '100%', sm: '50%', md: '25%'},
+			grid2 = {xs: '100%', md: '50%'},
+			grid3 = {xs: '100%', md: '33.33%'},
+			grid4 = {xs: '100%', md: '25%'},
+			grid5 = {xs: '100%', md: '20%'},
+			grid6 = {xs: '100%', md: '16.66%'},
+			uploadGrid = {xs: '100%', sm: '33.33%', md: '16.66%'},
+			imgStyle = {width: '100%'};
+
 		let formTemplate = {
 			components: [
 				[
-					{type: 'custom', element: <SemiHeader>Personal Information</SemiHeader>}
+					{type: 'custom', element: <SemiHeader>{this.context.translate('personal_information')}</SemiHeader>}
 				],
 				[
-					{
-						type: 'text', name: 'first_name', label: 'First Name'
-					},
-					{
-						type: 'text', name: 'last_name', label: 'Last Name'
-					},
-					{
-						type: 'text', name: 'nick_name', label: 'Nick Name'
-					}
+					{type: 'text', name: 'first_name', label: this.context.translate('first_name'), grid: grid3},
+					{type: 'text', name: 'last_name', label: this.context.translate('last_name'), grid: grid3},
+					{type: 'text', name: 'nick_name', label: this.context.translate('nick_name'), grid: grid3}
 				],
 				[
-					{
-						type: 'text', name: 'facebook', label: 'Facebook'
-					},
-					{
-						type: 'text', name: 'instagram', label: 'Instagram'
-					},
-					{
-						type: 'text', name: 'email', label: 'E-Mail'
-					}
+					{type: 'text', name: 'facebook', label: "Facebook", grid: grid3},
+					{type: 'text', name: 'instagram', label: 'Instagram', grid: grid3},
+					{type: 'text', name: 'email', label: 'E-Mail', grid: grid3}
 				],
 				[
-					{
-						type: 'text', name: 'youtube', label: 'Youtube Channel'
-					},
-					{
-						type: 'text', name: 'website', label: 'Website'
-					},
-					{
-						type: 'text', name: 'lineID', label: 'Line ID'
-					},
-					{
-						type: 'text', name: 'whatappID', label: 'WhatApp ID'
-					}
+					{type: 'text', name: 'youtube', label: "Youtube Channel", grid: grid4},
+					{type: 'text', name: 'website', label: 'Website', grid: grid4},
+					{type: 'text', name: 'lineID', label: 'Line ID', grid: grid4},
+					{type: 'text', name: 'whatappID', label: 'WhatApp ID', grid: grid4}
 				],
 				[
-					{
-						type: 'numeric', name: 'phone', label: 'Phone'
-					},
-					{
-						type: 'numeric', name: 'mobile', label: 'Mobile'
-					}
+					{type: 'numeric', name: 'phone', label: this.context.translate('phone'), grid: grid2},
+					{type: 'numeric', name: 'mobile', label: this.context.translate('mobile'), grid: grid2}
 				],
 				[
-					{
-						type: 'text', name: 'job', label: 'Job', grid: {
-						md: '50%'
-					}
-					}
+					{type: 'text', name: 'job', label: this.context.translate('job'), grid: grid2}
 				],
 				[
 					{
 						type: 'custom', element: <div style={{height: 72}}></div>
 					}
 				],
-				[
-					{
-						type: 'custom', element: <label>Interested in</label>, grid: {
-							md: '30%'
-						}, style: {
-							paddingTop: 16,
-							paddingBottom: 16
-						}
-					},
-					{
-						type: 'checkbox', name: 'interested_in', horizontal: true, showClearButton: false, options: [
-							{id: 'eye', name: 'Eye'},
-							{id: 'nose', name: 'Nose'},
-							{id: 'breast', name: 'Breast'},
-							{id: 'lip', name: 'Lip'},
-							{id: 'hair', name: 'Hair'},
-							{id: 'bags_under_the_eyes', name: 'Bags under the eyes'},
-						], grid: {
-							md: '100%'
-						}, style: {
-							paddingTop: 16,
-							paddingBottom: 16
-						}
-					}
-				],
-				[
-					{
-						type: 'checkbox', name: 'interested_in_liposuction_check', showClearButton: false, options: [
-							{id: 'liposuction', name: 'Liposuction'}
-						], grid: {
-							md: '20%'
-						}, onCheck: (v)=>{this.setState({interested_in_liposuction: v.length>0})}
-					},
-					{
-						type: 'text', name: 'interested_in_liposuction', grid: {
-							md: '80%'
-						},
-						hide: !this.state.interested_in_liposuction
-					}
-				],
-
 				{
-					hide: !this.state.interested_in_liposuction,
+					separator: true,
 					items: [
 						{
-							type: 'custom', element: <div style={{height: 36}}></div>
+							type: 'label', label: this.context.translate('interested_in'), grid: {
+								md: '30%'
+							}, style: {
+								paddingTop: 16,
+								paddingBottom: 16
+							}
+						},
+						{
+							type: 'checkbox', name: 'interested_in', horizontal: true, showClearButton: false, options: [
+								{id: 'eye', name: 'Eye', grid: grid6},
+								{id: 'nose', name: 'Nose', grid: grid6},
+								{id: 'breast', name: 'Breast', grid: grid6},
+								{id: 'lip', name: 'Lip', grid: grid6},
+								{id: 'hair', name: 'Hair', grid: grid6},
+								{id: 'bags_under_the_eyes', name: 'Bags under the eyes', grid: grid6},
+							], grid: {
+								md: '100%'
+							}
+						}
+					]
+				},
+				{
+					separator: true,
+					style: {
+						paddingTop: 16,
+						paddingBottom: 16
+					},
+					items: [
+						{
+							type: 'checkbox', name: 'interested_in_liposuction_check', showClearButton: false, options: [
+								{id: 'liposuction', name: 'Liposuction', grid: grid6}
+							], grid: {
+								md: '20%'
+							}, onCheck: (v)=>{this.setState({interested_in_liposuction: v.length>0})}
+						},
+						{
+							type: 'text', name: 'interested_in_liposuction', grid: {
+								md: '80%'
+							},
+							hide: !this.state.interested_in_liposuction,
+							hint: 'Please specify'
+						}
+					]
+				},
+				{
+					separator: true,
+					style: {
+						paddingTop: 16,
+						paddingBottom: 16
+					},
+					items: [
+						{
+							type: 'checkbox', name: 'interested_in_other_check', showClearButton: false, options: [
+								{id: 'other', name: 'Other', grid: grid6}
+							], grid: {
+								md: '20%'
+							}, onCheck: (v)=>{this.setState({interested_in_other: v.length>0})}
+						},
+						{
+							type: 'text', name: 'interested_in_other', multiLine: true, grid: {
+								md: '80%'
+							},
+							hide: !this.state.interested_in_other,
+							hint: 'Please specify'
 						}
 					]
 				},
 				[
 					{
-						type: 'checkbox', name: 'interested_in_other_check', showClearButton: false, options: [
-							{id: 'other', name: 'Other'}
-						], grid: {
-							md: '20%'
-						}, onCheck: (v)=>{this.setState({interested_in_other: v.length>0})}
-					},
-					{
-						type: 'text', name: 'interested_in_other', multiLine: true, grid: {
-							md: '80%'
-						},
-						hide: !this.state.interested_in_other
-					}
-				],
-				[
-					{
 						type: 'custom', element: <div style={{height: 72}}></div>
 					}
 				],
 				[
-					{type: 'custom', element: <div><SemiHeader>Medical Information</SemiHeader><SemiHeader style={{fontSize: 18}}>Medical histories</SemiHeader></div>}
+					{type: 'custom', element: <div><SemiHeader>{this.context.translate('medical_information')}</SemiHeader><SemiHeader style={{fontSize: 18}}>{this.context.translate('medical_histories')}</SemiHeader></div>}
 				],
 				...Array.from(Array(5), (v, k) => ([
 					{
 						type: 'label', label: k+1, style: {float: 'right'}
 					},
 					{
-						type: 'text', multiLine: true, label: 'What', name: `medical_histories[${k}][what]`
+						type: 'text', multiLine: true, label: this.context.translate('medical_histories:what'), name: `medical_histories[${k}][what]`
 					},
 					{
-						type: 'text', multiLine: true, label: 'Where', name: `medical_histories[${k}][where]`
+						type: 'text', multiLine: true, label: this.context.translate('medical_histories:where'), name: `medical_histories[${k}][where]`
 					},
 					{
-						type: 'text', multiLine: true, label: 'Doctor', name: `medical_histories[${k}][doctor]`
+						type: 'text', multiLine: true, label: this.context.translate('medical_histories:doctor'), name: `medical_histories[${k}][doctor]`
 					},
 					{
-						type: 'text', multiLine: true, label: 'Duration', name: `medical_histories[${k}][duration]`
+						type: 'text', multiLine: true, label: this.context.translate('medical_histories:duration'), name: `medical_histories[${k}][duration]`
 					}
 				])),
 				[
@@ -303,6 +291,7 @@ class HomePage extends Component {
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 HomePage.contextTypes = {
 	ajax: PropTypes.object,
-	dialog: PropTypes.object
+	dialog: PropTypes.object,
+	translate: PropTypes.func
 };
 export default HomePage;
