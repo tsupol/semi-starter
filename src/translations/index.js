@@ -28,7 +28,8 @@ export default {
             'medical_histories:where': 'Where you did',
             'medical_histories:doctor': 'Doctor',
             'medical_histories:duration': 'Duration',
-            'medical_information': 'Medical Information'
+            'medical_information': 'Medical Information',
+            'upload_image': 'Upload Image'
         }
     },
     th: {
@@ -60,7 +61,8 @@ export default {
             'medical_histories:where': 'ที่ไหน',
             'medical_histories:doctor': 'แพทย์',
             'medical_histories:duration': 'ระยะเวลา',
-            'medical_information': 'ข้อมูลทางการแพทย์'
+            'medical_information': 'ข้อมูลทางการแพทย์',
+            'upload_image': 'อัพโหลดรูปภาพ'
         }
     }
 }

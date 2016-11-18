@@ -13,6 +13,7 @@ const
 	grid3 = {xs: '100%', md: '33.33%'},
 	grid4 = {xs: '100%', md: '25%'},
 	grid5 = {xs: '100%', md: '20%'},
+	grid1 = {xs: '100%'},
 
 	// todo: read here!
 	// Note: all constants below are used in every horizontal checkboxes row
@@ -196,9 +197,9 @@ class HairPage extends Component {
 			],
 			{
 				items: [
-					{type: 'radio', name: 'physical_exam_gender', showClearButton: false, options: [
-						{id: 'men', name: 'Men', grid: grid4},
-						{id: 'women', name: 'Women', grid: grid4}
+					{type: 'radio', name: 'physical_exam_gender', horizontal: true, showClearButton: false, options: [
+						{id: 'men', name: 'Men', grid: grid1},
+						{id: 'women', name: 'Women', grid: grid1}
 					], onCheck: (v)=>this.setState({physical_exam_gender: v})}
 				]
 			},

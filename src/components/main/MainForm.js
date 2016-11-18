@@ -7,6 +7,16 @@ import {SemiForm, FormGenerator} from 'react-semi-theme/forms';
 import {SemiGrid, Row, Col} from 'react-semi-theme/grid';
 import Divider from 'material-ui/Divider';
 
+const
+	optionGrid = {xs: '100%', sm: '50%', md: '25%'},
+	grid2 = {xs: '100%', md: '50%'},
+	grid3 = {xs: '100%', md: '33.33%'},
+	grid4 = {xs: '100%', md: '25%'},
+	grid5 = {xs: '100%', md: '20%'},
+	uploadGrid = {xs: '100%', sm: '33.33%', md: '16.66%'},
+	marginBottomStyle = {marginBottom: 24},
+	imgStyle = {width: '100%'};
+
 class MainForm extends Component {
 	constructor(props, context) {
 		super(props, context);
@@ -38,14 +48,6 @@ class MainForm extends Component {
 		}, this.props.values);
 		let data = Object.assign({}, this.props.data);
 		let images = this.props.images || [];
-
-		let optionGrid = {xs: '100%', sm: '50%', md: '25%'},
-			grid2 = {xs: '100%', md: '50%'},
-			grid3 = {xs: '100%', md: '33.33%'},
-			grid4 = {xs: '100%', md: '25%'},
-			grid5 = {xs: '100%', md: '20%'},
-			uploadGrid = {xs: '100%', sm: '33.33%', md: '16.66%'},
-			imgStyle = {width: '100%'};
 
 		let mainForm = {
 			components: [
@@ -101,7 +103,7 @@ class MainForm extends Component {
 					{type: 'text', multiLine: true, label: 'Note', name: 'note', grid: grid2}
 				],
 				[
-					{type: 'custom', element: <div style={{height: 72}}></div>}
+					{type: 'custom', element: <SemiHeader line="solid" style={marginBottomStyle}>{this.context.translate('upload_image')}</SemiHeader>}
 				],
 				[
 					...images.map((image, k)=> (

@@ -8,6 +8,16 @@ import {SemiForm} from 'react-semi-theme/forms';
 import Divider from 'material-ui/Divider';
 import RaisedButton from 'material-ui/RaisedButton';
 
+const
+	grid1 = {xs: '100%'},
+	grid2 = {xs: '100%', sm: '50%'},
+	grid3 = {xs: '100%', sm: '33.33%'},
+	grid4 = {xs: '100%', sm: '50%', md: '25%'},
+	grid6 = {xs: '100%', sm: '50%', md: '16.66%'},
+	grid7 = {xs: '100%', sm: '50%', md: '14.28%'},
+	uploadGrid = {xs: '100%', sm: '33.33%', md: '16.66%'},
+	marginBottomStyle = {marginBottom: 24};
+
 class HomePage extends Component {
 	constructor(props, context) {
 		super(props, context);
@@ -44,19 +54,10 @@ class HomePage extends Component {
 			face: Array.from(Array(6), (v, k)=>require(`../assets/img/face${k+1}.jpg`))
 		};
 
-		let optionGrid = {xs: '100%', sm: '50%', md: '25%'},
-			grid2 = {xs: '100%', md: '50%'},
-			grid3 = {xs: '100%', md: '33.33%'},
-			grid4 = {xs: '100%', md: '25%'},
-			grid5 = {xs: '100%', md: '20%'},
-			grid6 = {xs: '100%', md: '16.66%'},
-			uploadGrid = {xs: '100%', sm: '33.33%', md: '16.66%'},
-			imgStyle = {width: '100%'};
-
 		let formTemplate = {
 			components: [
 				[
-					{type: 'custom', element: <SemiHeader>{this.context.translate('personal_information')}</SemiHeader>}
+					{type: 'custom', element: <SemiHeader size={2} style={{marginTop: 16}}>{this.context.translate('personal_information')}</SemiHeader>}
 				],
 				[
 					{type: 'text', name: 'first_name', label: this.context.translate('first_name'), grid: grid3},
@@ -75,161 +76,107 @@ class HomePage extends Component {
 					{type: 'text', name: 'whatappID', label: 'WhatApp ID', grid: grid4}
 				],
 				[
-					{type: 'numeric', name: 'phone', label: this.context.translate('phone'), grid: grid2},
-					{type: 'numeric', name: 'mobile', label: this.context.translate('mobile'), grid: grid2}
+					{type: 'numeric', name: 'phone', label: this.context.translate('phone'), grid: grid3},
+					{type: 'numeric', name: 'mobile', label: this.context.translate('mobile'), grid: grid3},
+					{type: 'text', name: 'job', label: this.context.translate('job'), grid: grid3}
 				],
 				[
-					{type: 'text', name: 'job', label: this.context.translate('job'), grid: grid2}
-				],
-				[
-					{
-						type: 'custom', element: <div style={{height: 72}}></div>
-					}
+					{type: 'custom', element: <SemiHeader line="solid" style={marginBottomStyle}>{this.context.translate('interested_in')}</SemiHeader>}
 				],
 				{
-					separator: true,
 					items: [
 						{
-							type: 'label', label: this.context.translate('interested_in'), grid: {
-								md: '30%'
-							}, style: {
-								paddingTop: 16,
-								paddingBottom: 16
-							}
-						},
-						{
 							type: 'checkbox', name: 'interested_in', horizontal: true, showClearButton: false, options: [
-								{id: 'eye', name: 'Eye', grid: grid6},
-								{id: 'nose', name: 'Nose', grid: grid6},
-								{id: 'breast', name: 'Breast', grid: grid6},
-								{id: 'lip', name: 'Lip', grid: grid6},
-								{id: 'hair', name: 'Hair', grid: grid6},
-								{id: 'bags_under_the_eyes', name: 'Bags under the eyes', grid: grid6},
+								{id: 'eye', name: 'Eye', grid: grid7},
+								{id: 'nose', name: 'Nose', grid: grid7},
+								{id: 'breast', name: 'Breast', grid: grid7},
+								{id: 'lip', name: 'Lip', grid: grid7},
+								{id: 'hair', name: 'Hair', grid: grid7},
+								{id: 'bags_under_the_eyes', name: 'Bags under the eyes', grid: {xs: '100%', sm: '50%', md: '28.6%'}},
+								{id: 'interested_in_liposuction_check', name: 'Liposuction', grid: grid1, belowInput: {
+									type: 'text', name: 'interested_in_liposuction', hint: 'Please specify'
+								}},
+								{id: 'interested_in_other_check', name: 'Other', grid: grid1, belowInput: {
+									type: 'text', name: 'interested_in_other_check', hint: 'Please specify'
+								}}
 							], grid: {
 								md: '100%'
 							}
 						}
 					]
 				},
-				{
-					separator: true,
-					style: {
-						paddingTop: 16,
-						paddingBottom: 16
-					},
-					items: [
-						{
-							type: 'checkbox', name: 'interested_in_liposuction_check', showClearButton: false, options: [
-								{id: 'liposuction', name: 'Liposuction', grid: grid6}
-							], grid: {
-								md: '20%'
-							}, onCheck: (v)=>{this.setState({interested_in_liposuction: v.length>0})}
-						},
-						{
-							type: 'text', name: 'interested_in_liposuction', grid: {
-								md: '80%'
-							},
-							hide: !this.state.interested_in_liposuction,
-							hint: 'Please specify'
-						}
-					]
-				},
-				{
-					separator: true,
-					style: {
-						paddingTop: 16,
-						paddingBottom: 16
-					},
-					items: [
-						{
-							type: 'checkbox', name: 'interested_in_other_check', showClearButton: false, options: [
-								{id: 'other', name: 'Other', grid: grid6}
-							], grid: {
-								md: '20%'
-							}, onCheck: (v)=>{this.setState({interested_in_other: v.length>0})}
-						},
-						{
-							type: 'text', name: 'interested_in_other', multiLine: true, grid: {
-								md: '80%'
-							},
-							hide: !this.state.interested_in_other,
-							hint: 'Please specify'
-						}
-					]
-				},
 				[
-					{
-						type: 'custom', element: <div style={{height: 72}}></div>
-					}
-				],
-				[
-					{type: 'custom', element: <div><SemiHeader>{this.context.translate('medical_information')}</SemiHeader><SemiHeader style={{fontSize: 18}}>{this.context.translate('medical_histories')}</SemiHeader></div>}
+					{type: 'custom', element: <div>
+						<SemiHeader size={2}>{this.context.translate('medical_information')}</SemiHeader>
+						<SemiHeader line="solid" style={{marginTop: 8}}>{this.context.translate('medical_histories')}</SemiHeader>
+					</div>}
 				],
 				...Array.from(Array(5), (v, k) => ([
+					{type: 'label', label:`${k+1}.`, grid: {
+						xs: '100%', smAlign: 'right', sm: '64px'
+					}},
 					{
-						type: 'label', label: k+1, style: {float: 'right'}
+						type: 'text', multiLine: true, label: this.context.translate('medical_histories:what'), name: `medical_histories[${k}][what]`, grid: {
+							xs: '100%', sm: `calc(${100/4}% - ${64/4}px)`
+						}
 					},
 					{
-						type: 'text', multiLine: true, label: this.context.translate('medical_histories:what'), name: `medical_histories[${k}][what]`
+						type: 'text', multiLine: true, label: this.context.translate('medical_histories:where'), name: `medical_histories[${k}][where]`, grid: {
+							xs: '100%', sm: `calc(${100/4}% - ${64/4}px)`
+						}
 					},
 					{
-						type: 'text', multiLine: true, label: this.context.translate('medical_histories:where'), name: `medical_histories[${k}][where]`
+						type: 'text', multiLine: true, label: this.context.translate('medical_histories:doctor'), name: `medical_histories[${k}][doctor]`, grid: {
+							xs: '100%', sm: `calc(${100/4}% - ${64/4}px)`
+						}
 					},
 					{
-						type: 'text', multiLine: true, label: this.context.translate('medical_histories:doctor'), name: `medical_histories[${k}][doctor]`
-					},
-					{
-						type: 'text', multiLine: true, label: this.context.translate('medical_histories:duration'), name: `medical_histories[${k}][duration]`
+						type: 'text', multiLine: true, label: this.context.translate('medical_histories:duration'), name: `medical_histories[${k}][duration]`, grid: {
+							xs: '100%', sm: `calc(${100/4}% - ${64/4}px)`
+						}
 					}
 				])),
 				[
 					{
-						type: 'text', multiLine: true, label: 'Congenital Disease', name: 'congenital_disease'
+						type: 'text', multiLine: true, label: 'Congenital Disease', name: 'congenital_disease', grid: grid3
 					},
 					{
-						type: 'text', multiLine: true, label: 'Current Drug', name: 'current_drug'
+						type: 'text', multiLine: true, label: 'Current Drug', name: 'current_drug', grid: grid3
 					},
 					{
-						type: 'text', multiLine: true, label: 'Drug Symptom', name: 'drug_symptom'
+						type: 'text', multiLine: true, label: 'Drug Symptom', name: 'drug_symptom', grid: grid3
 					}
 				],
 				[
 					{
-						type: 'text', multiLine: true, label: 'Need', name: 'need', grid: {
-						md: '50%'
-					}
+						type: 'text', multiLine: true, label: 'Need', name: 'need', grid: grid2
+					},
+					{
+						type: 'text', multiLine: true, label: 'Note', name: 'note', grid: grid2
+
 					}
 				],
 				[
-					{
-						type: 'text', multiLine: true, label: 'Note', name: 'note', grid: {
-						md: '50%'
-					}
-					}
-				],
-				[
-					{
-						type: 'custom', element: <div style={{height: 72}}></div>
-					}
+					{type: 'custom', element: <SemiHeader line="solid" style={marginBottomStyle}>{this.context.translate('upload_image')}</SemiHeader>}
 				],
 				[
 					...Array.from(Array(6), (v, k) => (
 					{
-						type: 'uploadbox', name: `files[face][${k}]`, thumbnail, example: images.face[k]
+						type: 'uploadbox', name: `files[face][${k}]`, thumbnail, example: images.face[k], grid: uploadGrid
 					}
 					))
 				],
 				[
 					...Array.from(Array(6), (v, k) => (
 					{
-						type: 'uploadbox', name: `files[body][${k}]`, thumbnail, example
+						type: 'uploadbox', name: `files[body][${k}]`, thumbnail, example, grid: uploadGrid
 					}
 					))
 				],
 				[
 					...Array.from(Array(6), (v, k) => (
 					{
-						type: 'uploadbox', name: `files[normal][${k}]`, thumbnail, example
+						type: 'uploadbox', name: `files[normal][${k}]`, thumbnail, example, grid: uploadGrid
 					}
 					))
 				],
@@ -252,14 +199,14 @@ class HomePage extends Component {
 						type: 'custom', element: <div style={{height: 36}}></div>
 					}
 				],
-				[
-					{
-						type: 'custom', element: <div style={{height: 36}}></div>, grid: {md: '43.5%'}
-					},
-					{
-						type: 'checkbox', name: 'agreement', options: [{id: 'accepted', name: 'Accepted'}], required: true, showClearButton: false
-					}
-				]
+				{
+					center: 'xs',
+					items: [
+						{type: 'checkbox', name: 'agreement', required: true, showClearButton: false, options: [{id: 'accepted', name: 'Agree with term and conditions.'}],  grid: {
+							xs: '100%', sm: '303px'
+						}}
+					]
+				}
 			]
 		};
 		return (
