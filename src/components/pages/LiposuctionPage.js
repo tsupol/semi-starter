@@ -7,7 +7,8 @@ import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
 
 const
-	optionGrid5 = {xs: '100%', sm: '50%', md: '20%'}, // for horizontal with 5 radio buttons
+	optionGrid5 = {xs: '100%', sm: '33.33%', md: '20%', xl: '15%'}, // for horizontal with 5 radio buttons
+	grid3 = {xs: '100%', md: '33.33%'},
 	imgOptionGrid = {xs: '100%', sm: '50%', md: '20%'},
 
 // todo: change image dimension according to real image here...
@@ -49,64 +50,67 @@ class LiposuctionPage extends Component {
 		let data = {};
 		let components = [
 			[
-				{type: 'custom', element: <SemiHeader>ตำแหน่งที่ต้องการดูดไขมัน</SemiHeader>}
+				{type: 'custom', element: <SemiHeader style={{marginBottom: 24}}>ตำแหน่งที่ต้องการดูดไขมัน</SemiHeader>}
 			],
 			[
 				{
 					type: 'radio', name: 'filler_before_know_details', horizontal: true, showClearButton: false, options: [
-					{id: 'หน้า', name: 'หน้า'},
-					{id: 'ขา', name: 'ขา'},
-					{id: 'ท้อง', name: 'ท้อง'},
-					{id: 'แขน', name: 'แขน'},
-					{id: 'หลัง', name: 'หลัง'}
+					{id: 'หน้า', name: 'หน้า', grid: optionGrid5},
+					{id: 'ขา', name: 'ขา', grid: optionGrid5},
+					{id: 'ท้อง', name: 'ท้อง', grid: optionGrid5},
+					{id: 'แขน', name: 'แขน', grid: optionGrid5},
+					{id: 'หลัง', name: 'หลัง', grid: optionGrid5}
 				]
 				}
 			],
 			[
-				{type: 'custom', element: <SemiHeader>ปัญหา/ข้อจำกัด/ความรุนแรง</SemiHeader>}
+				{type: 'custom', element: <SemiHeader style={{marginBottom: 24}}>ปัญหา/ข้อจำกัด/ความรุนแรง</SemiHeader>}
 			],
 			...Array.from(Array(9), (v, k)=> (
-				[
-					{type: 'custom', element: <div>Topic {k+1}</div>, grid: {md: '30%'}},
+			{
+				separator: true,
+				style: { paddingBottom: 16},
+				items: [
+					{type: 'label', style: {paddingTop: 3, marginTop: 8, marginBottom: 8, fontWeight: 'normal'}, label:`${k+1}. Topic ${k+1}`, grid: {xs: '100%'}},
 					{
-						type: 'radio', name: `issues[${k}]`, horizontal: true, showClearButton: false, grid: {md: '70%'}, options: [
-						{id: 'น้อยมาก', name: 'น้อยมาก'},
-						{id: 'น้อย', name: 'น้อย'},
-						{id: 'ปานกลาง', name: 'ปานกลาง'},
-						{id: 'รุนแรง', name: 'รุนแรง'},
-						{id: 'รุนแรงมาก', name: 'รุนแรงมาก'}
+						type: 'radio', name: `issues[${k}]`, horizontal: true, showClearButton: false, grid: {xs: '100%'}, options: [
+						{id: 'น้อยมาก', name: 'น้อยมาก', grid: optionGrid5},
+						{id: 'น้อย', name: 'น้อย', grid: optionGrid5},
+						{id: 'ปานกลาง', name: 'ปานกลาง', grid: optionGrid5},
+						{id: 'รุนแรง', name: 'รุนแรง', grid: optionGrid5},
+						{id: 'รุนแรงมาก', name: 'รุนแรงมาก', grid: optionGrid5}
 					]
 					}
 				]
+			}
 			)),
 			[
+				{type: 'custom', element: <SemiHeader>สัดส่วนร่างกาย</SemiHeader>}
+			],
+			[
 				{
-					type: 'text', name: 'height', label: 'ส่วนสูง'
+					type: 'text', name: 'height', label: 'ส่วนสูง', grid: grid3
 				},
 				{
-					type: 'text', name: 'weight', label: 'น้ำหนัก'
+					type: 'text', name: 'weight', label: 'น้ำหนัก', grid: grid3
 				},
 				{
-					type: 'text', name: 'bmi', label: 'BMI'
+					type: 'text', name: 'bmi', label: 'BMI', grid: grid3
 				}
 			],
 			[
-				{type: 'custom', element: <div style={{height: '36px'}}></div>}
+				{type: 'custom', element: <SemiHeader style={{marginBottom: 24}}>ความสวยงามของรูปหน้าขณะนี้ (ตามความพึงพอใจ)</SemiHeader>}
 			],
 			[
-				{type: 'custom', element: <div>ความสวยงามของรูปหน้าขณะนี้<br/>(ตามความพึงพอใจ)</div>, grid: {md: '30%'}},
 				{
-					type: 'radio', name: `please`, horizontal: true, showClearButton: false, grid: {md: '70%'}, options: [
-					{id: 'น้อยมาก', name: 'น้อยมาก'},
-					{id: 'น้อย', name: 'น้อย'},
-					{id: 'ปานกลาง', name: 'ปานกลาง'},
-					{id: 'รุนแรง', name: 'รุนแรง'},
-					{id: 'รุนแรงมาก', name: 'รุนแรงมาก'}
+					type: 'radio', name: `please`, horizontal: true, showClearButton: false, options: [
+					{id: 'น้อยมาก', name: 'น้อยมาก', grid: optionGrid5},
+					{id: 'น้อย', name: 'น้อย', grid: optionGrid5},
+					{id: 'ปานกลาง', name: 'ปานกลาง', grid: optionGrid5},
+					{id: 'รุนแรง', name: 'รุนแรง', grid: optionGrid5},
+					{id: 'รุนแรงมาก', name: 'รุนแรงมาก', grid: optionGrid5}
 				]
 				}
-			],
-			[
-				{type: 'custom', element: <div style={{height: '36px'}}></div>}
 			],
 			[
 				{type: 'custom', element: <SemiHeader>บริเวณส่วนใดบนใบหน้า ที่ต้องการดูดไขมันและความต้องการดูดไขมันในบริเวณนั้นเพราะ</SemiHeader>}
@@ -120,9 +124,6 @@ class LiposuctionPage extends Component {
 				}},
 			])),
 			[
-				{type: 'custom', element: <div style={{height: '36px'}}></div>}
-			],
-			[
 				{type: 'custom', element: <SemiHeader>เหตุผลหลักที่ต้องการดูดไขมัน บริเวณใบหน้า</SemiHeader>}
 			],
 			...Array.from(Array(6), (v, k) => ([
@@ -134,13 +135,7 @@ class LiposuctionPage extends Component {
 				}},
 			])),
 			[
-				{type: 'custom', element: <div style={{height: '36px'}}></div>}
-			],
-			[
 				{type: 'custom', element: <SemiHeader>ข้อซักถามก่อนทำ</SemiHeader>}
-			],
-			[
-				{type: 'custom', element: <div style={{height: '18px'}}></div>}
 			],
 			...Array.from(Array(11), (v, k)=>({
 				separator: true,
@@ -175,7 +170,7 @@ class LiposuctionPage extends Component {
 				{
 					type: 'text', name: 'adviser', label: 'บุคคลที่ท่านปรึกษาและแสดงความคิดเห้น ทั้งก่อนและหลังผ่าตัด'
 				}
-			]
+			],[{type: 'space'}]
 		];
 		let formTemplate = {components};
 		return (

@@ -8,6 +8,9 @@ import MainForm from '../main/MainForm';
 
 const
 	marginBottomStyle = {marginBottom: 24},
+	grid3 = {xs: '100%', md: '33.33%'},
+	grid2 = {xs: '100%', md: '50%'},
+	grid1 = {xs: '100%'},
 	imgOptionGrid = {xs: '100%', sm: '50%', md: '20%'},
 	imgStyle = {width: '100%'},
 	optionGrid4 = {xs: '100%', sm: '50%', md: '25%'},
@@ -60,10 +63,6 @@ class CheekBulgePage extends Component {
 				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Information</SemiHeader>}
 			],
 			{
-				style: {
-					paddingTop: 16,
-					paddingBottom: 16
-				},
 				items: [
 					{
 						type: 'radio', name: 'surgery_history', horizontal: true, showClearButton: false, options: [
@@ -75,14 +74,15 @@ class CheekBulgePage extends Component {
 			},
 			{
 				hide: !this.state.ever_did_surgery_before_check,
-				style: {
-					paddingTop: 16,
-					paddingBottom: 16
-				},
 				items: [
-					{type: 'label', style: {paddingTop: 3, fontWeight: 'normal'}, label: 'Know the detail', grid: {
-						xs: '100%', md: '50%'
-					}},
+					{type: 'custom', element: <div>Know the detail?</div>, style: {
+						marginTop: 16, marginBottom: 16,
+					}}
+				]
+			},
+			{
+				hide: !this.state.ever_did_surgery_before_check,
+				items: [
 					{
 						type: 'radio', name: 'before_know_details', horizontal: true, showClearButton: false, options: [
 							{id: 'yes', name: 'Yes', grid: optionGrid4},
@@ -95,24 +95,19 @@ class CheekBulgePage extends Component {
 				hide: this.state.before_know_details != 'yes',
 				items: [
 					{
-						type: 'text', name: 'brand', multiLine: true, label: 'Brand'
+						type: 'text', name: 'brand', multiLine: true, label: 'Brand', grid: grid2
 					},
 					{
-						type: 'text', name: 'count', multiLine: true, label: 'How many times'
-					}
-				]
-			},
-			{
-				hide: this.state.before_know_details != 'yes',
-				items: [
-					{
-						type: 'text', name: 'last_time', multiLine: true, label: 'Last time'
+						type: 'text', name: 'count', multiLine: true, label: 'How many times', grid: grid2
 					},
 					{
-						type: 'text', name: 'volume', multiLine: true, label: 'Volume'
+						type: 'text', name: 'last_time', multiLine: true, label: 'Last time', grid: grid3
 					},
 					{
-						type: 'text', name: 'place_or_doctor', multiLine: true, label: 'Place / Doctor'
+						type: 'text', name: 'volume', multiLine: true, label: 'Volume', grid: grid3
+					},
+					{
+						type: 'text', name: 'place_or_doctor', multiLine: true, label: 'Place / Doctor', grid: grid3
 					}
 				]
 			},
@@ -120,21 +115,19 @@ class CheekBulgePage extends Component {
 				hide: this.state.before_know_details != 'no',
 				items: [
 					{
-						type: 'text', name: 'count', multiLine: true, label: 'How many times'
-					}
-				]
-			},
-			{
-				hide: this.state.before_know_details != 'no',
-				items: [
-					{
-						type: 'text', name: 'last_time', multiLine: true, label: 'Last time'
+						type: 'text', name: 'count', multiLine: true, label: 'How many times', grid: grid2
 					},
 					{
-						type: 'text', name: 'place_or_doctor', multiLine: true, label: 'Place / Doctor'
+						type: 'text', name: 'last_time', multiLine: true, label: 'Last time', grid: grid2
+					},
+					{
+						type: 'text', name: 'volume', multiLine: true, label: 'Volume', grid: grid2
+					},
+					{
+						type: 'text', name: 'place_or_doctor', multiLine: true, label: 'Place / Doctor', grid: grid2
 					}
 				]
-			}
+			},[{type: 'space'}]
 		];
 		let formTemplate = {components};
 		return (

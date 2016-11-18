@@ -27,7 +27,7 @@ const
 	labelStyle = {paddingTop: 3, fontWeight: 'normal'},
 
 	// Because this form has no more than 5 radio buttons
-	optionGrid5 = {xs: '100%', sm: '50%', md: '20%'},
+	optionGrid5 = {xs: '100%', sm: '25%', md: '20%'},
 
 	// For space between topic and checkboxes when `md`
 	rowSpace = {type: 'space', height: '16px', noPadding: true, grid: {
@@ -304,7 +304,7 @@ class HairPage extends Component {
 						{id: 'low', name: 'Low', grid: optionGrid5}
 					]}
 				]
-			}
+			},[{type: 'space'}]
 		];
 		let formTemplate = {components};
 		return (

@@ -8,6 +8,8 @@ import MainForm from '../main/MainForm';
 
 const
 	marginBottomStyle = {marginBottom: 24},
+	grid2 = {xs: '100%', md: '50%'},
+	grid1 = {xs: '100%'},
 	imgOptionGrid = {xs: '100%', sm: '50%', md: '20%'},
 	imgStyle = {width: '100%'},
 	optionGrid4 = {xs: '100%', sm: '50%', md: '25%'},
@@ -59,10 +61,6 @@ class ChinPage extends Component {
 				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Information</SemiHeader>}
 			],
 			{
-				style: {
-					paddingTop: 16,
-					paddingBottom: 16
-				},
 				items: [
 					{
 						type: 'radio', name: 'chin_surgery_history', horizontal: true, showClearButton: false, options: [
@@ -76,29 +74,19 @@ class ChinPage extends Component {
 				hide: !this.state.ever_did_surgery_before_check,
 				items: [
 					{
-						type: 'numeric', name: 'surgery_count_before', label: 'How many time'
-					}
-				]
-			},
-			{
-				hide: !this.state.ever_did_surgery_before_check,
-				items: [
-					{
-						type: 'text', name: 'surgery_type', label: 'Type', multiLine: true
-					}
-				]
-			},
-			{
-				hide: !this.state.ever_did_surgery_before_check,
-				items: [
-					{
-						type: 'text', name: 'place_or_doctor', label: 'Place / Doctor'
+						type: 'numeric', name: 'surgery_count_before', label: 'How many time', grid: grid1
 					},
 					{
-						type: 'text', name: 'duration', label: 'Duration'
+						type: 'text', name: 'surgery_type', label: 'Type', multiLine: true, grid: grid1
+					},
+					{
+						type: 'text', name: 'place_or_doctor', label: 'Place / Doctor', grid: grid2
+					},
+					{
+						type: 'text', name: 'duration', label: 'Duration', grid: grid2
 					}
 				]
-			}
+			},[{type: 'space'}]
 		];
 		let formTemplate = {components};
 		return (

@@ -12,6 +12,16 @@ const
 	imgStyle = {width: '100%'},
 	optionGrid4 = {xs: '100%', sm: '50%', md: '25%'},
 	optionGrid6 = {xs: '100%', sm: '50%', md: '33%'},
+
+	// 50/50 proportion (Nose/Personal Condition)
+	labelGrid = {xs: '100%', md: '50%'},
+	radioGrid = {xs: '100%', md: '50%'},
+	rightGrid3 = {xs: '100%', sm: '33.33%', md: '25%'},
+
+	hiddenTextGrid = {xs: '100%', md: '69%', mdOffset: '31%'},
+	hiddenTextStyle = {paddingTop: 16, paddingBottom: 0},
+	labelStyle = {paddingTop: 3, fontWeight: 'normal'},
+
 	rowSpace = {type: 'space', height: '16px', noPadding: true, grid: {
 		xs: '100%', md: '0%'
 	}},
@@ -80,42 +90,47 @@ class NoseReconPage extends Component {
 			[
 				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Nose condition</SemiHeader>}
 			],
-			...Array.from(Array(6), (v, k)=>([
-				{
-					type: 'label', label: `Condition ${k+1}`, style: {position: 'relative', top: '-50%'}, grid: {md: '50%'}
-				},
-				{
-					type: 'radio', name: `nose_conditions[${k}]`, horizontal: true, showClearButton: false, options: [
-						{id: 'low', name: 'Low', grid: optionGrid6},
-						{id: 'medium', name: 'Medium', grid: optionGrid6},
-						{id: 'crisis', name: 'Crisis', grid: optionGrid6}
+			...Array.from(Array(6), (v, k)=>({
+				...cbRowParam,
+				items: [
+					{
+						type: 'label', label: `Condition ${k+1}`, style: labelStyle, grid: labelGrid
+					},
+					{...rowSpace},
+					{
+						type: 'radio', name: `nose_conditions[${k}]`, horizontal: true, showClearButton:false, grid:radioGrid, options: [
+						{id: 'low', name: 'Low', grid: rightGrid3},
+						{id: 'medium', name: 'Medium', grid: rightGrid3},
+						{id: 'crisis', name: 'Crisis', grid: rightGrid3}
 					]
-				}
-			])),
+					}
+				]
+			})),
 			[
 				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Personal condition</SemiHeader>}
 			],
 			...Array.from(Array(2), (v, k)=>(
-
 				{
+					...cbRowParam,
 					items: [
 						{
-							type: 'label', label: `Condition ${k+1}`, style: {position: 'relative', top: '-50%'}, grid: {md: '50%'}
+							type: 'label', label: `Condition ${k+1}`, style: labelStyle, grid: labelGrid
 						},
+						{...rowSpace},
 						{
 							type: 'radio',
 							name: `personal_conditions[${k}]`,
 							horizontal: true,
 							showClearButton: false,
-							grid: {md: '50%'},
+							grid: radioGrid,
 							options: [
-								{id: 'no', name: 'No', grid: optionGrid6},
-								{id: 'yes', name: 'Yes', grid: optionGrid6}
+								{id: 'no', name: 'No', grid: rightGrid3},
+								{id: 'yes', name: 'Yes', grid: rightGrid3}
 							]
 						}
 					]
 				}
-			))
+			)),[{type: 'space'}]
 		];
 		let formTemplate = {components};
 		return (

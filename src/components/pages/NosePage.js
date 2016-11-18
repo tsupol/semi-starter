@@ -75,10 +75,7 @@ class NosePage extends Component {
 						{id: 'accident', name: 'Accident', grid: optionGrid4}
 					]
 				}
-			],
-			[
-				{type: 'space'}
-			]
+			],[{type: 'space'}]
 		];
 		let formTemplate = {components};
 		return (

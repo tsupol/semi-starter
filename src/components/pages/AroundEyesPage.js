@@ -105,22 +105,18 @@ class AroundEyesPage extends Component {
 				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Eye surgery</SemiHeader>}
 			],
 			{
-				style: {
-					paddingTop: 16,
-					paddingBottom: 16
-				},
 				items: [
 					{
 						type: 'radio', name: 'eye_surgery', horizontal: true, showClearButton: false, options: [
-							{id: 'กรีดตัดหนังตาบน', name: 'กรีดตัดหนังตาบน'},
-							{id: 'กรีดตัดหนังตาล่าง', name: 'กรีดตัดหนังตาล่าง'},
-							{id: 'กล้ามเนื้อตาอ่อนแรง', name: 'กล้ามเนื้อตาอ่อนแรง'},
-							{id: 'ถุงใต้ตาแผลด้านใน', name: 'ถุงใต้ตาแผลด้านใน'},
-							{id: 'ตาสองชั้น(แผลเล็ก)', name: 'ตาสองชั้น(แผลเล็ก)'}
+							{id: 'กรีดตัดหนังตาบน', name: 'กรีดตัดหนังตาบน', grid: optionGrid4},
+							{id: 'กรีดตัดหนังตาล่าง', name: 'กรีดตัดหนังตาล่าง', grid: optionGrid4},
+							{id: 'กล้ามเนื้อตาอ่อนแรง', name: 'กล้ามเนื้อตาอ่อนแรง', grid: optionGrid4},
+							{id: 'ถุงใต้ตาแผลด้านใน', name: 'ถุงใต้ตาแผลด้านใน', grid: optionGrid4},
+							{id: 'ตาสองชั้น(แผลเล็ก)', name: 'ตาสองชั้น(แผลเล็ก)', grid: optionGrid4}
 						]
 					}
 				]
-			}
+			},[{type: 'space'}]
 		];
 		let formTemplate = {components};
 		return (

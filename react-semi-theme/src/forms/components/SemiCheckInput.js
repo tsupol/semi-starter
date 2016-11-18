@@ -7,6 +7,7 @@ import IconButton from 'material-ui/IconButton/IconButton';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
 import RadioButtonChecked from 'material-ui/svg-icons/toggle/radio-button-checked';
 import RadioButtonUnchecked from 'material-ui/svg-icons/toggle/radio-button-unchecked';
+import SemiTextField from './SemiTextField';
 import {Row, Col} from 'react-semi-theme/grid';
 import helper from '../../libs/helper'
 
@@ -84,6 +85,7 @@ class SemiCheckInput extends SemiInputComponent {
             validationErrors,
             grid,
             horizontal,
+            rightItem,
             ...rest
             } = this.props;
 
@@ -118,7 +120,19 @@ class SemiCheckInput extends SemiInputComponent {
                 let checked = (valueIsObject ? currentValue.indexOf(id) !== -1 : currentValue == id);
                 let iconStyle = color ? {fill: color} : {};
                 let labelStyle = color ? {color: color} : {};
-                let customStyle = option.style;
+                let customStyle = Object.assign({
+                    marginTop: 2, marginBottom: 2
+                },option.style) ;
+                let belowInput = null;
+                
+                // todo: belowItem is temporary
+                if (option.belowInput && checked) {
+                    if(option.belowInput.type == 'text') {
+                        let {grid, hint, ...inputParams} = option.belowInput;
+                        belowInput = <SemiTextField fullWidth style={{width: '100%'}} hintText={hint} {...inputParams}/>;
+                    }
+                }
+                
                 let checkboxElem =
                     <Checkbox
                         key={i}
@@ -131,15 +145,19 @@ class SemiCheckInput extends SemiInputComponent {
                         labelStyle={labelStyle}
                         style={customStyle}
                     />;
-                if(option.grid) {
+                // todo: finish below item code
+                if(horizontal && belowInput) {
                     items.push(
                         <Col key={i} {...option.grid}>
-                            {checkboxElem}
+                            <Row>
+                                <Col noPadding xs="100%">{checkboxElem}</Col>
+                                <Col noPadding xs="100%">{belowInput}</Col>
+                            </Row>
                         </Col>
                     );
                 } else if(horizontal) {
                     items.push(
-                        <Col key={i}>
+                        <Col key={i} {...option.grid}>
                             {checkboxElem}
                         </Col>
                     );

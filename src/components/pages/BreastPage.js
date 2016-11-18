@@ -8,9 +8,11 @@ import MainForm from '../main/MainForm';
 
 const
 	marginBottomStyle = {marginBottom: 24},
-	imgOptionGrid = {xs: '100%', sm: '50%', md: '20%'},
+	grid2 = {xs: '100%', md: '50%'},
+	grid1 = {xs: '100%'},
 	imgStyle = {width: '100%'},
 	optionGrid4 = {xs: '100%', sm: '50%', md: '25%'},
+	hiddenTextStyle = {paddingTop: 16, paddingBottom: 0},
 	rowSpace = {type: 'space', height: '16px', noPadding: true, grid: {
 		xs: '100%', md: '0%'
 	}},
@@ -57,6 +59,10 @@ class BeastPage extends Component {
 		let values = {};
 		let data = {};
 		let components = [
+
+			// Information Section 1
+			// ----------------------------------------
+
 			[
 				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Information</SemiHeader>}
 			],
@@ -71,95 +77,65 @@ class BeastPage extends Component {
 			{
 				hide: !this.state.ever_did_surgery_before_check,
 				items: [
-					{
-						type: 'numeric', name: 'surgery_count_before', label: 'How many time'
-					}
+					{type: 'numeric', name: 'surgery_count_before', label: 'How many time', grid: grid1},
+					{type: 'text', name: 'surgery_type', label: 'Type', multiLine: true, grid: grid1},
+					{type: 'text', name: 'size', label: 'Size', grid: grid2},
+					{type: 'text', name: 'brand', label: 'Brand', grid: grid2},
+					{type: 'text', name: 'place_or_doctor', label: 'Place / Doctor', grid: grid2},
+					{type: 'text', name: 'duration', label: 'Duration', grid: grid2}
 				]
 			},
-			{
-				hide: !this.state.ever_did_surgery_before_check,
-				items: [
-					{
-						type: 'text', name: 'surgery_type', label: 'Type', multiLine: true
-					}
-				]
-			},
-			{
-				hide: !this.state.ever_did_surgery_before_check,
-				items: [
-					{
-						type: 'text', name: 'size', label: 'Size'
-					},
-					{
-						type: 'text', name: 'brand', label: 'Brand'
-					}
-				]
-			},
-			{
-				hide: !this.state.ever_did_surgery_before_check,
-				items: [
-					{
-						type: 'text', name: 'place_or_doctor', label: 'Place / Doctor'
-					},
-					{
-						type: 'text', name: 'duration', label: 'Duration'
-					}
-				]
-			},
+
+			// Information Section 2
+			// ----------------------------------------
+
 			[
-				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Information</SemiHeader>}
+				{type: 'custom', element: <SemiHeader style={{marginBottom: 24}}>Activities</SemiHeader>}
 			],
-			{
-				style: {
-					paddingTop: 16,
-					paddingBottom: 16
-				},
-				items: [
-					{type: 'custom', element: <b>Activities</b>},
-					{type: 'custom', element: <b>Occupation</b>},
-					{type: 'custom', element: <b>Type Implant</b>}
-				]
-			},
 			[
-				{
-					type: 'checkbox', name: 'activities', showClearButton: false, options: [
-						{id: 'fitness_or_yoga', name: 'Fitness / Yoga'},
-						{id: 'swimming', name: 'Swimming'},
-						{id: 'running', name: 'Running'},
-						{id: 'others', name: 'Others'}
-					], onCheck: (activities)=>this.setState({activities})
-				},
-				{
-					type: 'radio', name: 'occupation', showClearButton: false, options: [
-						{id: 'pretty_model', name: 'Pretty / Model'},
-						{id: 'officer', name: 'Officer'},
-						{id: 'student', name: 'Student'},
-						{id: 'business_owner', name: 'Business Owner'}
-					]
-				},
-				{
-					type: 'radio', name: 'type_implant', showClearButton: false, options: [
-						{id: 'round', name: 'Round'},
-						{id: 'teardrop', name: 'Teardrop'}
-					]
-				}
+				{type: 'checkbox', name: 'activities', showClearButton: false, horizontal: true, options: [
+					{id: 'fitness_or_yoga', name: 'Fitness / Yoga', grid: optionGrid4},
+					{id: 'swimming', name: 'Swimming', grid: optionGrid4},
+					{id: 'running', name: 'Running', grid: optionGrid4},
+					{id: 'others', name: 'Others', grid: optionGrid4}
+				], onCheck: (activities)=>this.setState({activities})}
 			],
 			{
 				hide: this.state.activities.indexOf('others')==-1,
 				items: [
 					{
-						type: 'text', name: 'other_activity', hint: 'Please specify', grid: {md: '33%'}
+						type: 'text', name: 'other_activity', hint: 'Please specify', style: hiddenTextStyle
 					}
 				]
 			},
 			[
+				{type: 'custom', element: <SemiHeader style={{marginBottom: 24}}>Occupation</SemiHeader>}
+			],
+			[
+				{type: 'checkbox', name: 'occupation', showClearButton: false, horizontal: true, options: [
+					{id: 'pretty_model', name: 'Pretty / Model', grid: optionGrid4},
+					{id: 'officer', name: 'Officer', grid: optionGrid4},
+					{id: 'student', name: 'Student', grid: optionGrid4},
+					{id: 'business_owner', name: 'Business Owner', grid: optionGrid4}
+				]}
+			],
+			[
+				{type: 'custom', element: <SemiHeader style={{marginBottom: 24}}>Type Implant</SemiHeader>}
+			],
+			[
+				{type: 'checkbox', name: 'type_implant', showClearButton: false, horizontal: true, options: [
+					{id: 'round', name: 'Round', grid: optionGrid4},
+					{id: 'teardrop', name: 'Teardrop', grid: optionGrid4}
+				]}
+			],
+
+			// Children
+			// ----------------------------------------
+
+			[
 				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Do you have any children</SemiHeader>}
 			],
 			{
-				style: {
-					paddingTop: 16,
-					paddingBottom: 16
-				},
 				items: [
 					{
 						type: 'radio', name: 'any_children', horizontal: true, showClearButton: false, options: [
@@ -173,13 +149,13 @@ class BeastPage extends Component {
 				hide: !this.state.any_children_check,
 				items: [
 					{
-						type: 'numeric', name: 'child_age', label: 'Age of last child'
+						type: 'numeric', name: 'child_age', label: 'Age of last child', grid: grid2
 					},
 					{
-						type: 'numeric', name: 'child_count', label: 'Number of child'
+						type: 'numeric', name: 'child_count', label: 'Number of child', grid: grid2
 					}
 				]
-			}
+			},[{type: 'space'}]
 		];
 		let formTemplate = {components};
 		return (

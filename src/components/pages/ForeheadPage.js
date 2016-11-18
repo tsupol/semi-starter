@@ -10,7 +10,7 @@ const
 	marginBottomStyle = {marginBottom: 24},
 	imgOptionGrid = {xs: '100%', sm: '50%', md: '20%'},
 	imgStyle = {width: '100%'},
-	optionGrid5 = {xs: '100%', sm: '50%', md: '20%'},
+	optionGrid5 = {xs: '100%', sm: '20%', md: '20%'},
 	rowSpace = {type: 'space', height: '16px', noPadding: true, grid: {
 		xs: '100%', md: '0%'
 	}},
@@ -134,7 +134,7 @@ class ForeheadPage extends Component {
 						{id: 'no', name: 'No'}
 					]}
 				]}
-			))
+			)),[{type: 'space'}]
 		];
 		let formTemplate = {components};
 		return (
