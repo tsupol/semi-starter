@@ -1,8 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Grid, Row, Col} from 'react-flexbox-grid';
+//import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel} from 'react-semi-theme/widgets';
+import {SemiGrid, Row, Col} from 'react-semi-theme/grid';
 import {SemiForm} from 'react-semi-theme/forms';
 import Divider from 'material-ui/Divider';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -40,14 +41,7 @@ class HomePage extends Component {
 		let thumbnail = require('../assets/img/upload-thumbnail.png');
 		let example = require('../assets/img/upload-example.png');
 		let images = {
-			face: [
-				require('../assets/img/face1.jpg'),
-				require('../assets/img/face2.jpg'),
-				require('../assets/img/face3.jpg'),
-				require('../assets/img/face4.jpg'),
-				require('../assets/img/face5.jpg'),
-				require('../assets/img/face6.jpg')
-			]
+			face: Array.from(Array(6), (v, k)=>require(`../assets/img/face${k+1}.jpg`))
 		};
 
 		let formTemplate = {
@@ -114,57 +108,46 @@ class HomePage extends Component {
 				[
 					{
 						type: 'custom', element: <label>Interested in</label>, grid: {
-						md: '30%'
-					}
+							md: '30%'
+						}, style: {
+							paddingTop: 16,
+							paddingBottom: 16
+						}
 					},
 					{
-						type: 'checkbox', name: 'interested_in', showClearButton: false, options: [
-						{id: 'eye', name: 'Eye'},
-						{id: 'nose', name: 'Nose'},
-						{id: 'breast', name: 'Breast'},
-						{id: 'lip', name: 'Lip'},
-						{id: 'hair', name: 'Hair'},
-						{id: 'bags_under_the_eyes', name: 'Bags under the eyes'},
-					], grid: {
-						md: '70%'
-					}
+						type: 'checkbox', name: 'interested_in', horizontal: true, showClearButton: false, options: [
+							{id: 'eye', name: 'Eye'},
+							{id: 'nose', name: 'Nose'},
+							{id: 'breast', name: 'Breast'},
+							{id: 'lip', name: 'Lip'},
+							{id: 'hair', name: 'Hair'},
+							{id: 'bags_under_the_eyes', name: 'Bags under the eyes'},
+						], grid: {
+							md: '100%'
+						}, style: {
+							paddingTop: 16,
+							paddingBottom: 16
+						}
 					}
 				],
 				[
 					{
-						type: 'custom', element: <div>&nbsp;</div>, grid: {
-						md: '30%'
-					}
+						type: 'checkbox', name: 'interested_in_liposuction_check', showClearButton: false, options: [
+							{id: 'liposuction', name: 'Liposuction'}
+						], grid: {
+							md: '20%'
+						}, onCheck: (v)=>{this.setState({interested_in_liposuction: v.length>0})}
 					},
 					{
-						type: 'checkbox', name: 'interested_in_liposuction_check', showClearButton: false, options: [
-						{id: 'liposuction', name: 'Liposuction'}
-					], grid: {
-						md: '70%'
-					}, onCheck: (v)=>{this.setState({interested_in_liposuction: v.length>0})}
+						type: 'text', name: 'interested_in_liposuction', grid: {
+							md: '80%'
+						},
+						hide: !this.state.interested_in_liposuction
 					}
 				],
+
 				{
-					settings: {
-						hide: !this.state.interested_in_liposuction
-					},
-					items: [
-						{
-							type: 'custom', element: <div>&nbsp;</div>, grid: {
-							md: '30%'
-						}
-						},
-						{
-							type: 'text', name: 'interested_in_liposuction', grid: {
-							md: '70%'
-						}
-						}
-					]
-				},
-				{
-					settings: {
-						hide: !this.state.interested_in_liposuction
-					},
+					hide: !this.state.interested_in_liposuction,
 					items: [
 						{
 							type: 'custom', element: <div style={{height: 36}}></div>
@@ -173,35 +156,19 @@ class HomePage extends Component {
 				},
 				[
 					{
-						type: 'custom', element: <div>&nbsp;</div>, grid: {
-						md: '30%'
-					}
+						type: 'checkbox', name: 'interested_in_other_check', showClearButton: false, options: [
+							{id: 'other', name: 'Other'}
+						], grid: {
+							md: '20%'
+						}, onCheck: (v)=>{this.setState({interested_in_other: v.length>0})}
 					},
 					{
-						type: 'checkbox', name: 'interested_in_other_check', showClearButton: false, options: [
-						{id: 'other', name: 'Other'}
-					], grid: {
-						md: '70%'
-					}, onCheck: (v)=>{this.setState({interested_in_other: v.length>0})}
+						type: 'text', name: 'interested_in_other', multiLine: true, grid: {
+							md: '80%'
+						},
+						hide: !this.state.interested_in_other
 					}
 				],
-				{
-					settings: {
-						hide: !this.state.interested_in_other
-					},
-					items: [
-						{
-							type: 'custom', element: <div>&nbsp;</div>, grid: {
-							md: '30%'
-						}
-						},
-						{
-							type: 'text', name: 'interested_in_other', multiLine: true, grid: {
-							md: '70%'
-						}
-						}
-					]
-				},
 				[
 					{
 						type: 'custom', element: <div style={{height: 72}}></div>
@@ -212,7 +179,7 @@ class HomePage extends Component {
 				],
 				...Array.from(Array(5), (v, k) => ([
 					{
-						type: 'custom', element: <div  style={{height: '72px', textAlign: 'right'}}><label style={{position: 'relative', top: '50%'}}>{k+1}</label></div>
+						type: 'label', label: k+1, style: {float: 'right'}
 					},
 					{
 						type: 'text', multiLine: true, label: 'What', name: `medical_histories[${k}][what]`
@@ -309,10 +276,10 @@ class HomePage extends Component {
 		};
 		return (
 			<div>
-				<PageHeading title="Home" description="description" />
-				<Grid fluid className="content-wrap">
-					<Row>
-						<Col xs lg={10} lgOffset={1}>
+				<SemiGrid>
+					<Row center="xs" style={{overflow: 'hidden'}}>
+						<Col xs="96%" xl="90%" style={{maxWidth: 1400}}>
+							<div className="mtpc-logo"></div>
 							<Panel title="Home">
 								<div className="con-pad">
 									<SemiForm formTemplate={formTemplate} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit} />
@@ -320,7 +287,7 @@ class HomePage extends Component {
 							</Panel>
 						</Col>
 					</Row>
-				</Grid>
+				</SemiGrid>
 			</div>
 		);
 	}
