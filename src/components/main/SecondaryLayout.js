@@ -106,7 +106,7 @@ class SecondaryLayout extends Component {
                             <FlatButton className="icon-btn left-most" icon={<ActionHome />} onTouchTap={()=>this.context.router.push('/')} />
                         </ToolbarGroup>
                         <ToolbarGroup>
-                            <FlatButton className="icon-btn left-most" icon={lang.icon} onTouchTap={(event)=>this.setState({languages: Object.assign(this.state.languages, {openMenu: !this.state.languages.openMenu, anchorEl: event.currentTarget})})}/>
+                            <FlatButton className="icon-btn left-most" icon={lang.icon} onTouchTap={(event)=>{event.preventDefault();this.setState({languages: Object.assign(this.state.languages, {openMenu: !this.state.languages.openMenu, anchorEl: event.currentTarget})})}}/>
                             <Popover
                                 open={this.state.languages.openMenu}
                                 anchorEl={this.state.languages.anchorEl}
