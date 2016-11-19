@@ -76,10 +76,14 @@
       @include justify-content(center);
     }
     .sg-col {
-      float: left; padding: 8px; box-sizing: border-box;
+      float: left; padding: 8px; box-sizing: border-box; position: relative;
       &.sg-no-pad { padding: 0; }
     }
   }
   // fix nested grid
-  .semi-grid { margin: 8px; width: calc(100% - 16px); }
+  //.semi-grid { margin: 8px; width: calc(100% - 16px); }
+
+  // Inside SemiForm
+  .sf-wrap>& {
+  }
 }

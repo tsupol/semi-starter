@@ -192,7 +192,7 @@ class ImplantsPage extends Component {
 				{
 					type: 'text', name: 'adviser', label: 'บุคคลที่ท่านปรึกษาและแสดงความคิดเห้น ทั้งก่อนและหลังผ่าตัด'
 				}
-			]
+			],[{type: 'space'}]
 		];
 		let formTemplate = {components};
 		return (

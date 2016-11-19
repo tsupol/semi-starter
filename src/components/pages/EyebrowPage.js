@@ -72,10 +72,6 @@ class EyebrowPage extends Component {
 			],
 			{
 				hide: !this.state.eyebrow_issue_other,
-				style: {
-					paddingTop: 16,
-					paddingBottom: 16
-				},
 				items: [
 					{
 						type: 'text', name: 'eyebrow_issue_other', multiLine: true, hint: 'Please specify'
@@ -98,10 +94,6 @@ class EyebrowPage extends Component {
 			],
 			{
 				hide: !this.state.eyes_issue_other,
-				style: {
-					paddingTop: 16,
-					paddingBottom: 16
-				},
 				items: [
 					{
 						type: 'text', name: 'eyes_issue_other', multiLine: true, hint: 'Please specify'
@@ -112,10 +104,6 @@ class EyebrowPage extends Component {
 				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>ปัญหาที่พบ (ริ้วรอย)</SemiHeader>}
 			],
 			{
-				style: {
-					paddingTop: 16,
-					paddingBottom: 16
-				},
 				items: [
 					{
 						type: 'checkbox', name: 'wrinkle_issue', horizontal: true, showClearButton: false, options: [
@@ -131,16 +119,12 @@ class EyebrowPage extends Component {
 			},
 			{
 				hide: !this.state.wrinkle_issue_other,
-				style: {
-					paddingTop: 16,
-					paddingBottom: 16
-				},
 				items: [
 					{
 						type: 'text', name: 'wrinkle_issue_other', multiLine: true, hint: 'Please specify'
 					}
 				]
-			}
+			},[{type: 'space'}]
 		];
 		let formTemplate = {components};
 		return (

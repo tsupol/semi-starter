@@ -12,16 +12,16 @@ $md-breakpoint: "(min-width : 768px) and (max-width : 991px)";
 $sm-breakpoint: "(min-width : 576px) and (max-width : 767px)";
 $xs-breakpoint: "(min-width : 1px) and (max-width : 575px)";
 
-$xl-down-breakpoint: "(max-width : 1199px)";
-$lg-down-breakpoint: "(max-width : 991px)";
-$md-down-breakpoint: "(max-width : 767px)";
-$sm-down-breakpoint: "(max-width : 575px)";
+$xl-below-breakpoint: "(max-width : 1199px)";
+$lg-below-breakpoint: "(max-width : 991px)";
+$md-below-breakpoint: "(max-width : 767px)";
+$sm-below-breakpoint: "(max-width : 575px)";
 
-$xl-up-breakpoint: "(min-width : 1200px)";
-$lg-up-breakpoint: "(min-width : 992px)";
-$md-up-breakpoint: "(min-width : 768px)";
-$sm-up-breakpoint: "(min-width : 576px)";
-$xs-up-breakpoint: "(min-width : 1px)";
+$xl-above-breakpoint: "(min-width : 1200px)";
+$lg-above-breakpoint: "(min-width : 992px)";
+$md-above-breakpoint: "(min-width : 768px)";
+$sm-above-breakpoint: "(min-width : 576px)";
+$xs-above-breakpoint: "(min-width : 1px)";
 
 @mixin responsive($media) {
     @if $media == xl {
@@ -35,29 +35,26 @@ $xs-up-breakpoint: "(min-width : 1px)";
     } @else if $media == xs {
         @media only screen and #{$xs-breakpoint} { @content; }
     }
-}
 
-@mixin responsive-up($media) {
-    @if $media == xl {
-        @media only screen and #{$xl-up-breakpoint} { @content; }
-    } @else if $media == lg {
-        @media only screen and #{$lg-up-breakpoint} { @content; }
-    } @else if $media == md {
-        @media only screen and #{$md-up-breakpoint} { @content; }
-    } @else if $media == sm {
-        @media only screen and #{$sm-up-breakpoint} { @content; }
-    } @else if $media == xs {
-        @media only screen and #{$xs-up-breakpoint} { @content; }
-    } 
-}
-@mixin responsive-below($media) {
-    @if $media == xl {
-        @media only screen and #{$xl-down-breakpoint} { @content; }
-    } @else if $media == lg {
-        @media only screen and #{$lg-down-breakpoint} { @content; }
-    } @else if $media == md {
-        @media only screen and #{$md-down-breakpoint} { @content; }
-    } @else if $media == sm {
-        @media only screen and #{$sm-down-breakpoint} { @content; }
+    @else if $media == above-xl {
+        @media only screen and #{$xl-above-breakpoint} { @content; }
+    } @else if $media == above-lg {
+        @media only screen and #{$lg-above-breakpoint} { @content; }
+    } @else if $media == above-md {
+        @media only screen and #{$md-above-breakpoint} { @content; }
+    } @else if $media == above-sm {
+        @media only screen and #{$sm-above-breakpoint} { @content; }
+    } @else if $media == above-xs {
+        @media only screen and #{$xs-above-breakpoint} { @content; }
+    }
+
+    @else if $media == below-xl {
+        @media only screen and #{$xl-below-breakpoint} { @content; }
+    } @else if $media == below-lg {
+        @media only screen and #{$lg-below-breakpoint} { @content; }
+    } @else if $media == below-md {
+        @media only screen and #{$md-below-breakpoint} { @content; }
+    } @else if $media == below-sm {
+        @media only screen and #{$sm-below-breakpoint} { @content; }
     }
 }
