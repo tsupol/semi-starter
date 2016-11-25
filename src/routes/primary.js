@@ -6,6 +6,7 @@ import {UserAuthWrapper} from 'redux-auth-wrapper';
 import PrimaryApp from '../components/PrimaryApp';
 
 import HomePage from '../components/HomePage';
+import SubmittedPage from '../components/SubmittedPage';
 import NotFoundPage from '../components/NotFoundPage';
 import semiThemeSettings from '../settings/semiThemeSettings';
 
@@ -26,6 +27,7 @@ if (semiThemeSettings.hasAuthentication) {
 export default (
     <Route path="/" component={PrimaryApp}>
         <IndexRoute component={semiThemeSettings.hasAuthentication ? UserIsAuthenticated(HomePage) : HomePage}/>
+        <Route path="/submitted" component={SubmittedPage}/>
         <Route path="*" component={NotFoundPage}/>
     </Route>
 );

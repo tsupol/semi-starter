@@ -32,7 +32,7 @@ if(username && password) {
     store.dispatch(login(username, password));
 }
 
-// Create an enhanced history that syncs navigation events with the store
+// Create an enhanced history that syncs navigation events with the storeu
 // const history = syncHistoryWithStore(browserHistory, store);
 const appHashHistory = useRouterHistory(createHashHistory)({ queryKey: false });
 const history = syncHistoryWithStore(appHashHistory, store); // Hash History, fix

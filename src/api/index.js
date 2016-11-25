@@ -26,7 +26,8 @@ function baseUrl(endpoint) {
 	}
 
 	// production build
-	return `/${devProjectName}/api${endpointStr}`;
+	//return `/${devProjectName}/api${endpointStr}`;
+	return `http://www.prmarketingcase.com/api${endpointStr}`;
 }
 
 /**

@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => 'no-reply@mspinfo.net',
+        'address' => 'no-reply@prmarketingcase.com',
         'name' => 'System',
     ],
 

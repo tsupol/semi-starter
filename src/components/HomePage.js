@@ -42,8 +42,13 @@ class HomePage extends Component {
 	};
 
 	submit = (data)=> {
-		this.context.ajax.call("post", "submit", data, {files: ['files.face', 'files.body', 'files.normal']}).then((data)=>{
-			this.context.dialog.alert("E-Mail was sent", "Success", "success");
+		//this.context.ajax.call("post", "submit", data, {files: ['files.face', 'files.body', 'files.normal']}).then((data)=>{
+		//	this.context.dialog.alert("ขอขอบพระคุณที่ให้ความสนใจกับทางเรา ทางเราจะทำการติดต่อถึงท่านเร็วๆนี้", "ทางเราได้รับข้อมูลเรียบร้อย", "success", ()=>{
+		//		window.location.reload();
+		//	});
+		//});
+		this.context.ajax.call("post", "submit", data, {files: ['files.face', 'files.body', 'files.normal']}).then((res)=> {
+			this.context.router.push('/submitted');
 		});
 	};
 
@@ -87,17 +92,17 @@ class HomePage extends Component {
 					items: [
 						{
 							type: 'checkbox', name: 'interested_in', horizontal: true, showClearButton: false, options: [
-								{id: 'eye', name: 'Eye', grid: grid7},
-								{id: 'nose', name: 'Nose', grid: grid7},
-								{id: 'breast', name: 'Breast', grid: grid7},
-								{id: 'lip', name: 'Lip', grid: grid7},
-								{id: 'hair', name: 'Hair', grid: grid7},
-								{id: 'bags_under_the_eyes', name: 'Bags under the eyes', grid: {xs: '100%', sm: '50%', md: '28.6%'}},
-								{id: 'interested_in_liposuction_check', name: 'Liposuction', grid: grid1, belowInput: {
-									type: 'text', name: 'interested_in_liposuction', hint: 'Please specify'
+								{id: 'ตา', name: this.context.translate('eyes'), grid: grid7},
+								{id: 'จมูก', name: this.context.translate('nose'), grid: grid7},
+								{id: 'หน้าอก', name: this.context.translate('breast'), grid: grid7},
+								{id: 'ปาก', name: this.context.translate('lips'), grid: grid7},
+								{id: 'ผม', name: this.context.translate('hair'), grid: grid7},
+								{id: 'ถุงได้ตา', name: this.context.translate('bags_under_the_eyes'), grid: {xs: '100%', sm: '50%', md: '28.6%'}},
+								{id: 'interested_in_liposuction_check', name: this.context.translate('interested_in_liposuction_check'), grid: grid1, belowInput: {
+									type: 'text', name: 'interested_in_liposuction', hint: this.context.translate('please_specify')
 								}},
-								{id: 'interested_in_other_check', name: 'Other', grid: grid1, belowInput: {
-									type: 'text', name: 'interested_in_other_check', hint: 'Please specify'
+								{id: 'interested_in_other_check', name: this.context.translate('others'), grid: grid1, belowInput: {
+									type: 'text', name: 'interested_in_other', hint: this.context.translate('please_specify')
 								}}
 							], grid: {
 								md: '100%'
@@ -138,21 +143,21 @@ class HomePage extends Component {
 				])),
 				[
 					{
-						type: 'text', multiLine: true, label: 'Congenital Disease', name: 'congenital_disease', grid: grid3
+						type: 'text', multiLine: true, label: this.context.translate('congenital_disease'), name: 'congenital_disease', grid: grid3
 					},
 					{
-						type: 'text', multiLine: true, label: 'Current Drug', name: 'current_drug', grid: grid3
+						type: 'text', multiLine: true, label: this.context.translate('current_medication'), name: 'current_medication', grid: grid3
 					},
 					{
-						type: 'text', multiLine: true, label: 'Drug Symptom', name: 'drug_symptom', grid: grid3
+						type: 'text', multiLine: true, label: this.context.translate('allergic_symptoms'), name: 'allergic_symptoms', grid: grid3
 					}
 				],
 				[
 					{
-						type: 'text', multiLine: true, label: 'Need', name: 'need', grid: grid2
+						type: 'text', multiLine: true, label: this.context.translate('need'), name: 'need', grid: grid2
 					},
 					{
-						type: 'text', multiLine: true, label: 'Note', name: 'note', grid: grid2
+						type: 'text', multiLine: true, label: this.context.translate('note'), name: 'note', grid: grid2
 
 					}
 				],
@@ -181,7 +186,7 @@ class HomePage extends Component {
 					))
 				],
 				[
-					{type: 'custom', element: <div><h3><u>Terms of Service</u></h3><p>กรุณาอ่านเงื่อนไขต่างๆในการใช้บริการโดย ละเอียด เพราะหากท่านกดดำเนินการลงทะเบียน จะถือว่าท่านยอมรับเงื่อนไขของการใช้บริการของคลินิก</p></div>}
+					{type: 'custom', element: <div><h3><u>{this.context.translate('terms_of_service')}</u></h3><p>กรุณาอ่านเงื่อนไขต่างๆในการใช้บริการโดย ละเอียด เพราะหากท่านกดดำเนินการลงทะเบียน จะถือว่าท่านยอมรับเงื่อนไขของการใช้บริการของคลินิก</p></div>}
 				],
 				[
 					{
@@ -202,7 +207,7 @@ class HomePage extends Component {
 				{
 					center: 'xs',
 					items: [
-						{type: 'checkbox', name: 'agreement', required: true, showClearButton: false, options: [{id: 'accepted', name: 'Agree with term and conditions.'}],  grid: {
+						{type: 'checkbox', name: 'agreement', required: true, showClearButton: false, options: [{id: 'accepted', name: this.context.translate('agree_with_terms_and_conditions')}],  grid: {
 							xs: '100%', sm: '303px'
 						}}
 					]
@@ -217,7 +222,7 @@ class HomePage extends Component {
 							<div className="mtpc-logo"></div>
 							<Panel title="Home">
 								<div className="con-pad">
-									<SemiForm formTemplate={formTemplate} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit} />
+									<SemiForm formTemplate={formTemplate} buttonAlign="center" submitLabel={this.context.translate('submit')} onChange={this.handleFormChange} onSubmit={this.submit} />
 								</div>
 							</Panel>
 						</Col>
@@ -239,6 +244,7 @@ class HomePage extends Component {
 HomePage.contextTypes = {
 	ajax: PropTypes.object,
 	dialog: PropTypes.object,
+	router: PropTypes.object,
 	translate: PropTypes.func
 };
 export default HomePage;

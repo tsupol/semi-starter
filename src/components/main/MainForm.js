@@ -92,15 +92,15 @@ class MainForm extends Component {
 					{type: 'custom', element: <SemiHeader>{this.context.translate('medical_information')}</SemiHeader>}
 				],
 				[
-					{type: 'text', multiLine: true, label: 'Congenital Disease', name: 'congenital_disease', grid: grid3},
-					{type: 'text', multiLine: true, label: 'Current Drug', name: 'current_drug', grid: grid3},
-					{type: 'text', multiLine: true, label: 'Drug Symptom', name: 'drug_symptom', grid: grid3}
+					{type: 'text', multiLine: true, label: this.context.translate('congenital_disease'), name: 'congenital_disease', grid: grid3},
+					{type: 'text', multiLine: true, label: this.context.translate('current_medication'), name: 'current_medication', grid: grid3},
+					{type: 'text', multiLine: true, label: this.context.translate('allergic_symptoms'), name: 'allergic_symptoms', grid: grid3}
 				],
 				[
-					{type: 'text', multiLine: true, label: 'Need', name: 'need', grid: grid2}
+					{type: 'text', multiLine: true, label: this.context.translate('need'), name: 'need', grid: grid2}
 				],
 				[
-					{type: 'text', multiLine: true, label: 'Note', name: 'note', grid: grid2}
+					{type: 'text', multiLine: true, label: this.context.translate('note'), name: 'note', grid: grid2}
 				],
 				[
 					{type: 'custom', element: <SemiHeader line="solid" style={marginBottomStyle}>{this.context.translate('upload_image')}</SemiHeader>}
