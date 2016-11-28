@@ -121,7 +121,7 @@ class MainForm extends Component {
 				// 	{type: 'space'}
 				// ],
 				[
-					{type: 'custom', element: <div><h3><u>Terms of Service</u></h3><p>กรุณาอ่านเงื่อนไขต่างๆในการใช้บริการโดย ละเอียด เพราะหากท่านกดดำเนินการลงทะเบียน จะถือว่าท่านยอมรับเงื่อนไขของการใช้บริการของคลินิก</p></div>}
+					{type: 'custom', element: <div><h3><u>{this.context.translate('terms_of_service')}</u></h3><p>กรุณาอ่านเงื่อนไขต่างๆในการใช้บริการโดย ละเอียด เพราะหากท่านกดดำเนินการลงทะเบียน จะถือว่าท่านยอมรับเงื่อนไขของการใช้บริการของคลินิก</p></div>}
 				],
 				[
 					{
@@ -141,7 +141,7 @@ class MainForm extends Component {
 				{
 					center: 'xs',
 					items: [
-						{type: 'checkbox', name: 'agreement', required: true, showClearButton: false, options: [{id: 'accepted', name: 'Agree with term and conditions.'}],  grid: {
+						{type: 'checkbox', name: 'agreement', required: true, showClearButton: false, options: [{id: 'accepted', name: this.context.translate('agree_with_terms_and_conditions')}],  grid: {
 							xs: '100%', sm: '303px'
 						}}
 					]
@@ -159,7 +159,7 @@ class MainForm extends Component {
 							<div className="mtpc-logo"></div>
 							<Panel title={this.props.header || 'Header'}>
 								<div className="pad-normal pr-form">
-									<SemiForm data={data} values={values} buttonAlign="center" onChange={this.handleFormChange} onSubmit={this.submit}>
+									<SemiForm data={data} values={values} buttonAlign="center" submitLabel={this.context.translate('submit')} onChange={this.handleFormChange} onSubmit={this.submit}>
 										{showMainForm ? <FormGenerator formTemplate={mainForm} /> : null}
 										{this.props.children}
 										{showMainForm ? <FormGenerator formTemplate={bottomForm} /> : null}

@@ -11,6 +11,7 @@ import {ActionHome, NavigationMenu, ActionAccountBox, ActionPowerSettingsNew, Na
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import Drawer from 'material-ui/Drawer';
 import {Confirm, Alert, SideMenu} from 'react-semi-theme/widgets';
+import helper from 'react-semi-theme/libs/helper';
 
 import 'flag-icon-css/css/flag-icon.min.css';
 
@@ -86,6 +87,14 @@ class SecondaryLayout extends Component {
         let showMenu = (query['show-menu']=='true' || query['show-menu'] == '1');
         return (
             <div id="layout" className={`${showMainMenu ? '' : 'no-menu'}`} onKeyPress={(e)=>{
+                if(e.charCode==76){
+                    let nextLang = this.state.languages.items.filter((lang)=>lang.locale!=this.state.languages.currentLocale)[0];
+                    let localeQuery = nextLang.locale==this.state.languages.defaultLocale ? undefined : nextLang.locale;
+                    let nextQuery = Object.assign({}, query, {'locale': localeQuery});
+                    this.context.router.replace(Object.assign({}, this.props.location, {query: nextQuery}));
+                    this.setState({languages: Object.assign({}, this.state.languages, {currentLocale: nextLang.locale, openMenu: false, anchorEl: null})});
+                    setLocale(nextLang.locale);
+                }
                 if(e.charCode==77){
                     let nextQuery = Object.assign({}, query, {'show-menu': !showMenu || undefined});
                     this.context.router.replace(Object.assign({}, this.props.location, {query: nextQuery}));

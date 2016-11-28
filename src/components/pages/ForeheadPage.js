@@ -52,7 +52,7 @@ class ForeheadPage extends Component {
 		let data = {};
 		let components = [
 			[
-				{type: 'custom', element: <SemiHeader line="solid" style={marginBottomStyle}>Header 1</SemiHeader>}
+				{type: 'custom', element: <SemiHeader line="solid" style={marginBottomStyle}>{this.context.translate('forehead_style')}</SemiHeader>}
 			],
 			[
 				{type: 'radio', name: 'forehead_type', showClearButton: false, horizontal: true,
@@ -60,39 +60,39 @@ class ForeheadPage extends Component {
 				}
 			],
 			[
-				{type: 'custom', element: <SemiHeader>Header 2</SemiHeader>}
+				{type: 'custom', element: <SemiHeader>{this.context.translate('forehead_filler_histories')}</SemiHeader>}
 			],
 			...Array.from(Array(5), (v, k) => ([
 				{type: 'label', label:`${k+1}.`, grid: {
 					xs: '100%', mdAlign: 'right', md: '64px'
 				}},
-				{type: 'text', multiLine: true, label: 'Area', name: `histories[${k}][area]`, grid: {
+				{type: 'text', multiLine: true, label: this.context.translate('forehead_filler_histories:area'), name: `histories[${k}][area]`, grid: {
 					xs: '100%', md: `calc(20% - ${64/4}px)`
 				}},
-				{type: 'text', multiLine: true, label: 'Detail', name: `histories[${k}][detail]`, grid: {
+				{type: 'text', multiLine: true, label: this.context.translate('forehead_filler_histories:detail'), name: `histories[${k}][detail]`, grid: {
 					xs: '100%', md: `calc(30% - ${64/4}px)`
 				}},
-				{type: 'text', multiLine: true, label: 'Date', name: `histories[${k}][date]`, grid: {
+				{type: 'text', multiLine: true, label: this.context.translate('forehead_filler_histories:date'), name: `histories[${k}][date]`, grid: {
 					xs: '100%', md: `calc(20% - ${64/4}px)`
 				}},
-				{type: 'text', multiLine: true, label: 'Rating', name: `histories[${k}][rating]`, grid: {
+				{type: 'text', multiLine: true, label: this.context.translate('forehead_filler_histories:rating'), name: `histories[${k}][rating]`, grid: {
 					xs: '100%', md: `calc(30% - ${64/4}px)`
 				}}
 			])),
 			[
-				{type: 'custom', element: <SemiHeader style={{marginBottom: 24}}>Rating of current area</SemiHeader>}
+				{type: 'custom', element: <SemiHeader style={{marginBottom: 24}}>{this.context.translate('rating_of_current_area')}</SemiHeader>}
 			],
 			[
 				{type: 'radio', horizontal: true, name: 'rating', showClearButton: false, options: [
-					{id: 5, name: 'Best', grid: optionGrid5},
-					{id: 4, name: 'Good', grid: optionGrid5},
-					{id: 3, name: 'General', grid: optionGrid5},
-					{id: 2, name: 'Low', grid: optionGrid5},
-					{id: 1, name: 'Bad', grid: optionGrid5}
+					{id: 5, name: this.context.translate('rating_of_current_area:best'), grid: optionGrid5},
+					{id: 4, name: this.context.translate('rating_of_current_area:good'), grid: optionGrid5},
+					{id: 3, name: this.context.translate('rating_of_current_area:general'), grid: optionGrid5},
+					{id: 2, name: this.context.translate('rating_of_current_area:low'), grid: optionGrid5},
+					{id: 1, name: this.context.translate('rating_of_current_area:bad'), grid: optionGrid5}
 				]}
 			],
 			[
-				{type: 'custom', element: <SemiHeader>Requesting area &amp; Expectation</SemiHeader>}
+				{type: 'custom', element: <SemiHeader>{this.context.translate('requesting_area_and_expectation')}</SemiHeader>}
 			],
 			...Array.from(Array(5), (v, k) => ([
 				{type: 'label', style: {paddingTop: 12}, label:`${k+1}.`, grid: {
@@ -103,7 +103,7 @@ class ForeheadPage extends Component {
 				}},
 			])),
 			[
-				{type: 'custom', element: <SemiHeader>Requesting reason</SemiHeader>}
+				{type: 'custom', element: <SemiHeader>{this.context.translate('requesting_reason')}</SemiHeader>}
 			],
 			...Array.from(Array(5), (v, k) => ([
 				{type: 'label', style: {paddingTop: 12}, label:`${k+1}.`, grid: {
@@ -114,7 +114,7 @@ class ForeheadPage extends Component {
 				}},
 			])),
 			[
-				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Before surgery</SemiHeader>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>{this.context.translate('question_before_surgery')}</SemiHeader>}
 			],
 			...Array.from(Array(12), (v, k)=>({
 				separator: true,
@@ -130,15 +130,15 @@ class ForeheadPage extends Component {
 					{type: 'radio', name: `before_surgeries[${k}]`, horizontal: true, showClearButton: false, grid: {
 						xs: '100%', md: '200px'
 					}, options: [
-						{id: 'yes', name: 'Yes'},
-						{id: 'no', name: 'No'}
+						{id: 'yes', name: this.context.translate('yes')},
+						{id: 'no', name: this.context.translate('no')}
 					]}
 				]}
 			)),[{type: 'space'}]
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="Forehead" images={images} values={values} data={data} onSubmit={this.submit}>
+			<MainForm header={this.context.translate('menu:forehead')} images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);
@@ -155,6 +155,7 @@ class ForeheadPage extends Component {
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 ForeheadPage.contextTypes = {
 	ajax: PropTypes.object,
-	dialog: PropTypes.object
+	dialog: PropTypes.object,
+	translate: PropTypes.func
 };
 export default ForeheadPage;
