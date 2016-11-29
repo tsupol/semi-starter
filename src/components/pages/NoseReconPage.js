@@ -10,6 +10,7 @@ const
 	marginBottomStyle = {marginBottom: 24},
 	imgOptionGrid = {xs: '100%', sm: '50%', md: '20%'},
 	imgStyle = {width: '100%'},
+	optionGrid2 = {xs: '100%', sm: '50%'},
 	optionGrid4 = {xs: '100%', sm: '50%', md: '25%'},
 	optionGrid6 = {xs: '100%', sm: '50%', md: '33%'},
 
@@ -64,14 +65,14 @@ class NoseReconPage extends Component {
 		let data = {};
 		let components = [
 			[
-				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Information</SemiHeader>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>{this.context.translate('basic_information')}</SemiHeader>}
 			],
 			[
 				{
 					type: 'radio', name: 'nose_surgery_history', horizontal: true, showClearButton: false, options: [
-						{id: 'no', name: 'No, Never have nose surgery.', grid: optionGrid4},
-						{id: 'yes', name: 'Yes, Ever did before.', grid: optionGrid4}
-					]
+					{id: 'no', name: this.context.translate('surgery_history:yes', {surgery: this.context.translate('menu:nose_recon')}), grid: optionGrid2},
+					{id: 'yes', name: this.context.translate('surgery_history:no', {surgery: this.context.translate('menu:nose_recon')}), grid: optionGrid2}
+				]
 				}
 			],
 			[
@@ -151,6 +152,7 @@ class NoseReconPage extends Component {
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 NoseReconPage.contextTypes = {
 	ajax: PropTypes.object,
-	dialog: PropTypes.object
+	dialog: PropTypes.object,
+	translate: PropTypes.func
 };
 export default NoseReconPage;

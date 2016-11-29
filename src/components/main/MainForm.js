@@ -69,6 +69,9 @@ class MainForm extends Component {
 					{type: 'text', name: 'whatappID', label: 'WhatApp ID', grid: grid4}
 				],
 				[
+					{type: 'text', name: 'country', label: this.context.translate('country')}
+				],
+				[
 					{type: 'custom', element: <SemiHeader>{this.context.translate('medical_histories')}</SemiHeader>}
 				],
 				...Array.from(Array(5), (v, k) => ([
@@ -97,10 +100,13 @@ class MainForm extends Component {
 					{type: 'text', multiLine: true, label: this.context.translate('allergic_symptoms'), name: 'allergic_symptoms', grid: grid3}
 				],
 				[
-					{type: 'text', multiLine: true, label: this.context.translate('need'), name: 'need', grid: grid2}
+					{type: 'custom', element: <SemiHeader line="solid" style={marginBottomStyle}>{this.context.translate('requirement')}</SemiHeader>}
 				],
 				[
-					{type: 'text', multiLine: true, label: this.context.translate('note'), name: 'note', grid: grid2}
+					{type: 'text', multiLine: true, hint: this.context.translate('requirement:hint'), name: 'requirement', grid: grid2}
+				],
+				[
+					{type: 'text', multiLine: true, label: this.context.translate('requirement:note'), name: 'note', grid: grid2}
 				],
 				[
 					{type: 'custom', element: <SemiHeader line="solid" style={marginBottomStyle}>{this.context.translate('upload_image')}</SemiHeader>}

@@ -153,12 +153,16 @@ class HomePage extends Component {
 					}
 				],
 				[
+					{type: 'custom', element: <SemiHeader line="solid" style={marginBottomStyle}>{this.context.translate('requirement')}</SemiHeader>}
+				],
+				[
 					{
-						type: 'text', multiLine: true, label: this.context.translate('need'), name: 'need', grid: grid2
-					},
+						type: 'text', multiLine: true, hint: this.context.translate('requirement:hint'), name: 'need', grid: grid2
+					}
+				],
+				[
 					{
-						type: 'text', multiLine: true, label: this.context.translate('note'), name: 'note', grid: grid2
-
+						type: 'text', multiLine: true, label: this.context.translate('requirement:note'), name: 'note', grid: grid2
 					}
 				],
 				[

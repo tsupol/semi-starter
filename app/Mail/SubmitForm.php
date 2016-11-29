@@ -42,7 +42,7 @@ class SubmitForm extends Mailable
             'congenital_disease' => 'โรคประจำตัว',
             'current_medication' => 'ยาที่ใช้ปัจจุบัน',
             'allergic_symptoms' => 'อาการแพ้ยา',
-            'need' => 'ความต้องการ',
+            'requirement' => 'ความต้องการ',
             'note' => 'หมายเหตุ',
             'medical_histories[what]' => 'เคยทำอะไร',
             'medical_histories[where]' => 'ที่ไหน',
