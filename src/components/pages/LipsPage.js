@@ -10,6 +10,7 @@ const
 	marginBottomStyle = {marginBottom: 24},
 	imgOptionGrid = {xs: '100%', sm: '50%', md: '20%'},
 	imgStyle = {width: '100%'},
+	optionGrid2 = {xs: '100%', sm: '50%'},
 	optionGrid4 = {xs: '100%', sm: '50%', md: '25%'},
 	rowSpace = {type: 'space', height: '16px', noPadding: true, grid: {
 		xs: '100%', md: '0%'
@@ -58,13 +59,13 @@ class LipsPage extends Component {
 		let data = {};
 		let components = [
 			[
-				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Information</SemiHeader>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>{this.context.translate('basic_information')}</SemiHeader>}
 			],
 			[
 				{
 					type: 'radio', name: 'ever_did_surgery_before_check', horizontal: true, showClearButton: false, options: [
-						{id: 'no', name: 'No, Never have lips surgery.', grid: optionGrid4},
-						{id: 'yes', name: 'Yes, Ever did before.', grid: optionGrid4}
+						{id: 'no', name: this.context.translate('surgery_history:no', {surgery: this.context.translate('menu:lips')}), grid: optionGrid2},
+						{id: 'yes', name: this.context.translate('surgery_history:yes', {surgery: this.context.translate('menu:lips')}), grid: optionGrid2}
 					], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes', surgery_count_before: 0, filler_before_know_details: ''})
 				}
 			],
@@ -76,7 +77,7 @@ class LipsPage extends Component {
 				},
 				items: [
 					{
-						type: 'numeric', name: 'surgery_count_before', label: 'How many time', onChange: (v)=> this.setState({surgery_count_before: v!='' ? parseInt(v) : 0})
+						type: 'numeric', name: 'surgery_count_before', label: this.context.translate('how_many_time'), onChange: (v)=> this.setState({surgery_count_before: v!='' ? parseInt(v) : 0})
 					}
 				]
 			},
@@ -88,13 +89,13 @@ class LipsPage extends Component {
 						type: 'label', label: `${k+1}`, grid: {md: '30px'}
 					},
 					{
-						type: 'text', name: `surgeries_before[${k}][how]`, multiLine: true, label: 'How', grid: {md: 'calc((100% / 3) - (30px / 3))'}
+						type: 'text', name: `surgeries_before[${k}][how]`, multiLine: true, label: this.context.translate('surgeries_before:how'), grid: {md: 'calc((100% / 3) - (30px / 3))'}
 					},
 					{
-						type: 'text', name: `surgeries_before[${k}][where]`, multiLine: true, label: 'Where', grid: {md: 'calc((100% / 3) - (30px / 3))'}
+						type: 'text', name: `surgeries_before[${k}][place]`, multiLine: true, label: this.context.translate('place'), grid: {md: 'calc((100% / 3) - (30px / 3))'}
 					},
 					{
-						type: 'text', name: `surgeries_before[${k}][duration]`, multiLine: true, label: 'Duration', grid: {md: 'calc((100% / 3) - (30px / 3))'}
+						type: 'text', name: `surgeries_before[${k}][duration]`, multiLine: true, label: this.context.translate('duration'), grid: {md: 'calc((100% / 3) - (30px / 3))'}
 					}
 				]
 			}
@@ -106,13 +107,13 @@ class LipsPage extends Component {
 					paddingBottom: 16
 				},
 				items: [
-					{type: 'label', style: {paddingTop: 3, fontWeight: 'normal'}, label: 'Know the detail', grid: {
+					{type: 'label', style: {paddingTop: 3, fontWeight: 'normal'}, label: this.context.translate('know_the_detail'), grid: {
 						xs: '100%', md: '50%'
 					}},
 					{
 						type: 'radio', name: 'filler_before_know_details', horizontal: true, showClearButton: false, options: [
-							{id: 'yes', name: 'Yes', grid: optionGrid4},
-							{id: 'no', name: 'No', grid: optionGrid4}
+							{id: 'yes', name: this.context.translate('yes'), grid: optionGrid2},
+							{id: 'no', name: this.context.translate('no'), grid: optionGrid2}
 						], onCheck: (v)=> this.setState({filler_before_know_details: v})
 					}
 				]
@@ -121,10 +122,10 @@ class LipsPage extends Component {
 				hide: this.state.filler_before_know_details != 'yes',
 				items: [
 					{
-						type: 'text', name: 'filler_brand', multiLine: true, label: 'Filler (brand)'
+						type: 'text', name: 'brand', multiLine: true, label: this.context.translate('brand')
 					},
 					{
-						type: 'text', name: 'filler_count', multiLine: true, label: 'How many times'
+						type: 'text', name: 'filler_count', multiLine: true, label: this.context.translate('how_many_time:filler')
 					}
 				]
 			},
@@ -132,13 +133,13 @@ class LipsPage extends Component {
 				hide: this.state.filler_before_know_details != 'yes',
 				items: [
 					{
-						type: 'text', name: 'filler_last_time', multiLine: true, label: 'Last time'
+						type: 'text', name: 'last_time', multiLine: true, label: this.context.translate('last_time')
 					},
 					{
-						type: 'text', name: 'filler_volume', multiLine: true, label: 'Filler volume'
+						type: 'text', name: 'volume', multiLine: true, label: this.context.translate('volume')
 					},
 					{
-						type: 'text', name: 'filler_place_or_doctor', multiLine: true, label: 'Place / Doctor'
+						type: 'text', name: 'place_or_doctor', multiLine: true, label: this.context.translate('place_or_doctor')
 					}
 				]
 			},
@@ -146,7 +147,7 @@ class LipsPage extends Component {
 				hide: this.state.filler_before_know_details != 'no',
 				items: [
 					{
-						type: 'text', name: 'filler_count', multiLine: true, label: 'How many times'
+						type: 'text', name: 'filler_count', multiLine: true, label: this.context.translate('how_many_time:filler')
 					}
 				]
 			},
@@ -154,10 +155,10 @@ class LipsPage extends Component {
 				hide: this.state.filler_before_know_details != 'no',
 				items: [
 					{
-						type: 'text', name: 'filler_last_time', multiLine: true, label: 'Last time'
+						type: 'text', name: 'last_time', multiLine: true, label: this.context.translate('last_time')
 					},
 					{
-						type: 'text', name: 'filler_place_or_doctor', multiLine: true, label: 'Place / Doctor'
+						type: 'text', name: 'place_or_doctor', multiLine: true, label: this.context.translate('place_or_doctor')
 					}
 				]
 			},
@@ -199,6 +200,7 @@ class LipsPage extends Component {
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 LipsPage.contextTypes = {
 	ajax: PropTypes.object,
-	dialog: PropTypes.object
+	dialog: PropTypes.object,
+	translate: PropTypes.func
 };
 export default LipsPage;

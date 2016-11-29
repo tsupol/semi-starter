@@ -10,6 +10,7 @@ const
 	marginBottomStyle = {marginBottom: 24},
 	imgOptionGrid = {xs: '100%', sm: '50%', md: '20%'},
 	imgStyle = {width: '100%'},
+	optionGrid2 = {xs: '100%', sm: '50%'},
 	optionGrid3 = {xs: '100%', sm: '50%', md: '33.3333333333%'},
 	optionGrid4 = {xs: '100%', sm: '50%', md: '25%'},
 	optionGrid5 = {xs: '100%', sm: '50%', md: '20%'},
@@ -69,7 +70,7 @@ class EyelidsPage extends Component {
 		let data = {};
 		let components = [
 			[
-				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Information</SemiHeader>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>{this.context.translate('basic_information')}</SemiHeader>}
 			],
 			[
 				{
@@ -78,8 +79,8 @@ class EyelidsPage extends Component {
 					horizontal: true,
 					showClearButton: false,
 					options: [
-						{id: 'no', name: 'No, Never have eyelids surgery.', grid: optionGrid3},
-						{id: 'yes', name: 'Yes, Ever did before.', grid: optionGrid3}
+						{id: 'no', name: this.context.translate('surgery_history:no', {surgery: this.context.translate('menu:eyelids')}), grid: optionGrid2},
+						{id: 'yes', name: this.context.translate('surgery_history:yes', {surgery: this.context.translate('menu:eyelids')}), grid: optionGrid2}
 					],
 					onCheck: (v)=> this.setState({ever_did_surgery_before_check: v == 'yes', surgery_count_before: 0})
 				}
@@ -90,7 +91,7 @@ class EyelidsPage extends Component {
 					{
 						type: 'numeric',
 						name: 'surgery_count_before',
-						label: 'How many time',
+						label: this.context.translate('how_many_time'),
 						onChange: (v)=> this.setState({surgery_count_before: v != '' ? parseInt(v) : 0})
 					}
 				]
@@ -102,47 +103,46 @@ class EyelidsPage extends Component {
 				},
 				items: [
 					{
-						type: 'custom',
-						element: <div style={{height: '72px', textAlign: 'right'}}><label
-							style={{lineHeight: '72px'}}>{k + 1}</label></div>,
+						type: 'label',
+						label: k + 1,
 						grid: {md: '30px'}
 					},
 					{
 						type: 'text',
 						name: `surgeries_before[${k}][how]`,
 						multiLine: true,
-						label: 'How',
+						label: this.context.translate('surgeries_before:how'),
 						grid: {md: 'calc((100% / 3) - (30px / 3))'}
 					},
 					{
 						type: 'text',
-						name: `surgeries_before[${k}][where]`,
+						name: `surgeries_before[${k}][place]`,
 						multiLine: true,
-						label: 'Where',
+						label: this.context.translate('place'),
 						grid: {md: 'calc((100% / 3) - (30px / 3))'}
 					},
 					{
 						type: 'text',
 						name: `surgeries_before[${k}][duration]`,
 						multiLine: true,
-						label: 'Duration',
+						label: this.context.translate('duration'),
 						grid: {md: 'calc((100% / 3) - (30px / 3))'}
 					}
 				]
 			}
 			)),
 			[
-				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Eye tattoo</SemiHeader>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>{this.context.translate('eye_tattoo')}</SemiHeader>}
 			],
 			[
 				{
 					type: 'radio', name: 'eye_tattoo', showClearButton: false, horizontal: true, options: [
-					{id: 'no', name: 'No tattoo', grid: optionGrid3},
-					{id: 'bottom', name: 'Bottom eyelids', grid: optionGrid3},
-					{id: 'top', name: 'Top eyelids', grid: optionGrid3},
-					{id: '3d', name: '3d eyelids', grid: optionGrid3},
-					{id: 'eyelash', name: 'Extend eyelash', grid: optionGrid3},
-					{id: 'other', name: 'Other', grid: optionGrid3}
+					{id: 'no', name: this.context.translate('eye_tattoo:no'), grid: optionGrid3},
+					{id: 'bottom', name: this.context.translate('eye_tattoo:bottom'), grid: optionGrid3},
+					{id: 'top', name: this.context.translate('eye_tattoo:top'), grid: optionGrid3},
+					{id: '3d', name: this.context.translate('eye_tattoo:3d'), grid: optionGrid3},
+					{id: 'eyelash', name: this.context.translate('eye_tattoo:eyelash'), grid: optionGrid3},
+					{id: 'other', name: this.context.translate('others'), grid: optionGrid3}
 					// {id: 'other', name: 'Other', grid: optionGrid3, style: {marginTop: 16}}
 				], onCheck: (v)=> this.setState({eye_tattoo_other: v == 'other'})
 				}
@@ -152,12 +152,12 @@ class EyelidsPage extends Component {
 				style: hiddenTextStyle,
 				items: [
 					{
-						type: 'text', name: 'eye_tattoo_other', multiLine: true, hint: 'Please specify'
+						type: 'text', name: 'eye_tattoo_other', multiLine: true, hint: this.context.translate('please_specify')
 					}
 				]
 			},
 			[
-				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Vision issue</SemiHeader>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>{this.context.translate('vision_issue')}</SemiHeader>}
 			],
 			[
 				{
@@ -167,18 +167,18 @@ class EyelidsPage extends Component {
 					showClearButton: false,
 					options: [
 						{
-							id: 'short', name: 'Short', grid: optionGrid3, belowInput: {
-							type: 'text', name: 'vision_issue_short', multiLine: true, hint: 'Please specify'
+							id: 'short', name: this.context.translate('vision_issue:short'), grid: optionGrid3, belowInput: {
+							type: 'text', name: 'vision_issue_short', multiLine: true, hint: this.context.translate('please_specify')
 						}
 						},
 						{
-							id: 'long', name: 'Long', grid: optionGrid3, belowInput: {
-							type: 'text', name: 'vision_issue_long', multiLine: true, hint: 'Please specify'
+							id: 'long', name: this.context.translate('vision_issue:long'), grid: optionGrid3, belowInput: {
+							type: 'text', name: 'vision_issue_long', multiLine: true, hint: this.context.translate('please_specify')
 						}
 						},
 						{
-							id: 'astigmatism', name: 'Astigmatism', grid: optionGrid3, belowInput: {
-							type: 'text', name: 'vision_issue_astigmatism', multiLine: true, hint: 'Please specify'
+							id: 'astigmatism', name: this.context.translate('vision_issue:astigmatism'), grid: optionGrid3, belowInput: {
+							type: 'text', name: 'vision_issue_astigmatism', multiLine: true, hint: this.context.translate('please_specify')
 						}
 						}
 					],
@@ -190,23 +190,23 @@ class EyelidsPage extends Component {
 				}
 			],
 			[
-				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Style expectation</SemiHeader>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>{this.context.translate('eyelids_style_expectation')}</SemiHeader>}
 			],
 			{
 				items: [
 					{
 						type: 'radio', name: 'style_expectation', horizontal: true, showClearButton: false, options: [
-						{id: 'high', name: 'High', grid: optionGrid5},
-						{id: 'normal', name: 'normal', grid: optionGrid5},
-						{id: 'mini', name: 'Mini', grid: optionGrid5},
+						{id: 'high', name: this.context.translate('eyelids_style_expectation:high'), grid: optionGrid5},
+						{id: 'normal', name: this.context.translate('eyelids_style_expectation:normal'), grid: optionGrid5},
+						{id: 'mini', name: this.context.translate('eyelids_style_expectation:mini'), grid: optionGrid5},
 							{
 								id: 'follow_suggestions',
-								name: 'Follow suggestions',
+								name: this.context.translate('eyelids_style_expectation:follow_suggestions'),
 								grid: {xs: '100%', sm: '50%', md: '40%'}
 							},
 							{
-								id: 'other', name: 'Other', grid: optionGridOther, belowInput: {
-								type: 'text', name: 'style_expectation_other', multiLine: true, hint: 'Please specify'
+								id: 'other', name: this.context.translate('others'), grid: optionGridOther, belowInput: {
+								type: 'text', name: 'style_expectation_other', multiLine: true, hint: this.context.translate('please_specify')
 							}
 						}
 					], onCheck: (v)=> this.setState({style_expectation_other: v == 'other'})
@@ -237,6 +237,7 @@ class EyelidsPage extends Component {
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 EyelidsPage.contextTypes = {
 	ajax: PropTypes.object,
-	dialog: PropTypes.object
+	dialog: PropTypes.object,
+	translate: PropTypes.func
 };
 export default EyelidsPage;

@@ -24,7 +24,7 @@ class SecondaryLayout extends Component {
 
         let {query} = props.location;
         let showMenu = (query['show-menu']=='true' || query['show-menu'] == '1');
-        let defaultLocale = 'th';
+        let defaultLocale = 'en';
         let currentLocale = query['locale'] || defaultLocale;
         this.state = {
             showMainMenu: showMenu,

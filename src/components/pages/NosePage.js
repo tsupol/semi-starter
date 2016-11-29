@@ -59,8 +59,8 @@ class NosePage extends Component {
 			[
 				{
 					type: 'radio', name: 'nose_surgery_history', horizontal: true, showClearButton: false, options: [
-						{id: 'no', name: this.context.translate('surgery_history:yes', {surgery: this.context.translate('menu:nose')}), grid: optionGrid2},
-						{id: 'yes', name: this.context.translate('surgery_history:no', {surgery: this.context.translate('menu:nose')}), grid: optionGrid2}
+						{id: 'no', name: this.context.translate('surgery_history:no', {surgery: this.context.translate('menu:nose')}), grid: optionGrid2},
+						{id: 'yes', name: this.context.translate('surgery_history:yes', {surgery: this.context.translate('menu:nose')}), grid: optionGrid2}
 					]
 				}
 			],

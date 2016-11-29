@@ -126,17 +126,17 @@ class HomePage extends Component {
 						}
 					},
 					{
-						type: 'text', multiLine: true, label: this.context.translate('medical_histories:where'), name: `medical_histories[${k}][where]`, grid: {
+						type: 'text', multiLine: true, label: this.context.translate('place'), name: `medical_histories[${k}][place]`, grid: {
 							xs: '100%', sm: `calc(${100/4}% - ${64/4}px)`
 						}
 					},
 					{
-						type: 'text', multiLine: true, label: this.context.translate('medical_histories:doctor'), name: `medical_histories[${k}][doctor]`, grid: {
+						type: 'text', multiLine: true, label: this.context.translate('doctor'), name: `medical_histories[${k}][doctor]`, grid: {
 							xs: '100%', sm: `calc(${100/4}% - ${64/4}px)`
 						}
 					},
 					{
-						type: 'text', multiLine: true, label: this.context.translate('medical_histories:duration'), name: `medical_histories[${k}][duration]`, grid: {
+						type: 'text', multiLine: true, label: this.context.translate('duration'), name: `medical_histories[${k}][duration]`, grid: {
 							xs: '100%', sm: `calc(${100/4}% - ${64/4}px)`
 						}
 					}

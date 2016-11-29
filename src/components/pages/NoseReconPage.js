@@ -70,26 +70,26 @@ class NoseReconPage extends Component {
 			[
 				{
 					type: 'radio', name: 'nose_surgery_history', horizontal: true, showClearButton: false, options: [
-					{id: 'no', name: this.context.translate('surgery_history:yes', {surgery: this.context.translate('menu:nose_recon')}), grid: optionGrid2},
-					{id: 'yes', name: this.context.translate('surgery_history:no', {surgery: this.context.translate('menu:nose_recon')}), grid: optionGrid2}
+					{id: 'no', name: this.context.translate('surgery_history:no', {surgery: this.context.translate('menu:nose-recon')}), grid: optionGrid2},
+					{id: 'yes', name: this.context.translate('surgery_history:yes', {surgery: this.context.translate('menu:nose-recon')}), grid: optionGrid2}
 				]
 				}
 			],
 			[
-				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Medical histories</SemiHeader>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>{this.context.translate('nose:histories')}</SemiHeader>}
 			],
 			[
 				{
 					type: 'checkbox', name: 'medical_histories', horizontal: true, showClearButton: false, options: [
-						{id: 'allergy', name: 'Allergy', grid: optionGrid4},
-						{id: 'nasal_congestion', name: 'Nasal congestion', grid: optionGrid4},
-						{id: 'sinusitis', name: 'Sinusitis', grid: optionGrid4},
-						{id: 'accident', name: 'Accident', grid: optionGrid4}
+						{id: 'allergy', name: this.context.translate('allergy'), grid: optionGrid4},
+						{id: 'nasal_congestion', name: this.context.translate('nasal_congestion'), grid: optionGrid4},
+						{id: 'sinusitis', name: this.context.translate('sinusitis'), grid: optionGrid4},
+						{id: 'accident', name: this.context.translate('accident'), grid: optionGrid4}
 					]
 				}
 			],
 			[
-				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Nose condition</SemiHeader>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>{this.context.translate('nose:conditions')}</SemiHeader>}
 			],
 			...Array.from(Array(6), (v, k)=>({
 				...cbRowParam,
@@ -108,30 +108,48 @@ class NoseReconPage extends Component {
 				]
 			})),
 			[
-				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Personal condition</SemiHeader>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>{this.context.translate('personal:conditions')}</SemiHeader>}
 			],
-			...Array.from(Array(2), (v, k)=>(
-				{
-					...cbRowParam,
-					items: [
-						{
-							type: 'label', label: `Condition ${k+1}`, style: labelStyle, grid: labelGrid
-						},
-						{...rowSpace},
-						{
-							type: 'radio',
-							name: `personal_conditions[${k}]`,
-							horizontal: true,
-							showClearButton: false,
-							grid: radioGrid,
-							options: [
-								{id: 'no', name: 'No', grid: rightGrid3},
-								{id: 'yes', name: 'Yes', grid: rightGrid3}
-							]
-						}
-					]
-				}
-			)),[{type: 'space'}]
+			{
+				...cbRowParam,
+				items: [
+					{
+						type: 'label', label: 'ท่านมีโรคประจำตัว หรือเคยผ่าตัดโยการดมยาสลบ', style: labelStyle, grid: labelGrid
+					},
+					{...rowSpace},
+					{
+						type: 'radio',
+						name: `personal_conditions[0]`,
+						horizontal: true,
+						showClearButton: false,
+						grid: radioGrid,
+						options: [
+							{id: 'no', name: this.context.translate('no'), grid: rightGrid3},
+							{id: 'yes', name: this.context.translate('yes'), grid: rightGrid3}
+						]
+					}
+				]
+			},
+			{
+				...cbRowParam,
+				items: [
+					{
+						type: 'label', label: 'ท่านเคมีแผลเป็นนูน ผื่นแพ้สัมผัส ผื่นเริ่ม/งูสวัส', style: labelStyle, grid: labelGrid
+					},
+					{...rowSpace},
+					{
+						type: 'radio',
+						name: `personal_conditions[1]`,
+						horizontal: true,
+						showClearButton: false,
+						grid: radioGrid,
+						options: [
+							{id: 'no', name: this.context.translate('no'), grid: rightGrid3},
+							{id: 'yes', name: this.context.translate('yes'), grid: rightGrid3}
+						]
+					}
+				]
+			},[{type: 'space'}]
 		];
 		let formTemplate = {components};
 		return (

@@ -11,6 +11,7 @@ const
 	grid2 = {xs: '100%', md: '50%'},
 	grid1 = {xs: '100%'},
 	imgStyle = {width: '100%'},
+	optionGrid2 = {xs: '100%', sm: '50%'},
 	optionGrid4 = {xs: '100%', sm: '50%', md: '25%'},
 	hiddenTextStyle = {paddingTop: 16, paddingBottom: 0},
 	rowSpace = {type: 'space', height: '16px', noPadding: true, grid: {
@@ -64,25 +65,25 @@ class BeastPage extends Component {
 			// ----------------------------------------
 
 			[
-				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Information</SemiHeader>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>{this.context.translate('basic_information')}</SemiHeader>}
 			],
 			[
 				{
 					type: 'radio', name: 'beast_surgery_history', horizontal: true, showClearButton: false, options: [
-					{id: 'no', name: 'No, Never have breast surgery.', grid: optionGrid4},
-					{id: 'yes', name: 'Yes, Ever did before.', grid: optionGrid4}
+					{id: 'no', name: this.context.translate('surgery_history:no', {surgery: this.context.translate('menu:breast')}), grid: optionGrid2},
+					{id: 'yes', name: this.context.translate('surgery_history:yes', {surgery: this.context.translate('menu:breast')}), grid: optionGrid2}
 				], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes'})
 				}
 			],
 			{
 				hide: !this.state.ever_did_surgery_before_check,
 				items: [
-					{type: 'numeric', name: 'surgery_count_before', label: 'How many time', grid: grid1},
-					{type: 'text', name: 'surgery_type', label: 'Type', multiLine: true, grid: grid1},
-					{type: 'text', name: 'size', label: 'Size', grid: grid2},
-					{type: 'text', name: 'brand', label: 'Brand', grid: grid2},
-					{type: 'text', name: 'place_or_doctor', label: 'Place / Doctor', grid: grid2},
-					{type: 'text', name: 'duration', label: 'Duration', grid: grid2}
+					{type: 'numeric', name: 'surgery_count_before', label: this.context.translate('how_many_time:surgery'), grid: grid1},
+					{type: 'text', name: 'surgery_type', label: this.context.translate('surgeries_before:how'), multiLine: true, grid: grid1},
+					{type: 'text', name: 'size', label: this.context.translate('size'), grid: grid2},
+					{type: 'text', name: 'brand', label: this.context.translate('brand'), grid: grid2},
+					{type: 'text', name: 'place_or_doctor', label: this.context.translate('place_or_doctor'), grid: grid2},
+					{type: 'text', name: 'duration', label: this.context.translate('duration'), grid: grid2}
 				]
 			},
 
@@ -176,6 +177,7 @@ class BeastPage extends Component {
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 BeastPage.contextTypes = {
 	ajax: PropTypes.object,
-	dialog: PropTypes.object
+	dialog: PropTypes.object,
+	translate: PropTypes.func
 };
 export default BeastPage;
