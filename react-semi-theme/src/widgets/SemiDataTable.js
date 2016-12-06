@@ -152,10 +152,10 @@ class SemiDataTable extends Component {
                 }
             }
             this.context.ajax.call('get', `${this.props.dataSource}?${data.join('&')}`, null).then(res=> {
-                let r = this.props.dataSourceResult;
+                let r = this.props.dataSourceResult; // root data field name by return from ajax ex. {result:{data: [], total: 0}} * "result" is root in this case
                 let data = {
-                    data: res[r] ? res[r][this.props.dataSourceMap && this.props.dataSourceMap.data ? this.props.dataSourceMap.data : 'data'] : [],
-                    total: res[r] ? res[r][this.props.dataSourceMap && this.props.dataSourceMap.total ? this.props.dataSourceMap.total : 'total'] : 0,
+                    data: res[r] ? res[r][this.props.dataSourceMap && this.props.dataSourceMap.data ? this.props.dataSourceMap.data : 'data'] : [], // data field name by return from ajax (default is set to "data")
+                    total: res[r] ? res[r][this.props.dataSourceMap && this.props.dataSourceMap.total ? this.props.dataSourceMap.total : 'total'] : 0, // total field name by return from ajax (default is set to "data")
                     canEdit: res[r] ? res[r].canEdit : false,
                     filterData: res[r] ? res[r].filterData : {}
                 };
@@ -216,7 +216,7 @@ class SemiDataTable extends Component {
             if (options && options.order && options.order.length > 0) {
                 for (let i in options.order) {
                     let index = order.map((o)=>o.column).indexOf(options.order[i].column);
-                    if (index != -1) {
+                    if (index != -1) { // 219-229 for loop a single column order direction (none -> asc -> desc -> none)
                         let shouldResetDir = false;
                         if (order[index].dir == 'desc') shouldResetDir = true;
                         order.splice(index, 1);
@@ -330,7 +330,7 @@ class SemiDataTable extends Component {
             // Override
         });
 
-        limit = limit == false ? false : limit || 10;
+        limit = limit == false ? false : limit || 10; // 333 - 345 for calculate a pagination
         const offset = limit == false ? 0 : (this.state.page - 1) * limit;
         let data = this.getTableData();
         let total = typeof this.props.dataSource == 'object' ? this.props.dataSource.length : this.state.total;
@@ -343,7 +343,7 @@ class SemiDataTable extends Component {
         for (let i = 1; i <= max_page; i++) {
             pages.push(i);
         }
-        let rows = data.map((row, index)=> {
+        let rows = data.map((row, index)=> { // 346 - 358 map data for check if any column is set to be custom or not
             let obj = {};
             for (let i in fields) {
                 let key = fields[i];
@@ -356,10 +356,10 @@ class SemiDataTable extends Component {
             }
             return obj;
         });
-        if (typeof this.props.dataSource == 'object' && limit != false) {
+        if (typeof this.props.dataSource == 'object' && limit != false) { // 359 - 361 chunk data if limit is set to true and data is Object because if is ajax, data will be set before received
             rows = rows.slice(offset, offset + limit);
         }
-        let showCreateBtn = actions && actions.create != undefined ? actions.create : false;
+        let showCreateBtn = actions && actions.create != undefined ? actions.create : false; // 362 - 363 set default value to Create & Reload button to false
         let showReloadBtn = actions && actions.reload != undefined ? actions.reload : false;
 
         // ----- Buttons
@@ -453,7 +453,7 @@ class SemiDataTable extends Component {
                              </TableRow>
                              */}
                             <TableRow>
-                                {fields.map((field, i)=> {
+                                {fields.map((field, i)=> { // 456 - 487 is about icon & responsive device(using MediaQuery)
                                     let isOrder = order && order.filter((o)=>o.column == field.key);
                                     let sortable = isOrder && isOrder.length > 0;
                                     let dynamicIcon = React.cloneElement(sortable ? (isOrder[0].dir.match(/asc/gi) ?
@@ -492,7 +492,7 @@ class SemiDataTable extends Component {
                         >
                             {rows.length ? rows.map((row, index) => (
                                 <TableRow key={index} selected={row.selected}>
-                                    {fields.map((field, i)=> {
+                                    {fields.map((field, i)=> { // 495 - 509 is about responsive device(using MediaQuery)
                                         let display = field.display || 'all';
                                         let query = null;
                                         if (typeof display == 'string') {
