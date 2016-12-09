@@ -7,8 +7,8 @@ import {Router, browserHistory, useRouterHistory} from 'react-router';
 import {createHashHistory} from 'history';
 
 // todo: change route here (switching between the 2 projects)
-import routes from './routes/primary.js';
-//import routes from './routes/secondary.js';
+// import routes from './routes/primary.js';
+import routes from './routes/secondary.js';
 
 import configureStore from './store/configureStore';
 require('./favicon.ico'); // Tell webpack to load favicon.ico

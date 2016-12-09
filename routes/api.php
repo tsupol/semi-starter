@@ -45,7 +45,7 @@ Route::post('/submit/{subject?}', function (Request $request, $subject = 'defaul
             $files[$key] = ['path' => $image->path(), 'name' => sprintf("%s.%s", $key, $image->extension())];
         }
     }
-    Mail::to(['Pr001online@gmail.com','Pr002online@gmail.com,'])->send(new SubmitForm($subject, $data, $files));
+    Mail::to(['Pr001online@gmail.com','Pr002online@gmail.com'])->send(new SubmitForm($subject, $data, $files));
     return response()->json(['data'=>$data, 'files'=>$files]);
 });
 

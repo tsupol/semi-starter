@@ -157,7 +157,7 @@ class HomePage extends Component {
 				],
 				[
 					{
-						type: 'text', multiLine: true, hint: this.context.translate('requirement:hint'), name: 'need', grid: grid2
+						type: 'text', multiLine: true, hint: this.context.translate('requirement:hint'), name: 'requirement', grid: grid2
 					}
 				],
 				[
