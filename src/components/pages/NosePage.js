@@ -49,7 +49,15 @@ class NosePage extends Component {
 	render() {
 		let thumbnail = require('../../assets/img/upload-thumbnail.png');
 		let example = require('../../assets/img/upload-example.png');
-		let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		//let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		let images = [];
+		images.push({example: require('../../assets/img/nose/IMG_8034.jpg')});
+		images.push({example: require('../../assets/img/nose/IMG_8035.jpg')});
+		images.push({example: require('../../assets/img/nose/IMG_8036.jpg')});
+		images.push({example: require('../../assets/img/nose/IMG_8038.jpg')});
+		images.push({example: require('../../assets/img/nose/IMG_8044.jpg')});
+		images.push({example: require('../../assets/img/nose/IMG_8046.jpg')});
+		images = images.map((img)=>Object.assign({}, img, {thumbnail}));
 		let values = {};
 		let data = {};
 		let components = [

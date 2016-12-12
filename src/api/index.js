@@ -27,7 +27,8 @@ function baseUrl(endpoint) {
 
 	// production build
 	//return `/${devProjectName}/api${endpointStr}`;
-	return `http://www.prmarketingcase.com/api${endpointStr}`;
+	//return `http://www.prmarketingcase.com/api${endpointStr}`;
+	return `http://www.mspinfo.net/consult/api${endpointStr}`;
 }
 
 /**

@@ -47,7 +47,15 @@ class ForeheadPage extends Component {
 	render() {
 		let thumbnail = require('../../assets/img/upload-thumbnail.png');
 		let example = require('../../assets/img/upload-example.png');
-		let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		//let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		let images = [];
+		images.push({example: require('../../assets/img/hair/IMG_8042.jpg')});
+		images.push({example: require('../../assets/img/hair/PIC_09037.jpg')});
+		images.push({example: require('../../assets/img/hair/PIC_09048.jpg')});
+		images.push({example: require('../../assets/img/hair/PIC_09055.jpg')});
+		images.push({example: require('../../assets/img/hair/PIC_09060.jpg')});
+		images.push({example: require('../../assets/img/hair/PIC_09090.jpg')});
+		images = images.map((img)=>Object.assign({}, img, {thumbnail}));
 		let values = {};
 		let data = {};
 		let components = [

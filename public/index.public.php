@@ -19,7 +19,7 @@
 |
 */
 
-require __DIR__.'/../laravel/onlineconsult/bootstrap/autoload.php';
+require __DIR__.'/../../laravel/consult/bootstrap/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +33,7 @@ require __DIR__.'/../laravel/onlineconsult/bootstrap/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/../laravel/onlineconsult/bootstrap/app.php';
+$app = require_once __DIR__.'/../../laravel/consult/bootstrap/app.php';
 
 /*
 |--------------------------------------------------------------------------

@@ -56,7 +56,15 @@ class CheekBulgePage extends Component {
 	render() {
 		let thumbnail = require('../../assets/img/upload-thumbnail.png');
 		let example = require('../../assets/img/upload-example.png');
-		let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		//let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		let images = [];
+		images.push({example: require('../../assets/img/cheek-bulge/IMG_8037.jpg')});
+		images.push({example: require('../../assets/img/cheek-bulge/PIC_09032.jpg')});
+		images.push({example: require('../../assets/img/cheek-bulge/PIC_09033.jpg')});
+		images.push({example: require('../../assets/img/cheek-bulge/PIC_09044.jpg')});
+		images.push({example: require('../../assets/img/cheek-bulge/PIC_09053.jpg')});
+		images.push({example: require('../../assets/img/cheek-bulge/PIC_09062.jpg')});
+		images = images.map((img)=>Object.assign({}, img, {thumbnail}));
 		let values = {};
 		let data = {};
 		let components = [

@@ -109,14 +109,38 @@ class HomePage extends Component {
 											</Col>
 											<Col md="20%" xs="50%">
 												<div style={divStyle}>
-													<a href="#/liposuction" style={anchorStyle}><img src={icons[11]} width="100%" /></a>
-													<a href="#/liposuction" style={anchorStyle}><SemiHeader style={headerStyle}>{this.context.translate('menu:liposuction')}</SemiHeader></a>
+													<a href="#/liposuction/arm" style={anchorStyle}><img src={icons[11]} width="100%" /></a>
+													<a href="#/liposuction/arm" style={anchorStyle}><SemiHeader style={headerStyle}>{this.context.translate('menu:liposuction-arm')}</SemiHeader></a>
+												</div>
+											</Col>
+											<Col md="20%" xs="50%">
+												<div style={divStyle}>
+													<a href="#/liposuction/leg" style={anchorStyle}><img src={icons[11]} width="100%" /></a>
+													<a href="#/liposuction/leg" style={anchorStyle}><SemiHeader style={headerStyle}>{this.context.translate('menu:liposuction-leg')}</SemiHeader></a>
+												</div>
+											</Col>
+											<Col md="20%" xs="50%">
+												<div style={divStyle}>
+													<a href="#/liposuction/body" style={anchorStyle}><img src={icons[11]} width="100%" /></a>
+													<a href="#/liposuction/body" style={anchorStyle}><SemiHeader style={headerStyle}>{this.context.translate('menu:liposuction-body')}</SemiHeader></a>
+												</div>
+											</Col>
+											<Col md="20%" xs="50%">
+												<div style={divStyle}>
+													<a href="#/liposuction/facial" style={anchorStyle}><img src={icons[11]} width="100%" /></a>
+													<a href="#/liposuction/facial" style={anchorStyle}><SemiHeader style={headerStyle}>{this.context.translate('menu:liposuction-facial')}</SemiHeader></a>
 												</div>
 											</Col>
 											<Col md="20%" xs="50%">
 												<div style={divStyle}>
 													<a href="#/implants" style={anchorStyle}><img src={icons[12]} width="100%" /></a>
 													<a href="#/implants" style={anchorStyle}><SemiHeader style={headerStyle}>{this.context.translate('menu:implants')}</SemiHeader></a>
+												</div>
+											</Col>
+											<Col md="20%" xs="50%">
+												<div style={divStyle}>
+													<a href="#/others" style={anchorStyle}><img src={icons[12]} width="100%" /></a>
+													<a href="#/others" style={anchorStyle}><SemiHeader style={headerStyle}>{this.context.translate('menu:others')}</SemiHeader></a>
 												</div>
 											</Col>
 										</Row>

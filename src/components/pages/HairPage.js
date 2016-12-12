@@ -80,7 +80,15 @@ class HairPage extends Component {
 		console.log('this.state', this.state);
 		let thumbnail = require('../../assets/img/upload-thumbnail.png');
 		let example = require('../../assets/img/upload-example.png');
-		let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		//let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		let images = [];
+		images.push({example: require('../../assets/img/hair/IMG_8042.jpg')});
+		images.push({example: require('../../assets/img/hair/PIC_09037.jpg')});
+		images.push({example: require('../../assets/img/hair/PIC_09048.jpg')});
+		images.push({example: require('../../assets/img/hair/PIC_09055.jpg')});
+		images.push({example: require('../../assets/img/hair/PIC_09060.jpg')});
+		images.push({example: require('../../assets/img/hair/PIC_09090.jpg')});
+		images = images.map((img)=>Object.assign({}, img, {thumbnail}));
 		let values = {};
 		let data = {};
 
@@ -159,8 +167,7 @@ class HairPage extends Component {
 					{type: 'radio', name: 'alcohol_check', showClearButton: false, horizontal: true, grid: cbGrid, options: [
 						{id: 'no', name: 'No', grid: optionGrid5},
 						{id: 'yes', name: 'Yes', grid: optionGrid5}
-					], onCheck: (v)=>this.setState({alcohol_check: v.indexOf('yes')!=-1})},
-					{type: 'text', name: 'alcohol', hint: 'Please specify', hide: !this.state.alcohol_check, grid: hiddenTextGrid}
+					]}
 				]
 			},
 			{
@@ -171,8 +178,7 @@ class HairPage extends Component {
 					{type: 'radio', name: 'smoking_check', showClearButton: false, horizontal: true, grid: cbGrid, options: [
 						{id: 'no', name: 'No', grid: optionGrid5},
 						{id: 'yes', name: 'Yes', grid: optionGrid5}
-					], onCheck: (v)=>this.setState({smoking_check: v.indexOf('yes')!=-1})},
-					{type: 'text', name: 'smoking', hint: 'Please specify', hide: !this.state.smoking_check, grid: hiddenTextGrid}
+					]}
 				]
 			},
 			{
@@ -183,8 +189,7 @@ class HairPage extends Component {
 					{type: 'radio', name: 'family_history_of_alopecia_check', showClearButton: false, horizontal: true, grid: cbGrid, options: [
 						{id: 'no', name: 'No', grid: optionGrid5},
 						{id: 'yes', name: 'Yes', grid: optionGrid5}
-					], onCheck: (v)=>this.setState({family_history_of_alopecia_check: v.indexOf('yes')!=-1})},
-					{type: 'text', name: 'family_history_of_alopecia', hint: 'Please specify', hide: !this.state.family_history_of_alopecia_check, grid: hiddenTextGrid}
+					]}
 				]
 			},
 

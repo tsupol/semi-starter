@@ -35,7 +35,8 @@ export default {
   output: {
     path: path.resolve(__dirname, 'dist'),
     //publicPath: '/onlineconsult/',
-    publicPath: 'http://www.prmarketingcase.com/',
+    //publicPath: 'http://www.prmarketingcase.com/',
+    publicPath: 'http://www.mspinfo.net/consult/',
     filename: '[name].js'
   },
   node: {

@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('primary');
+    return view('secondary');
 });
 
 Route::get('/primary', function () {

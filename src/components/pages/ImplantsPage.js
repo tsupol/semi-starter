@@ -44,7 +44,15 @@ class ImplantsPage extends Component {
 	render() {
 		let thumbnail = require('../../assets/img/upload-thumbnail.png');
 		let example = require('../../assets/img/upload-example.png');
-		let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		//let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		let images = [];
+		images.push({example: require('../../assets/img/implants/PIC_09066.jpg')});
+		images.push({example: require('../../assets/img/implants/PIC_09067.jpg')});
+		images.push({example: require('../../assets/img/implants/PIC_09068.jpg')});
+		images.push({example: require('../../assets/img/implants/PIC_09072.jpg')});
+		images.push({example: require('../../assets/img/implants/PIC_09077.jpg')});
+		images.push({example: require('../../assets/img/implants/PIC_09079.jpg')});
+		images = images.map((img)=>Object.assign({}, img, {thumbnail}));
 		let values = {};
 		let data = {};
 		

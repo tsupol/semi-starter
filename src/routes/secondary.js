@@ -5,6 +5,7 @@ import {UserAuthWrapper} from 'redux-auth-wrapper';
 
 import SecondaryApp from '../components/SecondaryApp';
 
+import HomePage from '../components/HomePage';
 import SecondaryHomePage from '../components/SecondaryHomePage';
 import HairPage from '../components/pages/HairPage';
 import ForeheadPage from '../components/pages/ForeheadPage';
@@ -50,8 +51,9 @@ export default (
         <Route path="breast" component={BreastPage}/>
         <Route path="chin" component={ChinPage}/>
         <Route path="cheek-bulge" component={CheekBulgePage}/>
-        <Route path="liposuction" component={LiposuctionPage}/>
+        <Route path="liposuction/:area" component={LiposuctionPage} />
         <Route path="implants" component={ImplantsPage}/>
+        <Route path="others" component={HomePage}/>
         <Route path="*" component={NotFoundPage}/>
     </Route>
 );

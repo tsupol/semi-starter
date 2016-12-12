@@ -30,9 +30,11 @@ Route::delete('upload', 'UploadController@deletePath');
 Route::resource('upload', 'UploadController');
 
 Route::get('/submit', function(){
-    return 'yes';
+    return sprintf("[%s%04d] %s", date("Ymd"), App\FormNumber::where(DB::raw("date(created_at)"), "=", date("Y-m-d"))->count(), "test");
 });
 Route::post('/submit/{subject?}', function (Request $request, $subject = 'default') {
+    //App\FormNumber::create();
+    //$subject = sprintf("[%s%04d] %s", date("Ymd"), App\FormNumber::where(DB::raw("date(created_at)"), "=", date("Y-m-d"))->count(), $subject);
     $data = $request->except(['files', 'agreement']);
     $images = $request->file('files', []);
     $files = [];
@@ -46,7 +48,7 @@ Route::post('/submit/{subject?}', function (Request $request, $subject = 'defaul
         }
     }
     Mail::to(['Pr001online@gmail.com','Pr002online@gmail.com'])->send(new SubmitForm($subject, $data, $files));
-    return response()->json(['data'=>$data, 'files'=>$files]);
+    return response()->json(['data'=>$data, 'files'=>$files, 'subject'=>$subject]);
 });
 
 //Route::get('/user', function (Request $request) {

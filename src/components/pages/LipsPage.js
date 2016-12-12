@@ -54,7 +54,15 @@ class LipsPage extends Component {
 	render() {
 		let thumbnail = require('../../assets/img/upload-thumbnail.png');
 		let example = require('../../assets/img/upload-example.png');
-		let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		//let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		let images = [];
+		images.push({example: require('../../assets/img/lips/IMG_8034.jpg')});
+		images.push({example: require('../../assets/img/lips/PIC_09029.jpg')});
+		images.push({example: require('../../assets/img/lips/PIC_09031.jpg')});
+		images.push({example: require('../../assets/img/lips/PIC_09032.jpg')});
+		images.push({example: require('../../assets/img/lips/PIC_09039.jpg')});
+		images.push({example: require('../../assets/img/lips/PIC_09063.jpg')});
+		images = images.map((img)=>Object.assign({}, img, {thumbnail}));
 		let values = {};
 		let data = {};
 		let components = [

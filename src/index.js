@@ -21,7 +21,7 @@ import { login } from './actions/userActions';
 import helper from 'react-semi-theme/libs/helper';
 import translations from './translations';
 
-let currentLocale = helper.location.hash.get('locale', 'th');
+let currentLocale = helper.location.hash.get('locale', 'en');
 
 const store = configureStore({ Intl: { locale: currentLocale } });
 

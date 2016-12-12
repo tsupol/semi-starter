@@ -54,7 +54,15 @@ class ChinPage extends Component {
 	render() {
 		let thumbnail = require('../../assets/img/upload-thumbnail.png');
 		let example = require('../../assets/img/upload-example.png');
-		let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		//let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
+		let images = [];
+		images.push({example: require('../../assets/img/chin/PIC_09025.jpg')});
+		images.push({example: require('../../assets/img/chin/PIC_09028.jpg')});
+		images.push({example: require('../../assets/img/chin/PIC_09038.jpg')});
+		images.push({example: require('../../assets/img/chin/PIC_09044.jpg')});
+		images.push({example: require('../../assets/img/chin/PIC_09054.jpg')});
+		images.push({example: require('../../assets/img/chin/PIC_09064.jpg')});
+		images = images.map((img)=>Object.assign({}, img, {thumbnail}));
 		let values = {};
 		let data = {};
 		let components = [

@@ -72,6 +72,7 @@ class SecondaryLayout extends Component {
 
         let toolsMenu = null;
 
+        /*
         let languages = this.state.languages.items.map((lang, i)=>{
             return (
                 <MenuItem key={i} primaryText={lang.name} onTouchTap={()=>{
@@ -84,6 +85,18 @@ class SecondaryLayout extends Component {
             );
         });
         let lang = this.state.languages.items.filter((l)=>l.locale==this.state.languages.currentLocale)[0];
+        */
+        let languages = this.state.languages.items.map((lang, i)=> {
+            return (
+                <FlatButton key={i} className="icon-btn left-most" icon={lang.icon} backgroundColor={lang.locale==this.state.languages.currentLocale ? 'rgba(153, 153, 153, 0.2)' : ''} onTouchTap={()=>{
+                    let localeQuery = lang.locale==this.state.languages.defaultLocale ? undefined : lang.locale;
+                    let nextQuery = Object.assign({}, query, {'locale': localeQuery});
+                    this.context.router.replace(Object.assign({}, this.props.location, {query: nextQuery}));
+                    this.setState({languages: Object.assign({}, this.state.languages, {currentLocale: lang.locale, openMenu: false, anchorEl: null})});
+                    setLocale(lang.locale)
+                }} />
+            )
+        });
         let showMenu = (query['show-menu']=='true' || query['show-menu'] == '1');
         return (
             <div id="layout" className={`${showMainMenu ? '' : 'no-menu'}`} onKeyPress={(e)=>{
@@ -115,6 +128,7 @@ class SecondaryLayout extends Component {
                             <FlatButton className="icon-btn left-most" icon={<ActionHome />} onTouchTap={()=>this.context.router.push('/')} />
                         </ToolbarGroup>
                         <ToolbarGroup>
+                            {/*
                             <FlatButton className="icon-btn left-most" icon={lang.icon} onTouchTap={(event)=>{event.preventDefault();this.setState({languages: Object.assign(this.state.languages, {openMenu: !this.state.languages.openMenu, anchorEl: event.currentTarget})})}}/>
                             <Popover
                                 open={this.state.languages.openMenu}
@@ -126,6 +140,8 @@ class SecondaryLayout extends Component {
                                     {languages}
                                 </Menu>
                             </Popover>
+                            */}
+                            {languages}
                             <ToolbarTitle text={settings.toolbarTitle} />
                             {toolsMenu}
                         </ToolbarGroup>
