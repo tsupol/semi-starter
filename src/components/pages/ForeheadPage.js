@@ -60,13 +60,13 @@ class ForeheadPage extends Component {
 		let data = {};
 		let components = [
 			[
-				{type: 'custom', element: <SemiHeader line="solid" style={marginBottomStyle}>{this.context.translate('forehead_style')}</SemiHeader>}
+				{type: 'custom', element: <SemiHeader line="solid" style={marginBottomStyle}>{this.context.translate('current_shape')}</SemiHeader>}
 			],
 			[
-				{type: 'radio', name: 'forehead_type', showClearButton: false, horizontal: true,
+				{type: 'radio', name: 'current_shape', showClearButton: false, horizontal: true,
 					options: Array.from(Array(7), (v, k)=>({id: k+1, grid: imgOptionGrid, name: <img style={imgStyle} src={example}/>}))
 				}
-			],
+			]/*,
 			[
 				{type: 'custom', element: <SemiHeader>{this.context.translate('forehead_filler_histories')}</SemiHeader>}
 			],
@@ -86,7 +86,7 @@ class ForeheadPage extends Component {
 				{type: 'text', multiLine: true, label: this.context.translate('forehead_filler_histories:rating'), name: `histories[${k}][rating]`, grid: {
 					xs: '100%', md: `calc(30% - ${64/4}px)`
 				}}
-			])),
+			]))*/,
 			[
 				{type: 'custom', element: <SemiHeader style={{marginBottom: 24}}>{this.context.translate('rating_of_current_area')}</SemiHeader>}
 			],
@@ -120,7 +120,7 @@ class ForeheadPage extends Component {
 				{type: 'text', multiLine: true, name: `requesting_reasons[${k}]`, grid: {
 					xs: '90%', md: `calc(100% - ${64}px)`
 				}},
-			])),
+			]))/*,
 			[
 				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>{this.context.translate('question_before_surgery')}</SemiHeader>}
 			],
@@ -142,7 +142,8 @@ class ForeheadPage extends Component {
 						{id: 'no', name: this.context.translate('no')}
 					]}
 				]}
-			)),[{type: 'space'}]
+			))*/,[{type: 'space'}]
+
 		];
 		let formTemplate = {components};
 		return (

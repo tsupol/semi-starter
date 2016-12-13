@@ -94,15 +94,15 @@ class HairPage extends Component {
 
 		let components = [
 			[
-				{type: 'custom', element: <SemiHeader>Header 1</SemiHeader>}
+				{type: 'custom', element: <SemiHeader>Medical Record</SemiHeader>}
 			],
 			[
-				{type: 'text', label: 'Chief Complaint', name: 'chief_complaint', grid: grid2},
-				{type: 'text', label: 'Past illness/surgery', name: 'past_illness', grid: grid2}
+				{type: 'text', label: this.context.translate('presenting_complaint'), name: 'presenting_complaint', grid: grid2},
+				{type: 'text', label: this.context.translate('past_illness'), name: 'past_illness', grid: grid2}
 			],
 			[
-				{type: 'text', label: 'Present illness', name: 'present_illness', grid: grid2},
-				{type: 'text', label: 'Underlying disease', name: 'underlying_disease', grid: grid2}
+				{type: 'text', label: this.context.translate('present_illness'), name: 'present_illness', grid: grid2},
+				{type: 'text', label: this.context.translate('underlying_disease'), name: 'underlying_disease', grid: grid2}
 			],
 			[
 				{type: 'custom', element: <div style={{height: 36}}></div>}
@@ -126,7 +126,7 @@ class HairPage extends Component {
 				items: [
 
 					// I recommend using type `label` instead of `custom`
-					{type: 'label', style: labelStyle, label:`Allergy`, grid: labelGrid},
+					{type: 'label', style: labelStyle, label: this.context.translate('allergy'), grid: labelGrid},
 
 					// For space between topic and checkboxes when `md`
 					{...rowSpace},
@@ -137,58 +137,58 @@ class HairPage extends Component {
 						showClearButton: false,
 						horizontal: true, // must be true
 						grid: cbGrid, options: [
-							{id: 'no', name: 'No', grid: optionGrid5}, // Give responsiveness for each radio button
-							{id: 'yes', name: 'Yes', grid: optionGrid5}
+							{id: 'no', name: this.context.translate('no'), grid: optionGrid5}, // Give responsiveness for each radio button
+							{id: 'yes', name: this.context.translate('yes'), grid: optionGrid5}
 						],
 						onCheck: (v)=>this.setState({allergy_check: v.indexOf('yes')!=-1})},
 
 					// hidden field can now be in the same row
-					{type: 'text', name: 'allergy', hint: 'Please specify', hide: !this.state.allergy_check, grid: hiddenTextGrid}
+					{type: 'text', name: 'allergy', hint: this.context.translate('please_specify'), hide: !this.state.allergy_check, grid: hiddenTextGrid}
 				]
 			},
 			{
 				...cbRowParam,
 				items: [
-					{type: 'custom', element: <label>Current medication</label>, grid: labelGrid},
+					{type: 'label', style: labelStyle, label: this.context.translate('current_medication'), grid: labelGrid},
 					{...rowSpace},
 					{type: 'radio', name: 'current_medication', showClearButton: false, horizontal: true, grid: cbGrid, options: [
-						{id: 'finasteride', name: 'Finasteride', grid: optionGrid5},
-						{id: 'minoxidil', name: 'Minoxidil', grid: optionGrid5},
-						{id: 'others', name: 'Others'}
+						{id: 'finasteride', name: this.context.translate('finasteride'), grid: optionGrid5},
+						{id: 'minoxidil', name: this.context.translate('minoxidil'), grid: optionGrid5},
+						{id: 'others', name: this.context.translate('others')}
 					], onCheck: (v)=>this.setState({current_medication_others_check: v.indexOf('others')!=-1})},
-					{type: 'text', name: 'current_medication_others', hint: 'Please specify', hide: !this.state.current_medication_others_check, grid: hiddenTextGrid}
+					{type: 'text', name: 'current_medication_others', hint: this.context.translate('please_specify'), hide: !this.state.current_medication_others_check, grid: hiddenTextGrid}
 				]
 			},
 			{
 				...cbRowParam,
 				items: [
-					{type: 'label', style: labelStyle, label:`Alcohol`, grid: labelGrid},
+					{type: 'label', style: labelStyle, label: this.context.translate('alcohol'), grid: labelGrid},
 					{...rowSpace},
 					{type: 'radio', name: 'alcohol_check', showClearButton: false, horizontal: true, grid: cbGrid, options: [
-						{id: 'no', name: 'No', grid: optionGrid5},
-						{id: 'yes', name: 'Yes', grid: optionGrid5}
+						{id: 'no', name: this.context.translate('no'), grid: optionGrid5},
+						{id: 'yes', name: this.context.translate('yes'), grid: optionGrid5}
 					]}
 				]
 			},
 			{
 				...cbRowParam,
 				items: [
-					{type: 'label', style: labelStyle, label:`Smoking`, grid: labelGrid},
+					{type: 'label', style: labelStyle, label: this.context.translate('smoking'), grid: labelGrid},
 					{...rowSpace},
 					{type: 'radio', name: 'smoking_check', showClearButton: false, horizontal: true, grid: cbGrid, options: [
-						{id: 'no', name: 'No', grid: optionGrid5},
-						{id: 'yes', name: 'Yes', grid: optionGrid5}
+						{id: 'no', name: this.context.translate('no'), grid: optionGrid5},
+						{id: 'yes', name: this.context.translate('yes'), grid: optionGrid5}
 					]}
 				]
 			},
 			{
 				...cbRowParam,
 				items: [
-					{type: 'label', style: labelStyle, label:`Family History of alopecia`, grid: labelGrid},
+					{type: 'label', style: labelStyle, label: this.context.translate('family_history_of_alopecia'), grid: labelGrid},
 					{...rowSpace},
 					{type: 'radio', name: 'family_history_of_alopecia_check', showClearButton: false, horizontal: true, grid: cbGrid, options: [
-						{id: 'no', name: 'No', grid: optionGrid5},
-						{id: 'yes', name: 'Yes', grid: optionGrid5}
+						{id: 'no', name: this.context.translate('no'), grid: optionGrid5},
+						{id: 'yes', name: this.context.translate('yes'), grid: optionGrid5}
 					]}
 				]
 			},
@@ -203,8 +203,8 @@ class HairPage extends Component {
 			{
 				items: [
 					{type: 'radio', name: 'physical_exam_gender', horizontal: true, showClearButton: false, options: [
-						{id: 'men', name: 'Men', grid: grid1},
-						{id: 'women', name: 'Women', grid: grid1}
+						{id: 'men', name: this.context.translate('men'), grid: grid1},
+						{id: 'women', name: this.context.translate('women'), grid: grid1}
 					], onCheck: (v)=>this.setState({physical_exam_gender: v})}
 				]
 			},
@@ -237,84 +237,84 @@ class HairPage extends Component {
 			{
 				...cbRowParam,
 				items: [
-					{type: 'label', style: labelStyle, label:`Scalp`, grid: labelGrid},
+					{type: 'label', style: labelStyle, label: this.context.translate('scalp'), grid: labelGrid},
 					{...rowSpace},
 					{type: 'radio', name: 'scalp', showClearButton: false, horizontal: true, grid: cbGrid, options: [
-						{id: 'erythena', name: 'Erythena', grid: optionGrid5},
-						{id: 'scarring', name: 'Scarring', grid: optionGrid5},
-						{id: 'scaling', name: 'Scaling', grid: optionGrid5},
-						{id: 'others', name: 'Others', grid: optionGrid5}
+						{id: 'erythena', name: this.context.translate('erythena'), grid: optionGrid5},
+						{id: 'scarring', name: this.context.translate('scarring'), grid: optionGrid5},
+						{id: 'scaling', name: this.context.translate('scaling'), grid: optionGrid5},
+						{id: 'others', name: this.context.translate('others'), grid: optionGrid5}
 					], onCheck: (v)=>this.setState({scalp: v})},
-					{type: 'text', name: 'scalp_other', hint: 'Please specify', hide: this.state.scalp != 'others', grid: hiddenTextGrid}
+					{type: 'text', name: 'scalp_other', hint: this.context.translate('please_specify'), hide: this.state.scalp != 'others', grid: hiddenTextGrid}
 				]
 			},
 			{
 				...cbRowParam,
 				items: [
-					{type: 'label', style: labelStyle, label:`Quality of donor hair`, grid: labelGrid},
+					{type: 'label', style: labelStyle, label: this.context.translate('quality_of_donor_hair'), grid: labelGrid},
 					{...rowSpace},
 					{type: 'radio', name: 'quality_of_donor_hair', showClearButton: false, horizontal: true, grid: cbGrid, options: [
-						{id: 'fine', name: 'Fine', grid: optionGrid5},
-						{id: 'medium', name: 'Medium', grid: optionGrid5},
-						{id: 'coarse', name: 'Coarse', grid: optionGrid5}
+						{id: 'fine', name: this.context.translate('fine'), grid: optionGrid5},
+						{id: 'medium', name: this.context.translate('medium'), grid: optionGrid5},
+						{id: 'coarse', name: this.context.translate('coarse'), grid: optionGrid5}
 					]}
 				]
 			},
 			{
 				...cbRowParam,
 				items: [
-					{type: 'label', style: labelStyle, label:`Elasticity`, grid: labelGrid},
+					{type: 'label', style: labelStyle, label: this.context.translate('elasticity'), grid: labelGrid},
 					{...rowSpace},
 					{type: 'radio', name: 'elasticity', showClearButton: false, horizontal: true, grid: cbGrid, options: [
-						{id: 'good', name: 'Good', grid: optionGrid5},
-						{id: 'moderate', name: 'Moderate', grid: optionGrid5},
-						{id: 'poor', name: 'Poor', grid: optionGrid5}
+						{id: 'good', name: this.context.translate('good'), grid: optionGrid5},
+						{id: 'moderate', name: this.context.translate('moderate'), grid: optionGrid5},
+						{id: 'poor', name: this.context.translate('poor'), grid: optionGrid5}
 					]}
 				]
 			},
 			{
 				...cbRowParam,
 				items: [
-					{type: 'label', style: labelStyle, label:`Texture of the hair`, grid: labelGrid},
+					{type: 'label', style: labelStyle, label: this.context.translate('texture_of_the_hair'), grid: labelGrid},
 					{...rowSpace},
 					{type: 'radio', name: 'texture_of_the_hair', showClearButton: false, horizontal: true, grid: cbGrid, options: [
-						{id: 'straight', name: 'Straight', grid: optionGrid5},
-						{id: 'waves', name: 'Waves', grid: optionGrid5},
-						{id: 'curl', name: 'Curl', grid: optionGrid5}
+						{id: 'straight', name: this.context.translate('straight'), grid: optionGrid5},
+						{id: 'waves', name: this.context.translate('waves'), grid: optionGrid5},
+						{id: 'curl', name: this.context.translate('curl'), grid: optionGrid5}
 					]}
 				]
 			},
 			{
 				...cbRowParam,
 				items: [
-					{type: 'label', style: labelStyle, label:`Color of the hair`, grid: labelGrid},
+					{type: 'label', style: labelStyle, label: this.context.translate('color_of_the_hair'), grid: labelGrid},
 					{...rowSpace},
 					{type: 'radio', name: 'color_of_the_hair', showClearButton: false, horizontal: true, grid: cbGrid, options: [
-						{id: 'black', name: 'Black', grid: optionGrid5},
-						{id: 'brown', name: 'Brown', grid: optionGrid5},
-						{id: 'red', name: 'Red', grid: optionGrid5},
-						{id: 'blonde', name: 'Blonde', grid: optionGrid5},
-						{id: 'others', name: 'Others', grid: optionGrid5}
+						{id: 'black', name: this.context.translate('black'), grid: optionGrid5},
+						{id: 'brown', name: this.context.translate('brown'), grid: optionGrid5},
+						{id: 'red', name: this.context.translate('red'), grid: optionGrid5},
+						{id: 'blonde', name: this.context.translate('blonde'), grid: optionGrid5},
+						{id: 'others', name: this.context.translate('others'), grid: optionGrid5}
 					], onCheck: (v)=>this.setState({color_of_the_hair: v})},
-					{type: 'text', name: 'color_of_the_hair_other', hint: 'Please specify', hide: this.state.color_of_the_hair != 'others', grid: hiddenTextGrid}
+					{type: 'text', name: 'color_of_the_hair_other', hint: this.context.translate('please_specify'), hide: this.state.color_of_the_hair != 'others', grid: hiddenTextGrid}
 				]
 			},
 			{
 				...cbRowParam,
 				items: [
-					{type: 'label', style: labelStyle, label:`Donor`, grid: labelGrid},
+					{type: 'label', style: labelStyle, label: this.context.translate('donor'), grid: labelGrid},
 					{...rowSpace},
 					{type: 'radio', name: 'donor', showClearButton: false, horizontal: true, grid: cbGrid, options: [
-						{id: 'high', name: 'High', grid: optionGrid5},
-						{id: 'normal', name: 'Normal', grid: optionGrid5},
-						{id: 'low', name: 'Low', grid: optionGrid5}
+						{id: 'high', name: this.context.translate('high'), grid: optionGrid5},
+						{id: 'normal', name: this.context.translate('normal'), grid: optionGrid5},
+						{id: 'low', name: this.context.translate('low'), grid: optionGrid5}
 					]}
 				]
 			},[{type: 'space'}]
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="Hair" images={images} values={values} data={data} onSubmit={this.submit}>
+			<MainForm header={this.context.translate('menu:hair')} images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);
@@ -331,6 +331,7 @@ class HairPage extends Component {
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 HairPage.contextTypes = {
 	ajax: PropTypes.object,
-	dialog: PropTypes.object
+	dialog: PropTypes.object,
+	translate: PropTypes.func
 };
 export default HairPage;

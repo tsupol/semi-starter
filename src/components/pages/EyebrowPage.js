@@ -64,64 +64,64 @@ class EyebrowPage extends Component {
 		let data = {};
 		let components = [
 			[
-				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>ปัญหาที่พบ (ช่วงคิ้ว)</SemiHeader>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>{this.context.translate('current_issue:eyebrow')}</SemiHeader>}
 			],
 			[
 				{
 					type: 'checkbox', name: 'eyebrow_issue', horizontal: true, showClearButton: false, options: [
-						{id: 'ช่วงคิ้วกับดวงตาแคบ', grid: imgOptionGrid, name: <div><label>ช่วงคิ้วกับดวงตาแคบ</label><br/><img src={example} style={imgStyle} /></div>},
-						{id: 'คิ้วไม่เท่ากัน', grid: imgOptionGrid, name: <div><label>คิ้วไม่เท่ากัน</label><br/><img src={example} style={imgStyle} /></div>},
-						{id: 'หัวคิ้วตก', grid: imgOptionGrid, name: <div><label>หัวคิ้วตก</label><br/><img src={example} style={imgStyle} /></div>},
-						{id: 'หางคิ้วตก', grid: imgOptionGrid, name: <div><label>หางคิ้วตก</label><br/><img src={example} style={imgStyle} /></div>},
-						{id: 'ไรผมสูง', grid: imgOptionGrid, name: <div><label>ไรผมสูง</label><br/><img src={example} style={imgStyle} /></div>},
-						{id: 'other', grid: optionGridOther, name: 'อื่นๆ', style:{marginTop: 16}}
-					], onCheck: (v)=> this.setState({eyebrow_issue_other: v.indexOf('other')!=-1})
+						{id: 'low_space_eyebrow', grid: imgOptionGrid, name: <div><label>{this.context.translate('low_space_eyebrow')}</label><br/><img src={example} style={imgStyle} /></div>},
+						{id: 'uneven_eyebrow', grid: imgOptionGrid, name: <div><label>{this.context.translate('uneven_eyebrow')}</label><br/><img src={example} style={imgStyle} /></div>},
+						{id: 'tail_up_eyebrow', grid: imgOptionGrid, name: <div><label>{this.context.translate('tail_up_eyebrow')}</label><br/><img src={example} style={imgStyle} /></div>},
+						{id: 'tail_down_eyebrow', grid: imgOptionGrid, name: <div><label>{this.context.translate('tail_down_eyebrow')}</label><br/><img src={example} style={imgStyle} /></div>},
+						{id: 'high_hair_line_eyebrow', grid: imgOptionGrid, name: <div><label>{this.context.translate('high_hair_line_eyebrow')}</label><br/><img src={example} style={imgStyle} /></div>},
+						{id: 'others', grid: optionGridOther, name: this.context.translate('others'), style:{marginTop: 16}}
+					], onCheck: (v)=> this.setState({eyebrow_issue_other: v.indexOf('others')!=-1})
 				}
 			],
 			{
 				hide: !this.state.eyebrow_issue_other,
 				items: [
 					{
-						type: 'text', name: 'eyebrow_issue_other', multiLine: true, hint: 'Please specify'
+						type: 'text', name: 'eyebrow_issue_other', multiLine: true, hint: this.context.translate('please_specify')
 					}
 				]
 			},
 			[
-				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>ปัญหาที่พบ (ช่วงดวงตา)</SemiHeader>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>{this.context.translate('current_issue:eye')}</SemiHeader>}
 			],
 			[
 				{
 					type: 'checkbox', name: 'eyes_issue', horizontal: true, showClearButton: false, options: [
-						{id: 'หัวตาตก', grid: imgOptionGrid, name: <div><label>หัวตาตก</label><br/><img src={example} style={imgStyle} /></div>},
-						{id: 'หางตาตก', grid: imgOptionGrid, name: <div><label>หางตาตก</label><br/><img src={example} style={imgStyle} /></div>},
-						{id: 'ชั้นตาหลบใน', grid: imgOptionGrid, name: <div><label>ชั้นตาหลบใน</label><br/><img src={example} style={imgStyle} /></div>},
-						{id: 'ชั้นตาไม่เท่ากัน', grid: imgOptionGrid, name: <div><label>ชั้นตาไม่เท่ากัน</label><br/><img src={example} style={imgStyle} /></div>},
-						{id: 'other', grid: optionGridOther, name: 'อื่นๆ', style:{marginTop: 16}}
-					], onCheck: (v)=> this.setState({eyes_issue_other: v.indexOf('other')!=-1})
+						{id: 'head_down_eye', grid: imgOptionGrid, name: <div><label>{this.context.translate('head_down_eye')}</label><br/><img src={example} style={imgStyle} /></div>},
+						{id: 'head_up_eye', grid: imgOptionGrid, name: <div><label>{this.context.translate('head_up_eye')}</label><br/><img src={example} style={imgStyle} /></div>},
+						{id: 'single_eyelids', grid: imgOptionGrid, name: <div><label>{this.context.translate('single_eyelids')}</label><br/><img src={example} style={imgStyle} /></div>},
+						{id: 'uneven_eyelids', grid: imgOptionGrid, name: <div><label>{this.context.translate('uneven_eyelids')}</label><br/><img src={example} style={imgStyle} /></div>},
+						{id: 'others', grid: optionGridOther, name: this.context.translate('others'), style:{marginTop: 16}}
+					], onCheck: (v)=> this.setState({eyes_issue_other: v.indexOf('others')!=-1})
 				}
 			],
 			{
 				hide: !this.state.eyes_issue_other,
 				items: [
 					{
-						type: 'text', name: 'eyes_issue_other', multiLine: true, hint: 'Please specify'
+						type: 'text', name: 'eyes_issue_other', multiLine: true, hint: this.context.translate('please_specify')
 					}
 				]
 			},
 			[
-				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>ปัญหาที่พบ (ริ้วรอย)</SemiHeader>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>{this.context.translate('current_issue:wrinkle')}</SemiHeader>}
 			],
 			{
 				items: [
 					{
 						type: 'checkbox', name: 'wrinkle_issue', horizontal: true, showClearButton: false, options: [
-							{id: 'ริ้วรอยบริเวณหางตา', name: 'ริ้วรอยบริเวณหางตา', grid: optionGrid5},
-							{id: 'ริ้วรอยบริเวณเปลือกตา', name: 'ริ้วรอยบริเวณเปลือกตา', grid: optionGrid5},
-							{id: 'ริ้วรอยใต้ตา', name: 'ริ้วรอยใต้ตา', grid: optionGrid5},
-							{id: 'ริ้วรอยหน้าผาก', name: 'ริ้วรอยหน้าผาก', grid: optionGrid5},
-							{id: 'ริ้วรอยขมวดคิ้ว', name: 'ริ้วรอยขมวดคิ้ว', grid: optionGrid5},
-							{id: 'other', name: 'อื่นๆ', grid: optionGridOther, style: {marginTop: 16}}
-						], onCheck: (v)=> this.setState({wrinkle_issue_other: v.indexOf('other') != -1})
+							{id: 'wrinkle_around_eye', name: this.context.translate('wrinkle_around_eye'), grid: optionGrid5},
+							{id: 'wrinkle_around_eyelids', name: this.context.translate('wrinkle_around_eyelids'), grid: optionGrid5},
+							{id: 'wrinkle_under_eye', name: this.context.translate('wrinkle_under_eye'), grid: optionGrid5},
+							{id: 'forehead_wrinkle', name: this.context.translate('forehead_wrinkle'), grid: optionGrid5},
+							{id: 'wrinkle_when_frown', name: this.context.translate('wrinkle_when_frown'), grid: optionGrid5},
+							{id: 'others', name: this.context.translate('others'), grid: optionGridOther, style: {marginTop: 16}}
+						], onCheck: (v)=> this.setState({wrinkle_issue_other: v.indexOf('others') != -1})
 					}
 				]
 			},
@@ -129,14 +129,14 @@ class EyebrowPage extends Component {
 				hide: !this.state.wrinkle_issue_other,
 				items: [
 					{
-						type: 'text', name: 'wrinkle_issue_other', multiLine: true, hint: 'Please specify'
+						type: 'text', name: 'wrinkle_issue_other', multiLine: true, hint: this.context.translate('please_specify')
 					}
 				]
 			},[{type: 'space'}]
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="Eyebrow" images={images} values={values} data={data} onSubmit={this.submit}>
+			<MainForm header={this.context.translate('menu:eyebrow')} images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);
@@ -153,6 +153,7 @@ class EyebrowPage extends Component {
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 EyebrowPage.contextTypes = {
 	ajax: PropTypes.object,
-	dialog: PropTypes.object
+	dialog: PropTypes.object,
+	translate: PropTypes.func
 };
 export default EyebrowPage;

@@ -87,13 +87,13 @@ class BeastPage extends Component {
 				hide: !this.state.ever_did_surgery_before_check,
 				items: [
 					{type: 'numeric', name: 'surgery_count_before', label: this.context.translate('how_many_time:surgery'), grid: grid1},
-					{type: 'text', name: 'surgery_type', label: this.context.translate('surgeries_before:how'), multiLine: true, grid: grid1},
+					{type: 'text', name: 'which_type', label: this.context.translate('which_type'), multiLine: true, grid: grid1},
 					{type: 'text', name: 'size', label: this.context.translate('size'), grid: grid2},
 					{type: 'text', name: 'brand', label: this.context.translate('brand'), grid: grid2},
 					{type: 'text', name: 'place_or_doctor', label: this.context.translate('place_or_doctor'), grid: grid2},
 					{type: 'text', name: 'duration', label: this.context.translate('duration'), grid: grid2}
 				]
-			},
+			}/*,
 
 			// Information Section 2
 			// ----------------------------------------
@@ -164,11 +164,11 @@ class BeastPage extends Component {
 						type: 'numeric', name: 'child_count', label: 'Number of child', grid: grid2
 					}
 				]
-			},[{type: 'space'}]
+			}*/,[{type: 'space'}]
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="Beast" images={images} values={values} data={data} onSubmit={this.submit}>
+			<MainForm header={this.context.translate('menu:breast')} images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);

@@ -87,8 +87,8 @@ class EyelidsPage extends Component {
 					horizontal: true,
 					showClearButton: false,
 					options: [
-						{id: 'no', name: this.context.translate('surgery_history:no', {surgery: this.context.translate('menu:eyelids')}), grid: optionGrid2},
-						{id: 'yes', name: this.context.translate('surgery_history:yes', {surgery: this.context.translate('menu:eyelids')}), grid: optionGrid2}
+						{id: 'no', name: this.context.translate('surgery_history:no', {surgery: this.context.translate('menu:around-eyes')}), grid: optionGrid2},
+						{id: 'yes', name: this.context.translate('surgery_history:yes', {surgery: this.context.translate('menu:around-eyes')}), grid: optionGrid2}
 					],
 					onCheck: (v)=> this.setState({ever_did_surgery_before_check: v == 'yes', surgery_count_before: 0})
 				}
@@ -228,7 +228,7 @@ class EyelidsPage extends Component {
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="Eyelids" images={images} values={values} data={data} onSubmit={this.submit}>
+			<MainForm header={this.context.translate('menu:eyelids')} images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate}/>
 			</MainForm>
 		);

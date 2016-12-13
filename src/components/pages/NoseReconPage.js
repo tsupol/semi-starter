@@ -78,8 +78,8 @@ class NoseReconPage extends Component {
 			[
 				{
 					type: 'radio', name: 'nose_surgery_history', horizontal: true, showClearButton: false, options: [
-					{id: 'no', name: this.context.translate('surgery_history:no', {surgery: this.context.translate('menu:nose-recon')}), grid: optionGrid2},
-					{id: 'yes', name: this.context.translate('surgery_history:yes', {surgery: this.context.translate('menu:nose-recon')}), grid: optionGrid2}
+					{id: 'no', name: this.context.translate('surgery_history:no', {surgery: this.context.translate('menu:nose')}), grid: optionGrid2},
+					{id: 'yes', name: this.context.translate('surgery_history:yes', {surgery: this.context.translate('menu:nose')}), grid: optionGrid2}
 				]
 				}
 			],
@@ -108,13 +108,13 @@ class NoseReconPage extends Component {
 					{...rowSpace},
 					{
 						type: 'radio', name: `nose_conditions[${k}]`, horizontal: true, showClearButton:false, grid:radioGrid, options: [
-						{id: 'low', name: 'Low', grid: rightGrid3},
-						{id: 'medium', name: 'Medium', grid: rightGrid3},
-						{id: 'crisis', name: 'Crisis', grid: rightGrid3}
+						{id: 'low', name: this.context.translate('low'), grid: rightGrid3},
+						{id: 'medium', name: this.context.translate('medium'), grid: rightGrid3},
+						{id: 'crisis', name: this.context.translate('crisis'), grid: rightGrid3}
 					]
 					}
 				]
-			})),
+			}))/*,
 			[
 				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>{this.context.translate('personal:conditions')}</SemiHeader>}
 			],
@@ -157,11 +157,11 @@ class NoseReconPage extends Component {
 						]
 					}
 				]
-			},[{type: 'space'}]
+			}*/,[{type: 'space'}]
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="Nose (Recon)" images={images} values={values} data={data} onSubmit={this.submit}>
+			<MainForm header={this.context.translate('menu:nose-recon')} images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);

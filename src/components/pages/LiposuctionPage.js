@@ -63,7 +63,7 @@ class LiposuctionPage extends Component {
 				images.push({example: require('../../assets/img/liposuction/leg/IMG_8053.jpg')});
 				images.push({example: require('../../assets/img/liposuction/leg/IMG_8054.jpg')});
 				images.push({example: require('../../assets/img/liposuction/leg/IMG_8055.jpg')});
-				images.push({example: require('../../assets/img/liposuction/leg/IMG_8059.jpg')});
+				images.push({example: require('../../assets/img/liposuction/leg/IMG_8056.jpg')});
 				images.push({example: require('../../assets/img/liposuction/leg/IMG_8060.jpg')});
 				break;
 			}
@@ -90,6 +90,7 @@ class LiposuctionPage extends Component {
 		let values = {};
 		let data = {};
 		let components = [
+			/*
 			[
 				{type: 'custom', element: <SemiHeader style={{marginBottom: 24}}>ตำแหน่งที่ต้องการดูดไขมัน</SemiHeader>}
 			],
@@ -125,20 +126,22 @@ class LiposuctionPage extends Component {
 				]
 			}
 			)),
+			*/
 			[
-				{type: 'custom', element: <SemiHeader>สัดส่วนร่างกาย</SemiHeader>}
+				{type: 'custom', element: <SemiHeader>{this.context.translate('body_scale')}</SemiHeader>}
 			],
 			[
 				{
-					type: 'text', name: 'height', label: 'ส่วนสูง', grid: grid3
+					type: 'text', name: 'height', label: this.context.translate('height'), grid: grid3
 				},
 				{
-					type: 'text', name: 'weight', label: 'น้ำหนัก', grid: grid3
+					type: 'text', name: 'weight', label: this.context.translate('weight'), grid: grid3
 				},
 				{
-					type: 'text', name: 'bmi', label: 'BMI', grid: grid3
+					type: 'text', name: 'bmi', label: this.context.translate('bmi'), grid: grid3
 				}
 			],
+			/*
 			[
 				{type: 'custom', element: <SemiHeader style={{marginBottom: 24}}>ความสวยงามของรูปหน้าขณะนี้ (ตามความพึงพอใจ)</SemiHeader>}
 			],
@@ -197,25 +200,26 @@ class LiposuctionPage extends Component {
 					]}
 				]}
 			)),
+			*/
 			[
 				{
-					type: 'text', name: 'job', label: 'ท่านประกอบอาชีพอะไร'
+					type: 'text', name: 'occupation', label: this.context.translate('occupation')
 				}
 			],
 			[
 				{
-					type: 'text', name: 'big_event', label: 'ท่านมีงานสำคัญในปีนี้หรือไม่'
+					type: 'text', name: 'big_event', label: this.context.translate('big_event_in_this_year')
 				}
 			],
 			[
 				{
-					type: 'text', name: 'adviser', label: 'บุคคลที่ท่านปรึกษาและแสดงความคิดเห้น ทั้งก่อนและหลังผ่าตัด'
+					type: 'text', name: 'adviser', label: this.context.translate('adviser')
 				}
 			],[{type: 'space'}]
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="Liposuction" images={images} values={values} data={data} onSubmit={this.submit}>
+			<MainForm header={this.context.translate('menu:liposuction')} images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);
@@ -232,6 +236,7 @@ class LiposuctionPage extends Component {
 // export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 LiposuctionPage.contextTypes = {
 	ajax: PropTypes.object,
-	dialog: PropTypes.object
+	dialog: PropTypes.object,
+	translate: PropTypes.func
 };
 export default LiposuctionPage;

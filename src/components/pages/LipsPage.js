@@ -76,7 +76,7 @@ class LipsPage extends Component {
 						{id: 'yes', name: this.context.translate('surgery_history:yes', {surgery: this.context.translate('menu:lips')}), grid: optionGrid2}
 					], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes', surgery_count_before: 0, filler_before_know_details: ''})
 				}
-			],
+			]/*,
 			{
 				hide: !this.state.ever_did_surgery_before_check,
 				style: {
@@ -169,13 +169,29 @@ class LipsPage extends Component {
 						type: 'text', name: 'place_or_doctor', multiLine: true, label: this.context.translate('place_or_doctor')
 					}
 				]
+			}*/,
+			{
+				hide: !this.state.ever_did_surgery_before_check,
+				items: [
+					{
+						type: 'numeric', name: 'filler_count', multiLine: true, label: this.context.translate('how_many_time')
+					}
+				]
 			},
 			{
 				hide: !this.state.ever_did_surgery_before_check,
 				items: [
-					{type: 'custom', element: <div style={{height: '36px'}}></div>}
+					{
+						type: 'text', name: 'which_method', multiLine: true, label: this.context.translate('which_method')
+					},
+					{
+						type: 'text', name: 'doctor', multiLine: true, label: this.context.translate('doctor')
+					}
 				]
 			},
+			[
+			{type: 'space'}
+			]/*,
 			[
 				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>ข้อควรทราบก่อนการผ่าตัด</SemiHeader>}
 			],
@@ -187,11 +203,11 @@ class LipsPage extends Component {
 						]
 					}
 				]
-			))
+			))*/
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="Lips" images={images} values={values} data={data} onSubmit={this.submit}>
+			<MainForm header={this.context.translate('menu:lips')} images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);

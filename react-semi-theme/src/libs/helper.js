@@ -260,6 +260,16 @@ const helper = {
 				return value || defaultValue;
 			}
 		}
+	},
+	language: {
+		laravel2react: (locale, messages, name)=> {
+			return {
+				[name ? name : locale]: {
+					locale,
+					messages
+				}
+			}
+		}
 	}
 };
 

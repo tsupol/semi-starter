@@ -143,13 +143,13 @@ class HomePage extends Component {
 				])),
 				[
 					{
-						type: 'text', multiLine: true, label: this.context.translate('congenital_disease'), name: 'congenital_disease', grid: grid3
+						type: 'text', multiLine: true, label: this.context.translate('underlying_disease'), name: 'underlying_disease', grid: grid3
 					},
 					{
-						type: 'text', multiLine: true, label: this.context.translate('current_medication'), name: 'current_medication', grid: grid3
+						type: 'text', multiLine: true, label: this.context.translate('under_taking_medicine'), name: 'under_taking_medicine', grid: grid3
 					},
 					{
-						type: 'text', multiLine: true, label: this.context.translate('allergic_symptoms'), name: 'allergic_symptoms', grid: grid3
+						type: 'text', multiLine: true, label: this.context.translate('drug_symptom'), name: 'drug_symptom', grid: grid3
 					}
 				],
 				[

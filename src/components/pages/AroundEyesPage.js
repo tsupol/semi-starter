@@ -11,6 +11,7 @@ const
 	imgOptionGrid = {xs: '100%', sm: '50%', md: '20%'},
 	imgStyle = {width: '100%'},
 	optionGrid2 = {xs: '100%', sm: '50%'},
+	optionGrid3 = {xs: '100%', sm: '50%', md: '33%'},
 	optionGrid4 = {xs: '100%', sm: '50%', md: '25%'},
 	optionGrid6 = {xs: '100%', sm: '50%', md: '33%'},
 	rowSpace = {type: 'space', height: '16px', noPadding: true, grid: {
@@ -111,17 +112,17 @@ class AroundEyesPage extends Component {
 			}
 			)),
 			[
-				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>{this.context.translate('menu:around-eyes')}</SemiHeader>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>{this.context.translate('which_surgical_you_looking_for')}</SemiHeader>}
 			],
 			{
 				items: [
 					{
 						type: 'radio', name: 'eye_surgery', horizontal: true, showClearButton: false, options: [
-							{id: 'กรีดตัดหนังตาบน', name: 'กรีดตัดหนังตาบน', grid: optionGrid4},
-							{id: 'กรีดตัดหนังตาล่าง', name: 'กรีดตัดหนังตาล่าง', grid: optionGrid4},
-							{id: 'กล้ามเนื้อตาอ่อนแรง', name: 'กล้ามเนื้อตาอ่อนแรง', grid: optionGrid4},
-							{id: 'ถุงใต้ตาแผลด้านใน', name: 'ถุงใต้ตาแผลด้านใน', grid: optionGrid4},
-							{id: 'ตาสองชั้น(แผลเล็ก)', name: 'ตาสองชั้น(แผลเล็ก)', grid: optionGrid4}
+							{id: 'upper_eyelids_surgery', name: this.context.translate('upper_eyelids_surgery'), grid: optionGrid3},
+							{id: 'undereye_bag_surgery', name: this.context.translate('undereye_bag_surgery'), grid: optionGrid3},
+							{id: 'ptosis', name: this.context.translate('ptosis'), grid: optionGrid3},
+							{id: 'undereye_bag_surgery_small', name: this.context.translate('undereye_bag_surgery:small_incision'), grid: optionGrid3},
+							{id: 'upper_eyelids_surgery_small', name: this.context.translate('upper_eyelids_surgery:small_incision'), grid: optionGrid3}
 						]
 					}
 				]
@@ -129,7 +130,7 @@ class AroundEyesPage extends Component {
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="Nose" images={images} values={values} data={data} onSubmit={this.submit}>
+			<MainForm header={this.context.translate('menu:around-eyes')} images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);

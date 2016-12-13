@@ -58,41 +58,41 @@ class ImplantsPage extends Component {
 		
 		let components = [
 			[
-				{type: 'custom', element: <SemiHeader line="solid" style={{marginBottom: 24}}>รูปแบบทรงหน้าผาก</SemiHeader>}
+				{type: 'custom', element: <SemiHeader line="solid" style={{marginBottom: 24}}>{this.context.translate('forehead_shape')}</SemiHeader>}
 			],
 			[
-				{type: 'radio', name: 'forehead_type', horizontal: true, showClearButton: false, grid: {xs: '100%'}, options: [
-					{id: 'หน้าผากแคบ', grid: imgOptionGrid, name: <div><label>หน้าผากแคบ</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'หน้าผากกว้าง', grid: imgOptionGrid, name: <div><label>หน้าผากกว้าง</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'หน้าผากถอย', grid: imgOptionGrid, name: <div><label>หน้าผากถอย</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'หน้าโหนกนูน', grid: imgOptionGrid, name: <div><label>หน้าโหนกนูน</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'หน้าผากย่น', grid: imgOptionGrid, name: <div><label>หน้าผากย่น</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'หน้าผากล้าน', grid: imgOptionGrid, name: <div><label>หน้าผากล้าน</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'หน้าผากงามถ่อ', grid: imgOptionGrid, name: <div><label>หน้าผากงามถ่อ</label><br/><img style={imgStyle} src={example} /></div>}
+				{type: 'radio', name: 'forehead_shape', horizontal: true, showClearButton: false, grid: {xs: '100%'}, options: [
+					{id: 'straight_forehead', grid: imgOptionGrid, name: <div><label>{this.context.translate('straight_forehead')}</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'wide_forehead', grid: imgOptionGrid, name: <div><label>{this.context.translate('wide_forehead')}</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'arched_forehead', grid: imgOptionGrid, name: <div><label>{this.context.translate('arched_forehead')}</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'sharp_forehead', grid: imgOptionGrid, name: <div><label>{this.context.translate('sharp_forehead')}</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'double_arched_forehead', grid: imgOptionGrid, name: <div><label>{this.context.translate('double_arched_forehead')}</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'mountain_shaped_forehead', grid: imgOptionGrid, name: <div><label>{this.context.translate('mountain_shaped_forehead')}</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'narrow_forehead', grid: imgOptionGrid, name: <div><label>{this.context.translate('narrow_forehead')}</label><br/><img style={imgStyle} src={example} /></div>}
 				]}
 			],
 			[
-				{type: 'custom', element: <SemiHeader line="solid" style={{marginBottom: 24}}>รูปแบบทรงสะโพกและก้น</SemiHeader>}
+				{type: 'custom', element: <SemiHeader line="solid" style={{marginBottom: 24}}>{this.context.translate('hip_and_bottom_shape')}</SemiHeader>}
 			],
 			[
-				{type: 'radio', name: 'hip_type', horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
-					{id: 'แบนโดยรวม', grid: imgOptionGrid, name: <div><label>แบนโดยรวม</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'แบนด้านบน', grid: imgOptionGrid, name: <div><label>แบนด้านบน</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'แบนด้านข้าง', grid: imgOptionGrid, name: <div><label>แบนด้านข้าง</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'แบนด้านใน', grid: imgOptionGrid, name: <div><label>แบนด้านใน</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'แบนด้านล่าง', grid: imgOptionGrid, name: <div><label>แบนด้านล่าง</label><br/><img style={imgStyle} src={example} /></div>}
+				{type: 'radio', name: 'hip_and_bottom_shape', horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
+					{id: 'overall_flat_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('overall_flat_shape')}</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'upper_flat_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('upper_flat_shape')}</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'side_flat_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('side_flat_shape')}</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'inner_flat_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('inner_flat_shape')}</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'lower_flat_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('lower_flat_shape')}</label><br/><img style={imgStyle} src={example} /></div>}
 				]}
 			],
 			[
-				{type: 'custom', element: <SemiHeader line="solid" style={{marginBottom: 24}}>ลักษณะรูปร่าง</SemiHeader>}
+				{type: 'custom', element: <SemiHeader line="solid" style={{marginBottom: 24}}>{this.context.translate('body_shape')}</SemiHeader>}
 			],
 			[
-				{type: 'radio', name: 'body_type', horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
-					{id: 'นาฬิกาทราบ', grid: imgOptionGrid, name: <div><label>นาฬิกาทราบ</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'สามเหลี่ยม', grid: imgOptionGrid, name: <div><label>สามเหลี่ยม</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'ทรงตรง', grid: imgOptionGrid, name: <div><label>ทรงตรง</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'ลูกแพร์', grid: imgOptionGrid, name: <div><label>ลูกแพร์</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'แอปเปิ้ล', grid: imgOptionGrid, name: <div><label>แอปเปิ้ล</label><br/><img style={imgStyle} src={example} /></div>}
+				{type: 'radio', name: 'body_shape', horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
+					{id: 'sandglass_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('sandglass_shape')}</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'triangle_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('triangle_shape')}</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'straight_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('straight_shape')}</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'pear_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('pear_shape')}</label><br/><img style={imgStyle} src={example} /></div>},
+					{id: 'apple_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('apple_shape')}</label><br/><img style={imgStyle} src={example} /></div>}
 				]}
 			],
 			[
@@ -107,6 +107,7 @@ class ImplantsPage extends Component {
 					{id: 'สะโพก', grid: imgOptionGrid, name: <div><label>สะโพก</label><br/><img style={imgStyle} src={example} /></div>}
 				]}
 			],
+			/*
 			[
 				{type: 'custom', element: <SemiHeader>ประวัติการทำศัลยกรรม</SemiHeader>}
 			],
@@ -186,25 +187,26 @@ class ImplantsPage extends Component {
 					]}
 				]}
 			)),
+			*/
 			[
 				{
-					type: 'text', name: 'job', label: 'ท่านประกอบอาชีพอะไร'
+					type: 'text', name: 'occupation', label: this.context.translate('occupation')
 				}
 			],
 			[
 				{
-					type: 'text', name: 'big_event', label: 'ท่านมีงานสำคัญในปีนี้หรือไม่'
+					type: 'text', name: 'big_event', label: this.context.translate('big_event_in_this_year')
 				}
 			],
 			[
 				{
-					type: 'text', name: 'adviser', label: 'บุคคลที่ท่านปรึกษาและแสดงความคิดเห้น ทั้งก่อนและหลังผ่าตัด'
+					type: 'text', name: 'adviser', label: this.context.translate('adviser')
 				}
 			],[{type: 'space'}]
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="Implants" images={images} values={values} data={data} onSubmit={this.submit}>
+			<MainForm header={this.context.translate('menu:implants')} images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);

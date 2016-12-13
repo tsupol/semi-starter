@@ -73,22 +73,22 @@ class NosePage extends Component {
 				}
 			],
 			[
-				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>Medical histories</SemiHeader>}
+				{type: 'custom', element: <SemiHeader style={marginBottomStyle}>{this.context.translate('nose:histories')}</SemiHeader>}
 			],
 			[
 				{
 					type: 'checkbox', name: 'medical_histories', horizontal: true, showClearButton: false, options: [
-						{id: 'allergy', name: 'Allergy', grid: optionGrid4},
-						{id: 'nasal_congestion', name: 'Nasal congestion', grid: optionGrid4},
-						{id: 'sinusitis', name: 'Sinusitis', grid: optionGrid4},
-						{id: 'accident', name: 'Accident', grid: optionGrid4}
+						{id: 'allergy', name: this.context.translate('allergy'), grid: optionGrid4},
+						{id: 'nasal_congestion', name: this.context.translate('nasal_congestion'), grid: optionGrid4},
+						{id: 'sinusitis', name: this.context.translate('sinusitis'), grid: optionGrid4},
+						{id: 'accident', name: this.context.translate('accident'), grid: optionGrid4}
 					]
 				}
 			],[{type: 'space'}]
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="Nose" images={images} values={values} data={data} onSubmit={this.submit}>
+			<MainForm header={this.context.translate('menu:nose')} images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);

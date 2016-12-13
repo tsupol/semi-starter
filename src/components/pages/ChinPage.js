@@ -86,10 +86,10 @@ class ChinPage extends Component {
 						type: 'numeric', name: 'surgery_count_before', label: this.context.translate('how_many_time'), grid: grid1
 					},
 					{
-						type: 'text', name: 'surgery_type', label: this.context.translate('surgeries_before:how'), multiLine: true, grid: grid1
+						type: 'text', name: 'which_type', label: this.context.translate('which_type'), multiLine: true, grid: grid1
 					},
 					{
-						type: 'text', name: 'place_or_doctor', label: this.context.translate('place_or_doctor'), grid: grid2
+						type: 'text', name: 'place', label: this.context.translate('place'), grid: grid2
 					},
 					{
 						type: 'text', name: 'duration', label: this.context.translate('duration'), grid: grid2
@@ -99,7 +99,7 @@ class ChinPage extends Component {
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="Chin" images={images} values={values} data={data} onSubmit={this.submit}>
+			<MainForm header={this.context.translate('menu:chin')} images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);

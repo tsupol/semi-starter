@@ -88,6 +88,30 @@ class CheekBulgePage extends Component {
 					paddingBottom: 16
 				},
 				items: [
+					{
+						type: 'text', name: 'brand', multiLine: true, label: this.context.translate('brand'), grid: grid2
+					},
+					{
+						type: 'numeric', name: 'count', multiLine: true, label: this.context.translate('how_many_time'), grid: grid2
+					},
+					{
+						type: 'text', name: 'last_time', multiLine: true, label: this.context.translate('last_time'), grid: grid3
+					},
+					{
+						type: 'text', name: 'volume', multiLine: true, label: this.context.translate('volume'), grid: grid3
+					},
+					{
+						type: 'text', name: 'place_or_doctor', multiLine: true, label: this.context.translate('place_or_doctor'), grid: grid3
+					}
+				]
+			}/*,
+			{
+				hide: !this.state.ever_did_surgery_before_check,
+				style: {
+					paddingTop: 16,
+					paddingBottom: 16
+				},
+				items: [
 					{type: 'label', style: {paddingTop: 3, fontWeight: 'normal'}, label: this.context.translate('know_the_detail'), grid: {
 						xs: '100%', md: '50%'
 					}},
@@ -135,11 +159,11 @@ class CheekBulgePage extends Component {
 						type: 'text', name: 'place_or_doctor', multiLine: true, label: this.context.translate('place_or_doctor'), grid: grid2
 					}
 				]
-			},[{type: 'space'}]
+			}*/,[{type: 'space'}]
 		];
 		let formTemplate = {components};
 		return (
-			<MainForm header="CheekBulge" images={images} values={values} data={data} onSubmit={this.submit}>
+			<MainForm header={this.context.translate('menu:cheek-bulge')} images={images} values={values} data={data} onSubmit={this.submit}>
 				<FormGenerator formTemplate={formTemplate} />
 			</MainForm>
 		);
