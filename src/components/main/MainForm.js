@@ -60,13 +60,13 @@ class MainForm extends Component {
 				[
 					{type: 'text', name: 'first_name', label: this.context.translate('first_name'), grid: grid3},
 					{type: 'text', name: 'last_name', label: this.context.translate('last_name'), grid: grid3},
-					{type: 'text', name: 'email', label: 'E-Mail', grid: grid3}
+					{type: 'text', name: 'email', label: this.context.translate('email'), grid: grid3}
 				],
 				[
 					{type: 'numeric', name: 'phone', label: this.context.translate('phone'), grid: grid4},
 					{type: 'numeric', name: 'mobile', label: this.context.translate('mobile'), grid: grid4},
-					{type: 'text', name: 'lineID', label: 'Line ID', grid: grid4},
-					{type: 'text', name: 'whatappID', label: 'WhatApp ID', grid: grid4}
+					{type: 'text', name: 'lineID', label: this.context.translate('lineID'), grid: grid4},
+					{type: 'text', name: 'whatappID', label: this.context.translate('whatappID'), grid: grid4}
 				],
 				[
 					{type: 'text', name: 'country', label: this.context.translate('country')}

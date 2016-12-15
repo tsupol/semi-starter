@@ -44,49 +44,28 @@ class LiposuctionPage extends Component {
 
 	render() {
 		let {area} = this.props.params;
-		let thumbnail = require('../../assets/img/upload-thumbnail.png');
+		let thumbnail = require(this.props.locale=="th" ? '../../assets/img/upload-thumbnail.png': '../../assets/img/upload-thumbnail-en.png');
 		let example = require('../../assets/img/upload-example.png');
 		//let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
 		let images = [];
 		switch(area){
 			case 'arm': {
-				images.push({example: require('../../assets/img/liposuction/arm/PIC_09103.jpg')});
-				images.push({example: require('../../assets/img/liposuction/arm/PIC_09104.jpg')});
-				images.push({example: require('../../assets/img/liposuction/arm/PIC_09105.jpg')});
-				images.push({example: require('../../assets/img/liposuction/arm/PIC_09106.jpg')});
-				images.push({example: require('../../assets/img/liposuction/arm/PIC_09110.jpg')});
-				images.push({example: require('../../assets/img/liposuction/arm/PIC_09121.jpg')});
+				images = Array.from(Array(6), (v, k)=>({example: require(`../../assets/img/liposuction/arm/0${k+1}.png`), thumbnail}));
 				break;
 			}
 			case 'leg': {
-				images.push({example: require('../../assets/img/liposuction/leg/IMG_8052.jpg')});
-				images.push({example: require('../../assets/img/liposuction/leg/IMG_8053.jpg')});
-				images.push({example: require('../../assets/img/liposuction/leg/IMG_8054.jpg')});
-				images.push({example: require('../../assets/img/liposuction/leg/IMG_8055.jpg')});
-				images.push({example: require('../../assets/img/liposuction/leg/IMG_8056.jpg')});
-				images.push({example: require('../../assets/img/liposuction/leg/IMG_8060.jpg')});
+				images = Array.from(Array(6), (v, k)=>({example: require(`../../assets/img/liposuction/leg/0${k+1}.png`), thumbnail}));
 				break;
 			}
 			case 'body': {
-				images.push({example: require('../../assets/img/liposuction/body/PIC_09066.jpg')});
-				images.push({example: require('../../assets/img/liposuction/body/PIC_09067.jpg')});
-				images.push({example: require('../../assets/img/liposuction/body/PIC_09068.jpg')});
-				images.push({example: require('../../assets/img/liposuction/body/PIC_09072.jpg')});
-				images.push({example: require('../../assets/img/liposuction/body/PIC_09077.jpg')});
-				images.push({example: require('../../assets/img/liposuction/body/PIC_09079.jpg')});
+				images = Array.from(Array(6), (v, k)=>({example: require(`../../assets/img/liposuction/body/0${k+1}.png`), thumbnail}));
 				break;
 			}
 			case 'facial': {
-				images.push({example: require('../../assets/img/liposuction/facial/IMG_8037.jpg')});
-				images.push({example: require('../../assets/img/liposuction/facial/PIC_09032.jpg')});
-				images.push({example: require('../../assets/img/liposuction/facial/PIC_09033.jpg')});
-				images.push({example: require('../../assets/img/liposuction/facial/PIC_09044.jpg')});
-				images.push({example: require('../../assets/img/liposuction/facial/PIC_09053.jpg')});
-				images.push({example: require('../../assets/img/liposuction/facial/PIC_09062.jpg')});
+				images = Array.from(Array(6), (v, k)=>({example: require(`../../assets/img/pr/face/0${k+1}.png`), thumbnail}));
 				break;
 			}
 		}
-		images = images.map((img)=>Object.assign({}, img, {thumbnail}));
 		let values = {};
 		let data = {};
 		let components = [
@@ -208,7 +187,7 @@ class LiposuctionPage extends Component {
 			],
 			[
 				{
-					type: 'text', name: 'big_event', label: this.context.translate('big_event_in_this_year')
+					type: 'text', name: 'big_event_in_this_year', label: this.context.translate('big_event_in_this_year')
 				}
 			],
 			[

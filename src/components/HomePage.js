@@ -56,7 +56,9 @@ class HomePage extends Component {
 		let thumbnail = require('../assets/img/upload-thumbnail.png');
 		let example = require('../assets/img/upload-example.png');
 		let images = {
-			face: Array.from(Array(6), (v, k)=>require(`../assets/img/face${k+1}.jpg`))
+			face: Array.from(Array(6), (v, k)=>require(`../assets/img/pr/face/face${k+1}.jpg`)),
+			body: Array.from(Array(6), (v, k)=>require(`../assets/img/pr/body/0${k+1}.png`)),
+			normal: Array.from(Array(6), (v, k)=>require(`../assets/img/pr/normal/0${k+1}.png`))
 		};
 
 		let formTemplate = {
@@ -178,28 +180,28 @@ class HomePage extends Component {
 				[
 					...Array.from(Array(6), (v, k) => (
 					{
-						type: 'uploadbox', name: `files[body][${k}]`, thumbnail, example, grid: uploadGrid
+						type: 'uploadbox', name: `files[body][${k}]`, thumbnail, example: images.body[k], grid: uploadGrid
 					}
 					))
 				],
 				[
 					...Array.from(Array(6), (v, k) => (
 					{
-						type: 'uploadbox', name: `files[normal][${k}]`, thumbnail, example, grid: uploadGrid
+						type: 'uploadbox', name: `files[normal][${k}]`, thumbnail, example: images.normal[k], grid: uploadGrid
 					}
 					))
 				],
 				[
-					{type: 'custom', element: <div><h3><u>{this.context.translate('terms_of_service')}</u></h3><p>กรุณาอ่านเงื่อนไขต่างๆในการใช้บริการโดย ละเอียด เพราะหากท่านกดดำเนินการลงทะเบียน จะถือว่าท่านยอมรับเงื่อนไขของการใช้บริการของคลินิก</p></div>}
+					{type: 'custom', element: <div><h3><u>{this.context.translate('terms_of_service')}</u></h3><p>{this.context.translate('terms_of_service:detail')}</p></div>}
 				],
 				[
 					{
 						type: 'custom',
 						element: <ol>
-							<li>ข้าพเจ้าขอยืนยันว่าภาพถ่ายที่ข้าพเจ้าส่งเป็นภาพถ่ายของข้าพเจ้าจริง ในกรณีที่ตรวจพบในภายหลังว่าภาพถ่ายที่ข้าพเจ้าส่งไม่ใช่ภาพของตัวข้าพเจ้า หรือเป็นภาพที่เกิดจากการดัดแปลง ตกแต่ง ต่อเติม ไม่ว่าจะโดยตั้งใจหรือไม่ตั้งใจก็ตาม ข้าพเจ้ายินดีรับผิดแต่เพียงผู้เดียว</li>
-							<li>ข้าพเจ้า ยินยอมให้ทางคลินิกใช้ภาพที่ข้าพเจ้าส่งด้วยวิธีการส่งภาพทางจดหมาย อิเล็กทรอนิกส์(E-Mail) การพิมพ์(Print) หรือด้วยวิธีใดๆตามที่คลินิกจะเห็นสมควรเพื่อให้แพทย์พิจารณา</li>
-							<li>การส่งภาพถ่ายข้างต้นเป็นเพียงการส่งเพื่อการปรึกษาแพทย์ในเบื้องต้นเท่า นั้น ข้าพเจ้าเข้าใจว่าจะต้องมีการเข้ามาที่คลินิกเพื่อทำการตรวจ และปรึกษาแพทย์อีกครั้งหนึ่ง</li>
-							<li>ความเห็นของแพทย์เป็นเพียงการวินิจฉัยเบื้องต้นตามภาพถ่ายที่ท่านส่งมาให้ ซึ่งอาจมีการเปลี่ยนแปลงได้เมื่อท่านเข้ามาพบแพทย์</li>
+							<li>{this.context.translate('terms_of_service:1')}</li>
+							<li>{this.context.translate('terms_of_service:2')}</li>
+							<li>{this.context.translate('terms_of_service:3')}</li>
+							<li>{this.context.translate('terms_of_service:4')}</li>
 						</ol>
 					}
 				],

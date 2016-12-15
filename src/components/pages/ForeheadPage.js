@@ -45,17 +45,9 @@ class ForeheadPage extends Component {
 	};
 
 	render() {
-		let thumbnail = require('../../assets/img/upload-thumbnail.png');
+		let thumbnail = require(this.props.locale=="th" ? '../../assets/img/upload-thumbnail.png': '../../assets/img/upload-thumbnail-en.png');
 		let example = require('../../assets/img/upload-example.png');
-		//let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
-		let images = [];
-		images.push({example: require('../../assets/img/hair/IMG_8042.jpg')});
-		images.push({example: require('../../assets/img/hair/PIC_09037.jpg')});
-		images.push({example: require('../../assets/img/hair/PIC_09048.jpg')});
-		images.push({example: require('../../assets/img/hair/PIC_09055.jpg')});
-		images.push({example: require('../../assets/img/hair/PIC_09060.jpg')});
-		images.push({example: require('../../assets/img/hair/PIC_09090.jpg')});
-		images = images.map((img)=>Object.assign({}, img, {thumbnail}));
+		let images = Array.from(Array(6), (v, k)=>({example: require(`../../assets/img/hair/0${k+1}.png`), thumbnail}));
 		let values = {};
 		let data = {};
 		let components = [
@@ -106,7 +98,7 @@ class ForeheadPage extends Component {
 				{type: 'label', style: {paddingTop: 12}, label:`${k+1}.`, grid: {
 					xs: '10%', xsAlign: 'right', md: '64px'
 				}},
-				{type: 'text', multiLine: true, name: `area_and_expect[${k}]`, grid: {
+				{type: 'text', multiLine: true, name: `requesting_area_and_expectation[${k}]`, grid: {
 					xs: '90%', md: `calc(100% - ${64}px)`
 				}},
 			])),
@@ -117,7 +109,7 @@ class ForeheadPage extends Component {
 				{type: 'label', style: {paddingTop: 12}, label:`${k+1}.`, grid: {
 					xs: '10%', xsAlign: 'right', md: '64px'
 				}},
-				{type: 'text', multiLine: true, name: `requesting_reasons[${k}]`, grid: {
+				{type: 'text', multiLine: true, name: `requesting_reason[${k}]`, grid: {
 					xs: '90%', md: `calc(100% - ${64}px)`
 				}},
 			]))/*,

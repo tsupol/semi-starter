@@ -42,17 +42,9 @@ class ImplantsPage extends Component {
 
 
 	render() {
-		let thumbnail = require('../../assets/img/upload-thumbnail.png');
+		let thumbnail = require(this.props.locale=="th" ? '../../assets/img/upload-thumbnail.png': '../../assets/img/upload-thumbnail-en.png');
 		let example = require('../../assets/img/upload-example.png');
-		//let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
-		let images = [];
-		images.push({example: require('../../assets/img/implants/PIC_09066.jpg')});
-		images.push({example: require('../../assets/img/implants/PIC_09067.jpg')});
-		images.push({example: require('../../assets/img/implants/PIC_09068.jpg')});
-		images.push({example: require('../../assets/img/implants/PIC_09072.jpg')});
-		images.push({example: require('../../assets/img/implants/PIC_09077.jpg')});
-		images.push({example: require('../../assets/img/implants/PIC_09079.jpg')});
-		images = images.map((img)=>Object.assign({}, img, {thumbnail}));
+		let images = Array.from(Array(6), (v, k)=>({example: require(`../../assets/img/implants/0${k+1}.png`), thumbnail}));
 		let values = {};
 		let data = {};
 		
@@ -195,7 +187,7 @@ class ImplantsPage extends Component {
 			],
 			[
 				{
-					type: 'text', name: 'big_event', label: this.context.translate('big_event_in_this_year')
+					type: 'text', name: 'big_event_in_this_year', label: this.context.translate('big_event_in_this_year')
 				}
 			],
 			[

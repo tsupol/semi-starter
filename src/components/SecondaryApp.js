@@ -35,6 +35,7 @@ class SecondaryApp extends Component {
 									children={this.props.children}
 									location={this.props.location}
 									actions={this.props.actions}
+									locale={this.props.Intl.locale}
 									{...menuSettings}
 									settings={{
 										toolbarTitle: 'Online Consult',
@@ -72,7 +73,7 @@ SecondaryApp.childContextTypes = {
 	ajax: PropTypes.object // required by SemiTheme
 };
 
-const mapStateToProps = ({user}) => ({user});
+const mapStateToProps = ({user, Intl}) => ({user, Intl});
 const mapDispatchToProps = (dispatch) => ({
 	actions: {
 		user: {

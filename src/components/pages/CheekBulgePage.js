@@ -47,24 +47,16 @@ class CheekBulgePage extends Component {
 	};
 
 	submit = (data)=> {
-		this.context.ajax.call("post", "submit/cheekbulge", data, {files: ['files']}).then((data)=>{
+		this.context.ajax.call("post", "submit/cheekbulge", data, {files: ['files'], remove_fields: ['ever_did_surgery_before_check']}).then((data)=>{
 			this.context.dialog.alert("E-Mail was sent", "Success", "success");
 		});
 	};
 
 
 	render() {
-		let thumbnail = require('../../assets/img/upload-thumbnail.png');
+		let thumbnail = require(this.props.locale=="th" ? '../../assets/img/upload-thumbnail.png': '../../assets/img/upload-thumbnail-en.png');
 		let example = require('../../assets/img/upload-example.png');
-		//let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
-		let images = [];
-		images.push({example: require('../../assets/img/cheek-bulge/IMG_8037.jpg')});
-		images.push({example: require('../../assets/img/cheek-bulge/PIC_09032.jpg')});
-		images.push({example: require('../../assets/img/cheek-bulge/PIC_09033.jpg')});
-		images.push({example: require('../../assets/img/cheek-bulge/PIC_09044.jpg')});
-		images.push({example: require('../../assets/img/cheek-bulge/PIC_09053.jpg')});
-		images.push({example: require('../../assets/img/cheek-bulge/PIC_09062.jpg')});
-		images = images.map((img)=>Object.assign({}, img, {thumbnail}));
+		let images = Array.from(Array(6), (v, k)=>({example: require(`../../assets/img/cheek-bulge/0${k+1}.png`), thumbnail}));
 		let values = {};
 		let data = {};
 		let components = [
@@ -74,7 +66,7 @@ class CheekBulgePage extends Component {
 			{
 				items: [
 					{
-						type: 'radio', name: 'surgery_history', horizontal: true, showClearButton: false, options: [
+						type: 'radio', name: 'ever_did_surgery_before_check', horizontal: true, showClearButton: false, options: [
 						{id: 'no', name: this.context.translate('surgery_history:no', {surgery: this.context.translate('menu:cheek-bulge')}), grid: optionGrid2},
 						{id: 'yes', name: this.context.translate('surgery_history:yes', {surgery: this.context.translate('menu:cheek-bulge')}), grid: optionGrid2}
 						], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes', before_know_details: ''})
@@ -92,7 +84,7 @@ class CheekBulgePage extends Component {
 						type: 'text', name: 'brand', multiLine: true, label: this.context.translate('brand'), grid: grid2
 					},
 					{
-						type: 'numeric', name: 'count', multiLine: true, label: this.context.translate('how_many_time'), grid: grid2
+						type: 'numeric', name: 'how_many_time', multiLine: true, label: this.context.translate('how_many_time'), grid: grid2
 					},
 					{
 						type: 'text', name: 'last_time', multiLine: true, label: this.context.translate('last_time'), grid: grid3

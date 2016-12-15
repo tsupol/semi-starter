@@ -49,17 +49,9 @@ class EyebrowPage extends Component {
 
 
 	render() {
-		let thumbnail = require('../../assets/img/upload-thumbnail.png');
+		let thumbnail = require(this.props.locale=="th" ? '../../assets/img/upload-thumbnail.png': '../../assets/img/upload-thumbnail-en.png');
 		let example = require('../../assets/img/upload-example.png');
-		//let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
-		let images = [];
-		images.push({example: require('../../assets/img/eyelids/IMG_8034.jpg')});
-		images.push({example: require('../../assets/img/eyelids/PIC_09019.jpg')});
-		images.push({example: require('../../assets/img/eyelids/PIC_09022.jpg')});
-		images.push({example: require('../../assets/img/eyelids/PIC_09026.jpg')});
-		images.push({example: require('../../assets/img/eyelids/PIC_09044.jpg')});
-		images.push({example: require('../../assets/img/eyelids/PIC_09045.jpg')});
-		images = images.map((img)=>Object.assign({}, img, {thumbnail}));
+		let images = Array.from(Array(6), (v, k)=>({example: require(`../../assets/img/eyelids/0${k+1}.png`), thumbnail}));
 		let values = {};
 		let data = {};
 		let components = [
@@ -68,7 +60,7 @@ class EyebrowPage extends Component {
 			],
 			[
 				{
-					type: 'checkbox', name: 'eyebrow_issue', horizontal: true, showClearButton: false, options: [
+					type: 'checkbox', name: 'current_issue:eyebrow', horizontal: true, showClearButton: false, options: [
 						{id: 'low_space_eyebrow', grid: imgOptionGrid, name: <div><label>{this.context.translate('low_space_eyebrow')}</label><br/><img src={example} style={imgStyle} /></div>},
 						{id: 'uneven_eyebrow', grid: imgOptionGrid, name: <div><label>{this.context.translate('uneven_eyebrow')}</label><br/><img src={example} style={imgStyle} /></div>},
 						{id: 'tail_up_eyebrow', grid: imgOptionGrid, name: <div><label>{this.context.translate('tail_up_eyebrow')}</label><br/><img src={example} style={imgStyle} /></div>},
@@ -82,7 +74,7 @@ class EyebrowPage extends Component {
 				hide: !this.state.eyebrow_issue_other,
 				items: [
 					{
-						type: 'text', name: 'eyebrow_issue_other', multiLine: true, hint: this.context.translate('please_specify')
+						type: 'text', name: 'current_issue:eyebrow[6]', multiLine: true, hint: this.context.translate('please_specify')
 					}
 				]
 			},
@@ -91,7 +83,7 @@ class EyebrowPage extends Component {
 			],
 			[
 				{
-					type: 'checkbox', name: 'eyes_issue', horizontal: true, showClearButton: false, options: [
+					type: 'checkbox', name: 'current_issue:eye', horizontal: true, showClearButton: false, options: [
 						{id: 'head_down_eye', grid: imgOptionGrid, name: <div><label>{this.context.translate('head_down_eye')}</label><br/><img src={example} style={imgStyle} /></div>},
 						{id: 'head_up_eye', grid: imgOptionGrid, name: <div><label>{this.context.translate('head_up_eye')}</label><br/><img src={example} style={imgStyle} /></div>},
 						{id: 'single_eyelids', grid: imgOptionGrid, name: <div><label>{this.context.translate('single_eyelids')}</label><br/><img src={example} style={imgStyle} /></div>},
@@ -104,7 +96,7 @@ class EyebrowPage extends Component {
 				hide: !this.state.eyes_issue_other,
 				items: [
 					{
-						type: 'text', name: 'eyes_issue_other', multiLine: true, hint: this.context.translate('please_specify')
+						type: 'text', name: 'current_issue:eye[5]', multiLine: true, hint: this.context.translate('please_specify')
 					}
 				]
 			},
@@ -114,7 +106,7 @@ class EyebrowPage extends Component {
 			{
 				items: [
 					{
-						type: 'checkbox', name: 'wrinkle_issue', horizontal: true, showClearButton: false, options: [
+						type: 'checkbox', name: 'current_issue:wrinkle', horizontal: true, showClearButton: false, options: [
 							{id: 'wrinkle_around_eye', name: this.context.translate('wrinkle_around_eye'), grid: optionGrid5},
 							{id: 'wrinkle_around_eyelids', name: this.context.translate('wrinkle_around_eyelids'), grid: optionGrid5},
 							{id: 'wrinkle_under_eye', name: this.context.translate('wrinkle_under_eye'), grid: optionGrid5},
@@ -129,7 +121,7 @@ class EyebrowPage extends Component {
 				hide: !this.state.wrinkle_issue_other,
 				items: [
 					{
-						type: 'text', name: 'wrinkle_issue_other', multiLine: true, hint: this.context.translate('please_specify')
+						type: 'text', name: 'current_issue:wrinkle[6]', multiLine: true, hint: this.context.translate('please_specify')
 					}
 				]
 			},[{type: 'space'}]

@@ -51,24 +51,16 @@ class NoseReconPage extends Component {
 	};
 
 	submit = (data)=> {
-		this.context.ajax.call("post", "submit/nose-recon", data, {files: ['files']}).then((data)=>{
+		this.context.ajax.call("post", "submit/nose-recon", data, {files: ['files'], remove_fields: ['ever_did_surgery_before_check']}).then((data)=>{
 			this.context.dialog.alert("E-Mail was sent", "Success", "success");
 		});
 	};
 
 
 	render() {
-		let thumbnail = require('../../assets/img/upload-thumbnail.png');
+		let thumbnail = require(this.props.locale=="th" ? '../../assets/img/upload-thumbnail.png': '../../assets/img/upload-thumbnail-en.png');
 		let example = require('../../assets/img/upload-example.png');
-		//let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
-		let images = [];
-		images.push({example: require('../../assets/img/nose/IMG_8034.jpg')});
-		images.push({example: require('../../assets/img/nose/IMG_8035.jpg')});
-		images.push({example: require('../../assets/img/nose/IMG_8036.jpg')});
-		images.push({example: require('../../assets/img/nose/IMG_8038.jpg')});
-		images.push({example: require('../../assets/img/nose/IMG_8044.jpg')});
-		images.push({example: require('../../assets/img/nose/IMG_8046.jpg')});
-		images = images.map((img)=>Object.assign({}, img, {thumbnail}));
+		let images = Array.from(Array(6), (v, k)=>({example: require(`../../assets/img/pr/face/0${k+1}.png`), thumbnail}));
 		let values = {};
 		let data = {};
 		let components = [
@@ -77,7 +69,7 @@ class NoseReconPage extends Component {
 			],
 			[
 				{
-					type: 'radio', name: 'nose_surgery_history', horizontal: true, showClearButton: false, options: [
+					type: 'radio', name: 'ever_did_surgery_before_check', horizontal: true, showClearButton: false, options: [
 					{id: 'no', name: this.context.translate('surgery_history:no', {surgery: this.context.translate('menu:nose')}), grid: optionGrid2},
 					{id: 'yes', name: this.context.translate('surgery_history:yes', {surgery: this.context.translate('menu:nose')}), grid: optionGrid2}
 				]
@@ -107,7 +99,7 @@ class NoseReconPage extends Component {
 					},
 					{...rowSpace},
 					{
-						type: 'radio', name: `nose_conditions[${k}]`, horizontal: true, showClearButton:false, grid:radioGrid, options: [
+						type: 'radio', name: `nose:conditions[${k}]`, horizontal: true, showClearButton:false, grid:radioGrid, options: [
 						{id: 'low', name: this.context.translate('low'), grid: rightGrid3},
 						{id: 'medium', name: this.context.translate('medium'), grid: rightGrid3},
 						{id: 'crisis', name: this.context.translate('crisis'), grid: rightGrid3}

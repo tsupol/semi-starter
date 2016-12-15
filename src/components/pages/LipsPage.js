@@ -45,24 +45,16 @@ class LipsPage extends Component {
 	};
 
 	submit = (data)=> {
-		this.context.ajax.call("post", "submit/lips", data, {files: ['files']}).then((data)=>{
+		this.context.ajax.call("post", "submit/lips", data, {files: ['files'], remove_fields: ['ever_did_surgery_before_check']}).then((data)=>{
 			this.context.dialog.alert("E-Mail was sent", "Success", "success");
 		});
 	};
 
 
 	render() {
-		let thumbnail = require('../../assets/img/upload-thumbnail.png');
+		let thumbnail = require(this.props.locale=="th" ? '../../assets/img/upload-thumbnail.png': '../../assets/img/upload-thumbnail-en.png');
 		let example = require('../../assets/img/upload-example.png');
-		//let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
-		let images = [];
-		images.push({example: require('../../assets/img/lips/IMG_8034.jpg')});
-		images.push({example: require('../../assets/img/lips/PIC_09029.jpg')});
-		images.push({example: require('../../assets/img/lips/PIC_09031.jpg')});
-		images.push({example: require('../../assets/img/lips/PIC_09032.jpg')});
-		images.push({example: require('../../assets/img/lips/PIC_09039.jpg')});
-		images.push({example: require('../../assets/img/lips/PIC_09063.jpg')});
-		images = images.map((img)=>Object.assign({}, img, {thumbnail}));
+		let images = Array.from(Array(6), (v, k)=>({example: require(`../../assets/img/lips/0${k+1}.png`), thumbnail}));
 		let values = {};
 		let data = {};
 		let components = [
@@ -174,7 +166,7 @@ class LipsPage extends Component {
 				hide: !this.state.ever_did_surgery_before_check,
 				items: [
 					{
-						type: 'numeric', name: 'filler_count', multiLine: true, label: this.context.translate('how_many_time')
+						type: 'numeric', name: 'how_many_time:filler', multiLine: true, label: this.context.translate('how_many_time')
 					}
 				]
 			},

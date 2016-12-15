@@ -68,27 +68,16 @@ class HairPage extends Component {
 	}
 
 	submit = (data)=> {
-		/*
 		this.context.ajax.call("post", "submit/hair", data, {files: ['files']}).then((data)=>{
 			this.context.dialog.alert("E-Mail was sent", "Success", "success");
 		});
-		*/
-		console.log(data);
 	};
 
 	render() {
 		console.log('this.state', this.state);
-		let thumbnail = require('../../assets/img/upload-thumbnail.png');
+		let thumbnail = require(this.props.locale=="th" ? '../../assets/img/upload-thumbnail.png': '../../assets/img/upload-thumbnail-en.png');
 		let example = require('../../assets/img/upload-example.png');
-		//let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
-		let images = [];
-		images.push({example: require('../../assets/img/hair/IMG_8042.jpg')});
-		images.push({example: require('../../assets/img/hair/PIC_09037.jpg')});
-		images.push({example: require('../../assets/img/hair/PIC_09048.jpg')});
-		images.push({example: require('../../assets/img/hair/PIC_09055.jpg')});
-		images.push({example: require('../../assets/img/hair/PIC_09060.jpg')});
-		images.push({example: require('../../assets/img/hair/PIC_09090.jpg')});
-		images = images.map((img)=>Object.assign({}, img, {thumbnail}));
+		let images = Array.from(Array(6), (v, k)=>({example: require(`../../assets/img/hair/0${k+1}.png`), thumbnail}));
 		let values = {};
 		let data = {};
 
@@ -133,7 +122,7 @@ class HairPage extends Component {
 
 					{
 						type: 'radio',
-						name: 'allergy_check',
+						name: 'allergy',
 						showClearButton: false,
 						horizontal: true, // must be true
 						grid: cbGrid, options: [
@@ -156,7 +145,7 @@ class HairPage extends Component {
 						{id: 'minoxidil', name: this.context.translate('minoxidil'), grid: optionGrid5},
 						{id: 'others', name: this.context.translate('others')}
 					], onCheck: (v)=>this.setState({current_medication_others_check: v.indexOf('others')!=-1})},
-					{type: 'text', name: 'current_medication_others', hint: this.context.translate('please_specify'), hide: !this.state.current_medication_others_check, grid: hiddenTextGrid}
+					{type: 'text', name: 'current_medication', hint: this.context.translate('please_specify'), hide: !this.state.current_medication_others_check, grid: hiddenTextGrid}
 				]
 			},
 			{
@@ -164,7 +153,7 @@ class HairPage extends Component {
 				items: [
 					{type: 'label', style: labelStyle, label: this.context.translate('alcohol'), grid: labelGrid},
 					{...rowSpace},
-					{type: 'radio', name: 'alcohol_check', showClearButton: false, horizontal: true, grid: cbGrid, options: [
+					{type: 'radio', name: 'alcohol', showClearButton: false, horizontal: true, grid: cbGrid, options: [
 						{id: 'no', name: this.context.translate('no'), grid: optionGrid5},
 						{id: 'yes', name: this.context.translate('yes'), grid: optionGrid5}
 					]}
@@ -175,7 +164,7 @@ class HairPage extends Component {
 				items: [
 					{type: 'label', style: labelStyle, label: this.context.translate('smoking'), grid: labelGrid},
 					{...rowSpace},
-					{type: 'radio', name: 'smoking_check', showClearButton: false, horizontal: true, grid: cbGrid, options: [
+					{type: 'radio', name: 'smoking', showClearButton: false, horizontal: true, grid: cbGrid, options: [
 						{id: 'no', name: this.context.translate('no'), grid: optionGrid5},
 						{id: 'yes', name: this.context.translate('yes'), grid: optionGrid5}
 					]}
@@ -186,7 +175,7 @@ class HairPage extends Component {
 				items: [
 					{type: 'label', style: labelStyle, label: this.context.translate('family_history_of_alopecia'), grid: labelGrid},
 					{...rowSpace},
-					{type: 'radio', name: 'family_history_of_alopecia_check', showClearButton: false, horizontal: true, grid: cbGrid, options: [
+					{type: 'radio', name: 'family_history_of_alopecia', showClearButton: false, horizontal: true, grid: cbGrid, options: [
 						{id: 'no', name: this.context.translate('no'), grid: optionGrid5},
 						{id: 'yes', name: this.context.translate('yes'), grid: optionGrid5}
 					]}
@@ -202,7 +191,7 @@ class HairPage extends Component {
 			],
 			{
 				items: [
-					{type: 'radio', name: 'physical_exam_gender', horizontal: true, showClearButton: false, options: [
+					{type: 'radio', name: 'gender', horizontal: true, showClearButton: false, options: [
 						{id: 'men', name: this.context.translate('men'), grid: grid1},
 						{id: 'women', name: this.context.translate('women'), grid: grid1}
 					], onCheck: (v)=>this.setState({physical_exam_gender: v})}
@@ -245,7 +234,7 @@ class HairPage extends Component {
 						{id: 'scaling', name: this.context.translate('scaling'), grid: optionGrid5},
 						{id: 'others', name: this.context.translate('others'), grid: optionGrid5}
 					], onCheck: (v)=>this.setState({scalp: v})},
-					{type: 'text', name: 'scalp_other', hint: this.context.translate('please_specify'), hide: this.state.scalp != 'others', grid: hiddenTextGrid}
+					{type: 'text', name: 'scalp', hint: this.context.translate('please_specify'), hide: this.state.scalp != 'others', grid: hiddenTextGrid}
 				]
 			},
 			{
@@ -296,7 +285,7 @@ class HairPage extends Component {
 						{id: 'blonde', name: this.context.translate('blonde'), grid: optionGrid5},
 						{id: 'others', name: this.context.translate('others'), grid: optionGrid5}
 					], onCheck: (v)=>this.setState({color_of_the_hair: v})},
-					{type: 'text', name: 'color_of_the_hair_other', hint: this.context.translate('please_specify'), hide: this.state.color_of_the_hair != 'others', grid: hiddenTextGrid}
+					{type: 'text', name: 'color_of_the_hair', hint: this.context.translate('please_specify'), hide: this.state.color_of_the_hair != 'others', grid: hiddenTextGrid}
 				]
 			},
 			{

@@ -7,18 +7,18 @@
                 <li>
                     <ul>
                     @foreach($list_value as $i => $nested_value)
-                        <li><b>{{$words[sprintf('%s[%s]', $key, $i)]}}: </b>{{$nested_value}}</li>
+                        <li><b>{{isset($words[sprintf('%s:%s', $key, $i)]) ? $words[sprintf('%s:%s', $key, $i)] : $words[$i]}}: </b>{{isset($words[$nested_value]) ? $words[$nested_value] : $nested_value}}</li>
                     @endforeach
                     </ul>
                     <br/>
                 </li>
             @else
-                <li>{{$list_value}}</li>
+                <li>{{isset($words[$list_value]) ? $words[$list_value] : $list_value}}</li>
             @endif
         @endforeach
         </ol>
     @else
-        {{$value}}
+        {{isset($words[$value]) ? $words[$value] : $value}}
     @endif
     <br/>
 @endforeach

@@ -91,7 +91,7 @@ export default {
       {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url?limit=10000&mimetype=application/font-woff&name=app/fonts/[name].[ext]"},
       {test: /\.ttf(\?v=\d+.\d+.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream&name=app/fonts/[name].[ext]'},
       {test: /\.svg(\?v=\d+.\d+.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml&name=app/img/[name].[ext]'},
-      {test: /\.(jpe?g|png|gif)$/i, loader: 'file?name=app/img/[name].[ext]?[hash]'},
+      {test: /\.(jpe?g|png|gif)$/i, loader: 'file?name=app/img/[hash].[ext]?[name]'},
       {test: /\.ico$/, loader: 'file?name=app/img/[name].[ext]'},
       {test: /(\.css|\.scss)$/, loader: ExtractTextPlugin.extract('css?sourceMap!postcss!sass?sourceMap'), exclude: /flexboxgrid/},
       {test: /\.css$/,loader: 'style!css?modules',include: /flexboxgrid/}

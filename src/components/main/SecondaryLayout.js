@@ -24,7 +24,7 @@ class SecondaryLayout extends Component {
 
         let {query} = props.location;
         let showMenu = (query['show-menu']=='true' || query['show-menu'] == '1');
-        let defaultLocale = 'en';
+        let defaultLocale = props.locale;
         let currentLocale = query['locale'] || defaultLocale;
         this.state = {
             showMainMenu: showMenu,
@@ -148,7 +148,7 @@ class SecondaryLayout extends Component {
                     </Toolbar>
                 </Paper>
                 <div className={`main-wrap`}>
-                    {this.props.children}
+                    {React.cloneElement(this.props.children, {locale: this.props.locale, setLocale})}
                 </div>
             </div>
         );

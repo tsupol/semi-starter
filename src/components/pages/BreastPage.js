@@ -47,24 +47,16 @@ class BeastPage extends Component {
 	};
 
 	submit = (data)=> {
-		this.context.ajax.call("post", "submit/breast", data, {files: ['files']}).then((data)=>{
+		this.context.ajax.call("post", "submit/breast", data, {files: ['files'], remove_fields: ['ever_did_surgery_before_check']}).then((data)=>{
 			this.context.dialog.alert("E-Mail was sent", "Success", "success");
 		});
 	};
 
 
 	render() {
-		let thumbnail = require('../../assets/img/upload-thumbnail.png');
+		let thumbnail = require(this.props.locale=="th" ? '../../assets/img/upload-thumbnail.png': '../../assets/img/upload-thumbnail-en.png');
 		let example = require('../../assets/img/upload-example.png');
-		//let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
-		let images = [];
-		images.push({example: require('../../assets/img/breast/PIC_09067.jpg')});
-		images.push({example: require('../../assets/img/breast/PIC_09068.jpg')});
-		images.push({example: require('../../assets/img/breast/PIC_09072.jpg')});
-		images.push({example: require('../../assets/img/breast/PIC_09077.jpg')});
-		images.push({example: require('../../assets/img/breast/PIC_09079.jpg')});
-		images.push({example: require('../../assets/img/breast/PIC_09080.jpg')});
-		images = images.map((img)=>Object.assign({}, img, {thumbnail}));
+		let images = Array.from(Array(6), (v, k)=>({example: require(`../../assets/img/breast/0${k+1}.png`), thumbnail}));
 		let values = {};
 		let data = {};
 		let components = [
@@ -77,7 +69,7 @@ class BeastPage extends Component {
 			],
 			[
 				{
-					type: 'radio', name: 'beast_surgery_history', horizontal: true, showClearButton: false, options: [
+					type: 'radio', name: 'ever_did_surgery_before_check', horizontal: true, showClearButton: false, options: [
 					{id: 'no', name: this.context.translate('surgery_history:no', {surgery: this.context.translate('menu:breast')}), grid: optionGrid2},
 					{id: 'yes', name: this.context.translate('surgery_history:yes', {surgery: this.context.translate('menu:breast')}), grid: optionGrid2}
 				], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v=='yes'})

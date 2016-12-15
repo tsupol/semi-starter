@@ -26,7 +26,7 @@ class HomePage extends Component {
 
 	render() {
 		//let example = require('../assets/img/upload-example.png');
-		let icons = Array.from(Array(13), (v, k)=>require(`../assets/img/icon/icon-${('00'+(k+1)).slice(-2)}.png`));
+		let icons = Array.from(Array(14), (v, k)=>require(`../assets/img/icon/icon-${('00'+(k+1)).slice(-2)}.png`));
 		let rowStyle = {marginBottom: 24};
 		let anchorStyle = {textDecoration: 'none'};
 		let divStyle = {border: '1px solid #ddd', textAlign: 'center', paddingBottom: 16};
@@ -139,7 +139,7 @@ class HomePage extends Component {
 											</Col>
 											<Col md="20%" xs="50%">
 												<div style={divStyle}>
-													<a href="#/others" style={anchorStyle}><img src={icons[12]} width="100%" /></a>
+													<a href="#/others" style={anchorStyle}><img src={icons[13]} width="100%" /></a>
 													<a href="#/others" style={anchorStyle}><SemiHeader style={headerStyle}>{this.context.translate('menu:others')}</SemiHeader></a>
 												</div>
 											</Col>

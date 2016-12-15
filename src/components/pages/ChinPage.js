@@ -45,24 +45,16 @@ class ChinPage extends Component {
 	};
 
 	submit = (data)=> {
-		this.context.ajax.call("post", "submit/chin", data, {files: ['files']}).then((data)=>{
+		this.context.ajax.call("post", "submit/chin", data, {files: ['files'], remove_fields: ['ever_did_surgery_before_check']}).then((data)=>{
 			this.context.dialog.alert("E-Mail was sent", "Success", "success");
 		});
 	};
 
 
 	render() {
-		let thumbnail = require('../../assets/img/upload-thumbnail.png');
+		let thumbnail = require(this.props.locale=="th" ? '../../assets/img/upload-thumbnail.png': '../../assets/img/upload-thumbnail-en.png');
 		let example = require('../../assets/img/upload-example.png');
-		//let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
-		let images = [];
-		images.push({example: require('../../assets/img/chin/PIC_09025.jpg')});
-		images.push({example: require('../../assets/img/chin/PIC_09028.jpg')});
-		images.push({example: require('../../assets/img/chin/PIC_09038.jpg')});
-		images.push({example: require('../../assets/img/chin/PIC_09044.jpg')});
-		images.push({example: require('../../assets/img/chin/PIC_09054.jpg')});
-		images.push({example: require('../../assets/img/chin/PIC_09064.jpg')});
-		images = images.map((img)=>Object.assign({}, img, {thumbnail}));
+		let images = Array.from(Array(6), (v, k)=>({example: require(`../../assets/img/chin/0${k+1}.png`), thumbnail}));
 		let values = {};
 		let data = {};
 		let components = [
@@ -72,7 +64,7 @@ class ChinPage extends Component {
 			{
 				items: [
 					{
-						type: 'radio', name: 'chin_surgery_history', horizontal: true, showClearButton: false, options: [
+						type: 'radio', name: 'ever_did_surgery_before_check', horizontal: true, showClearButton: false, options: [
 						{id: 'no', name: this.context.translate('surgery_history:no', {surgery: this.context.translate('menu:chin')}), grid: optionGrid2},
 						{id: 'yes', name: this.context.translate('surgery_history:yes', {surgery: this.context.translate('menu:chin')}), grid: optionGrid2}
 						], onCheck: (v)=> this.setState({ever_did_surgery_before_check: v == 'yes'})

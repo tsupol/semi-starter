@@ -5,6 +5,7 @@ import {Grid, Row, Col} from 'react-flexbox-grid';
 import {PageHeading, Panel, SemiHeader} from 'react-semi-theme/widgets';
 import {FormGenerator} from 'react-semi-theme/forms';
 import MainForm from '../main/MainForm';
+import $ from 'jquery';
 
 const
 	marginBottomStyle = {marginBottom: 24},
@@ -51,24 +52,35 @@ class AroundEyesPage extends Component {
 	};
 
 	submit = (data)=> {
-		this.context.ajax.call("post", "submit/around-eye", data, {files: ['files']}).then((data)=>{
+		/*
+		for(let i in  data){
+			if(typeof data[i] == "string"){
+				console.log(this.context.translate(i), this.context.translate(data[i]));
+			}else{
+				console.log(this.context.translate(i),":");
+				for(let j in data[i]){
+					if(typeof data[i][j] == "string"){
+						console.log(this.context.translate(j), this.context.translate(data[i][j]));
+					}else{
+						console.log(this.context.translate(i),this.context.translate(j),":");
+						for(let k in data[i][j]){
+							console.log(this.context.translate(k), this.context.translate(data[i][j][k]));
+						}
+					}
+				}
+			}
+		}
+		*/
+		this.context.ajax.call("post", "submit/eye", data, {files: ['files'], remove_fields: ['ever_did_surgery_before_check']}).then((data)=>{
 			this.context.dialog.alert("E-Mail was sent", "Success", "success");
 		});
 	};
 
 
 	render() {
-		let thumbnail = require('../../assets/img/upload-thumbnail.png');
+		let thumbnail = require(this.props.locale=="th" ? '../../assets/img/upload-thumbnail.png': '../../assets/img/upload-thumbnail-en.png');
 		let example = require('../../assets/img/upload-example.png');
-		//let images = Array.from(Array(6), (v, k)=>({example, thumbnail}));
-		let images = [];
-		images.push({example: require('../../assets/img/eyelids/IMG_8034.jpg')});
-		images.push({example: require('../../assets/img/eyelids/PIC_09019.jpg')});
-		images.push({example: require('../../assets/img/eyelids/PIC_09022.jpg')});
-		images.push({example: require('../../assets/img/eyelids/PIC_09026.jpg')});
-		images.push({example: require('../../assets/img/eyelids/PIC_09044.jpg')});
-		images.push({example: require('../../assets/img/eyelids/PIC_09045.jpg')});
-		images = images.map((img)=>Object.assign({}, img, {thumbnail}));
+		let images = Array.from(Array(6), (v, k)=>({example: require(`../../assets/img/eyelids/0${k+1}.png`), thumbnail}));
 		let values = {};
 		let data = {};
 		let components = [
@@ -103,7 +115,7 @@ class AroundEyesPage extends Component {
 							type: 'text', name: `surgeries_before[${k}][how]`, multiLine: true, label: this.context.translate('surgeries_before:how'), grid: {md: 'calc((100% / 3) - (30px / 3))'}
 						},
 						{
-							type: 'text', name: `surgeries_before[${k}][where]`, multiLine: true, label: this.context.translate('place'), grid: {md: 'calc((100% / 3) - (30px / 3))'}
+							type: 'text', name: `surgeries_before[${k}][place]`, multiLine: true, label: this.context.translate('place'), grid: {md: 'calc((100% / 3) - (30px / 3))'}
 						},
 						{
 							type: 'text', name: `surgeries_before[${k}][duration]`, multiLine: true, label: this.context.translate('duration'), grid: {md: 'calc((100% / 3) - (30px / 3))'}
@@ -117,12 +129,12 @@ class AroundEyesPage extends Component {
 			{
 				items: [
 					{
-						type: 'radio', name: 'eye_surgery', horizontal: true, showClearButton: false, options: [
+						type: 'radio', name: 'which_surgical_you_looking_for', horizontal: true, showClearButton: false, options: [
 							{id: 'upper_eyelids_surgery', name: this.context.translate('upper_eyelids_surgery'), grid: optionGrid3},
 							{id: 'undereye_bag_surgery', name: this.context.translate('undereye_bag_surgery'), grid: optionGrid3},
 							{id: 'ptosis', name: this.context.translate('ptosis'), grid: optionGrid3},
-							{id: 'undereye_bag_surgery_small', name: this.context.translate('undereye_bag_surgery:small_incision'), grid: optionGrid3},
-							{id: 'upper_eyelids_surgery_small', name: this.context.translate('upper_eyelids_surgery:small_incision'), grid: optionGrid3}
+							{id: 'undereye_bag_surgery:small_incision', name: this.context.translate('undereye_bag_surgery:small_incision'), grid: optionGrid3},
+							{id: 'upper_eyelids_surgery:small_incision', name: this.context.translate('upper_eyelids_surgery:small_incision'), grid: optionGrid3}
 						]
 					}
 				]
