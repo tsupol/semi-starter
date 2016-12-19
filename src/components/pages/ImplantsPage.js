@@ -45,6 +45,8 @@ class ImplantsPage extends Component {
 		let thumbnail = require(this.props.locale=="th" ? '../../assets/img/upload-thumbnail.png': '../../assets/img/upload-thumbnail-en.png');
 		let example = require('../../assets/img/upload-example.png');
 		let images = Array.from(Array(6), (v, k)=>({example: require(`../../assets/img/implants/0${k+1}.png`), thumbnail}));
+		let images2 = {body: Array.from(Array(5), (v, k)=>(require(`../../assets/img/implants/body/0${k+1}.png`)))};
+		let images3 = [16,15,12,18,19].map((v, k)=>(require(`../../assets/img/icon/icon-${v}.png`)));
 		let values = {};
 		let data = {};
 		
@@ -80,11 +82,11 @@ class ImplantsPage extends Component {
 			],
 			[
 				{type: 'radio', name: 'body_shape', horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
-					{id: 'sandglass_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('sandglass_shape')}</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'triangle_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('triangle_shape')}</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'straight_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('straight_shape')}</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'pear_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('pear_shape')}</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'apple_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('apple_shape')}</label><br/><img style={imgStyle} src={example} /></div>}
+					{id: 'sandglass_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('sandglass_shape')}</label><br/><img style={imgStyle} src={images2.body[0]} /></div>},
+					{id: 'triangle_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('triangle_shape')}</label><br/><img style={imgStyle} src={images2.body[1]} /></div>},
+					{id: 'straight_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('straight_shape')}</label><br/><img style={imgStyle} src={images2.body[2]} /></div>},
+					{id: 'pear_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('pear_shape')}</label><br/><img style={imgStyle} src={images2.body[3]} /></div>},
+					{id: 'apple_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('apple_shape')}</label><br/><img style={imgStyle} src={images2.body[4]} /></div>}
 				]}
 			],
 			[
@@ -92,11 +94,11 @@ class ImplantsPage extends Component {
 			],
 			[
 				{type: 'radio', name: 'liposuction_area', horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
-					{id: 'ต้นแขน', grid: imgOptionGrid, name: <div><label>ต้นแขน</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'หน้าท้อง', grid: imgOptionGrid, name: <div><label>หน้าท้อง</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'ต้นขา', grid: imgOptionGrid, name: <div><label>ต้นขา</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'ก้น', grid: imgOptionGrid, name: <div><label>ก้น</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'สะโพก', grid: imgOptionGrid, name: <div><label>สะโพก</label><br/><img style={imgStyle} src={example} /></div>}
+					{id: 'ต้นแขน', grid: imgOptionGrid, name: <div><label>ต้นแขน</label><br/><img style={imgStyle} src={images3[0]} /></div>},
+					{id: 'หน้าท้อง', grid: imgOptionGrid, name: <div><label>หน้าท้อง</label><br/><img style={imgStyle} src={images3[1]} /></div>},
+					{id: 'ต้นขา', grid: imgOptionGrid, name: <div><label>ต้นขา</label><br/><img style={imgStyle} src={images3[2]} /></div>},
+					{id: 'ก้น', grid: imgOptionGrid, name: <div><label>ก้น</label><br/><img style={imgStyle} src={images3[3]} /></div>},
+					{id: 'สะโพก', grid: imgOptionGrid, name: <div><label>สะโพก</label><br/><img style={imgStyle} src={images3[4]} /></div>}
 				]}
 			],
 			/*

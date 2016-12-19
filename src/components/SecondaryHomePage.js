@@ -26,7 +26,7 @@ class HomePage extends Component {
 
 	render() {
 		//let example = require('../assets/img/upload-example.png');
-		let icons = Array.from(Array(14), (v, k)=>require(`../assets/img/icon/icon-${('00'+(k+1)).slice(-2)}.png`));
+		let icons = Array.from(Array(17), (v, k)=>require(`../assets/img/icon/icon-${('00'+(k+1)).slice(-2)}.png`));
 		let rowStyle = {marginBottom: 24};
 		let anchorStyle = {textDecoration: 'none'};
 		let divStyle = {border: '1px solid #ddd', textAlign: 'center', paddingBottom: 16};
@@ -109,13 +109,13 @@ class HomePage extends Component {
 											</Col>
 											<Col md="20%" xs="50%">
 												<div style={divStyle}>
-													<a href="#/liposuction/arm" style={anchorStyle}><img src={icons[11]} width="100%" /></a>
+													<a href="#/liposuction/arm" style={anchorStyle}><img src={icons[15]} width="100%" /></a>
 													<a href="#/liposuction/arm" style={anchorStyle}><SemiHeader style={headerStyle}>{this.context.translate('menu:liposuction-arm')}</SemiHeader></a>
 												</div>
 											</Col>
 											<Col md="20%" xs="50%">
 												<div style={divStyle}>
-													<a href="#/liposuction/leg" style={anchorStyle}><img src={icons[11]} width="100%" /></a>
+													<a href="#/liposuction/leg" style={anchorStyle}><img src={icons[14]} width="100%" /></a>
 													<a href="#/liposuction/leg" style={anchorStyle}><SemiHeader style={headerStyle}>{this.context.translate('menu:liposuction-leg')}</SemiHeader></a>
 												</div>
 											</Col>
@@ -127,7 +127,7 @@ class HomePage extends Component {
 											</Col>
 											<Col md="20%" xs="50%">
 												<div style={divStyle}>
-													<a href="#/liposuction/facial" style={anchorStyle}><img src={icons[11]} width="100%" /></a>
+													<a href="#/liposuction/facial" style={anchorStyle}><img src={icons[16]} width="100%" /></a>
 													<a href="#/liposuction/facial" style={anchorStyle}><SemiHeader style={headerStyle}>{this.context.translate('menu:liposuction-facial')}</SemiHeader></a>
 												</div>
 											</Col>

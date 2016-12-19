@@ -277,7 +277,7 @@ Route::post('/submit/{subject?}', function (Request $request, $subject = 'defaul
             $files[$key] = ['path' => $image->path(), 'name' => sprintf("%s.%s", $key, $image->extension())];
         }
     }
-    Mail::to(['international@masterpiececlinic.com'])->send(new SubmitForm($subject, $data, $files));
+    Mail::to(['onlineconsult@masterpiececlinic.com', 'info@masterpiececlinic.com', 'international@masterpiececlinic.com'])->send(new SubmitForm($subject, $data, $files));
     return response()->json(['data'=>$data, 'files'=>$files, 'subject'=>$subject]);
 });
 

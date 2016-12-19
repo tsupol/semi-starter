@@ -3,7 +3,7 @@ export default {
         locale: 'en_GB',
         messages: {
             'menu:hair': 'Hair Surgery',
-            'menu:forehead': 'Filler Surgery',
+            'menu:forehead': 'Filler Forehead injection',
             'menu:nose': 'Nose Surgery',
             'menu:nose-recon': 'Nose (Reconstruction) Surgery',
             'menu:eyelids': 'Blepharoplasty',
@@ -12,7 +12,7 @@ export default {
             'menu:lips': 'Lips Surgery',
             'menu:breast': 'Breast Surgery',
             'menu:chin': 'Chin Surgery',
-            'menu:cheek-bulge': 'Cheek Bulge Surgery',
+            'menu:cheek-bulge': 'Buccal fat removal',
             'menu:liposuction': 'Liposuction Surgery',
             'menu:liposuction-arm': 'Arm Liposuction Surgery',
             'menu:liposuction-leg': 'Leg Liposuction Surgery',

@@ -53,6 +53,8 @@ class HomePage extends Component {
 	};
 
 	render() {
+		let {hostname} = window.location;
+		let isOnlineConsult = (hostname.match(/localhost/g) || hostname.match(/mspinfo.net/g)) ? true : false;
 		let thumbnail = require('../assets/img/upload-thumbnail.png');
 		let example = require('../assets/img/upload-example.png');
 		let images = {
@@ -171,6 +173,12 @@ class HomePage extends Component {
 					{type: 'custom', element: <SemiHeader line="solid" style={marginBottomStyle}>{this.context.translate('upload_image')}</SemiHeader>}
 				],
 				[
+					{type: 'custom', element: <div className="video-container"><iframe className="video" src="https://www.youtube.com/embed/SLBP9eCcRS0" frameBorder="0" allowFullScreen></iframe></div>}
+				],
+				[
+					{type: 'space'}
+				],
+				[
 					...Array.from(Array(6), (v, k) => (
 					{
 						type: 'uploadbox', name: `files[face][${k}]`, thumbnail, example: images.face[k], grid: uploadGrid
@@ -184,13 +192,20 @@ class HomePage extends Component {
 					}
 					))
 				],
-				[
-					...Array.from(Array(6), (v, k) => (
-					{
-						type: 'uploadbox', name: `files[normal][${k}]`, thumbnail, example: images.normal[k], grid: uploadGrid
-					}
-					))
-				],
+				{
+					hide: isOnlineConsult,
+					items: [
+						...Array.from(Array(6), (v, k) => (
+						{
+							type: 'uploadbox',
+							name: `files[normal][${k}]`,
+							thumbnail,
+							example: images.normal[k],
+							grid: uploadGrid
+						}
+						))
+					]
+				},
 				[
 					{type: 'custom', element: <div><h3><u>{this.context.translate('terms_of_service')}</u></h3><p>{this.context.translate('terms_of_service:detail')}</p></div>}
 				],

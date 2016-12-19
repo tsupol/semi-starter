@@ -78,6 +78,7 @@ class HairPage extends Component {
 		let thumbnail = require(this.props.locale=="th" ? '../../assets/img/upload-thumbnail.png': '../../assets/img/upload-thumbnail-en.png');
 		let example = require('../../assets/img/upload-example.png');
 		let images = Array.from(Array(6), (v, k)=>({example: require(`../../assets/img/hair/0${k+1}.png`), thumbnail}));
+		let images2 = {men: Array.from(Array(12), (v, k)=>(require(`../../assets/img/hair/men/${('00'+(k+1)).slice(-2)}.png`))), women: Array.from(Array(3), (v, k)=>(require(`../../assets/img/hair/women/${('00'+(k+1)).slice(-2)}.png`)))};
 		let values = {};
 		let data = {};
 
@@ -202,7 +203,7 @@ class HairPage extends Component {
 				hide: this.state.physical_exam_gender != 'men',
 				items: [
 					{type: 'radio', name: 'physical_exam', horizontal: true, showClearButton: false, options: Array.from(Array(12), (v, k)=>({
-						id: k+1, grid: optionGrid, name: <img style={imgStyle} src={example}/>
+						id: `men-${k+1}`, grid: optionGrid, name: <img style={imgStyle} src={images2.men[k]}/>
 					}))}
 				]
 			},
@@ -211,7 +212,7 @@ class HairPage extends Component {
 				hide: this.state.physical_exam_gender != 'women',
 				items: [
 					{type: 'radio', name: 'physical_exam', horizontal: true, showClearButton: false, options: Array.from(Array(3), (v, k)=>({
-						id: k+1, grid: optionGrid, name: <img style={imgStyle} src={example}/>
+						id: `women-${k+1}`, grid: optionGrid, name: <img style={imgStyle} src={images2.women[k]}/>
 					}))}
 				]
 			},

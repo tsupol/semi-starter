@@ -112,6 +112,12 @@ class MainForm extends Component {
 					{type: 'custom', element: <SemiHeader line="solid" style={marginBottomStyle}>{this.context.translate('upload_image')}</SemiHeader>}
 				],
 				[
+					{type: 'custom', element: <div className="video-container"><iframe className="video" src="https://www.youtube.com/embed/SLBP9eCcRS0" frameBorder="0" allowFullScreen></iframe></div>}
+				],
+				[
+					{type: 'space'}
+				],
+				[
 					...images.map((image, k)=> (
 					{
 						type: 'uploadbox', name: `files[${k}]`, thumbnail: image.thumbnail, example: image.example, grid: uploadGrid
