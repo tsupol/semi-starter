@@ -170,13 +170,16 @@ class HomePage extends Component {
 					}
 				],
 				[
-					{type: 'custom', element: <SemiHeader line="solid" style={marginBottomStyle}>{this.context.translate('upload_image')}</SemiHeader>}
+					{type: 'custom', element: <SemiHeader line="solid" style={marginBottomStyle}>{this.context.translate('how_to_take_a_good_photo')}</SemiHeader>}
 				],
 				[
 					{type: 'custom', element: <div className="video-container"><iframe className="video" src="https://www.youtube.com/embed/SLBP9eCcRS0" frameBorder="0" allowFullScreen></iframe></div>}
 				],
 				[
 					{type: 'space'}
+				],
+				[
+					{type: 'custom', element: <SemiHeader line="solid" style={marginBottomStyle}>{this.context.translate('upload_image')}</SemiHeader>}
 				],
 				[
 					...Array.from(Array(6), (v, k) => (

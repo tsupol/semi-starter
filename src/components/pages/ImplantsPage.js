@@ -45,8 +45,8 @@ class ImplantsPage extends Component {
 		let thumbnail = require(this.props.locale=="th" ? '../../assets/img/upload-thumbnail.png': '../../assets/img/upload-thumbnail-en.png');
 		let example = require('../../assets/img/upload-example.png');
 		let images = Array.from(Array(6), (v, k)=>({example: require(`../../assets/img/implants/0${k+1}.png`), thumbnail}));
-		let images2 = {body: Array.from(Array(5), (v, k)=>(require(`../../assets/img/implants/body/0${k+1}.png`)))};
-		let images3 = [16,15,12,18,19].map((v, k)=>(require(`../../assets/img/icon/icon-${v}.png`)));
+		let images2 = {body: Array.from(Array(5), (v, k)=>(require(`../../assets/img/implants/body/0${k+1}.png`))), forehead: Array.from(Array(7), (v, k)=>(require(`../../assets/img/implants/forehead/0${k+1}.jpg`))), bottom: Array.from(Array(5), (v, k)=>(require(`../../assets/img/implants/bottom/0${k+1}.png`)))};
+		let images3 = [16,13,15,18,19].map((v, k)=>(require(`../../assets/img/icon/icon-${v}.png`)));
 		let values = {};
 		let data = {};
 		
@@ -56,13 +56,13 @@ class ImplantsPage extends Component {
 			],
 			[
 				{type: 'radio', name: 'forehead_shape', horizontal: true, showClearButton: false, grid: {xs: '100%'}, options: [
-					{id: 'straight_forehead', grid: imgOptionGrid, name: <div><label>{this.context.translate('straight_forehead')}</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'wide_forehead', grid: imgOptionGrid, name: <div><label>{this.context.translate('wide_forehead')}</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'arched_forehead', grid: imgOptionGrid, name: <div><label>{this.context.translate('arched_forehead')}</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'sharp_forehead', grid: imgOptionGrid, name: <div><label>{this.context.translate('sharp_forehead')}</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'double_arched_forehead', grid: imgOptionGrid, name: <div><label>{this.context.translate('double_arched_forehead')}</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'mountain_shaped_forehead', grid: imgOptionGrid, name: <div><label>{this.context.translate('mountain_shaped_forehead')}</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'narrow_forehead', grid: imgOptionGrid, name: <div><label>{this.context.translate('narrow_forehead')}</label><br/><img style={imgStyle} src={example} /></div>}
+					{id: 'straight_forehead', grid: imgOptionGrid, name: <div><label>{this.context.translate('straight_forehead')}</label><br/><img style={imgStyle} src={images2.forehead[0]} /></div>},
+					{id: 'wide_forehead', grid: imgOptionGrid, name: <div><label>{this.context.translate('wide_forehead')}</label><br/><img style={imgStyle} src={images2.forehead[1]} /></div>},
+					{id: 'arched_forehead', grid: imgOptionGrid, name: <div><label>{this.context.translate('arched_forehead')}</label><br/><img style={imgStyle} src={images2.forehead[2]} /></div>},
+					{id: 'sharp_forehead', grid: imgOptionGrid, name: <div><label>{this.context.translate('sharp_forehead')}</label><br/><img style={imgStyle} src={images2.forehead[3]} /></div>},
+					{id: 'double_arched_forehead', grid: imgOptionGrid, name: <div><label>{this.context.translate('double_arched_forehead')}</label><br/><img style={imgStyle} src={images2.forehead[4]} /></div>},
+					{id: 'mountain_shaped_forehead', grid: imgOptionGrid, name: <div><label>{this.context.translate('mountain_shaped_forehead')}</label><br/><img style={imgStyle} src={images2.forehead[5]} /></div>},
+					{id: 'narrow_forehead', grid: imgOptionGrid, name: <div><label>{this.context.translate('narrow_forehead')}</label><br/><img style={imgStyle} src={images2.forehead[6]} /></div>}
 				]}
 			],
 			[
@@ -70,11 +70,11 @@ class ImplantsPage extends Component {
 			],
 			[
 				{type: 'radio', name: 'hip_and_bottom_shape', horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
-					{id: 'overall_flat_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('overall_flat_shape')}</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'upper_flat_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('upper_flat_shape')}</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'side_flat_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('side_flat_shape')}</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'inner_flat_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('inner_flat_shape')}</label><br/><img style={imgStyle} src={example} /></div>},
-					{id: 'lower_flat_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('lower_flat_shape')}</label><br/><img style={imgStyle} src={example} /></div>}
+					{id: 'overall_flat_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('overall_flat_shape')}</label><br/><img style={imgStyle} src={images2.bottom[0]} /></div>},
+					{id: 'upper_flat_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('upper_flat_shape')}</label><br/><img style={imgStyle} src={images2.bottom[1]} /></div>},
+					{id: 'side_flat_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('side_flat_shape')}</label><br/><img style={imgStyle} src={images2.bottom[2]} /></div>},
+					{id: 'inner_flat_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('inner_flat_shape')}</label><br/><img style={imgStyle} src={images2.bottom[3]} /></div>},
+					{id: 'lower_flat_shape', grid: imgOptionGrid, name: <div><label>{this.context.translate('lower_flat_shape')}</label><br/><img style={imgStyle} src={images2.bottom[4]} /></div>}
 				]}
 			],
 			[
@@ -90,15 +90,15 @@ class ImplantsPage extends Component {
 				]}
 			],
 			[
-				{type: 'custom', element: <SemiHeader line="solid" style={{marginBottom: 24}}>บริเวณที่เอาไขมันออกมา</SemiHeader>}
+				{type: 'custom', element: <SemiHeader line="solid" style={{marginBottom: 24}}>{this.context.translate('dante_area')}</SemiHeader>}
 			],
 			[
-				{type: 'radio', name: 'liposuction_area', horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
-					{id: 'ต้นแขน', grid: imgOptionGrid, name: <div><label>ต้นแขน</label><br/><img style={imgStyle} src={images3[0]} /></div>},
-					{id: 'หน้าท้อง', grid: imgOptionGrid, name: <div><label>หน้าท้อง</label><br/><img style={imgStyle} src={images3[1]} /></div>},
-					{id: 'ต้นขา', grid: imgOptionGrid, name: <div><label>ต้นขา</label><br/><img style={imgStyle} src={images3[2]} /></div>},
-					{id: 'ก้น', grid: imgOptionGrid, name: <div><label>ก้น</label><br/><img style={imgStyle} src={images3[3]} /></div>},
-					{id: 'สะโพก', grid: imgOptionGrid, name: <div><label>สะโพก</label><br/><img style={imgStyle} src={images3[4]} /></div>}
+				{type: 'radio', name: 'dante_area', horizontal: true, showClearButton: false, grid: {md: '100%'}, options: [
+					{id: 'arm_dante_area', grid: imgOptionGrid, name: <div><label>{this.context.translate('arm_dante_area')}</label><br/><img style={imgStyle} src={images3[0]} /></div>},
+					{id: 'body_dante_area', grid: imgOptionGrid, name: <div><label>{this.context.translate('body_dante_area')}</label><br/><img style={imgStyle} src={images3[1]} /></div>},
+					{id: 'tight_dante_area', grid: imgOptionGrid, name: <div><label>{this.context.translate('tight_dante_area')}</label><br/><img style={imgStyle} src={images3[2]} /></div>},
+					{id: 'bottom_dante_area', grid: imgOptionGrid, name: <div><label>{this.context.translate('bottom_dante_area')}</label><br/><img style={imgStyle} src={images3[3]} /></div>},
+					{id: 'hip_dante_area', grid: imgOptionGrid, name: <div><label>{this.context.translate('hip_dante_area')}</label><br/><img style={imgStyle} src={images3[4]} /></div>}
 				]}
 			],
 			/*
